@@ -1,0 +1,9 @@
+{
+    "presets": [
+        "razzle/babel"
+    ],
+    "plugins": [
+        "transform-export-extensions",
+        "babel-plugin-emotion"
+    ]
+}
