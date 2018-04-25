@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Suggestions = () => (
     <div className="suggestions-page">

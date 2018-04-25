@@ -20,5 +20,5 @@ if (module.hot) {
         const newApp = require('./server').default
         server.on('request', newApp)
         currentApp = newApp
-    });
+    })
 }
