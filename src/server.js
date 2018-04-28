@@ -42,7 +42,8 @@ server
                 <meta property="og:locale" content="en_us">
                 <meta property="og:url" content="Formula Stocks">
                 <meta property="og:title" content="Formula Stocks">
-                
+
+                <script defer src="/media/icons/fontawesome/fontawesome-all.js"></script>
                 ${assets.client.css
                   ? `<link rel="stylesheet" href="${assets.client.css}">`
                   : ''}
