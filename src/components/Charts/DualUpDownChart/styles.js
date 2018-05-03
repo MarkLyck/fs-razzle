@@ -1,5 +1,5 @@
 import { css } from 'emotion'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 export const ChartBeside = styled('div')`
     display: flex;

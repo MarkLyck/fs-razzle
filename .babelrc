@@ -4,6 +4,13 @@
     ],
     "plugins": [
         "transform-export-extensions",
-        "babel-plugin-emotion"
+        "babel-plugin-emotion",
+        ["module-resolver", {
+            "root": ["./src"],
+            "alias": {
+              "media": "./src/media"
+            }
+        }],
+        "inline-react-svg"
     ]
 }

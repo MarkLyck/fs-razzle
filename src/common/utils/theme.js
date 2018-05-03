@@ -7,7 +7,7 @@ const theme = {
         text: '#49494A',
         black: '#49494A',
         gray: '#2D333C',
-        lightGray: '#95989E',
+        lightGray: '#EFEFEF',
         fadedGray: '#EEE',
         darkGray: '#232730',
         offwhite: '#F5F6F5',

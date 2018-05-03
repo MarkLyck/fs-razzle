@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withTheme } from 'emotion/react/theming'
+import { withTheme } from 'emotion-theming'
 import { PrimaryChart, SecondaryChart, ChartBeside, Statistic, ChartName, Line, Description } from './styles'
 
 const DualUpDownChart = ({

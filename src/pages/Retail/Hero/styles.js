@@ -73,7 +73,7 @@ export const SliderImage = styled.div`
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-image: url(${props => props['data-image']})
+    background-image: url(${props => props['data-image']});
     width: 100%;
 `
 

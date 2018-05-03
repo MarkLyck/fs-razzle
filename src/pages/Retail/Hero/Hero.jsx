@@ -65,12 +65,12 @@ class Hero extends Component {
                 </Content>
                 <Overlay />
                 <StyledSlider slickGoTo={this.state.slide} {...this.slickSettings}>
-                    <SliderImage data-image="/static/images/achieveGoals.jpg" />
-                    <SliderImage data-image="/static/images/speedster.jpg" />
-                    <SliderImage data-image="/static/images/net.jpg" />
-                    <SliderImage data-image="/static/images/boat.jpg" />
-                    <SliderImage data-image="/static/images/family.jpg" />
-                    <SliderImage data-image="/static/images/target.jpg" />
+                    <SliderImage data-image="/media/images/slides/achieveGoals.jpg" />
+                    <SliderImage data-image="/media/images/slides/speedster.jpg" />
+                    <SliderImage data-image="/media/images/slides/net.jpg" />
+                    <SliderImage data-image="/media/images/slides/boat.jpg" />
+                    <SliderImage data-image="/media/images/slides/family.jpg" />
+                    <SliderImage data-image="/media/images/slides/target.jpg" />
                 </StyledSlider>
             </HeroContainer>
         )

@@ -5,7 +5,7 @@ import Section from 'components/Section'
 import SectionTitle from 'components/Section/SectionTitle'
 import Beside from 'components/Section/Beside'
 import Disclaimer from 'components/Legal/Disclaimer'
-// import DualBarChart from 'components/graphs/DualBarChart'
+import DualBarChart from 'components/Charts/DualBarChart'
 
 const Introduction = ({ winRatio, portfolioReturn, planName }) => (
     <Section>
@@ -30,21 +30,20 @@ const Introduction = ({ winRatio, portfolioReturn, planName }) => (
                 </p>
                 <Disclaimer><sup>*</sup>Past performance is not neccesarily indicative of future results.</Disclaimer>
             </div>
+            <DualBarChart
+                primaryStatistic={Math.floor(winRatio)}
+                secondaryStatistic={59}
+                primaryName={planName}
+                secondaryName="Market"
+                primaryHeight={Math.floor(winRatio)}
+                secondaryHeight={59}
+                description="Winners in %"
+                unit="%"
+            />
 
         </Beside>
     </Section>
 )
-
-            //  <DualBarChart
-            //     primaryStatistic={Math.floor(winRatio)}
-            //     secondaryStatistic={59}
-            //     primaryName={planName}
-            //     secondaryName="Market"
-            //     primaryHeight={Math.floor(winRatio)}
-            //     secondaryHeight={59}
-            //     description="Winners in %"
-            //     unit="%"
-            // />
 
 Introduction.defaultProps = {
     winRatio: 90,

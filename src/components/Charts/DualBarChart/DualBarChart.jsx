@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withTheme } from 'emotion/react/theming'
+import { withTheme } from 'emotion-theming'
 import { Chart, ChartBeside, Statistic, ChartName, Description } from './styles'
 
 const DualBarChart = ({

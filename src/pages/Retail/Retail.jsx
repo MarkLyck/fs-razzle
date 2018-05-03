@@ -5,6 +5,7 @@ import gql from "graphql-tag"
 import { planIds, marketIds } from 'common/constants'
 import { usingMocks } from 'common/utils/featureTests'
 import mockData from 'common/mocks/RetailData.json'
+import HomeLoader from 'components/Loading/HomeLoader'
 
 import Navbar from 'components/Navbar'
 import Hero from './Hero'
@@ -37,7 +38,7 @@ const GET_ENTRY_AND_MARKET_DATA = gql`
 const Retail = () => (
     <Query query={GET_ENTRY_AND_MARKET_DATA}>
     {({ loading, error, data }) => {
-        if (loading) return <p>Loading...</p>
+        if (loading) return <HomeLoader />
         if (error && !usingMocks) return <p>Error loading</p>
 
         const plan = data ? data.Plan : mockData.Plan
