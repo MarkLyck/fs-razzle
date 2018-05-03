@@ -1,22 +1,14 @@
 import React from 'react'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
-import Typography from 'material-ui/Typography'
 
-export const titleCSS = theme => ({
-    fontWeight: '300',
-    color: theme.colors.black,
-    fontSize: '24px',
-    textAlign: 'center',
-    marginBottom: '20px',
-})
-
-export const Title = ({ children, theme }) => <Typography style={titleCSS(theme)}>{children}</Typography>
-
-Title.propTypes = {
-    children: PropTypes.node.isRequired,
-    theme: PropTypes.object.isRequired,
-}
+export const Title = styled.h2`
+    font-weight: 300;
+    color: ${props => props.theme.colors.black};
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+`
 
 export const SectionTitleContainer = styled.div`
     width: 100%;

@@ -13,9 +13,10 @@ const Introduction = ({ winRatio, portfolioReturn, planName }) => (
         <Beside>
             <div>
                 <p>
-                    Formula Stocks offers a better way to invest. It estimates which stocks will go up, before they go up.
-                    {Math.floor(winRatio)}% of the times we made such an estimate, it proved to be successful in the long run. You simply buy
-                    these stocks in your own account.<br /><br />
+                    Formula Stocks offers a better way to invest. It estimates which stocks will go up,
+                    before they go up. {Math.floor(winRatio)}% of the times we made such an estimate, it
+                    proved to be successful in the long run. You simply buy these stocks in your own account.
+                    <br /><br />
 
                     Investing using these estimates, our Entry portfolio returned 59.39% in 2016. Cumulative returns since
                     2009 are {portfolioReturn}%* vs. the S&P500's 176%. It is based on groundbreaking technology, which really makes a
