@@ -8,8 +8,9 @@ import mockData from 'common/mocks/RetailData.json'
 import HomeLoader from 'components/Loading/HomeLoader'
 
 import Navbar from 'components/Navbar'
-import Hero from './Hero'
-import Introduction from './Introduction'
+import Hero from './01_Hero'
+import Introduction from './02_Introduction'
+import WhatIsIt from './03_WhatIsIt'
 
 const GET_ENTRY_AND_MARKET_DATA = gql`
   query {
@@ -54,6 +55,7 @@ const Retail = () => (
                 <Navbar />
                 <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
                 <Introduction portfolioReturn={portfolioReturn} winRatio={winRatio} planName={planName} />
+                <WhatIsIt />
             </div>
         )
     }}

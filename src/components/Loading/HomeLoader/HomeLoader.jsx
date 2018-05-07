@@ -10,6 +10,7 @@ const NavSkeleton = styled.div`
     height: 64px;
     width: 100%;
     background: #fff;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `
 
 const HeroSkeleton = styled.div`
@@ -48,8 +49,14 @@ const TextBlock = styled.div`
     line-height: 1;
 `
 
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
 const HomeLoader = () => (
-    <div style={{ position: 'relative' }}>
+    <Container>
         <NavSkeleton />
         <HeroSkeleton>
             <Spinner />
@@ -70,8 +77,7 @@ const HomeLoader = () => (
             Join to better your returns, save on fees, and moderate your risk. Sign up for a 30-day free trial without any
             obligations.
         </TextBlock>
-        
-    </div>
+    </Container>
 )
 
 export default withTheme(HomeLoader)

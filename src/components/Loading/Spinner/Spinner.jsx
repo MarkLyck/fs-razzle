@@ -48,12 +48,23 @@ const Icon = styled(Flask)`
     transform: translate(-50%, -50%);
 `
 
+const LoadingText = styled.h1`
+    position: absolute;
+    bottom: -124px;
+    left: calc(50% + 20px);
+    transform: translateX(-50%);
+    color: ${props => props.theme.colors.primary};
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+`
+
 const LoadingSpinner = () => (
     <Container>
         <Background />
         <Spinner />
-        
         <Icon />
+        <LoadingText>Loading...</LoadingText>
     </Container>
     
 )

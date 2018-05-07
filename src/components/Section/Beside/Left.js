@@ -1,6 +1,6 @@
 import styled from 'react-emotion'
 
-const Left = styled.div.`
+const Left = styled.div`
     max-width: calc(50% - 16px);
     width: 100%;
     margin-right: 32px;
