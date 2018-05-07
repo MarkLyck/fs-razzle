@@ -13,6 +13,7 @@ const Section = styled.div`
 const SectionContent = styled.div`
     padding: 40px 80px 40px 80px;
     max-width: 1160px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

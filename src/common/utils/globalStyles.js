@@ -27,6 +27,10 @@ injectGlobal`
         font-weight: 400;
     }
 
+    a[href="http://www.amcharts.com"] {
+        display: none !important;
+    }
+
     /**
      * YUI 3.5.0 - reset.css (http://developer.yahoo.com/yui/3/cssreset/)
      * https://cssreset.com/

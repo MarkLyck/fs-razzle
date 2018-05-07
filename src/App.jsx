@@ -3,6 +3,7 @@ import Route from 'react-router-dom/Route'
 import Switch from 'react-router-dom/Switch'
 
 //Apollo
+// eslint-disable-next-line
 import fetch from 'isomorphic-fetch'
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';

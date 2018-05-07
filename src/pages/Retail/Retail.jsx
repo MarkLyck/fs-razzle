@@ -12,6 +12,9 @@ import Hero from './01_Hero'
 import Introduction from './02_Introduction'
 import WhatIsIt from './03_WhatIsIt'
 import Performance from './04_Performance'
+import PerformanceMatters from './05_PerformanceMatters'
+import FirstMonthOnus from './06_FirstMonthOnus'
+import WhatToExpect from './07_WhatToExpect'
 
 const GET_ENTRY_AND_MARKET_DATA = gql`
   query {
@@ -44,12 +47,14 @@ const Retail = () => (
         if (error && !usingMocks) return <p>Error loading</p>
 
         const plan = data ? data.Plan : mockData.Plan
+        const DJIA = data ? data.DJIA : mockData.DJIA
 
-        console.log(plan)
+        console.log(data)
 
         const planName = _.get(plan, 'name')
         const portfolioReturn = _.get(plan, 'launchStatistics.total_return')
         const portfolioYields = _.get(plan, 'portfolioYields')
+        const latestSells = _.get(plan, 'latestSells')
         const winRatio = _.get(plan, 'statistics.winRatio')
         const avgGain = _.get(plan, 'info.avgGainPerPosition')
         const avgLoss = _.get(plan, 'info.avgLossPerPosition')
@@ -60,7 +65,10 @@ const Retail = () => (
                 <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
                 <Introduction portfolioReturn={portfolioReturn} winRatio={winRatio} planName={planName} />
                 <WhatIsIt />
-                <Performance portfolioYields={portfolioYields} marketPrices={[]} planName={planName} />
+                <Performance portfolioYields={portfolioYields} marketPrices={DJIA.pricesSince2009} planName={planName} />
+                <PerformanceMatters />
+                <FirstMonthOnus />
+                <WhatToExpect latestSells={latestSells} />
             </div>
         )
     }}
@@ -69,9 +77,6 @@ const Retail = () => (
 
 export default Retail
 
-// <PerformanceMatters />
-// <FirstMonthOnus />
-// <WhatToExpect latestSells={Plan.latestSells} />
 // <PilotProgram />
 // <BacktestedPerformance backtestedData={Plan.backtestedData} marketPrices={SP500.longtermPrices} planName={Plan.name} />
 // <Statistics winRatio={winRatio} planName={Plan.name} avgGain={avgGain} avgLoss={avgLoss} />

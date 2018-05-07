@@ -1,6 +1,4 @@
-import React from 'react'
 import styled from 'react-emotion'
-import PropTypes from 'prop-types'
 
 export const Title = styled.h2`
     font-weight: 300;
