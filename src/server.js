@@ -44,6 +44,11 @@ server
                 <meta property="og:title" content="Formula Stocks">
 
                 <script defer src="/media/icons/fontawesome/fontawesome-all.js"></script>
+
+                <script src="https://www.amcharts.com/lib/3/amcharts.js""></script>
+                <script src="https://www.amcharts.com/lib/3/serial.js""></script>
+                <script src="https://www.amcharts.com/lib/3/pie.js""></script>
+                <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
                 ${assets.client.css
                   ? `<link rel="stylesheet" href="${assets.client.css}">`
                   : ''}

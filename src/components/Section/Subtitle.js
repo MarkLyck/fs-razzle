@@ -1,10 +1,10 @@
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
-const Subtitle = styled('div')`
+const Subtitle = styled.div`
     margin-bottom: 24px;
     text-align: center;
     font-weight: 300;
-    color: #49494A;
+    color: ${props => props.theme.colors.black};
 `
 
 export default Subtitle

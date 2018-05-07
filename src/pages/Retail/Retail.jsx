@@ -11,6 +11,7 @@ import Navbar from 'components/Navbar'
 import Hero from './01_Hero'
 import Introduction from './02_Introduction'
 import WhatIsIt from './03_WhatIsIt'
+import Performance from './04_Performance'
 
 const GET_ENTRY_AND_MARKET_DATA = gql`
   query {
@@ -44,8 +45,11 @@ const Retail = () => (
 
         const plan = data ? data.Plan : mockData.Plan
 
+        console.log(plan)
+
         const planName = _.get(plan, 'name')
         const portfolioReturn = _.get(plan, 'launchStatistics.total_return')
+        const portfolioYields = _.get(plan, 'portfolioYields')
         const winRatio = _.get(plan, 'statistics.winRatio')
         const avgGain = _.get(plan, 'info.avgGainPerPosition')
         const avgLoss = _.get(plan, 'info.avgLossPerPosition')
@@ -56,6 +60,7 @@ const Retail = () => (
                 <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
                 <Introduction portfolioReturn={portfolioReturn} winRatio={winRatio} planName={planName} />
                 <WhatIsIt />
+                <Performance portfolioYields={portfolioYields} marketPrices={[]} planName={planName} />
             </div>
         )
     }}
@@ -64,9 +69,6 @@ const Retail = () => (
 
 export default Retail
 
-// <Introduction portfolioReturn={portfolioReturn} winRatio={winRatio} planName={Plan.name} />
-// <WhatIsIt />
-// <Performance portfolioYields={Plan.portfolioYields} marketPrices={DJIA.pricesSince2009} planName={Plan.name} />
 // <PerformanceMatters />
 // <FirstMonthOnus />
 // <WhatToExpect latestSells={Plan.latestSells} />
