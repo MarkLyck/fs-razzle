@@ -32,13 +32,13 @@ class Navbar extends Component {
     renderLoggedOutLinks = () => (
         <NavLinks>
             <Button color="primary" onClick={() => {}}>Login</Button>
-            <Button raised="true" color="primary" onClick={() => {}}>Sign up</Button>
+            <Button color="primary" onClick={() => {}}>Sign up</Button>
         </NavLinks>
     )
 
     renderLoggedInLinks = () => (
         <NavLinks>
-            <Button raised="true" color="primary" onClick={() => Router.push('/dashboard/portfolio')}>
+            <Button color="primary" onClick={() => Router.push('/dashboard/portfolio')}>
                 Dashboard
             </Button>
             <Button color="primary" onClick={() => this.logout()}>Log out</Button>

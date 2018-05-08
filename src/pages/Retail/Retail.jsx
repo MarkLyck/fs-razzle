@@ -21,6 +21,9 @@ import Statistics from './10_Statistics'
 import HowWeBeatTheMarket from './11_HowWeBeatTheMarket'
 import RiskManagement from './12_RiskManagement'
 import CorporateProfile from './13_CorporateProfile'
+import IntendedAudience from './14_IntendedAudience'
+import ScrolledToBottom from './15_ScrolledToBottom'
+import Footer from './16_Footer'
 
 const GET_ENTRY_AND_MARKET_DATA = gql`
   query {
@@ -81,6 +84,9 @@ const Retail = () => (
                 <HowWeBeatTheMarket />
                 <RiskManagement />
                 <CorporateProfile />
+                <IntendedAudience />
+                <ScrolledToBottom />
+                <Footer />
             </div>
         )
     }}
@@ -88,7 +94,3 @@ const Retail = () => (
 )
 
 export default Retail
-
-// <IntendedAudience />
-// <ScrolledToBottom />
-// <Footer />
