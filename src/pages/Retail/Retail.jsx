@@ -17,6 +17,10 @@ import FirstMonthOnus from './06_FirstMonthOnus'
 import WhatToExpect from './07_WhatToExpect'
 import PilotProgram from './08_PilotProgram'
 import LongTermPerformance from './09_LongTermPerformance'
+import Statistics from './10_Statistics'
+import HowWeBeatTheMarket from './11_HowWeBeatTheMarket'
+import RiskManagement from './12_RiskManagement'
+import CorporateProfile from './13_CorporateProfile'
 
 const GET_ENTRY_AND_MARKET_DATA = gql`
   query {
@@ -73,6 +77,10 @@ const Retail = () => (
                 <WhatToExpect latestSells={latestSells} />
                 <PilotProgram />
                 <LongTermPerformance backtestedData={backtestedData} marketPrices={SP500.longtermPrices} planName={planName} />
+                <Statistics winRatio={winRatio} planName={planName} avgGain={avgGain} avgLoss={avgLoss} />
+                <HowWeBeatTheMarket />
+                <RiskManagement />
+                <CorporateProfile />
             </div>
         )
     }}
@@ -81,11 +89,6 @@ const Retail = () => (
 
 export default Retail
 
-// <BacktestedPerformance backtestedData={Plan.backtestedData} marketPrices={SP500.longtermPrices} planName={Plan.name} />
-// <Statistics winRatio={winRatio} planName={Plan.name} avgGain={avgGain} avgLoss={avgLoss} />
-// <HowWeBeatTheMarket />
-// <RiskManagement />
-// <CorporateProfile />
 // <IntendedAudience />
 // <ScrolledToBottom />
 // <Footer />
