@@ -15,6 +15,7 @@ import Performance from './04_Performance'
 import PerformanceMatters from './05_PerformanceMatters'
 import FirstMonthOnus from './06_FirstMonthOnus'
 import WhatToExpect from './07_WhatToExpect'
+import PilotProgram from './08_PilotProgram'
 
 const GET_ENTRY_AND_MARKET_DATA = gql`
   query {
@@ -69,6 +70,7 @@ const Retail = () => (
                 <PerformanceMatters />
                 <FirstMonthOnus />
                 <WhatToExpect latestSells={latestSells} />
+                <PilotProgram />
             </div>
         )
     }}
@@ -77,7 +79,6 @@ const Retail = () => (
 
 export default Retail
 
-// <PilotProgram />
 // <BacktestedPerformance backtestedData={Plan.backtestedData} marketPrices={SP500.longtermPrices} planName={Plan.name} />
 // <Statistics winRatio={winRatio} planName={Plan.name} avgGain={avgGain} avgLoss={avgLoss} />
 // <HowWeBeatTheMarket />
