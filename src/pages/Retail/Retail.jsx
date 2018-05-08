@@ -16,6 +16,7 @@ import PerformanceMatters from './05_PerformanceMatters'
 import FirstMonthOnus from './06_FirstMonthOnus'
 import WhatToExpect from './07_WhatToExpect'
 import PilotProgram from './08_PilotProgram'
+import LongTermPerformance from './09_LongTermPerformance'
 
 const GET_ENTRY_AND_MARKET_DATA = gql`
   query {
@@ -49,12 +50,12 @@ const Retail = () => (
 
         const plan = data ? data.Plan : mockData.Plan
         const DJIA = data ? data.DJIA : mockData.DJIA
-
-        console.log(data)
+        const SP500 = data ? data.SP500 : mockData.SP500
 
         const planName = _.get(plan, 'name')
         const portfolioReturn = _.get(plan, 'launchStatistics.total_return')
         const portfolioYields = _.get(plan, 'portfolioYields')
+        const backtestedData = _.get(plan, 'backtestedData')
         const latestSells = _.get(plan, 'latestSells')
         const winRatio = _.get(plan, 'statistics.winRatio')
         const avgGain = _.get(plan, 'info.avgGainPerPosition')
@@ -71,6 +72,7 @@ const Retail = () => (
                 <FirstMonthOnus />
                 <WhatToExpect latestSells={latestSells} />
                 <PilotProgram />
+                <LongTermPerformance backtestedData={backtestedData} marketPrices={SP500.longtermPrices} planName={planName} />
             </div>
         )
     }}
