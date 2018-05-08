@@ -13,7 +13,7 @@ import Introduction from './02_Introduction'
 import WhatIsIt from './03_WhatIsIt'
 import Performance from './04_Performance'
 import PerformanceMatters from './05_PerformanceMatters'
-import FirstMonthOnus from './06_FirstMonthOnus'
+import FirstMonthOnUs from './06_FirstMonthOnUs'
 import WhatToExpect from './07_WhatToExpect'
 import PilotProgram from './08_PilotProgram'
 import LongTermPerformance from './09_LongTermPerformance'
@@ -76,7 +76,7 @@ const Retail = () => (
                 <WhatIsIt />
                 <Performance portfolioYields={portfolioYields} marketPrices={DJIA.pricesSince2009} planName={planName} />
                 <PerformanceMatters />
-                <FirstMonthOnus />
+                <FirstMonthOnUs />
                 <WhatToExpect latestSells={latestSells} />
                 <PilotProgram />
                 <LongTermPerformance backtestedData={backtestedData} marketPrices={SP500.longtermPrices} planName={planName} />

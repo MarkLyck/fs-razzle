@@ -16,6 +16,9 @@ import { ThemeProvider } from 'emotion-theming'
 import theme from 'common/utils/theme'
 import 'common/utils/globalStyles'
 
+//init
+import 'common/utils/fontAwesomeLibrary'
+
 // Pages
 import Retail from 'pages/Retail'
 import Pro from 'pages/Pro'
