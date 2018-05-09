@@ -1,27 +1,12 @@
 import React from 'react'
-import { css } from 'emotion'
-import styled from 'react-emotion'
-import mq from 'common/utils/mq'
 import Section from 'components/Section'
 import SectionTitle from 'components/Section/SectionTitle'
 import Beside from 'components/Section/Beside'
 import Left from 'components/Section/Beside/Left'
 import Right from 'components/Section/Beside/Right'
-import { Screenshot } from './styles'
+import { BesideContainer, Screenshot } from './styles'
 
-const BesideContainer = styled.div`
-	${Beside} {
-		align-items: center;
-        ${mq.large(css`
-            flex-direction: column;
-            > div {
-                width: 100%;
-                max-width: 100%;
-                margin: 0;
-            }
-	    `)};
-	}
-`
+
 
 const WhatIsIt = () => (
     <Section data-offwhite>

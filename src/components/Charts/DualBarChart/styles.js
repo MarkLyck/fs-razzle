@@ -18,6 +18,8 @@ export const Chart = styled.div`
     background: ${props => props.color};
     width: 64px;
     margin: 12px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     min-height: 48px;
     transition: height 1s, transform .24s ease-in;
     position: relative;
@@ -33,6 +35,8 @@ export const Statistic = styled.p`
     justify-content: center;
     align-items: center;
     background: hsla(0,0%,100%,.75);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     width: 100%;
     font-weight: 100;
     height: 48px;

@@ -1,4 +1,21 @@
 import styled from 'react-emotion'
+import { css } from 'emotion'
+import mq from 'common/utils/mq'
+import Beside from 'components/Section/Beside'
+
+export const BesideContainer = styled.div`
+	${Beside} {
+		align-items: center;
+        ${mq.large(css`
+            flex-direction: column;
+            > div {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+            }
+	    `)};
+	}
+`
 
 export const Screenshot = styled.img`
     height: auto;

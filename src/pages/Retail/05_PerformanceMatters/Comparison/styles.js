@@ -1,14 +1,23 @@
 import styled from 'react-emotion'
+import { darken } from 'polished'
 
 export const Container = styled.div`
     width: 100%;
+    margin-top: 16px;
+    p {
+        font-weight: bold;
+    }
 `
 
 export const Bar = styled.div`
     position: relative;
     background: ${props => props.color};
     width: ${props => props.width}%;
-    height: 50px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 0.25rem 0 0 ${props => darken(0.1, props.color)};
+    height: 48px;
+    margin: 16px 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -16,8 +25,9 @@ export const Bar = styled.div`
     padding-right: 16px;
     font-weight: 400;
     transition: transform 0.5s;
+
     &:hover {
-        transform: scale(1.05);
+        transform: translateX(10px);
     }
 
     & span {

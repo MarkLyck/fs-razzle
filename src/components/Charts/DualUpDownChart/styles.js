@@ -19,6 +19,8 @@ export const PrimaryChart = styled.div`
     ${chart};
     height: ${props => props.height}%;
     background: ${props => props.color};
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     margin: 12px;
     margin-bottom: 0;
     transform: translateX(-55%);
@@ -28,6 +30,8 @@ export const SecondaryChart = styled.div`
     ${chart};
     height: ${props => props.height}%;
     background: ${props => props.color};
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     margin: 12px;
     margin-top: 0;
     transform: translateX(55%);

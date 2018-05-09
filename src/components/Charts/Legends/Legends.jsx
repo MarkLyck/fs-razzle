@@ -20,8 +20,8 @@ export const Legend = styled.div`
 
 export const Legends = styled.div`
     position: absolute;
-    left: ${props => props['data-left'] || 100}px;
-    top: ${props => props['data-top'] || 16}px;
+    left: ${props => props.left || 100}px;
+    top: ${props => props.top || 24}px;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
