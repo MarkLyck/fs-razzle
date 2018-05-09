@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import mq from 'common/utils/mq'
 
 export const Section = styled.div`
-    background: ${props => (props['data-offwhite'] ? props.theme.colors.lightGray : '#fff')};
+    background: ${props => (props['data-offwhite'] ? props.theme.colors.offWhite : '#fff')};
     display: flex;
     flex-direction: column;
     align-items: center;
