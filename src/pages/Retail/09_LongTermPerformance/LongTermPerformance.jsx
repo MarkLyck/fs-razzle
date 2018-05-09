@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Section from 'components/Section'
 import SectionTitle from 'components/Section/SectionTitle'
 import Subtitle from 'components/Section/Subtitle'
-import Disclaimer from 'components/Disclaimer'
+import Disclaimer from 'components/Legal/Disclaimer'
 import LongTermGraph from './LongTermGraph'
 
 const Performance = ({ backtestedData, marketPrices, planName, amChartsLoaded }) => (

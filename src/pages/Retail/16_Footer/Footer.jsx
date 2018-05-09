@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withTheme } from 'emotion-theming'
-import Disclaimer from 'components/Disclaimer'
+import Disclaimer from 'components/Legal/Disclaimer'
 import TermsOfService from 'components/Dialogs/TermsOfService'
 import PrivacyPolicy from 'components/Dialogs/PrivacyPolicy'
 import { FooterContainer, FooterDisclaimer, CopyRightContainer } from './styles'

@@ -6,7 +6,7 @@ import SectionTitle from 'components/Section/SectionTitle'
 import Beside from 'components/Section/Beside'
 import Left from 'components/Section/Beside/Left'
 import Right from 'components/Section/Beside/Right'
-import Disclaimer from 'components/Disclaimer'
+import Disclaimer from 'components/Legal/Disclaimer'
 import { Result } from './styles'
 
 const rightStyle = {

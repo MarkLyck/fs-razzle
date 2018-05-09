@@ -22,7 +22,6 @@ const slickStyles = () => css`
 export const HeroContainer = styled.div`
     margin-top: 64px;
     position: relative;
-    height: 650px;
     ${slickStyles}
 `
 

@@ -50,4 +50,5 @@ export const ChartName = styled.p`
 
 export const Description = styled.h3`
     text-align: center;
+    font-weight: 600;
 `
