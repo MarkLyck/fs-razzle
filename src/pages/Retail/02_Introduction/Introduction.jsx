@@ -1,11 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { css } from 'emotion'
+import styled from 'react-emotion'
+import mq from 'common/utils/mq'
 
-import Section from 'components/Section'
+import Sect, { Section } from 'components/Section/Section'
 import SectionTitle from 'components/Section/SectionTitle'
 import Beside from 'components/Section/Beside'
 import Disclaimer from 'components/Legal/Disclaimer'
 import DualBarChart from 'components/Charts/DualBarChart'
+
+const SectionContainer = styled('div')`
+	${Section} {
+		${mq.small(css`
+            .chart-container { display: none; }
+            .text-container { margin-right: 0; }
+	    `)};
+	}
+`
 
 const Introduction = ({ winRatio, portfolioReturn, portfolioYields, planName }) => {
 
@@ -26,40 +38,42 @@ const Introduction = ({ winRatio, portfolioReturn, portfolioYields, planName }) 
     }
     
     return (
-        <Section>
-            <SectionTitle>Invest intelligently</SectionTitle>
-            <Beside>
-                <div>
-                    <p>
-                        Formula Stocks offers a better way to invest. We forecast which stocks will go up,
-                        before they go up. {Math.floor(winRatio)}% of the time we have made such an estimate,
-                        it has proved a successful long term investment. You simply buy these stocks in your own account.
-                        <br /><br />
+        <SectionContainer>
+            <Sect>
+                <SectionTitle>Invest intelligently</SectionTitle>
+                <Beside>
+                    <div className="text-container">
+                        <p>
+                            Formula Stocks offers a better way to invest. We forecast which stocks will go up,
+                            before they go up. {Math.floor(winRatio)}% of the time we have made such an estimate,
+                            it has proved a successful long term investment. You simply buy these stocks in your own account.
+                            <br /><br />
 
-                        Investing using these estimates, cumulative returns since 2009 have been {portfolioReturn}%<sup>*</sup>
-                        vs. the S&P500's 225%. Our Entry portfolio returned {returns2017.toFixed(2)}% in 2017
-                        and {returns2016.toFixed(2)}% in 2016. Powered by Artificial Intelligence forecasting, this
-                        performance strongly exceeds the 6-7% average returns typically expected from the stock market.
-                        <br /><br />
-                    </p>
-                    <p>
-                        Join us to better your returns, save on fees, and moderate your risk.
-                        Sign up for a 30-day free trial without any obligations.
-                    </p>
-                    <Disclaimer><sup>*</sup>Past performance is not neccesarily indicative of future results.</Disclaimer>
-                </div>
-                <DualBarChart
-                    primaryStatistic={Math.floor(winRatio)}
-                    secondaryStatistic={59}
-                    primaryName={planName}
-                    secondaryName="Market"
-                    primaryHeight={Math.floor(winRatio)}
-                    secondaryHeight={59}
-                    description="Winners in %"
-                    unit="%"
-                />
-            </Beside>
-        </Section>
+                            Investing using these estimates, cumulative returns since 2009 have been {portfolioReturn}%<sup>*</sup>
+                            vs. the S&P500's 225%. Our Entry portfolio returned {returns2017.toFixed(2)}% in 2017
+                            and {returns2016.toFixed(2)}% in 2016. Powered by Artificial Intelligence forecasting, this
+                            performance strongly exceeds the 6-7% average returns typically expected from the stock market.
+                            <br /><br />
+                        </p>
+                        <p>
+                            Join us to better your returns, save on fees, and moderate your risk.
+                            Sign up for a 30-day free trial without any obligations.
+                        </p>
+                        <Disclaimer><sup>*</sup>Past performance is not neccesarily indicative of future results.</Disclaimer>
+                    </div>
+                    <DualBarChart
+                        primaryStatistic={Math.floor(winRatio)}
+                        secondaryStatistic={59}
+                        primaryName={planName}
+                        secondaryName="Market"
+                        primaryHeight={Math.floor(winRatio)}
+                        secondaryHeight={59}
+                        description="Winners in %"
+                        unit="%"
+                    />
+                </Beside>
+            </Sect>
+        </SectionContainer>
     )
 }
 

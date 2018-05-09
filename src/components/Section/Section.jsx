@@ -1,14 +1,19 @@
 import React from 'react'
+import { css } from 'emotion'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
+import mq from 'common/utils/mq'
 
-const Section = styled.div`
+export const Section = styled.div`
     background: ${props => (props['data-offwhite'] ? props.theme.colors.lightGray : '#fff')};
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
     padding: 40px 80px;
+    ${mq.medium(css`
+        padding: 40px 32px;
+	`)};
 `
 
 const SectionContent = styled.div`

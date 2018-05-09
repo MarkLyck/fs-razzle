@@ -14,7 +14,7 @@ const DualBarChart = ({
     unit,
     theme,
 }) => (
-    <div>
+    <div className="chart-container">
         <ChartBeside>
             <Chart color={theme.colors.primary} height={Math.floor(primaryHeight)}>
                 <Statistic>{primaryStatistic}{unit}</Statistic>
