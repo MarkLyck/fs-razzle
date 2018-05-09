@@ -3,7 +3,6 @@ import styled from 'react-emotion'
 export const GraphContainer = styled.div`
     position: relative;
     width: 100%;
-    max-width: 720px;
     height: 65vh;
     max-height: 800px;
     br {
