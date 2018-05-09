@@ -5,10 +5,10 @@ import Switch from 'react-router-dom/Switch'
 //Apollo
 // eslint-disable-next-line
 import fetch from 'isomorphic-fetch'
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloProvider } from 'react-apollo'
 import { graphCoolEndpoint } from 'common/constants'
 
 // emotion
@@ -32,7 +32,7 @@ import AdminOverview from 'pages/Dashboard/Admin/Overview'
 const client = new ApolloClient({
     link: new HttpLink({ uri: graphCoolEndpoint }),
     cache: new InMemoryCache(),
-  });
+  })
 
 const App = () => (
     <ThemeProvider theme={theme}>

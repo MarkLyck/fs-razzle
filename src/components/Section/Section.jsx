@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 import PropTypes from 'prop-types'
 
 const Section = styled.div`
-    background: ${props => (props['data-offwhite'] ? props.theme.colors.offwhite : '#fff')};
+    background: ${props => (props['data-offwhite'] ? props.theme.colors.lightGray : '#fff')};
     display: flex;
     flex-direction: column;
     align-items: center;

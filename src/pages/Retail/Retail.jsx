@@ -53,31 +53,31 @@ const GET_ENTRY_AND_MARKET_DATA = gql`
 class Retail extends Component {
     state = {
         amChartsCoreStatus: false,
-        amChartsSerialStatus: false,
-        amChartsThemesStatus: false,
         amChartsLoaded: false,
         amChartsLoadingError: false,
     }
 
+    amChartsSerialStatus = false
+    amChartsThemeStatus = false
+
     areAllChartDependenciesLoaded = () => {
-        console.log(this.state)
         if (this.state.amChartsCoreStatus
-            && this.state.amChartsSerialStatus
-            && this.state.amChartsThemesStatus) {
+            && this.amChartsSerialStatus
+            && this.amChartsThemeStatus) {
                 this.setState({ amChartsLoaded: true })
         }
     }
 
     onLoadAmChartsCore = () => {
-        this.setState({ amChartsCoreStatus: true })
+        this.setState({ amChartsCoreStatus : true })
         this.areAllChartDependenciesLoaded()
     }
     onLoadAmChartsSerial = () => {
-        this.setState({ amChartsSerialStatus: true })
+        this.amChartsSerialStatus = true
         this.areAllChartDependenciesLoaded()
     }
     onLoadAmChartsTheme = () => {
-        this.setState({ amChartsThemesStatus: true })
+        this.amChartsThemeStatus = true
         this.areAllChartDependenciesLoaded()
     }
 
