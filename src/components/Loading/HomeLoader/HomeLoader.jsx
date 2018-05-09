@@ -17,7 +17,7 @@ const HeroSkeleton = styled.div`
     height: 650px;
     width: 100%;
     background: ${props => props.theme.colors.lightGray};
-    margin-bottom: 40px;
+    margin: 64px 0 40px;
     display: flex;
     justify-content: center;
     align-items: center;

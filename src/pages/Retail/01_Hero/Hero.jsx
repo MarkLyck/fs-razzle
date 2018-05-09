@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Typed from 'typed.js'
-import { HeroContainer, Content, SliderImage, StyledSlider, Overlay, Bold } from './styles'
+import { HeroContainer, Content, Title, SliderImage, Overlay, Bold } from './styles'
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 class Hero extends Component {
-    state = { slide: 0 }
-
-    preStringTyped = arrPos => this.setState({ slide: arrPos })
+    preStringTyped = arrPos => this.slider.slickGoTo(arrPos)
 
     componentDidMount() {
         const { portfolioReturn, winRatio } = this.props
@@ -22,8 +23,9 @@ class Hero extends Component {
 
         const options = {
             strings,
-            typeSpeed: 60,
-            backSpeed: 75,
+            typeSpeed: 35,
+            backSpeed: 25,
+            backDelay: 5000,
             loop: true,
             preStringTyped: this.preStringTyped,
         }
@@ -52,7 +54,7 @@ class Hero extends Component {
             <HeroContainer>
                 <Content>
                     <div className="text-content">
-                        <h1 type="title">A <Bold>better</Bold> way to <Bold>invest</Bold></h1>
+                        <Title type="title">A <Bold>better</Bold> way to <Bold>invest</Bold></Title>
                         <div id="subtitles">
                             <div className="type-wrap">
                                 <span
@@ -64,14 +66,14 @@ class Hero extends Component {
                     </div>
                 </Content>
                 <Overlay />
-                <StyledSlider slickGoTo={this.state.slide} {...this.slickSettings}>
+                <Slider ref={slider => (this.slider = slider)} {...this.slickSettings}>
                     <SliderImage data-image="/media/images/slides/achieveGoals.jpg" />
                     <SliderImage data-image="/media/images/slides/speedster.jpg" />
                     <SliderImage data-image="/media/images/slides/net.jpg" />
                     <SliderImage data-image="/media/images/slides/boat.jpg" />
                     <SliderImage data-image="/media/images/slides/family.jpg" />
                     <SliderImage data-image="/media/images/slides/target.jpg" />
-                </StyledSlider>
+                </Slider>
             </HeroContainer>
         )
     }
