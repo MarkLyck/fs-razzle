@@ -1,13 +1,39 @@
+import { css } from 'emotion'
 import styled from 'react-emotion'
+import { darken } from 'polished'
+import mq from 'common/utils/mq'
+import Beside from 'components/Section/Beside'
 
-export const cardStyle = {
-    height: '73px',
-    display: 'flex',
-    marginBottom: '12px',
-    width: '100%',
-}
+export const BesideContainer = styled.div`
+	${Beside} {
+        ${mq.medium(css`
+            flex-direction: column;
+            > div {
+                max-width: 100%;
+                margin 0;
+            }
+            > div:first-child {
+                margin-bottom: 32px;
+            }
+	    `)};
+	}
+`
 
-export const ExecutiveTeam = styled.h3`
+export const Card = styled.div`
+    height: 72px;
+    width: 100%;
+    display: flex;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0.25rem 0 0 ${darken(0.15, '#fff')}, 0 0px 16px rgba(0,0,0,.075);
+    margin-bottom: 16px;
+    p {
+        color: ${props => props.theme.colors.primary};
+    }
+`
+
+export const Subtitle = styled.h3`
+    font-weight: bold;
     margin-bottom: 16px;
 `
 

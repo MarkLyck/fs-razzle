@@ -1,7 +1,9 @@
 import React from 'react'
 import Section from 'components/Section'
 import SectionTitle from 'components/Section/SectionTitle'
+import BrochureLink from 'components/BrochureLink'
 import { List, ListItem } from './styles'
+
 
 /* eslint-disable max-len */
 const HowWeBeatTheMarket = () => (
@@ -32,7 +34,7 @@ const HowWeBeatTheMarket = () => (
         </List>
         <p>
             The complexity is high. Formula Stocks offers a leading-edge technological approach to stock selection and portfolio
-            optimization. If you want to know more, please request our brochure or click here.
+            optimization. If you want to know more, please <BrochureLink>see our brochure</BrochureLink>.
         </p>
     </Section>
 )

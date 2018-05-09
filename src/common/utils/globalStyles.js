@@ -160,6 +160,11 @@ injectGlobal`
 
     a {
         text-decoration: none;
+        color: #27A5F9;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
     }
 
     p {
