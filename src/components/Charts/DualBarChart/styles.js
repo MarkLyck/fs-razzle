@@ -10,7 +10,7 @@ export const ChartBeside = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    height: 100%;
+    height: ${props => props.maxHeight || '100%'};
 `
 
 export const Chart = styled.div`

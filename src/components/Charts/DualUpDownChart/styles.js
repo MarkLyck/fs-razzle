@@ -53,7 +53,7 @@ export const Statistic = styled.p`
 export const ChartName = styled.p`
     width: 60px;
     position: absolute;
-    top: -40px;
+    top: -28px;
     background: none;
     text-align: center;
     text-transform: capitalize;
@@ -67,6 +67,7 @@ export const Line = styled.div`
 
 export const Description = styled.h3`
     text-align: center;
+    font-weight: 600;
 `
 
 

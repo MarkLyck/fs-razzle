@@ -10,12 +10,13 @@ const DualBarChart = ({
     secondaryHeight,
     primaryName,
     secondaryName,
+    maxHeight,
     description,
     unit,
     theme,
 }) => (
     <div className="chart-container">
-        <ChartBeside>
+        <ChartBeside maxHeight={maxHeight}>
             <Chart color={theme.colors.primary} height={Math.floor(primaryHeight)}>
                 <Statistic>{primaryStatistic}{unit}</Statistic>
                 <ChartName>{primaryName}</ChartName>
