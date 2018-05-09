@@ -28,8 +28,8 @@ const createChartData = (planData, marketPrices) => planData.map((point, i) => {
     }
 })
 
-const LaunchPerformance = ({ planData, marketPrices, planName }) => {
-    if (!planData || !planData.length) {
+const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded }) => {
+    if (!planData || !planData.length || !amChartsLoaded) {
         return (
             <div id="result-chart" className="loading">
                 <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />

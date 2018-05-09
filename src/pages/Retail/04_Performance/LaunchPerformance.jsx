@@ -29,8 +29,8 @@ const createChartData = (portfolioYields, marketPrices) => {
     })
 }
 
-const LaunchPerformance = ({ portfolioYields, marketPrices, planName }) => {
-    if (!portfolioYields || !portfolioYields.length) {
+const LaunchPerformance = ({ portfolioYields, marketPrices, planName, amChartsLoaded }) => {
+    if (!portfolioYields || !portfolioYields.length || !amChartsLoaded) {
         return (
             <div id="result-chart" className="loading">
                 <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />

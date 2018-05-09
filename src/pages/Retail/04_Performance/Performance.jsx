@@ -5,11 +5,16 @@ import SectionTitle from 'components/Section/SectionTitle'
 import Subtitle from 'components/Section/Subtitle'
 import LaunchPerformance from './LaunchPerformance'
 
-const Performance = ({ portfolioYields, marketPrices, planName }) => (
+const Performance = ({ portfolioYields, marketPrices, planName, amChartsLoaded }) => (
     <Section>
         <SectionTitle>Performance</SectionTitle>
         <Subtitle>Unleveraged returns since 2009, compared to the Dow Jones Industrial Average.</Subtitle>
-        <LaunchPerformance portfolioYields={portfolioYields} marketPrices={marketPrices} planName={planName} />
+        <LaunchPerformance
+            portfolioYields={portfolioYields}
+            marketPrices={marketPrices}
+            planName={planName}
+            amChartsLoaded={amChartsLoaded}
+        />
     </Section>
 )
 
