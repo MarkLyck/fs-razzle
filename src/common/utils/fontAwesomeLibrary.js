@@ -1,4 +1,6 @@
 import fontawesome from '@fortawesome/fontawesome'
-import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee'
+import faSignInAlt from '@fortawesome/fontawesome-free-solid/faSignInAlt'
+import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt'
+import faChartLine from '@fortawesome/fontawesome-free-solid/faChartLine'
 
-fontawesome.library.add(faCoffee)
+fontawesome.library.add(faSignInAlt, faSignOutAlt, faChartLine)

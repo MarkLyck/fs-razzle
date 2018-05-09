@@ -11,6 +11,7 @@
               "media": "./src/media"
             }
         }],
-        "inline-react-svg"
+        "inline-react-svg",
+        "polished"
     ]
 }

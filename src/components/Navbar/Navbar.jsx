@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { withTheme } from 'emotion-theming'
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
-import { Router } from 'react-router-dom'
 import { hasStorage } from 'common/utils/featureTests'
 
 // UI
-import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
-import Button from 'material-ui/Button'
+import Button from 'components/Button'
 import Logo from './logo_horizontal.svg'
 
-import { NavLinks } from './styles'
+import { NavLinks, NavBar } from './styles'
 
 const LOGGED_IN_USER_QUERY = gql`
   query LoggedInUserQuery {
@@ -31,17 +30,23 @@ class Navbar extends Component {
 
     renderLoggedOutLinks = () => (
         <NavLinks>
-            <Button color="primary" onClick={() => {}}>Login</Button>
-            <Button color="primary" onClick={() => {}}>Sign up</Button>
+            <Button variant="raised" type="light" onClick={() => {}}>
+                <FontAwesomeIcon icon="sign-in-alt" />Login
+            </Button>
+            <Button variant="raised" background="primary" onClick={() => {}}>
+                Sign up
+            </Button>
         </NavLinks>
     )
 
     renderLoggedInLinks = () => (
         <NavLinks>
-            <Button color="primary" onClick={() => Router.push('/dashboard/portfolio')}>
-                Dashboard
+            <Button  variant="raised" onClick={() => {}}>
+                <FontAwesomeIcon icon="chart-line" />Dashboard
             </Button>
-            <Button color="primary" onClick={() => this.logout()}>Log out</Button>
+            <Button  variant="raised" type="light" color="black" hoverColor="error" onClick={() => this.logout()}>
+                <FontAwesomeIcon icon="sign-out-alt" />Log out
+            </Button>
         </NavLinks>
     )
 
@@ -51,14 +56,12 @@ class Navbar extends Component {
         return (
             <Query query={LOGGED_IN_USER_QUERY}>
                 {({ loading, error, data }) => (
-                    <AppBar position="fixed" color="default">
-                        <Toolbar>
+                    <NavBar position="fixed" color="default">
                         <Logo />
                         {(loggedIn)
                             ? this.renderLoggedInLinks()
                             : this.renderLoggedOutLinks()}
-                        </Toolbar>
-                    </AppBar>
+                    </NavBar>
                 )}
             </Query>
             
@@ -70,4 +73,4 @@ Navbar.propTypes = {
     actions: PropTypes.object,
 }
 
-export default Navbar
+export default withTheme(Navbar)
