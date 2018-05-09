@@ -1,6 +1,6 @@
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
-export const Legend = styled('div')`
+export const Legend = styled.div`
     text-transform: capitalize;
     position: relative;
     margin: 0;
@@ -18,9 +18,10 @@ export const Legend = styled('div')`
     }
 `
 
-export const Legends = styled('div')`
+export const Legends = styled.div`
     position: absolute;
-    left: ${props => props['data-left'] || 100}px;
+    left: ${props => props.left || 100}px;
+    top: ${props => props.top || 24}px;
     box-sizing: border-box;
     margin: 0;
     padding: 0;

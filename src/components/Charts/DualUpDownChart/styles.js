@@ -1,7 +1,7 @@
 import { css } from 'emotion'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
-export const ChartBeside = styled('div')`
+export const ChartBeside = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,25 +9,29 @@ export const ChartBeside = styled('div')`
     height: 300px;
 `
 
-const chart = css`
+const chart = () => css`
     width: 64px;
     min-height: 45px;
     position: relative;
 `
 
-export const PrimaryChart = styled('div')`
-    composes: ${chart};
+export const PrimaryChart = styled.div`
+    ${chart};
     height: ${props => props.height}%;
     background: ${props => props.color};
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     margin: 12px;
     margin-bottom: 0;
     transform: translateX(-55%);
 `
 
-export const SecondaryChart = styled('div')`
-    composes: ${chart};
+export const SecondaryChart = styled.div`
+    ${chart};
     height: ${props => props.height}%;
     background: ${props => props.color};
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     margin: 12px;
     margin-top: 0;
     transform: translateX(55%);
@@ -35,7 +39,7 @@ export const SecondaryChart = styled('div')`
     align-items: flex-end;
 `
 
-export const Statistic = styled('p')`
+export const Statistic = styled.p`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,23 +50,24 @@ export const Statistic = styled('p')`
     margin: 0;
 `
 
-export const ChartName = styled('p')`
+export const ChartName = styled.p`
     width: 60px;
     position: absolute;
-    top: -40px;
+    top: -28px;
     background: none;
     text-align: center;
     text-transform: capitalize;
 `
 
-export const Line = styled('div')`
+export const Line = styled.div`
     width: 100%;
     height: 2px;
     background: black;
 `
 
-export const Description = styled('h3')`
+export const Description = styled.h3`
     text-align: center;
+    font-weight: 600;
 `
 
 

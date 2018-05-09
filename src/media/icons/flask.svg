@@ -1,16 +1,16 @@
-<svg width="366" height="382" viewBox="0 0 366 382" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
-<g id="Canvas" transform="translate(-1238 -834)" figma:type="canvas">
-<g id="logo" style="mix-blend-mode:normal;" figma:type="frame">
-<g id="Page-1" style="mix-blend-mode:normal;" figma:type="frame">
-<g id="logo" style="mix-blend-mode:normal;" figma:type="frame">
-<g id="Group" style="mix-blend-mode:normal;" figma:type="frame">
-<g id="Shape" style="mix-blend-mode:normal;" figma:type="vector">
+<svg width="366" height="382" viewBox="0 0 366 382" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" transform="translate(-1238 -834)">
+<g id="logo" style="mix-blend-mode:normal;">
+<g id="Page-1" style="mix-blend-mode:normal;">
+<g id="logo" style="mix-blend-mode:normal;">
+<g id="Group" style="mix-blend-mode:normal;">
+<g id="Shape" style="mix-blend-mode:normal;">
 <use xlink:href="#path0_fill" transform="translate(1498.99 929.124)" fill="#27A5F9" style="mix-blend-mode:normal;"/>
 </g>
-<g id="Shape" style="mix-blend-mode:normal;" figma:type="vector">
+<g id="Shape" style="mix-blend-mode:normal;">
 <use xlink:href="#path1_fill" transform="translate(1238 946.837)" fill="#27A5F9" style="mix-blend-mode:normal;"/>
 </g>
-<g id="Shape" style="mix-blend-mode:normal;" figma:type="vector">
+<g id="Shape" style="mix-blend-mode:normal;">
 <use xlink:href="#path2_fill" transform="translate(1346.82 834.755)" fill="#49494A" style="mix-blend-mode:normal;"/>
 </g>
 </g>

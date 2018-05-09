@@ -1,6 +1,36 @@
 import { injectGlobal } from 'emotion'
 
 injectGlobal`
+    @font-face {
+        font-family: 'proxima-nova';
+        src: url('fonts/proxima-nova/ProximaNova-Regular.otf');
+        font-weight: 400;
+    }
+    @font-face {
+        font-family: 'proxima-nova';
+        src: url('fonts/proxima-nova/ProximaNova-Light.otf');
+        font-weight: 100;
+    }
+    @font-face {
+        font-family: 'proxima-nova';
+        src: url('fonts/proxima-nova/ProximaNova-Bold.otf');
+        font-weight: 700;
+    }
+    @font-face {
+        font-family: 'proxima-nova';
+        src: url('fonts/proxima-nova/ProximaNova-Semibold.otf');
+        font-weight: 600;
+    }
+    @font-face {
+        font-family: 'BLOKK';
+        src: url('fonts/BLOKK/BLOKKNeue-Regular.otf');
+        font-weight: 400;
+    }
+
+    a[href="http://www.amcharts.com"] {
+        display: none !important;
+    }
+
     /**
      * YUI 3.5.0 - reset.css (http://developer.yahoo.com/yui/3/cssreset/)
      * https://cssreset.com/
@@ -11,9 +41,8 @@ injectGlobal`
         TODO will need to remove settings on HTML since we can't namespace it.
         TODO with the prefix, should I group by selector or property for weight savings?
     */
-    html{
-        color:#000;
-        background:#FFF;
+    html {
+        font-family: 'proxima-nova', sans-serif;
     }
     body{
         overflow-x: hidden;
@@ -131,6 +160,15 @@ injectGlobal`
 
     a {
         text-decoration: none;
+        color: #27A5F9;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+
+    p {
+        line-height: 1.5;
     }
 
     button {
