@@ -5,6 +5,7 @@ const Disclaimer = styled.p`
     font-weight: 100;
     font-size: 0.8rem;
     line-height: 1;
+    margin: 8px 0;
 `
 
 export default Disclaimer

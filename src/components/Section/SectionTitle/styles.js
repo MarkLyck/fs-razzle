@@ -1,7 +1,7 @@
 import styled from 'react-emotion'
 
 export const Title = styled.h2`
-    font-weight: 300;
+    font-weight: 600;
     color: ${props => props.theme.colors.black};
     font-size: 1.5rem;
     text-align: center;

@@ -8,15 +8,16 @@ const Section = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 0;
+    padding: 40px 80px;
 `
 
 const SectionContent = styled.div`
-    padding: 40px 80px 40px 80px;
     max-width: 1160px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    line-height: 1.5;
 `
 
 const Sect = props => (

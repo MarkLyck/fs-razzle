@@ -106,7 +106,7 @@ class Retail extends Component {
                 <div className="retail-page">
                     <Navbar />
                     <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
-                    <Introduction portfolioReturn={portfolioReturn} winRatio={winRatio} planName={planName} />
+                    <Introduction portfolioReturn={portfolioReturn} portfolioYields={portfolioYields} winRatio={winRatio} planName={planName} />
                     <WhatIsIt />
                     <Performance portfolioYields={portfolioYields} marketPrices={DJIA.pricesSince2009} planName={planName} amChartsLoaded={amChartsLoaded} />
                     <PerformanceMatters />

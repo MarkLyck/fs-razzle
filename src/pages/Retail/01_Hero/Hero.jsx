@@ -57,10 +57,7 @@ class Hero extends Component {
                         <Title type="title">A <Bold>better</Bold> way to <Bold>invest</Bold></Title>
                         <div id="subtitles">
                             <div className="type-wrap">
-                                <span
-                                    style={{ whiteSpace: 'pre' }}
-                                    ref={(el) => { this.el = el }}
-                                />
+                                <p ref={(el) => { this.el = el }} />
                             </div>
                         </div>
                     </div>

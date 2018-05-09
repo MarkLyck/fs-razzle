@@ -44,24 +44,21 @@ export const Overlay = styled.div`
 export const Content = styled.div`
     position: absolute;
     top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: 5;
-    width: 100%;
-    max-width: calc(1160px + 64px);
     margin: 0 32px;
     .text-content {
         color: #fff;
-        max-width: calc(100% - 80px);
-        z-index: 5;
-        width: 100%;
-        max-width: 1224px;
         margin: 0 32px;
     }
     .type-wrap {
         font-weight: 700;
         font-size: 2.5em;
         text-shadow: 0 2px 2px rgba(0,0,0,.3);
+        display: flex;
+        align-items: flex-end;
+        p {
+            line-height: 1;
+        }
     }
     h1 {
         font-size: 2em;
