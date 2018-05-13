@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Dashboard = () => (
-    <div className="retail-page">
-        Dashboard
+const Dashboard = ({ children }) => (
+    <div className="dashboard-page">
+        {children}
     </div>
 )
 

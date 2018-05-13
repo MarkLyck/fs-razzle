@@ -8,7 +8,7 @@ import { usingMocks } from 'common/utils/featureTests'
 import mockData from 'common/mocks/RetailData.json'
 import HomeLoader from 'components/Loading/HomeLoader'
 
-import Navbar from 'components/Navbar'
+import Navbar from 'components/Navbar/Retail'
 import Hero from './01_Hero'
 import Introduction from './02_Introduction'
 import WhatIsIt from './03_WhatIsIt'
@@ -25,6 +25,45 @@ import CorporateProfile from './13_CorporateProfile'
 import IntendedAudience from './14_IntendedAudience'
 import ScrolledToBottom from './15_ScrolledToBottom'
 import Footer from './16_Footer'
+
+const SuggestionQuery = gql`
+  query {
+    allStocks(filter: {
+        ticker: "NTGR"
+    }) {
+        ticker
+        latestPrice
+        sixMonthsPrices
+    }
+  }
+`
+
+const ARTICLES_QUERY = gql`
+  query {
+    allArticles {
+        title
+        body
+        headerImageUrl
+    }
+  }
+`
+
+const PORTFOLII_QUERY = gql`
+  query {
+    Plan(id: "${planIds.ENTRY}") {
+      name
+      portfolio
+      info
+      launchStatistics
+      statistics
+      portfolioYields
+    },
+    DJIA: Market(id: "${marketIds.DJIA}") {
+        name
+        pricesSince2009
+    }
+  }
+`
 
 const GET_ENTRY_AND_MARKET_DATA = gql`
   query {
@@ -86,6 +125,7 @@ class Retail extends Component {
 
         return <Query query={GET_ENTRY_AND_MARKET_DATA}>
         {({ loading, error, data }) => {
+            console.log(data)
             if (loading) return <HomeLoader />
             if (error && !usingMocks) return <p>Error loading</p>
     

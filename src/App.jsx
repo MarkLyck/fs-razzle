@@ -40,13 +40,12 @@ const App = () => (
             <Switch>
                 <Route exact path="/" component={Retail} />
                 <Route exact path="/pro" component={Pro} />
-                <Route exact path="/dashboard" component={Dashboard}>
-                    <Route exact path="/suggestions/*" component={Suggestions} />
-                    <Route exact path="/portfolio/*" component={Portfolio} />
-                    <Route exact path="/Trades/*" component={Trades} />
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/dashboard/suggestions" component={Suggestions} />
+                <Route exact path="/portfolio/*" component={Portfolio} />
+                <Route exact path="/trades/" component={Trades} />
 
-                    <Route exact path="/admin" component={AdminOverview} />
-                </Route>
+                <Route exact path="/admin" component={AdminOverview} />
             </Switch>
         </ApolloProvider>
     </ThemeProvider>

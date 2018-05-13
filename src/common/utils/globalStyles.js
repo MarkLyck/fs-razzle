@@ -3,27 +3,27 @@ import { injectGlobal } from 'emotion'
 injectGlobal`
     @font-face {
         font-family: 'proxima-nova';
-        src: url('fonts/proxima-nova/ProximaNova-Regular.otf');
+        src: url('/fonts/proxima-nova/ProximaNova-Regular.otf');
         font-weight: 400;
     }
     @font-face {
         font-family: 'proxima-nova';
-        src: url('fonts/proxima-nova/ProximaNova-Light.otf');
+        src: url('/fonts/proxima-nova/ProximaNova-Light.otf');
         font-weight: 100;
     }
     @font-face {
         font-family: 'proxima-nova';
-        src: url('fonts/proxima-nova/ProximaNova-Bold.otf');
+        src: url('/fonts/proxima-nova/ProximaNova-Bold.otf');
         font-weight: 700;
     }
     @font-face {
         font-family: 'proxima-nova';
-        src: url('fonts/proxima-nova/ProximaNova-Semibold.otf');
+        src: url('/fonts/proxima-nova/ProximaNova-Semibold.otf');
         font-weight: 600;
     }
     @font-face {
         font-family: 'BLOKK';
-        src: url('fonts/BLOKK/BLOKKNeue-Regular.otf');
+        src: url('/fonts/BLOKK/BLOKKNeue-Regular.otf');
         font-weight: 400;
     }
 
