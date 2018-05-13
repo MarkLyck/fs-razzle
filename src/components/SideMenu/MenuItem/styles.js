@@ -1,5 +1,4 @@
 import styled from 'react-emotion'
-import { darken } from 'polished'
 
 export const Button = styled.button`
     position: relative;

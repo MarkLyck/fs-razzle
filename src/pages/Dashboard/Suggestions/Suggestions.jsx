@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Query } from "react-apollo"
 import gql from "graphql-tag"
-// import Script from 'react-load-script'
 
-// import { hasStorage } from 'common/utils/featureTests'
 import { planIds } from 'common/constants'
 import { usingMocks } from 'common/utils/featureTests'
 import mockData from 'common/mocks/suggestionsData.json'
@@ -13,7 +11,6 @@ import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
-import Dashboard from '../'
 import Suggestion from './Suggestion'
 
 import { SuggestionsList } from './styles'

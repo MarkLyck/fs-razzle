@@ -9,7 +9,7 @@ import { Bar } from './styles'
 
 const NavBar = ({ selectedPlan, actions, history, location }) => {
     if (typeof window === 'undefined') {
-        return (<Bar><span /><Logo /></Bar>)
+        return (<Bar><Logo /></Bar>)
     }
 
     const path = location.pathName || ''
