@@ -6,7 +6,7 @@ export const SuggContainer = styled.div`
     margin-top: 16px;
 
     @media(max-width: 850px) {
-        width: calc(100% - 32px);
+        width: calc(100% - 16px);
     }
 `
 
@@ -15,7 +15,6 @@ export const Card = styled.div`
     border-radius: 2px;
     background-color: white;
 `
-    
 
 export const SuggHeader = styled.div`
     display: flex;

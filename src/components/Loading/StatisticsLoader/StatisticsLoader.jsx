@@ -20,13 +20,12 @@ const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-top: 8px;
+    margin-top: 16px;
     padding: 8px;
     box-sizing: border-box;
 
     > div {
         width: calc(100% / 4 - 32px);
-        ${'' /* margin-bottom: 16px; */}
     }
 
     > div:nth-child(2) {
@@ -49,6 +48,7 @@ const Container = styled.div`
     }
 
     @media (max-width: 600px) {
+        margin-top: 8px;
         > div {
             width: calc(100% - 32px);
             height: 60px;
