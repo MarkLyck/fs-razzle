@@ -1,49 +1,56 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
+import Icon from '@fortawesome/react-fontawesome'
+import PlanContext from 'common/Contexts/PlanContext'
+import Button from 'components/Button'
 import Menu, { MenuItem } from 'material-ui/Menu'
 import { hasStorage } from 'common/utils/featureTests'
 import { SelectedPlanName } from './styles'
 
 class PlanButtons extends Component {
-    state = { open: false, anchorEl: null }
+    state = { anchorEl: null }
 
-    setPlan = (plan) => {
-        const { actions } = this.props
+    setPlan = (setPlan, plan) => {
+        this.handleClose()
+        setPlan(plan)
         if (hasStorage) localStorage.setItem('selectedPlan', plan)
-        actions.selectPlan(plan)
-        this.setState({ open: false })
     }
 
-    toggleMenu = event => this.setState({ open: !this.state.open, anchorEl: event.currentTarget })
+    handleClick = event => this.setState({ anchorEl: event.currentTarget })
+    handleClose = () => this.setState({ anchorEl: null })
 
     render() {
-        const { selectedPlan } = this.props
+        const { anchorEl } = this.state
+
         return (
-            <span>
-                <Button
-                    className="plan-menu-button"
-                    color="primary"
-                    raised
-                    aria-owns={this.state.open ? 'plan-menu' : null}
-                    aria-haspopup="true"
-                    onClick={this.toggleMenu}
-                >
-                    <SelectedPlanName>{selectedPlan || 'Entry'}</SelectedPlanName>
-                    <i className="fa fa-angle-down" />
-                </Button>
-                <Menu
-                    id="plan-menu"
-                    anchorEl={this.state.anchorEl}
-                    open={this.state.open}
-                    onRequestClose={this.toggleMenu}
-                >
-                    <MenuItem onClick={() => this.setPlan('entry')}>Entry</MenuItem>
-                    <MenuItem onClick={() => this.setPlan('premium')}>Premium</MenuItem>
-                    <MenuItem onClick={() => this.setPlan('business')}>Business</MenuItem>
-                    <MenuItem onClick={() => this.setPlan('fund')}>Fund</MenuItem>
-                </Menu>
-            </span>
+            <PlanContext.Consumer>
+                {({ planName, setPlan }) => (
+                    <React.Fragment>
+                        <Button
+                            color="primary"
+                            variant="raised"
+                            type="light"
+                            aria-owns={anchorEl ? 'plan-menu' : null}
+                            aria-haspopup="true"
+                            onClick={this.handleClick}
+                        >
+                            <SelectedPlanName>{planName ? planName.toLowerCase() : ''}</SelectedPlanName>
+                            <Icon icon="angle-down" style={{ marginRight: 0 }} />
+                        </Button>
+                        <Menu
+                            id="plan-menu"
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={this.handleClose}
+                        >
+                            <MenuItem onClick={() => this.setPlan(setPlan, 'ENTRY')}>Entry</MenuItem>
+                            <MenuItem onClick={() => this.setPlan(setPlan, 'PREMIUM')}>Premium</MenuItem>
+                            <MenuItem onClick={() => this.setPlan(setPlan, 'BUSINESS')}>Business</MenuItem>
+                            <MenuItem onClick={() => this.setPlan(setPlan, 'FUND')}>Fund</MenuItem>
+                        </Menu>
+                    </React.Fragment>
+                )}
+            </PlanContext.Consumer>
         )
     }
 }

@@ -3,7 +3,6 @@ import styled from 'react-emotion'
 export const MenuList = styled.ul`
     position: relative;
     background: ${props => props.theme.colors.darkGray};
-    border-right: 1px solid ${props => props.theme.colors.gray};
     box-shadow: 2px 0 4px rgba(0,0,0,0.25);
     z-index: 10;
     display: flex;
@@ -20,7 +19,7 @@ export const MenuList = styled.ul`
         color: ${props => props.theme.colors.white};
         position: relative;
         width: 100%;
-        background: ${props => props.theme.colors.gray};
+        background: ${props => props.theme.colors.dbGray};
         border-radius: 0;
         box-shadow: 0 2px 4px rgba(0,0,0,.08);
         &::after {

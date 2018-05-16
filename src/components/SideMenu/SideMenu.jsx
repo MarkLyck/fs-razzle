@@ -24,7 +24,7 @@ class SideMenu extends Component {
             <MenuList>
                 <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="suggestions" icon="flask" route="suggestions" isActive={this.isActive('suggestions')}><h4>Suggestions</h4></MenuItem>
                 <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="portfolio" icon="chart-line" route="portfolio" isActive={this.isActive('portfolio')}><h4>Portfolio</h4></MenuItem>
-                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="trades" icon="tasks" route="trades" isActive={this.isActive('trades')}><h4>Portfolio trades</h4></MenuItem>
+                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="trades" icon="tasks" route="trades" isActive={this.isActive('trades')}><h4>Trades</h4></MenuItem>
                 <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="articles" icon="newspaper" route="articles" isActive={this.isActive('articles')}><h4>Articles</h4></MenuItem>
                 <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="admin" icon="tachometer" route="admin/panel" isActive={this.isActive('admin')}><h4>Admin</h4></MenuItem>
                 <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="account" icon="user" route="account" isActive={this.isActive('account')}><h4>Account</h4></MenuItem>

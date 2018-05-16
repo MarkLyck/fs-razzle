@@ -43,6 +43,7 @@ injectGlobal`
     */
     html {
         font-family: 'proxima-nova', sans-serif;
+        box-sizing: border-box;
     }
     body{
         overflow-x: hidden;

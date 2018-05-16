@@ -8,7 +8,7 @@ const unitValues = {
     percent: '%',
 }
 
-const Details = ({ suggestion, ...otherProps }) => (
+const DetailsModal = ({ suggestion, ...otherProps }) => (
     <Dialog {...otherProps} className="stock-details">
         <DialogTitle>{suggestion.name}</DialogTitle>
         <ListContainer>
@@ -24,8 +24,8 @@ const Details = ({ suggestion, ...otherProps }) => (
     </Dialog>
 )
 
-Details.propTypes = {
+DetailsModal.propTypes = {
     suggestion: PropTypes.object,
 }
 
-export default Details
+export default DetailsModal

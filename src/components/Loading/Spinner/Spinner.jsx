@@ -59,14 +59,26 @@ const LoadingText = styled.h1`
     font-size: 2rem;
 `
 
-const LoadingSpinner = () => (
-    <Container>
-        <Background />
-        <Spinner />
-        <Icon />
-        <LoadingText>Loading...</LoadingText>
-    </Container>
-    
-)
+const SmallSpinner = styled.div`
+    width: 64px;
+    height: 64px;
+    border: 8px solid ${props => props.theme.colors.lightGray};
+    border-radius: 50%;
+    border-top: 8px solid ${props => props.theme.colors.primary};
+    animation: ${spin} 1s linear infinite;
+`
+
+const LoadingSpinner = ({ variant }) => {
+    if (variant === 'small') return <SmallSpinner />
+
+    return (
+        <Container>
+            <Background />
+            <Spinner />
+            <Icon />
+            <LoadingText>Loading...</LoadingText>
+        </Container>
+    )
+}
 
 export default withTheme(LoadingSpinner)

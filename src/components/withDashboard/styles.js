@@ -6,6 +6,7 @@ export const DashboardLayout = styled.div`
 `
 export const DashboardContent = styled.div`
     width: 100%;
+    background: ${props => props.theme.colors.offWhite};
     overflow-y: scroll;
     position: relative;
 `

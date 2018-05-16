@@ -5,6 +5,7 @@ export const Bar = styled.div`
     height: 72px;
     padding: 0 24px;
     width: 100%;
+    box-sizing: border-box;
     box-shadow: 0 2px 4px rgba(0,0,0,.08);
     display: flex;
     justify-content: space-between;

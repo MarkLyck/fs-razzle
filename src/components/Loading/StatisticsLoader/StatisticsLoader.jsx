@@ -1,38 +1,46 @@
+import React from 'react'
 import styled from 'react-emotion'
 
-export const Statistics = styled.div`
+const Box = styled.div`
     display: flex;
+    align-items: center;
+    padding: 8px;
+    height: 80px;
+    width: 100%;
+    margin: 0 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.16);
+    background: ${props => props.theme.colors[props.background || 'white']};
+    border-radius: 2px;
+`
+
+const Container = styled.div`
+    display: flex;
+    width: 100%;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     margin-top: 8px;
     padding: 8px;
+    box-sizing: border-box;
+
     > div {
-        width: calc(100% / 4 - 32px)
+        width: calc(100% / 4 - 32px);
+        ${'' /* margin-bottom: 16px; */}
     }
-    > div:first-child {
-        background: ${props => props.theme.colors.primary};
-        color: ${props => props.theme.colors.white};
-    }
+
     > div:nth-child(2) {
-        background: ${props => props.theme.colors.white};
-        color: ${props => props.theme.colors.primary};
         > div:last-child {
             border-left: 1px solid #eaeaeb;
         }
     }
-    > div:nth-child(3) {
-        background: ${props => props.theme.colors.secondary};
-        color: ${props => props.theme.colors.white};
-    }
+
     > div:last-child {
-        background: ${props => props.theme.colors.white};
-        color: ${props => props.theme.colors.secondary};
         > div:last-child {
             border-left: 1px solid #eaeaeb;
         }
     }
+
     @media (max-width: 1200px) {
         > div {
             width: calc(100% / 2 - 32px);
@@ -45,8 +53,18 @@ export const Statistics = styled.div`
             width: calc(100% - 32px);
             height: 60px;
         }
-        > div:last-child {
-            margin-bottom: 0;
-        }
     }
 `
+
+
+
+const StatisticsLoader = () => (
+    <Container>
+        <Box background="primary" />
+        <Box />
+        <Box background="secondary" />
+        <Box />
+    </Container>
+)
+
+export default StatisticsLoader
