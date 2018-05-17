@@ -1,5 +1,23 @@
 import styled from 'react-emotion'
 
+export const Logo = styled.div`
+    background-image: url('/media/icons/logo_horizontal.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+    width: 275px;
+    height: 40px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    @media(max-width: 540px) {
+        width: 40px;
+        background-image: url('/media/icons/flask.svg');
+    }
+`
+
 export const Bar = styled.div`
     position: relative;
     height: 72px;
@@ -17,21 +35,6 @@ export const Bar = styled.div`
     }
     svg:hover {
         cursor: pointer;
-    }
-
-    @media(max-width: 820px) {
-        > svg {
-            display: none;
-        }
-        &::after {
-            content: '';
-            background: url('/static/flask.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            height: calc(100% - 24px);
-            box-sizing: border-box;
-            width: 40px;
-        }
     }
 `
 
