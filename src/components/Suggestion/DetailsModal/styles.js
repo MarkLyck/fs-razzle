@@ -3,7 +3,9 @@ import styled from 'react-emotion'
 import ReactModal from 'react-modal'
 import mq from 'common/utils/mq'
 
-ReactModal.setAppElement('#root')
+if (typeof document !== 'undefined') {
+    ReactModal.setAppElement('#root')
+}
 
 export const Modal = styled(ReactModal)`
     position: absolute;
