@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Icon from '@fortawesome/react-fontawesome'
 import LineGraph from 'components/Charts/LineGraph'
 import theme from 'common/utils/theme'
 import { GraphContainer, LoadingContainer, FailedContainer } from './styles'
@@ -9,19 +10,18 @@ const createChartData = sixMonthsPrices => sixMonthsPrices.map(point => ({
     date: point[0],
 }))
 
-const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action, stockFetchFailed, serialChartsReady }) => {
-    if (!serialChartsReady || (!stockFetchFailed && (!sixMonthsPrices || !sixMonthsPrices.length || !ticker))) {
+const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action, serialChartsReady, loading, error }) => {
+    if (!serialChartsReady || loading) {
         return (
             <LoadingContainer>
-                <i className="fa fa-spinner-third fa-spin fa-3x fa-fw" />
+                <Icon icon="spinner-third" spin />
                 <h4>Loading</h4>
             </LoadingContainer>
         )
-    } else if (stockFetchFailed) {
+    } else if (!loading && !sixMonthsPrices.length) {
         return (
             <FailedContainer>
-                <i className="fa fa-exclamation-circle fa-2x" />
-                {/* <i className="fa fa-info fa-spin fa-3x fa-fw" /> */}
+                <Icon icon="chart-line" />
                 <h4>No graph data available</h4>
             </FailedContainer>
         )

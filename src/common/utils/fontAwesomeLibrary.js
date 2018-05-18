@@ -14,6 +14,8 @@ import faUser from '@fortawesome/fontawesome-pro-solid/faUser'
 import faQuestionCircle from '@fortawesome/fontawesome-pro-solid/faQuestionCircle'
 import faDollarSign from '@fortawesome/fontawesome-pro-solid/faDollarSign'
 import faAngleDown from '@fortawesome/fontawesome-pro-solid/faAngleDown'
+import faExclamationCircle from '@fortawesome/fontawesome-pro-solid/faExclamationCircle'
+import faSpinnerThird from '@fortawesome/fontawesome-pro-solid/faSpinnerThird'
 
 fontawesome.library.add(
     faSignInAlt,
@@ -31,4 +33,6 @@ fontawesome.library.add(
     faQuestionCircle,
     faDollarSign,
     faAngleDown,
+    faExclamationCircle,
+    faSpinnerThird,
 )

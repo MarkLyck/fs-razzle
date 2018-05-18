@@ -41,9 +41,9 @@ const App = () => (
                 <Route exact path="/pro" component={Pro} />
                 <Route exact path="/dashboard" component={Portfolio} />
                 <Route exact path="/dashboard/suggestions" component={Suggestions} />
-                <Route exact path="/portfolio/*" component={Portfolio} />
-                <Route exact path="/trades/" component={Trades} />
-                <Route exact path="/admin" component={AdminOverview} />
+                <Route exact path="/dashboard/portfolio" component={Portfolio} />
+                <Route exact path="/dashboard/trades/" component={Trades} />
+                <Route exact path="/dashboard/admin" component={AdminOverview} />
             </Switch>
         </ApolloProvider>
     </ThemeProvider>

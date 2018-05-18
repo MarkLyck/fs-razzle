@@ -1,34 +1,36 @@
+import { css } from 'emotion'
 import styled from 'react-emotion'
 
-export const LoadingContainer = styled.div`
+const altStyle = css`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     svg {
-        color: ${props => props.theme.colors.primary};
+        font-size: 2rem;
     }
     h4 {
         margin-top: 16px;
     }
 `
 
-export const FailedContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 16px;
-    border: 2px dashed ${props => props.theme.colors.lightGray};
+export const LoadingContainer = styled.div`
+    ${altStyle}
     svg {
-        color: ${props => props.theme.colors.lightGray};
+        font-size: 3rem;
+        color: ${props => props.theme.colors.primary};
     }
     h4 {
-        margin-top: 16px;
-        color: ${props => props.theme.colors.lightGray};
+        color: ${props => props.theme.colors.black};
     }
+`
+
+export const FailedContainer = styled.div`
+    ${altStyle}
+    margin: 16px;
+    color: ${props => props.theme.colors.black};
+    border: 2px dashed ${props => props.theme.colors.lightGray};
 `
 
 export const GraphContainer = styled.div`

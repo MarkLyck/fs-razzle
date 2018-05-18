@@ -53,7 +53,6 @@ export const StockInfoList = styled.ul`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 200px;
     border-right: 1px solid ${props => props.theme.colors.lightGray};
     padding:  16px;
 `

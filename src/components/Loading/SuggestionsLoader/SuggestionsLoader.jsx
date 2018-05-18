@@ -1,7 +1,12 @@
 import React from 'react'
 import styled from 'react-emotion'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import StatisticsLoader from '../StatisticsLoader'
-import LoadingSpinner from '../Spinner'
+
+const Icon = styled(FontAwesomeIcon)`
+    ${'' /* font-size: 4rem; */}
+    color: ${props => props.theme.colors.primary};
+`
 
 const Container = styled.div`
     width: 100%;
@@ -27,7 +32,7 @@ const SuggestionsLoader = () => (
     <Container>
         <StatisticsLoader />
         <SuggestionsContainer>
-            <LoadingSpinner variant="small" />
+            <Icon icon="spinner-third" spin size="6x" />
             <LoadingText>Loading Suggestions...</LoadingText>
         </SuggestionsContainer>
         

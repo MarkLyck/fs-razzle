@@ -19,17 +19,38 @@ import SuggestionsLoader from 'components/Loading/SuggestionsLoader'
 import { SuggestionsList, LastUpdated, DateLabel } from './styles'
 
 const SUGGESTIONS_QUERY = gql`
-    query plan($id: ID!) {
-      Plan(id: $id) {
-        suggestions
-        launchStatistics
-        statistics
-        updatedAt
+    query plan($id: ID!, $tickers: [String!]) {
+        Plan(id: $id) {
+            suggestions
+            launchStatistics
+            statistics
+            updatedAt
+        }
+        allStocks(filter: {
+            ticker_in: $tickers
+        }) {
+          ticker
+          latestPrice
+          sixMonthsPrices
+      }
     }
-  }
+`
+
+const STOCKS_QUERY = gql`
+    query stocks($tickers: [String!]) {
+        allStocks(filter: {
+            ticker_in: $tickers
+        }) {
+          ticker
+          latestPrice
+          sixMonthsPrices
+      }
+    }
 `
 
 class Suggestions extends Component {
+    state = { tickers: [] }
+
     componentDidUpdate(prevProps) {
         if (this.props.selectedPlan !== prevProps.selectedPlan) {
             this.props.refetch({ id: planIds[this.props.selectedPlan.toUpperCase()] })
@@ -67,7 +88,19 @@ class Suggestions extends Component {
                                     <StatisticsBox title="Percent in cash" value={`${plan.launchStatistics.percentInCash.toFixed(2)}%`} icon="dollar-sign" />
                                 </StatisticsContainer>
                                 <SuggestionsList>
-                                    {suggestions.map(sugg => <Suggestion suggestion={sugg} key={sugg.ticker} serialChartsReady={serialChartsReady} />)}
+                                    <Query query={STOCKS_QUERY} variables={{ tickers: suggestions.map(sugg => sugg.ticker) }}>
+                                        {({ loading, error, data }) => {
+                                            const allStocks = data && data.allStocks ? data.allStocks : []
+                                            return suggestions.map(sugg => <Suggestion
+                                                suggestion={sugg}
+                                                stock={allStocks.filter(stock => stock.ticker === sugg.ticker)[0] || null}
+                                                loading={loading}
+                                                error={error}
+                                                key={sugg.ticker}
+                                                serialChartsReady={serialChartsReady}
+                                            />)
+                                        }}
+                                    </Query>
                                 </SuggestionsList>
                                 <LastUpdated>Last updated: <DateLabel>{fecha.format(new Date(plan.updatedAt), 'MMM D, YYYY')}</DateLabel></LastUpdated>
                                 
