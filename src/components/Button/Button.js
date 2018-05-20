@@ -49,6 +49,8 @@ const Button = styled.button`
     border: none;
     padding: 8px 16px;
     background: transparent;
+    display: flex;
+    align-items: center;
     
     svg {
         margin-right: 8px;

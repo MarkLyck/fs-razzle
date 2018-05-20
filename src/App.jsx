@@ -22,7 +22,6 @@ import 'common/utils/fontAwesomeLibrary'
 // Pages
 import Retail from 'pages/Retail'
 import Pro from 'pages/Pro'
-import Dashboard from 'pages/Dashboard'
 import Suggestions from 'pages/Dashboard/Suggestions'
 import Portfolio from 'pages/Dashboard/Portfolio'
 import Trades from 'pages/Dashboard/Trades'
@@ -40,13 +39,11 @@ const App = () => (
             <Switch>
                 <Route exact path="/" component={Retail} />
                 <Route exact path="/pro" component={Pro} />
-                <Route exact path="/dashboard" component={Dashboard}>
-                    <Route exact path="/suggestions/*" component={Suggestions} />
-                    <Route exact path="/portfolio/*" component={Portfolio} />
-                    <Route exact path="/Trades/*" component={Trades} />
-
-                    <Route exact path="/admin" component={AdminOverview} />
-                </Route>
+                <Route exact path="/dashboard" component={Portfolio} />
+                <Route exact path="/dashboard/suggestions" component={Suggestions} />
+                <Route exact path="/dashboard/portfolio" component={Portfolio} />
+                <Route exact path="/dashboard/trades/" component={Trades} />
+                <Route exact path="/dashboard/admin" component={AdminOverview} />
             </Switch>
         </ApolloProvider>
     </ThemeProvider>

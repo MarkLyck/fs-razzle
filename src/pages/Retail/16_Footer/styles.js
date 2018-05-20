@@ -1,7 +1,7 @@
 import styled from 'react-emotion'
 
 export const FooterContainer = styled.footer`
-    background: ${props => props.theme.colors.gray};
+    background: ${props => props.theme.colors.dbGray};
     display: flex;
     flex-direction: column;
     align-items: center;
