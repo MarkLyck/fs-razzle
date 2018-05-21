@@ -6,15 +6,13 @@ import Left from 'components/Section/Beside/Left'
 import Right from 'components/Section/Beside/Right'
 import { BesideContainer, Screenshot } from './styles'
 
-
-
 const WhatIsIt = () => (
     <Section data-offwhite>
         <SectionTitle>What is it?</SectionTitle>
         <BesideContainer>
             <Beside>
                 <Left data-center>
-                    <Screenshot src="media/images/screenshots/suggestions.jpg" alt="" />
+                    <Screenshot src="media/images/screenshots/suggestions.png" alt="" />
                 </Left>
                 <Right>
                     <p>
