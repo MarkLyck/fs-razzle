@@ -16,14 +16,13 @@ const routes = [
 
 class SideMenu extends Component {
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (typeof window !== 'undefined' && nextProps.location) {
+        if (nextProps.location) {
             const route = routes.reduce((acc, curr, i) => {
                 if (nextProps.location.pathname.includes(curr.name)) {
                     acc = curr.name
                 }
                 return acc
             }, '')
-            console.log('r', route)
             return { activeRoute: route }
         }
     }

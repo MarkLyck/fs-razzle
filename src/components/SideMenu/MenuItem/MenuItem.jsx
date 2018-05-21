@@ -9,7 +9,7 @@ class MenuItem extends Component {
         const { history, route, setActiveRoute } = this.props
         if (route === 'logout') {
             if (hasStorage) localStorage.removeItem('graphcoolToken')
-            history.push(' /')
+            history.push('/')
             return
         }
         setActiveRoute(this.props.route)
@@ -21,8 +21,7 @@ class MenuItem extends Component {
 
         return (
             <Button onClick={this.clickHandler} isActive={isActive}>
-                <Icon icon={icon} />
-                <h4>{route}</h4>
+                <Icon icon={icon} /><h4>{route}</h4>
             </Button>
         )
     }
