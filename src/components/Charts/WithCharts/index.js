@@ -1,1 +1,1 @@
-export default from './WithCharts'
+export default from './withCharts'

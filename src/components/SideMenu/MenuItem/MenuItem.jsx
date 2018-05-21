@@ -5,29 +5,11 @@ import { hasStorage } from 'common/utils/featureTests'
 import { Button } from './styles'
 
 class MenuItem extends Component {
-    state = { isActive: false }
-
-    componentDidMount() {
-        const { isActive } = this.props
-        if (isActive) { this.isActive() }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.isActive) {
-            this.isActive()
-        } else {
-            this.setState({ isActive: false })
-        }
-        return nextProps
-    }
-
-    isActive = () => this.setState({ isActive: true })
-
     clickHandler = () => {
         const { history, route, setActiveRoute } = this.props
         if (route === 'logout') {
             if (hasStorage) localStorage.removeItem('graphcoolToken')
-            history.push(' /')
+            history.push('/')
             return
         }
         setActiveRoute(this.props.route)
@@ -35,13 +17,11 @@ class MenuItem extends Component {
     }
 
     render() {
-        const { icon, children } = this.props
-        const { isActive } = this.state
+        const { route, icon, isActive } = this.props
 
         return (
-            <Button onClick={this.clickHandler} className={isActive ? 'is-active' : ''}>
-                <Icon icon={icon} />
-                {children}
+            <Button onClick={this.clickHandler} isActive={isActive}>
+                <Icon icon={icon} /><h4>{route}</h4>
             </Button>
         )
     }
@@ -50,7 +30,6 @@ class MenuItem extends Component {
 MenuItem.propTypes = {
     icon: PropTypes.string,
     route: PropTypes.string,
-    children: PropTypes.node,
     isActive: PropTypes.bool,
     setActiveRoute: PropTypes.func,
 }

@@ -7,8 +7,8 @@ import faFlask from '@fortawesome/fontawesome-pro-solid/faFlask'
 import faGift from '@fortawesome/fontawesome-pro-solid/faGift'
 import faTasks from '@fortawesome/fontawesome-pro-solid/faTasks'
 import faListUl from '@fortawesome/fontawesome-pro-solid/faListUl'
-import faNewsPaper from '@fortawesome/fontawesome-pro-solid/faNewsPaper'
-import faTachoMeter from '@fortawesome/fontawesome-pro-solid/faTachoMeter'
+import faNewspaper from '@fortawesome/fontawesome-pro-solid/faNewspaper'
+import faTachometer from '@fortawesome/fontawesome-pro-solid/faTachometer'
 import faUser from '@fortawesome/fontawesome-pro-solid/faUser'
 import faQuestionCircle from '@fortawesome/fontawesome-pro-solid/faQuestionCircle'
 import faDollarSign from '@fortawesome/fontawesome-pro-solid/faDollarSign'
@@ -29,8 +29,8 @@ fontawesome.library.add(
     faTimes,
     faTasks,
     faListUl,
-    faNewsPaper,
-    faTachoMeter,
+    faNewspaper,
+    faTachometer,
     faUser,
     faQuestionCircle,
     faDollarSign,

@@ -13,14 +13,27 @@ export const Button = styled.button`
     background: none;
     border: none;
     background: none;
-    color: ${props => props.theme.colors.lightGray};
+    background: ${props => props.theme.colors[props.isActive ? 'dbGray' : '']};
+    box-shadow: ${props => props.isActive ? '0 2px 4px rgba(0,0,0,.08)' : 'none'};
     color: #767C8A;
     outline: none;
+    &::after {
+        content: '';
+        background: ${props => props.theme.colors[props.isActive ? 'primary' : 'none']};
+        width: 8px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
     svg {
+        color: ${props => props.isActive ? props.theme.colors.white : ''};
         font-size: 24px;
         margin: 0;
     }
     h4 {
+        text-transform: capitalize;
+        color: ${props => props.isActive ? props.theme.colors.white : ''};
         min-width: 50px;
         max-width: 64px;
         display: block;
