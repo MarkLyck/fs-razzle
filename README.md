@@ -1,11 +1,12 @@
 ![repo-banner](https://github.com/MarkLyck/fs-razzle/blob/master/public/media/icons/logo_horizontal.svg)
 
-
 Formula Stocks is a stock recommendation service, that gives you recommendations on what to buy, for how much and when you should sell it. These recommendations are based on a deep learning algorithm that selects winning stocks +90% of the time. With an average annual interest rate of 20-35% depending on the product you choose.
+
+![screenshot](https://github.com/MarkLyck/fs-razzle/blob/master/public/media/images/screenshots/suggestions.jpg)
 
 This is currently in development for version 2, which is NOT live yet.
 
-To see the current production version see here:  [https://formulastocks.com](https://formulastocks.com.
+To see the current production version see here:  [https://formulastocks.com](https://formulastocks.com).
 
 ### Technologies used
 - React 16.3 (very little state-management needed, so the new Context will do over Redux for this application)
