@@ -3,33 +3,48 @@ import React, { Component } from 'react'
 import MenuItem from './MenuItem'
 import { MenuList } from './styles'
 
+const routes = [
+    { name: 'suggestions', icon: 'flask' },
+    { name: 'portfolio', icon: 'chart-line' },
+    { name: 'trades', icon: 'tasks' },
+    { name: 'articles', icon: 'newspaper' },
+    { name: 'admin', icon: 'tachometer' },
+    { name: 'account', icon: 'user' },
+    { name: 'logout', icon: 'sign-out-alt' },
+    { name: 'support', icon: 'question-circle' },
+]
+
 class SideMenu extends Component {
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (typeof window !== 'undefined' && nextProps.location) {
+            const route = routes.reduce((acc, curr, i) => {
+                if (nextProps.location.pathname.includes(curr.name)) {
+                    acc = curr.name
+                }
+                return acc
+            }, '')
+            console.log('r', route)
+            return { activeRoute: route }
+        }
+    }
     state = { activeRoute: '' }
 
     setActiveRoute = route => this.setState({ activeRoute: route })
 
-    isActive = (route) => {
-        const { location } = this.props
-        if (typeof window !== 'undefined') {
-            if (this.state.activeRoute) return this.state.activeRoute.split('/')[0] === route
-            return location.pathname.includes(route)
-        }
-        return false
-    }
-
     render() {
         const { history } = this.props
+        const { activeRoute } = this.state
 
         return (
             <MenuList>
-                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="suggestions" icon="flask" route="suggestions" isActive={this.isActive('suggestions')}><h4>Suggestions</h4></MenuItem>
-                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="portfolio" icon="chart-line" route="portfolio" isActive={this.isActive('portfolio')}><h4>Portfolio</h4></MenuItem>
-                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="trades" icon="tasks" route="trades" isActive={this.isActive('trades')}><h4>Trades</h4></MenuItem>
-                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="articles" icon="newspaper" route="articles" isActive={this.isActive('articles')}><h4>Articles</h4></MenuItem>
-                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="admin" icon="tachometer" route="admin/panel" isActive={this.isActive('admin')}><h4>Admin</h4></MenuItem>
-                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="account" icon="user" route="account" isActive={this.isActive('account')}><h4>Account</h4></MenuItem>
-                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="logout" icon="sign-out-alt" route="logout"><h4>Log out</h4></MenuItem>
-                <MenuItem setActiveRoute={this.setActiveRoute} history={history} key="support" icon="question-circle"><h4>Support</h4></MenuItem>
+                {routes.map(route => <MenuItem
+                    setActiveRoute={this.setActiveRoute}
+                    history={history}
+                    key={route.name}
+                    icon={route.icon}
+                    route={route.name}
+                    isActive={route.name === activeRoute}
+                />)}
             </MenuList>
         )
     }

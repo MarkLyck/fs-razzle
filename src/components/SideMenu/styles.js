@@ -15,26 +15,6 @@ export const MenuList = styled.ul`
         position: absolute;
         bottom: 0;
     }
-    .is-active {
-        color: ${props => props.theme.colors.white};
-        position: relative;
-        width: 100%;
-        background: ${props => props.theme.colors.dbGray};
-        border-radius: 0;
-        box-shadow: 0 2px 4px rgba(0,0,0,.08);
-        &::after {
-            content: '';
-            background: ${props => props.theme.colors.primary};
-            width: 8px;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        &:hover {
-            color: ${props => props.theme.colors.white};
-        }
-    }
     @media (min-width: 1440px) {
         box-sizing: content-box;
         width: 210px;
