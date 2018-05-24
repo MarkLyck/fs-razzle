@@ -52,7 +52,7 @@ class Portfolio extends Component {
                             </TableHead>
                             <TableBody>
                                 {plan.portfolio.map(stock => (
-                                    <PortfolioItem />
+                                    <PortfolioItem stock={stock} key={stock.ticker} />
                                 ))}
                             </TableBody>
                         </Table>

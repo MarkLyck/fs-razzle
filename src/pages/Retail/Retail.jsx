@@ -26,6 +26,8 @@ import IntendedAudience from './14_IntendedAudience'
 import ScrolledToBottom from './15_ScrolledToBottom'
 import Footer from './16_Footer'
 
+import History from './History'
+
 // const ARTICLES_QUERY = gql`
 //   query {
 //     allArticles {
@@ -117,6 +119,7 @@ class Retail extends Component {
                 <div className="retail-page">
                     <Navbar />
                     <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
+                    <History portfolioYields={portfolioYields} />
                     <Introduction portfolioReturn={portfolioReturn} portfolioYields={portfolioYields} winRatio={winRatio} planName={planName} />
                     <WhatIsIt />
                     <Performance portfolioYields={portfolioYields} marketPrices={DJIA.pricesSince2009} planName={planName} amChartsLoaded={amChartsLoaded} />
