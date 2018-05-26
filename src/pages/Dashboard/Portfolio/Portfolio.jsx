@@ -5,10 +5,12 @@ import { planIds, marketIds } from 'common/constants'
 import PlanContext from 'common/Contexts/PlanContext'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
-import { Table, TableHead, TableBody, TableRow, TableHeadCell } from 'components/Table'
+import { TableHead, TableBody, TableRow, TableHeadCell } from 'components/Table'
+import AnnualReturns from './AnnualReturns'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
-import PortfolioItem from 'components/PortfolioItem'
+import PortfolioItem from './PortfolioItem'
+import { PortfolioTable } from './styles'
 
 const PORTFOLIO_QUERY = gql`
     query plan($id: ID!) {
@@ -39,7 +41,8 @@ class Portfolio extends Component {
 
                 return (
                     <React.Fragment>
-                        <Table>
+                        <AnnualReturns portfolioYields={plan.portfolioYields} />
+                        <PortfolioTable>
                             <TableHead>
                                 <TableRow>
                                     <TableHeadCell>Name</TableHeadCell>
@@ -55,7 +58,7 @@ class Portfolio extends Component {
                                     <PortfolioItem stock={stock} key={stock.ticker} />
                                 ))}
                             </TableBody>
-                        </Table>
+                        </PortfolioTable>
                         <StatisticsContainer>
                             <StatisticsBox title="Annual growth" value={`${plan.statistics.CAGR}%`} icon="chart-line" />
                             <StatisticsBox title="Sold with profit" value={`${plan.statistics.winRatio.toFixed(2)}%`} icon="chart-pie" />
