@@ -10,7 +10,6 @@ module.exports = {
         config.resolve.alias.components = path.resolve(__dirname, 'src/components')
         config.resolve.alias.pages = path.resolve(__dirname, 'src/pages')
 
-
         // alias fontawesome icons while now doesn't have proper support for third party npm registries.
         config.resolve.alias['@fortawesome/fontawesome-pro-solid/faAngleDown'] = path.resolve(__dirname, 'src/media/faIcons/faAngleDown')
         config.resolve.alias['@fortawesome/fontawesome-pro-solid/faChartLine'] = path.resolve(__dirname, 'src/media/faIcons/faChartLine')
@@ -29,6 +28,7 @@ module.exports = {
         config.resolve.alias['@fortawesome/fontawesome-pro-solid/faTasks'] = path.resolve(__dirname, 'src/media/faIcons/faTasks')
         config.resolve.alias['@fortawesome/fontawesome-pro-solid/faUser'] = path.resolve(__dirname, 'src/media/faIcons/faUser')
         config.resolve.alias['@fortawesome/fontawesome-pro-regular/faTimes'] = path.resolve(__dirname, 'src/media/faIcons/faTimes')
+    
         //plugins
         // config.plugins.push(new BundleAnalyzerPlugin())
 

@@ -18,6 +18,7 @@
     "apollo-cache-inmemory": "^1.1.12",
     "apollo-client": "^2.2.8",
     "apollo-link-http": "^1.5.4",
+    "babel-plugin-lodash": "^3.3.2",
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.3",
     "emotion": "^9.1.1",
@@ -56,6 +57,9 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-polished": "^1.1.0",
     "babel-plugin-transform-export-extensions": "^6.22.0",
-    "razzle": "next"
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "razzle": "next",
+    "webpack-bundle-analyzer": "^2.13.1"
   }
 }
