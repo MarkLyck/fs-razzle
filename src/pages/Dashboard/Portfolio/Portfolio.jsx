@@ -6,6 +6,7 @@ import PlanContext from 'common/Contexts/PlanContext'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
 import { TableHead, TableBody, TableRow, TableHeadCell } from 'components/Table'
+import PortfolioHeader from './PortfolioHeader'
 import AnnualReturns from './AnnualReturns'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
@@ -38,9 +39,16 @@ class Portfolio extends Component {
 
                 if (loading) return <p>Loading...</p>
                 const plan = data ? data.Plan : {}
+                const DJIA = data ? data.DJIA : {}
 
                 return (
                     <React.Fragment>
+                        <PortfolioHeader
+                            portfolioYields={plan.portfolioYields}
+                            marketPrices={DJIA.pricesSince2009}
+                            portfolio={plan.portfolio}
+                            planName={plan.name}
+                        />
                         <AnnualReturns portfolioYields={plan.portfolioYields} />
                         <PortfolioTable>
                             <TableHead>

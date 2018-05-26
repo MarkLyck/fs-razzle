@@ -26,7 +26,7 @@ import IntendedAudience from './14_IntendedAudience'
 import ScrolledToBottom from './15_ScrolledToBottom'
 import Footer from './16_Footer'
 
-import History from './History'
+// import History from './History'
 
 // const ARTICLES_QUERY = gql`
 //   query {

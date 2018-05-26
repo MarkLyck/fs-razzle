@@ -8,9 +8,11 @@ const ReturnContainer = styled.div`
     h3 {
         font-weight: 100;
         margin-bottom: 2px;
+        font-size: 1.2rem;
     }
     p {
         color: ${props => props.theme.colors.secondary};
+        font-weight: bold;
     }
 `
 
