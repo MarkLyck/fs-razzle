@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import PortfolioChart from './PortfolioChart'
-// import Allocation from './Allocation'
+import AllocationChart from './AllocationChart'
 import { HeaderContainer, RightSide, LeftSide } from './styles'
 
 const getIncrease = (startSum, endSum) => (((endSum - startSum) / startSum) * 100).toFixed(2)
@@ -27,7 +27,7 @@ const PortfolioHeader = ({ portfolioYields, marketPrices, planName, portfolio })
                     since 2009
                 </p>
             </div>
-            {/* <Allocation portfolio={portfolio} id="allocation-chart" /> */}
+            <AllocationChart portfolio={portfolio} id="allocation-chart" />
         </RightSide>
     </HeaderContainer>
 )
