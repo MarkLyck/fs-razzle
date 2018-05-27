@@ -17,7 +17,8 @@ export const TableRow = styled.tr`
 `
 
 export const TableHeadCell = styled.th`
-    padding: 16px
+    padding: 16px;
+    white-space: nowrap;
 `
 
 export const TableCell = styled.td`

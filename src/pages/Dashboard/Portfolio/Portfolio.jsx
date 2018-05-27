@@ -5,13 +5,13 @@ import { planIds, marketIds } from 'common/constants'
 import PlanContext from 'common/Contexts/PlanContext'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
-import { TableHead, TableBody, TableRow, TableHeadCell } from 'components/Table'
+import { TableBody, TableRow, TableHeadCell } from 'components/Table'
 import PortfolioHeader from './PortfolioHeader'
 import AnnualReturns from './AnnualReturns'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import PortfolioItem from './PortfolioItem'
-import { PortfolioTable } from './styles'
+import { PortfolioTable, PortfolioTableHead } from './styles'
 
 const PORTFOLIO_QUERY = gql`
     query plan($id: ID!) {
@@ -55,16 +55,16 @@ class Portfolio extends Component {
                                 />
                                 <AnnualReturns portfolioYields={plan.portfolioYields} />
                                 <PortfolioTable>
-                                    <TableHead>
+                                    <PortfolioTableHead>
                                         <TableRow>
-                                            <TableHeadCell>Name</TableHeadCell>
-                                            <TableHeadCell>Allocation</TableHeadCell>
-                                            <TableHeadCell>Return</TableHeadCell>
-                                            <TableHeadCell>Cost basis</TableHeadCell>
-                                            <TableHeadCell>Last price</TableHeadCell>
-                                            <TableHeadCell>Days owned</TableHeadCell>
+                                            <TableHeadCell className="name">Name</TableHeadCell>
+                                            <TableHeadCell className="allocation">Allocation</TableHeadCell>
+                                            <TableHeadCell className="return">Return</TableHeadCell>
+                                            <TableHeadCell className="cost-basis">Cost basis</TableHeadCell>
+                                            <TableHeadCell className="last-price">Last price</TableHeadCell>
+                                            <TableHeadCell className="days-owned">Days owned</TableHeadCell>
                                         </TableRow>
-                                    </TableHead>
+                                    </PortfolioTableHead>
                                     <TableBody>
                                         {plan.portfolio.map(stock => (
                                             <PortfolioItem stock={stock} key={stock.ticker} />

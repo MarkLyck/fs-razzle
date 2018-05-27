@@ -1,17 +1,16 @@
 import styled from 'react-emotion'
-import { Table } from 'components/Table'
+import { css } from 'emotion'
+import mq from 'common/utils/mq'
+import { Table, TableHead } from 'components/Table'
 
 export const PortfolioTable = styled(Table)`
     margin: 0 16px;
     width: calc(100% - 32px);
     box-sizing: border-box;
 
-    .stock-name {
+    .name {
         display: flex;
         flex-direction: column;
-        .name {
-            
-        }
         .ticker {
             position: relative;
             padding-left: 16px;
@@ -37,5 +36,28 @@ export const PortfolioTable = styled(Table)`
     }
     .return.negative {
         color: ${props => props.theme.colors.error}
+    }
+`
+
+export const PortfolioTableHead = styled(TableHead)`
+    @media (max-width: 850px) {
+        .days-owned {
+            display: none;
+        }
+    }
+    @media (max-width: 720px) {
+        .last-price {
+            display: none;
+        }
+    }
+    @media (max-width: 600px) {
+        .cost-basis {
+            display: none;
+        }
+    }
+    @media (max-width: 450px) {
+        .allocation {
+            display: none;
+        }
     }
 `
