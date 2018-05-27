@@ -1,4 +1,6 @@
 import styled from 'react-emotion'
+import { css } from 'emotion'
+import mq from 'common/utils/mq'
 
 export const ReturnsContainer = styled.div`
     background-color: white;
@@ -7,6 +9,23 @@ export const ReturnsContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    ${mq.medium(css`
+        .five-years {
+            display: none;
+        }
+        .divider:nth-child(2) {
+            display: none;
+        }
+	`)};
+
+    ${mq.small(css`
+        .three-years {
+            display: none;
+        }
+        .divider:nth-child(4) {
+            display: none;
+        }
+	`)};
 `
 
 export const Divider = styled.div`

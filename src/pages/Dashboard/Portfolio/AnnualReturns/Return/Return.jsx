@@ -16,8 +16,8 @@ const ReturnContainer = styled.div`
     }
 `
 
-const Return = ({ title, returnSince }) => (
-    <ReturnContainer>
+const Return = ({ title, returnSince, className }) => (
+    <ReturnContainer className={className}>
         <h3>{title}</h3>
         <p>+{returnSince}%</p>
     </ReturnContainer>

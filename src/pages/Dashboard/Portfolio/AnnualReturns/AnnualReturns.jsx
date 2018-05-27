@@ -15,13 +15,13 @@ const AnnualReturns = ({ portfolioYields }) => {
 
     return (
         <ReturnsContainer>
-            <Return title="5 years" returnSince={(((lastBalance - fiveYearStart) / fiveYearStart) * 100).toFixed(2)} />
-            <Divider />
-            <Return title="36 months" returnSince={(((lastBalance - threeYearStart) / threeYearStart) * 100).toFixed(2)} />
-            <Divider />
-            <Return title="24 months" returnSince={(((lastBalance - twoYearStart) / twoYearStart) * 100).toFixed(2)} />
-            <Divider />
-            <Return title="12 months" returnSince={(((lastBalance - oneYearStart) / oneYearStart) * 100).toFixed(2)} />
+            <Return title="5 years" className="five-years" returnSince={(((lastBalance - fiveYearStart) / fiveYearStart) * 100).toFixed(2)} />
+            <Divider className="divider" />
+            <Return title="36 months" className="three-years" returnSince={(((lastBalance - threeYearStart) / threeYearStart) * 100).toFixed(2)} />
+            <Divider className="divider" />
+            <Return title="24 months" className="two-years" returnSince={(((lastBalance - twoYearStart) / twoYearStart) * 100).toFixed(2)} />
+            <Divider className="divider" />
+            <Return title="12 months" className="one-year" returnSince={(((lastBalance - oneYearStart) / oneYearStart) * 100).toFixed(2)} />
         </ReturnsContainer>
     )
 }
