@@ -1,7 +1,7 @@
 import React from 'react'
 import Script from 'react-load-script'
 
-const withCharts = (Component) => {
+const withCharts = (Component, settings = {}) => {
     class WithCharts extends React.Component {
         state = {
             amChartsCoreStatus: false,
@@ -22,7 +22,7 @@ const withCharts = (Component) => {
         }
 
         onLoadAmChartsCore = () => {
-            this.setState({ amChartsCoreStatus : true })
+            this.setState({ amChartsCoreStatus: true })
             this.areChartDependenciesLoaded()
         }
 
@@ -40,7 +40,7 @@ const withCharts = (Component) => {
             this.amChartsThemeStatus = true
             this.areChartDependenciesLoaded()
         }
-        
+
 
         render() {
             const { amChartsCoreStatus, amSerialChartsLoaded, amPieChartsLoaded, amChartsLoadingError } = this.state
@@ -57,7 +57,7 @@ const withCharts = (Component) => {
                         amChartsCoreStatus ? (<React.Fragment>
                             <Script url="https://www.amcharts.com/lib/3/serial.js" onLoad={this.onLoadAmChartsSerial} />
                             <Script url="https://www.amcharts.com/lib/3/themes/light.js" onLoad={this.onLoadAmChartsTheme} />
-                            <Script url="https://www.amcharts.com/lib/3/pie.js" onLoad={this.onLoadAmChartsPie} />
+                            {settings.loadPieChart && <Script url="https://www.amcharts.com/lib/3/pie.js" onLoad={this.onLoadAmChartsPie} />}
                         </React.Fragment>) : null
                     }
                 </React.Fragment>

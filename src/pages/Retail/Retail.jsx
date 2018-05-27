@@ -26,17 +26,7 @@ import IntendedAudience from './14_IntendedAudience'
 import ScrolledToBottom from './15_ScrolledToBottom'
 import Footer from './16_Footer'
 
-// const SuggestionQuery = gql`
-//   query {
-//     allStocks(filter: {
-//         ticker: "NTGR"
-//     }) {
-//         ticker
-//         latestPrice
-//         sixMonthsPrices
-//     }
-//   }
-// `
+// import History from './History'
 
 // const ARTICLES_QUERY = gql`
 //   query {
@@ -44,23 +34,6 @@ import Footer from './16_Footer'
 //         title
 //         body
 //         headerImageUrl
-//     }
-//   }
-// `
-
-// const PORTFOLII_QUERY = gql`
-//   query {
-//     Plan(id: "${planIds.ENTRY}") {
-//       name
-//       portfolio
-//       info
-//       launchStatistics
-//       statistics
-//       portfolioYields
-//     },
-//     DJIA: Market(id: "${marketIds.DJIA}") {
-//         name
-//         pricesSince2009
 //     }
 //   }
 // `

@@ -1,6 +1,13 @@
 {
-  "extends": "react-app",
+  "extends": [
+    "react-app",
+    "prettier",
+    "prettier/react"
+  ],
   "rules": {
     "semi": [1, "never"]
-  }
+  },
+  "plugins": [
+    "prettier"
+  ]
 }
