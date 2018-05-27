@@ -1,4 +1,6 @@
 import styled from 'react-emotion'
+import { css } from 'emotion'
+import mq from 'common/utils/mq'
 
 export const HeaderContainer = styled.div`
     display: flex;
@@ -49,9 +51,9 @@ export const RightSide = styled.div`
             transform: translate(-50%, -50%);
         }
     }
-    @media(max-width: 800px) {
+    ${mq.medium(css`
         display: none;
-    }
+	`)};
 `
 
 export const LeftSide = styled.div`
@@ -64,8 +66,8 @@ export const LeftSide = styled.div`
         font-size: 1.25rem;
         margin: 16px;
     }
-    @media(max-width: 800px) {
+    ${mq.medium(css`
         width: 100%;
         border: none;
-    }
+	`)};
 `
