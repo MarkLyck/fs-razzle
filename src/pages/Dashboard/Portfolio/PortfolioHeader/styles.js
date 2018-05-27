@@ -15,12 +15,15 @@ export const RightSide = styled.div`
     .results {
         margin-bottom: 16px;
         h3 {
+            font-size: 1.3rem;
             font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: capitalize;
         }
         p {
-            font-size: 0.9rem;
+            font-size: 1rem;
             span {
-                font-weight: 500;
+                font-weight: 600;
             }
         }
     }
