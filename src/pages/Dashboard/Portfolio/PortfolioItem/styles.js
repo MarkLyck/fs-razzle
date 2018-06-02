@@ -1,6 +1,4 @@
 import styled from 'react-emotion'
-import { css } from 'emotion'
-import mq from 'common/utils/mq'
 import { TableRow } from 'components/Table'
 
 export const ItemRow = styled(TableRow)`

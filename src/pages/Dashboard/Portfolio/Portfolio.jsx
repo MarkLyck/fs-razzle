@@ -10,6 +10,7 @@ import PortfolioHeader from './PortfolioHeader'
 import AnnualReturns from './AnnualReturns'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
+import PortfolioLoader from 'components/Loading/PortfolioLoader'
 import PortfolioItem from './PortfolioItem'
 import { PortfolioTable, PortfolioTableHead } from './styles'
 
@@ -39,43 +40,43 @@ class Portfolio extends Component {
                 <Query query={PORTFOLIO_QUERY} variables={{ id: planIds[planName] }}>
                     {({ loading, error, data }) => {
 
-                        if (loading) return <p>Loading...</p>
-                        const plan = data ? data.Plan : {}
-                        const DJIA = data ? data.DJIA : {}
+                        if (loading) return <PortfolioLoader />
+                        if (error || !data || !data.Plan) return <p>Something went wrong, please try to refresh</p>
+                        const { Plan, DJIA } = data
 
                         return (
                             <React.Fragment>
                                 <PortfolioHeader
-                                    portfolioYields={plan.portfolioYields}
+                                    portfolioYields={Plan.portfolioYields}
                                     marketPrices={DJIA.pricesSince2009}
-                                    portfolio={plan.portfolio}
-                                    planName={plan.name}
+                                    portfolio={Plan.portfolio}
+                                    planName={Plan.name}
                                     serialChartsReady={serialChartsReady}
                                     pieChartsReady={pieChartsReady}
                                 />
-                                <AnnualReturns portfolioYields={plan.portfolioYields} />
+                                <AnnualReturns portfolioYields={Plan.portfolioYields} />
                                 <PortfolioTable>
                                     <PortfolioTableHead>
                                         <TableRow>
                                             <TableHeadCell className="name">Name</TableHeadCell>
                                             <TableHeadCell className="allocation">Allocation</TableHeadCell>
-                                            <TableHeadCell className="return">Return</TableHeadCell>
-                                            <TableHeadCell className="cost-basis">Cost basis</TableHeadCell>
-                                            <TableHeadCell className="last-price">Last price</TableHeadCell>
+                                            <TableHeadCell className="return" tooltip="Percent increase from Cost basis to Last price.">Return</TableHeadCell>
+                                            <TableHeadCell className="cost-basis" tooltip="Averaged purchase price adjusted for dividends earned.">Cost basis</TableHeadCell>
+                                            <TableHeadCell className="last-price" tooltip="Latest price available for stocks. Updated realtime or End of Day.">Last price</TableHeadCell>
                                             <TableHeadCell className="days-owned">Days owned</TableHeadCell>
                                         </TableRow>
                                     </PortfolioTableHead>
                                     <TableBody>
-                                        {plan.portfolio.map(stock => (
+                                        {Plan.portfolio.map(stock => (
                                             <PortfolioItem stock={stock} key={stock.ticker} />
                                         ))}
                                     </TableBody>
                                 </PortfolioTable>
                                 <StatisticsContainer>
-                                    <StatisticsBox title="Annual growth" value={`${plan.statistics.CAGR}%`} icon="chart-line" />
-                                    <StatisticsBox title="Sold with profit" value={`${plan.statistics.winRatio.toFixed(2)}%`} icon="chart-pie" />
-                                    <StatisticsBox title="Holdings" value={plan.portfolio.length} icon="list-ul" />
-                                    <StatisticsBox title="Percent in cash" value={`${plan.launchStatistics.percentInCash.toFixed(2)}%`} icon="dollar-sign" />
+                                    <StatisticsBox title="Annual growth" value={`${Plan.statistics.CAGR}%`} icon="chart-line" />
+                                    <StatisticsBox title="Sold with profit" value={`${Plan.statistics.winRatio.toFixed(2)}%`} icon="chart-pie" />
+                                    <StatisticsBox title="Holdings" value={Plan.portfolio.length} icon="list-ul" />
+                                    <StatisticsBox title="Percent in cash" value={`${Plan.launchStatistics.percentInCash.toFixed(2)}%`} icon="dollar-sign" />
                                 </StatisticsContainer>
                             </React.Fragment>
                         )

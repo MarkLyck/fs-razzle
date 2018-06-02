@@ -4,9 +4,11 @@ import mq from 'common/utils/mq'
 
 export const HeaderContainer = styled.div`
     display: flex;
+    height: 412px;
     margin: 16px;
     background-color: white;
     box-shadow: 0 2px 8px rgba(0,0,0,.16);
+    box-sizing: border-box;
 `
 
 export const RightSide = styled.div`
