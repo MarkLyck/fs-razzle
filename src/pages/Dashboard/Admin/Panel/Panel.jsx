@@ -1,12 +1,11 @@
 import React from 'react'
-
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
 
-const Trades = () => (
-    <div className="trades-page">
-        Trades
+const Overview = () => (
+    <div className="overview-panel">
+        Overview panel
     </div>
 )
 
-export default withDashboard(withCharts(Trades))
+export default withDashboard(withCharts(Overview))

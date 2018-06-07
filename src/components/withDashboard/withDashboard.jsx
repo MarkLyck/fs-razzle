@@ -40,7 +40,7 @@ const withDashboard = (WrappedComponent) => {
                     <PlanContext.Provider value={this.getContext()}>
                         <DashboardContent>
                             <NavBar history={history} location={location} />
-                            <WrappedComponent />
+                            <WrappedComponent location={location} />
                         </DashboardContent>
                     </PlanContext.Provider>
                 </DashboardLayout>
