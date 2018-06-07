@@ -66,7 +66,7 @@ class Suggestions extends Component {
     }
 
     render() {
-        const { trades, serialChartsReady } = this.props
+        const { location, serialChartsReady } = this.props
 
         return <PlanContext.Consumer>
                 {({ planName }) => (
@@ -76,15 +76,19 @@ class Suggestions extends Component {
                         if (error && !usingMocks) return <p>Error loading</p>
 
                         const plan = data ? data.Plan : mockData.Plan
+                        const suggestionsType = location.pathname.includes('/dashboard/trades') ? 'Trades' : 'Suggestions'
                 
-                        const suggestions = trades || plan.suggestions.filter(sugg => !sugg.model || sugg.action === 'SELL')
+                        const suggestions = plan.suggestions.filter(sugg => {
+                            if (location.pathname.includes('/dashboard/trades')) return sugg.model
+                            return !sugg.model || sugg.action === 'SELL'
+                        })
 
                         return (
                             <React.Fragment>
                                 <StatisticsContainer>
                                     <StatisticsBox title="Annual growth" value={`${plan.statistics.CAGR}%`} icon="chart-line" />
                                     <StatisticsBox title="Sold with profit" value={`${plan.statistics.winRatio.toFixed(2)}%`} icon="chart-pie" />
-                                    <StatisticsBox title="Suggestions" value={suggestions.length} icon="list-ul" />
+                                    <StatisticsBox title={suggestionsType} value={suggestions.length} icon="list-ul" />
                                     <StatisticsBox title="Percent in cash" value={`${plan.launchStatistics.percentInCash.toFixed(2)}%`} icon="dollar-sign" />
                                 </StatisticsContainer>
                                 <SuggestionsList>
@@ -103,7 +107,6 @@ class Suggestions extends Component {
                                     </Query>
                                 </SuggestionsList>
                                 <LastUpdated>Last updated: <DateLabel>{fecha.format(new Date(plan.updatedAt), 'MMM D, YYYY')}</DateLabel></LastUpdated>
-                                
                             </React.Fragment>
                         )
                     }}
@@ -115,10 +118,9 @@ class Suggestions extends Component {
 }
 
 Suggestions.propTypes = {
-    Plan: PropTypes.object,
-    trades: PropTypes.array,
-    selectedPlan: PropTypes.string,
-    refetch: PropTypes.func,
+    serialChartsReady: PropTypes.bool,
+    pieChartsReady: PropTypes.bool,
+    chartError: PropTypes.bool,
 }
 
 export default withDashboard(withCharts(Suggestions))

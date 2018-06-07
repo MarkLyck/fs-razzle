@@ -2,10 +2,10 @@ import React from 'react'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
 
-const API = () => (
-    <div className="API-panel">
-        API
+const NewArticle = () => (
+    <div className="overview-panel">
+        New ARticle
     </div>
 )
 
-export default withDashboard(withCharts(API))
+export default withDashboard(withCharts(NewArticle))

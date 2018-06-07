@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
+import Button from 'components/Button'
+import { AdminButtonsContainer } from './styles'
 
 class AdminButtons extends Component {
     state = { activeButton: 'panel' }
 
     componentDidMount() {
         const { route } = this.props
-        // eslint-disable-next-line
         this.setState({ activeButton: route.split('/')[route.split('/').length - 1] })
     }
 
@@ -20,36 +20,40 @@ class AdminButtons extends Component {
         const { activeButton } = this.state
 
         return (
-            <div key="admin-buttons">
+            <AdminButtonsContainer>
                 <Button
-                    color="primary"
-                    raised={activeButton === 'panel' || activeButton === 'admin'}
+                    color={activeButton === 'panel' || activeButton === 'admin' ? 'white' : 'primary'}
+                    variant="raised"
+                    type={activeButton === 'panel' || activeButton === 'admin' ? 'dark' : 'light'}
                     onClick={() => this.navigateTo('/dashboard/admin/panel')}
                 >
                     Panel
                 </Button>
                 <Button
-                    color="primary"
-                    raised={activeButton === 'users'}
+                    color={activeButton === 'users' ? 'white' : 'primary'}
+                    variant="raised"
+                    type={activeButton === 'users' ? 'dark' : 'light'}
                     onClick={() => this.navigateTo('/dashboard/admin/users')}
                 >
                     Users
                 </Button>
                 <Button
-                    color="primary"
-                    raised={activeButton === 'api'}
+                    color={activeButton === 'api' ? 'white' : 'primary'}
+                    variant="raised"
+                    type={activeButton === 'api' ? 'dark' : 'light'}
                     onClick={() => this.navigateTo('/dashboard/admin/api')}
                 >
                     API
                 </Button>
                 <Button
-                    color="primary"
-                    raised={activeButton === 'newArticle'}
+                    color={activeButton === 'newArticle' ? 'white' : 'primary'}
+                    variant="raised"
+                    type={activeButton === 'newArticle' ? 'dark' : 'light'}
                     onClick={() => this.navigateTo('/dashboard/admin/newArticle')}
                 >
                     New Article
                 </Button>
-            </div>
+            </AdminButtonsContainer>
         )
     }
 }

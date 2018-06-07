@@ -51,6 +51,7 @@ const withCharts = (Component, settings = {}) => {
                         serialChartsReady={amSerialChartsLoaded}
                         pieChartsReady={amPieChartsLoaded}
                         chartError={amChartsLoadingError}
+                        {...this.props}
                     />
                     <Script url="https://www.amcharts.com/lib/3/amcharts.js" onLoad={this.onLoadAmChartsCore} />
                     {

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import PieChart from 'components/Charts/PieChart'
 import { adjustBrightness } from 'common/utils/helpers'
 
-const Allocation = ({ portfolio, id }) => {
+const Allocation = ({ portfolio, id, pieChartsReady }) => {
+    if (!pieChartsReady) return null
     const colors = []
     const allocation = portfolio.map((stock) => {
         if (stock.latest_price > (stock.purchase_price - stock.dividends)) {

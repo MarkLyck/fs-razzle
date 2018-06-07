@@ -1,10 +1,14 @@
 import styled from 'react-emotion'
+import { css } from 'emotion'
+import mq from 'common/utils/mq'
 
 export const HeaderContainer = styled.div`
     display: flex;
+    height: 412px;
     margin: 16px;
     background-color: white;
     box-shadow: 0 2px 8px rgba(0,0,0,.16);
+    box-sizing: border-box;
 `
 
 export const RightSide = styled.div`
@@ -15,12 +19,15 @@ export const RightSide = styled.div`
     .results {
         margin-bottom: 16px;
         h3 {
+            font-size: 1.3rem;
             font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: capitalize;
         }
         p {
-            font-size: 0.9rem;
+            font-size: 1rem;
             span {
-                font-weight: 500;
+                font-weight: 600;
             }
         }
     }
@@ -46,9 +53,9 @@ export const RightSide = styled.div`
             transform: translate(-50%, -50%);
         }
     }
-    @media(max-width: 800px) {
+    ${mq.medium(css`
         display: none;
-    }
+	`)};
 `
 
 export const LeftSide = styled.div`
@@ -61,8 +68,8 @@ export const LeftSide = styled.div`
         font-size: 1.25rem;
         margin: 16px;
     }
-    @media(max-width: 800px) {
+    ${mq.medium(css`
         width: 100%;
         border: none;
-    }
+	`)};
 `

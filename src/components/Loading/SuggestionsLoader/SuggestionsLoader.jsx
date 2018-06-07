@@ -3,8 +3,7 @@ import styled from 'react-emotion'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import StatisticsLoader from '../StatisticsLoader'
 
-const Icon = styled(FontAwesomeIcon)`
-    ${'' /* font-size: 4rem; */}
+const Icon = styled(FontAwesomeIcon) `
     color: ${props => props.theme.colors.primary};
 `
 
@@ -35,7 +34,7 @@ const SuggestionsLoader = () => (
             <Icon icon="spinner-third" spin size="6x" />
             <LoadingText>Loading Suggestions...</LoadingText>
         </SuggestionsContainer>
-        
+
     </Container>
 )
 

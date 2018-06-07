@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { TableRow, TableCell } from 'components/Table'
+import { TableCell } from 'components/Table'
+import { ItemRow } from './styles'
 
 class PortfolioItem extends Component {
     render() {
@@ -11,19 +12,19 @@ class PortfolioItem extends Component {
         const latestPrice = stock.latest_price ? `$${stock.latest_price.toFixed(2)}` : ''
 
         return (
-            <TableRow>
-                <TableCell className="stock-name">
+            <ItemRow>
+                <TableCell className="name">
                     <h4 className="name">{stock.name}</h4>
                     {stock.ticker !== 'CASH' && <p className="ticker">{stock.ticker}</p>}
                 </TableCell>
-                <TableCell>{stock.percentage_weight.toFixed(2)}%</TableCell>
+                <TableCell className="allocation">{stock.percentage_weight.toFixed(2)}%</TableCell>
                 <TableCell className={`return ${percentIncrease > 0 ? 'positive' : 'negative'}`}>
                     {isNaN(percentIncrease) ? '' : `${increasePrefix}${percentIncrease}%`}
                 </TableCell>
-                <TableCell>{costBasisPrice ? `$${costBasisPrice.toFixed(2)}` : ''}</TableCell>
-                <TableCell>{latestPrice}</TableCell>
-                <TableCell>{stock.days_owned}</TableCell>
-            </TableRow>
+                <TableCell className="cost-basis">{costBasisPrice ? `$${costBasisPrice.toFixed(2)}` : ''}</TableCell>
+                <TableCell className="last-price">{latestPrice}</TableCell>
+                <TableCell className="days-owned">{stock.days_owned}</TableCell>
+            </ItemRow>
         )
     }
 }

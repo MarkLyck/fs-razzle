@@ -6,11 +6,16 @@ import { HeaderContainer, RightSide, LeftSide } from './styles'
 
 const getIncrease = (startSum, endSum) => (((endSum - startSum) / startSum) * 100).toFixed(2)
 
-const PortfolioHeader = ({ portfolioYields, marketPrices, planName, portfolio }) => (
+const PortfolioHeader = ({ portfolioYields, marketPrices, planName, portfolio, serialChartsReady, pieChartsReady }) => (
     <HeaderContainer>
         <LeftSide>
             <h4>Portfolio yields</h4>
-            <PortfolioChart portfolioYields={portfolioYields} marketPrices={marketPrices} planName={planName} />
+            <PortfolioChart
+                portfolioYields={portfolioYields}
+                marketPrices={marketPrices}
+                planName={planName}
+                serialChartsReady={serialChartsReady}
+            />
         </LeftSide>
         <RightSide>
             <div className="plan-results results">
@@ -27,7 +32,7 @@ const PortfolioHeader = ({ portfolioYields, marketPrices, planName, portfolio })
                     since 2009
                 </p>
             </div>
-            <AllocationChart portfolio={portfolio} id="allocation-chart" />
+            <AllocationChart portfolio={portfolio} id="allocation-chart" pieChartsReady={pieChartsReady} />
         </RightSide>
     </HeaderContainer>
 )
