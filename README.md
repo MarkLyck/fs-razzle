@@ -1,4 +1,5 @@
 ![repo-banner](https://github.com/MarkLyck/fs-razzle/blob/master/public/media/icons/logo_horizontal.svg)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Formula Stocks is a stock recommendation service, that gives you recommendations on what to buy, for how much and when you should sell it. These recommendations are based on a deep learning algorithm that selects winning stocks +90% of the time. With an average annual interest rate of 20-35% depending on the product you choose.
 
@@ -6,9 +7,10 @@ Formula Stocks is a stock recommendation service, that gives you recommendations
 
 This is currently in development for version 2, which is NOT live yet.
 
-To see the current production version see here:  [https://formulastocks.com](https://formulastocks.com).
+To see the current production version see here: [https://formulastocks.com](https://formulastocks.com).
 
 ### Technologies used
+
 - React 16.3 (very little state-management needed, so the new Context will do over Redux for this application)
 - GraphQL (with GraphCool as a backend, (to be moved to Prisma))
 - react-apollo to integrate with GraphQL (handles all CRUD on the graphQL endpoint, no need for state management for this.)
@@ -32,19 +34,21 @@ Then open http://localhost:3000/ to see the application.
 
 Useful commands:
 
-### `npm start` or `yarn start` 
+### `npm start` or `yarn start`
 
-Runs the project in development mode.   
+Runs the project in development mode.  
 You can view your application at `http://localhost:3000`
 
 The page will reload if you make edits.
 
 ### `npm run build` or `yarn build`
-Builds the app for production to the build folder.      
+
+Builds the app for production to the build folder.
 
 The build is minified and the filenames include the hashes, ready for deployment
 
 ### `npm run start:prod` or `yarn start:prod`
+
 Runs the compiled app in production.
 
 You can again view the application at `http://localhost:3000`
@@ -65,4 +69,5 @@ To debug the node server, you can use `razzle start --inspect-brk`. This will st
 ---
 
 #### Author
+
 - [Mark Lyck](https://twitter.com/marklyck)

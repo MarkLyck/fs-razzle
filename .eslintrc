@@ -1,13 +1,17 @@
 {
-  "extends": [
-    "react-app",
-    "prettier",
-    "prettier/react"
-  ],
+  "extends": ["react-app"],
   "rules": {
-    "semi": [1, "never"]
-  },
-  "plugins": [
-    "prettier"
-  ]
+    "semi": [1, "never"],
+    "quotes": [2, "single"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always",
+        "objects": "always",
+        "imports": "ignore",
+        "exports": "ignore",
+        "functions": "ignore"
+      }
+    ]
+  }
 }
