@@ -7,7 +7,7 @@ const breakpoints = {
   large: 'max-width: 992px',
   xLarge: 'max-width: 1200px',
   // String values will be used as is
-  tallPhone: '(max-width: 360px) and (min-height: 740px)'
+  tallPhone: '(max-width: 360px) and (min-height: 740px)',
 }
 
 const mq = Object.keys(breakpoints).reduce(

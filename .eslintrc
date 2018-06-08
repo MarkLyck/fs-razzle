@@ -4,10 +4,10 @@
     "semi": [1, "never"],
     "quotes": [2, "single"],
     "comma-dangle": [
-      "error",
+      1,
       {
-        "arrays": "always",
-        "objects": "always",
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
         "imports": "ignore",
         "exports": "ignore",
         "functions": "ignore"
