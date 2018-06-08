@@ -7,7 +7,6 @@ import SideMenu from 'components/SideMenu'
 import NavBar from 'components/Navbar/Dashboard'
 import { DashboardLayout, DashboardContent } from './styles'
 
-
 // options: { fetchPolicy: 'network-only' },
 // const LOGGED_IN_USER_QUERY = gql`
 //   query LoggedInUser {
@@ -17,38 +16,39 @@ import { DashboardLayout, DashboardContent } from './styles'
 //   }
 // `
 
-const withDashboard = (WrappedComponent) => {
-    class WithDashboard extends Component {
-        state = {
-            planName: hasStorage && localStorage.getItem('selectedPlan')
-                ? localStorage.getItem('selectedPlan').toUpperCase()
-                : 'ENTRY'
-        }
-
-        setPlan = planName => this.setState({ planName })
-
-        getContext = () => ({
-            planName: this.state.planName,
-            setPlan: this.setPlan,
-        })
-
-        render() {
-            const { history, location } = this.props
-            return (
-                <DashboardLayout>
-                    <SideMenu history={history} location={location} />
-                    <PlanContext.Provider value={this.getContext()}>
-                        <DashboardContent>
-                            <NavBar history={history} location={location} />
-                            <WrappedComponent location={location} />
-                        </DashboardContent>
-                    </PlanContext.Provider>
-                </DashboardLayout>
-            )
-        }
+const withDashboard = WrappedComponent => {
+  class WithDashboard extends Component {
+    state = {
+      planName:
+        hasStorage && localStorage.getItem('selectedPlan')
+          ? localStorage.getItem('selectedPlan').toUpperCase()
+          : 'ENTRY',
     }
 
-    return WithDashboard
+    setPlan = planName => this.setState({ planName })
+
+    getContext = () => ({
+      planName: this.state.planName,
+      setPlan: this.setPlan,
+    })
+
+    render() {
+      const { history, location } = this.props
+      return (
+        <DashboardLayout>
+          <SideMenu history={history} location={location} />
+          <PlanContext.Provider value={this.getContext()}>
+            <DashboardContent>
+              <NavBar history={history} location={location} />
+              <WrappedComponent location={location} />
+            </DashboardContent>
+          </PlanContext.Provider>
+        </DashboardLayout>
+      )
+    }
+  }
+
+  return WithDashboard
 }
 
 export default withDashboard
