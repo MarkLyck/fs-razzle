@@ -10,7 +10,7 @@
     "test": "yarn unit-tests && yarn integration-tests",
     "unit-tests": "jest",
     "integration-tests": "start-server-and-test start http://localhost:3000 cypress",
-    "cypress": "$(npm bin)/cypress run",
+    "cypress": "$(npm bin)/cypress run --record",
     "start:prod": "NODE_ENV=production node build/server.js",
     "now-start": "NODE_ENV=production node build/server.js"
   },
