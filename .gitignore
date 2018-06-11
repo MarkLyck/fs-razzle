@@ -6,6 +6,8 @@ npm-debug.log*
 coverage
 node_modules
 build
+cypress/videos
+cypress/screenshots
 yarn.lock
 package-lock.json
 .env.local

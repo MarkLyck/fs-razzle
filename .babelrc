@@ -15,7 +15,29 @@
                     "./src"
                 ],
                 "alias": {
-                    "media": "./src/media"
+                    "common": "./src/common",
+                    "components": "./src/components",
+                    "pages": "./src/pages",
+                    "media": "./src/media",
+                    "@fortawesome/fontawesome-pro-solid/faAngleDown": "./src/media/faIcons/faAngleDown",
+                    "@fortawesome/fontawesome-pro-solid/faChartLine": "./src/media/faIcons/faChartLine",
+                    "@fortawesome/fontawesome-pro-solid/faChartPie": "./src/media/faIcons/faChartPie",
+                    "@fortawesome/fontawesome-pro-solid/faDollarSign": "./src/media/faIcons/faDollarSign",
+                    "@fortawesome/fontawesome-pro-solid/faExclamationCircle": "./src/media/faIcons/faExclamationCircle",
+                    "@fortawesome/fontawesome-pro-solid/faFlask": "./src/media/faIcons/faFlask",
+                    "@fortawesome/fontawesome-pro-solid/faGift": "./src/media/faIcons/faGift",
+                    "@fortawesome/fontawesome-pro-solid/faListUl": "./src/media/faIcons/faListUl",
+                    "@fortawesome/fontawesome-pro-solid/faNewspaper": "./src/media/faIcons/faNewspaper",
+                    "@fortawesome/fontawesome-pro-solid/faQuestionCircle": "./src/media/faIcons/faQuestionCircle",
+                    "@fortawesome/fontawesome-pro-solid/faSignInAlt": "./src/media/faIcons/faSignInAlt",
+                    "@fortawesome/fontawesome-pro-solid/faSignOutAlt": "./src/media/faIcons/faSignOutAlt",
+                    "@fortawesome/fontawesome-pro-solid/faSpinnerThird": "./src/media/faIcons/faSpinnerThird",
+                    "@fortawesome/fontawesome-pro-solid/faTachometer": "./src/media/faIcons/faTachometer",
+                    "@fortawesome/fontawesome-pro-solid/faTasks": "./src/media/faIcons/faTasks",
+                    "@fortawesome/fontawesome-pro-solid/faUser": "./src/media/faIcons/faUser",
+                    "@fortawesome/fontawesome-pro-solid/faHourglassEnd": "./src/media/faIcons/faHourglassEnd",
+                    "@fortawesome/fontawesome-pro-solid/faHourglassHalf": "./src/media/faIcons/faHourglassHalf",
+                    "@fortawesome/fontawesome-pro-regular/faTimes": "./src/media/faIcons/faTimes"
                 }
             }
         ]
