@@ -1,6 +1,7 @@
 {
   "extends": ["react-app"],
   "rules": {
+    "max-len": [2, 120],
     "semi": [1, "never"],
     "quotes": [2, "single"],
     "comma-dangle": [
