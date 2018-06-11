@@ -11,8 +11,8 @@ import faNewspaper from '@fortawesome/fontawesome-pro-solid/faNewspaper'
 import faTachometer from '@fortawesome/fontawesome-pro-solid/faTachometer'
 import faUser from '@fortawesome/fontawesome-pro-solid/faUser'
 import faUsers from '@fortawesome/fontawesome-pro-solid/faUsers'
-import faHourGlassHalf from '@fortawesome/fontawesome-pro-solid/faHourGlassHalf'
-import faHourGlassEnd from '@fortawesome/fontawesome-pro-solid/faHourGlassEnd'
+import faHourglassHalf from '@fortawesome/fontawesome-pro-solid/faHourglassHalf'
+import faHourglassEnd from '@fortawesome/fontawesome-pro-solid/faHourglassEnd'
 import faQuestionCircle from '@fortawesome/fontawesome-pro-solid/faQuestionCircle'
 import faDollarSign from '@fortawesome/fontawesome-pro-solid/faDollarSign'
 import faAngleDown from '@fortawesome/fontawesome-pro-solid/faAngleDown'
@@ -35,8 +35,8 @@ fontawesome.library.add(
   faTachometer,
   faUser,
   faUsers,
-  faHourGlassHalf,
-  faHourGlassEnd,
+  faHourglassHalf,
+  faHourglassEnd,
   faQuestionCircle,
   faDollarSign,
   faAngleDown,
