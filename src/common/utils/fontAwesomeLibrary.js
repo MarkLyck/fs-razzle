@@ -10,6 +10,9 @@ import faListUl from '@fortawesome/fontawesome-pro-solid/faListUl'
 import faNewspaper from '@fortawesome/fontawesome-pro-solid/faNewspaper'
 import faTachometer from '@fortawesome/fontawesome-pro-solid/faTachometer'
 import faUser from '@fortawesome/fontawesome-pro-solid/faUser'
+import faUsers from '@fortawesome/fontawesome-pro-solid/faUsers'
+import faHourGlassHalf from '@fortawesome/fontawesome-pro-solid/faHourGlassHalf'
+import faHourGlassEnd from '@fortawesome/fontawesome-pro-solid/faHourGlassEnd'
 import faQuestionCircle from '@fortawesome/fontawesome-pro-solid/faQuestionCircle'
 import faDollarSign from '@fortawesome/fontawesome-pro-solid/faDollarSign'
 import faAngleDown from '@fortawesome/fontawesome-pro-solid/faAngleDown'
@@ -18,23 +21,25 @@ import faSpinnerThird from '@fortawesome/fontawesome-pro-solid/faSpinnerThird'
 
 import faTimes from '@fortawesome/fontawesome-pro-regular/faTimes'
 
-
 fontawesome.library.add(
-    faSignInAlt,
-    faSignOutAlt,
-    faFlask,
-    faChartLine,
-    faChartPie,
-    faGift,
-    faTimes,
-    faTasks,
-    faListUl,
-    faNewspaper,
-    faTachometer,
-    faUser,
-    faQuestionCircle,
-    faDollarSign,
-    faAngleDown,
-    faExclamationCircle,
-    faSpinnerThird,
+  faSignInAlt,
+  faSignOutAlt,
+  faFlask,
+  faChartLine,
+  faChartPie,
+  faGift,
+  faTimes,
+  faTasks,
+  faListUl,
+  faNewspaper,
+  faTachometer,
+  faUser,
+  faUsers,
+  faHourGlassHalf,
+  faHourGlassEnd,
+  faQuestionCircle,
+  faDollarSign,
+  faAngleDown,
+  faExclamationCircle,
+  faSpinnerThird
 )

@@ -27,6 +27,9 @@ module.exports = {
         config.resolve.alias['@fortawesome/fontawesome-pro-solid/faTachometer'] = path.resolve(__dirname, 'src/media/faIcons/faTachometer')
         config.resolve.alias['@fortawesome/fontawesome-pro-solid/faTasks'] = path.resolve(__dirname, 'src/media/faIcons/faTasks')
         config.resolve.alias['@fortawesome/fontawesome-pro-solid/faUser'] = path.resolve(__dirname, 'src/media/faIcons/faUser')
+        config.resolve.alias['@fortawesome/fontawesome-pro-solid/faUsers'] = path.resolve(__dirname, 'src/media/faIcons/faUsers')
+        config.resolve.alias['@fortawesome/fontawesome-pro-solid/faHourGlassHalf'] = path.resolve(__dirname, 'src/media/faIcons/faHourGlassHalf')
+        config.resolve.alias['@fortawesome/fontawesome-pro-solid/faHourGlassEnd'] = path.resolve(__dirname, 'src/media/faIcons/faHourGlassEnd')
         config.resolve.alias['@fortawesome/fontawesome-pro-regular/faTimes'] = path.resolve(__dirname, 'src/media/faIcons/faTimes')
     
         //plugins

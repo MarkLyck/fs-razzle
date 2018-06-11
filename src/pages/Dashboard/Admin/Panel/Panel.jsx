@@ -8,6 +8,9 @@ import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
+import DAUGraph from './DAUGraph'
+import VisitorStatistics from './VisitorStatistics'
+import VisitorList from './VisitorList'
 
 const date = new Date()
 date.setDate(date.getDate() - 30)
@@ -70,13 +73,13 @@ const getTrialConversionRate = (allUsers, activeTrials) => {
   return conversionRate
 }
 
-const Overview = () => (
+const Overview = ({ serialChartsReady, pieChartsReady }) => (
   <Query query={PANEL_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading</p>
       if (error) return <p>Something went wrong, please try to refresh</p>
 
-      const { allUsers, visitorCount } = data
+      const { allUsers, allVisitors, visitorCount, Statistics } = data
 
       const uniqueVisitors = visitorCount
         ? visitorCount.count + uniqueVisitsFromOldSite
@@ -86,31 +89,45 @@ const Overview = () => (
       console.log(data)
 
       return (
-        <StatisticsContainer>
-          <StatisticsBox
-            title="Unique visitors"
-            value={uniqueVisitors}
-            icon="users"
+        <React.Fragment>
+          <StatisticsContainer>
+            <StatisticsBox
+              title="Unique visitors"
+              value={uniqueVisitors}
+              icon="users"
+            />
+            <StatisticsBox
+              title="Subscribers"
+              value={getPayingSubscribers(allUsers)}
+              icon="flask"
+            />
+            <StatisticsBox
+              title="Trials"
+              value={activeTrials}
+              icon="hourglass-half"
+            />
+            <StatisticsBox
+              title="Trial conversion rate"
+              value={`${getTrialConversionRate(allUsers, activeTrials)}%`}
+              icon="hourglass-end"
+            />
+          </StatisticsContainer>
+          <DAUGraph
+            visitors={allVisitors}
+            users={allUsers}
+            serialChartsReady={serialChartsReady}
           />
-          <StatisticsBox
-            title="Subscribers"
-            value={getPayingSubscribers(allUsers)}
-            icon="flask"
+          <VisitorStatistics
+            statistics={Statistics}
+            pieChartsReady={pieChartsReady}
           />
-          <StatisticsBox
-            title="Trials"
-            value={activeTrials}
-            icon="hourglass-half"
+          <VisitorList
+            visitors={allVisitors && allVisitors.slice().reverse()}
           />
-          <StatisticsBox
-            title="Trial conversion rate"
-            value={`${getTrialConversionRate(allUsers, activeTrials)}%`}
-            icon="hourglass-end"
-          />
-        </StatisticsContainer>
+        </React.Fragment>
       )
     }}
   </Query>
 )
 
-export default withDashboard(withCharts(Overview))
+export default withDashboard(withCharts(Overview, { loadPieChart: true }))
