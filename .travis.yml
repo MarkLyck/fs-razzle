@@ -10,4 +10,4 @@ cache:
 install:
   - yarn
 script:
-  - integration-tests
+  - yarn run integration-tests
