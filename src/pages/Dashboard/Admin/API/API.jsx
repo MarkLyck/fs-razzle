@@ -97,7 +97,7 @@ class FileUploader extends Component {
           return (
             <Mutation mutation={UPDATE_PLAN}>
               {(addTodo, { data }) => (
-                <Container>
+                <Container data-cy="drag-and-drop">
                   <h2>Update API</h2>
                   <FileDrop onDrop={this.onDrop} accept="application/json">
                     <h3>Drag and drop JSON files here</h3>
