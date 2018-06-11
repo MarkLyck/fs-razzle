@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
-import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo'
+import { ALL_PLANS, UPDATE_PLAN } from './queries'
+import { extractJSONFromFile, mutatePlanData } from './planMutation'
 import { FileDrop, Container } from './styles'
 import JSONIcon from './json_icon.svg'
 
@@ -24,85 +25,55 @@ const acceptedFilenames = [
   'weekly_fund.json',
 ]
 
-const ALL_PLANS = gql`
-  query {
-    allPlans {
-      id
-      backtestedData
-      latestSells
-      name
-      portfolio
-      portfolioYields
-      price
-      statistics
-      suggestions
-      updatedAt
-    }
-  }
-`
-
-const UPDATE_PLAN = gql`
-  mutation updatePlan(
-    $id: ID!
-    $backtestedData: Json
-    $latestSells: Json
-    $portfolio: Json
-    $portfolioYields: Json
-    $statistics: Json
-    $launchStatistics: Json
-    $suggestions: Json
-  ) {
-    updatePlan(
-      id: $id
-      backtestedData: $backtestedData
-      latestSells: $latestSells
-      portfolio: $portfolio
-      portfolioYields: $portfolioYields
-      statistics: $statistics
-      launchStatistics: $launchStatistics
-      suggestions: $suggestions
-    ) {
-      id
-      name
-      backtestedData
-      latestSells
-      portfolio
-      portfolioYields
-      statistics
-      launchStatistics
-      suggestions
-    }
-  }
-`
-
 class FileUploader extends Component {
-  onDrop = files => {
-    const badFiles = files.filter(
-      file => acceptedFilenames.indexOf(file.name) === -1
-    )
+  state = {
+    uploadingFiles: 0,
+    successfullUploads: 0,
+    errorUploading: false,
+  }
+  onDrop = (updatePlan, allPlans, files) => {
+    const badFiles = files.filter(file => acceptedFilenames.indexOf(file.name) === -1)
 
     if (!badFiles.length) {
-      // actions.updatePlan(files, mutatePlan, allPlans)
+      files.forEach(file => {
+        this.setState(state => ({
+          uploadingFiles: files.length,
+          successfullUploads: 0,
+          errorUploading: false,
+        }))
+        extractJSONFromFile(file)
+          .then(json => mutatePlanData(json, updatePlan, allPlans))
+          .then(data => {
+            this.setState(state => ({
+              successfullUploads: state.successfullUploads + 1,
+              uploadingFiles: state.uploadingFiles - 1,
+            }))
+            console.log('mutated plan', data)
+          })
+          .catch(err => this.setState({ errorUploading: `Error: ${err}` }))
+      })
     }
-    return null
   }
 
   render() {
+    const { uploadingFiles, successfullUploads, errorUploading } = this.state
     return (
       <Query query={ALL_PLANS}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading</p>
-          if (error || !data.allPlans)
-            return <p>Failed fetching data, please try to refresh the page</p>
+          if (error || !data.allPlans) return <p>Failed fetching data, please try to refresh the page</p>
           return (
             <Mutation mutation={UPDATE_PLAN}>
-              {(addTodo, { data }) => (
+              {updatePlan => (
                 <Container data-cy="drag-and-drop">
                   <h2>Update API</h2>
-                  <FileDrop onDrop={this.onDrop} accept="application/json">
+                  <FileDrop onDrop={this.onDrop.bind(null, updatePlan, data.allPlans)} accept="application/json">
                     <h3>Drag and drop JSON files here</h3>
                     <JSONIcon />
                   </FileDrop>
+                  <p>Uploading files: {uploadingFiles}</p>
+                  <p>successfullUploads: {successfullUploads}</p>
+                  <p>errorUploading: {errorUploading}</p>
                 </Container>
               )}
             </Mutation>
