@@ -5,6 +5,7 @@
     "plugins": [
         "transform-export-extensions",
         "babel-plugin-emotion",
+        [ "babel-plugin-webpack-alias", { "config": "./razzle.config.js" } ],
         "inline-react-svg",
         "polished",
         "lodash",

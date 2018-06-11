@@ -8,7 +8,7 @@ import {
   TableHead,
   TableRow,
 } from 'components/Table'
-import Visitor from './visitor'
+import Visitor from './Visitor'
 import { ContainerStyle } from './styles'
 
 const VisitorList = ({ visitors }) => (
