@@ -18,7 +18,9 @@
                     "common": "./src/common",
                     "components": "./src/components",
                     "pages": "./src/pages",
-                    "media": "./src/media"
+                    "media": "./src/media",
+                    "@fortawesome/fontawesome-pro-solid/faHourGlassEnd": "src/media/faIcons/faHourGlassEnd",
+                    "@fortawesome/fontawesome-pro-solid/faHourGlassHalf": "src/media/faIcons/faHourGlassHalf"
                 }
             }
         ]
