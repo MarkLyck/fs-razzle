@@ -1,5 +1,6 @@
 ![repo-banner](https://github.com/MarkLyck/fs-razzle/blob/master/public/media/icons/logo_horizontal.svg)
 
+[![Build Status](https://travis-ci.org/MarkLyck/fs-razzle.svg?branch=master)](https://travis-ci.org/MarkLyck/fs-razzle)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Formula Stocks is a stock recommendation service, that gives you recommendations on what to buy, for how much and when you should sell it. These recommendations are based on a deep learning algorithm that selects winning stocks +90% of the time. With an average annual interest rate of 20-35% depending on the product you choose.
