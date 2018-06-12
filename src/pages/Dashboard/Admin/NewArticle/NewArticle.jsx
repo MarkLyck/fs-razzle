@@ -80,12 +80,7 @@ class NewArticle extends Component {
                 <h3>Drag and drop Header image here</h3>
                 <i className="fa fa-image fa-5x" />
               </FileDrop>
-              <input
-                className="title"
-                // eslint-disable-next-line
-                ref={titleInput => (this._titleInput = titleInput)}
-                placeholder="Title"
-              />
+              <input className="title" ref={titleInput => (this._titleInput = titleInput)} placeholder="Title" />
               <Editor
                 editorState={editorState}
                 wrapperClassName="wrapper"
@@ -108,7 +103,6 @@ class NewArticle extends Component {
               />
               <div
                 className="preview"
-                // eslint-disable-next-line
                 dangerouslySetInnerHTML={{ __html: draftToHtml(convertToRaw(editorState.getCurrentContent())) }}
               />
               <Button onClick={this.onSubmit} fab color="primary" aria-label="add" className="submit">
