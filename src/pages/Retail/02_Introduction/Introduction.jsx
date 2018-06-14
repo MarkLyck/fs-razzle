@@ -23,12 +23,7 @@ const SectionContainer = styled('div')`
   }
 `
 
-const Introduction = ({
-  winRatio,
-  portfolioReturn,
-  portfolioYields,
-  planName,
-}) => {
+const Introduction = ({ winRatio, portfolioReturn, portfolioYields, planName }) => {
   let returns2016, returns2017
   if (portfolioYields && portfolioYields.length) {
     let janBalance2016, decBalance2016, janBalance2017, decBalance2017
@@ -58,30 +53,24 @@ const Introduction = ({
         <Beside>
           <div className="text-container">
             <p>
-              Formula Stocks offers a better way to invest. We forecast which
-              stocks will go up, before they go up. {Math.floor(winRatio)}% of
-              the time we have made such an estimate, it has proved a successful
-              long term investment. You simply buy these stocks in your own
-              account.
+              Formula Stocks offers a better way to invest. We forecast which stocks will go up, before they go up.{' '}
+              {Math.floor(winRatio)}% of the time we have made such an estimate, it has proved a successful long term
+              investment. You simply buy these stocks in your own account.
               <br />
               <br />
-              Investing using these estimates, cumulative returns since 2009
-              have been {portfolioReturn}%<sup>*</sup>
-              vs. the S&P500's 225%. Our Entry portfolio returned{' '}
-              {returns2017.toFixed(2)}% in 2017 and {returns2016.toFixed(2)}% in
-              2016. Powered by Artificial Intelligence forecasting, this
-              performance strongly exceeds the 6-7% average returns typically
-              expected from the stock market.
+              Investing using these estimates, cumulative returns since 2009 have been {portfolioReturn}%<sup>*</sup>
+              vs. the S&P500's 225%. Our Entry portfolio returned {returns2017.toFixed(2)}% in 2017 and{' '}
+              {returns2016.toFixed(2)}% in 2016. Powered by Artificial Intelligence forecasting, this performance
+              strongly exceeds the 6-7% average returns typically expected from the stock market.
               <br />
               <br />
             </p>
             <p>
-              Join us to better your returns, save on fees, and moderate your
-              risk. Sign up for a 30-day free trial without any obligations.
+              Join us to better your returns, save on fees, and moderate your risk. Sign up for a 30-day free trial
+              without any obligations.
             </p>
             <Disclaimer>
-              <sup>*</sup>Past performance is not neccesarily indicative of
-              future results.
+              <sup>*</sup>Past performance is not neccesarily indicative of future results.
             </Disclaimer>
           </div>
           <DualBarChart

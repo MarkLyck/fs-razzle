@@ -7,52 +7,52 @@ import Right from 'components/Section/Beside/Right'
 import { BesideContainer, Card, ProfileImg, ProfileTextContainer, Subtitle } from './styles'
 
 const CorporateProfile = () => (
-    <Section data-offwhite>
-        <SectionTitle>Corporate profile</SectionTitle>
-        <BesideContainer>
-            <Beside>
-                <Left>
-                    <Subtitle>About us</Subtitle>
-                    <p>
-                        Formula Stocks develops cognitive computing technologies since 2003 designed to achieve above-average performance
-                        in equity markets. Technology includes learning, business analytics, decisionmaking, probability estimation,
-                        and prediction technologies. Products suites can be used as a standalone tool to assist investors,
-                        or operate as autonomous decisionmakers, artificial intelligence capable of portfolio construction,
-                        active portfolio management, risk/reward management.<br /><br />
+  <Section data-offwhite>
+    <SectionTitle>Corporate profile</SectionTitle>
+    <BesideContainer>
+      <Beside>
+        <Left>
+          <Subtitle>About us</Subtitle>
+          <p>
+            Formula Stocks develops cognitive computing technologies since 2003 designed to achieve above-average
+            performance in equity markets. Technology includes learning, business analytics, decisionmaking, probability
+            estimation, and prediction technologies. Products suites can be used as a standalone tool to assist
+            investors, or operate as autonomous decisionmakers, artificial intelligence capable of portfolio
+            construction, active portfolio management, risk/reward management.<br />
+            <br />
+            Address: Formula Stocks ApS | Ribe Landevej 39, DK-6100 Haderslev. Denmark<br />
+            <br />
+            Contact us at: <a href="mailto:info@formulastocks.com">info@formulastocks.com</a>
+          </p>
+        </Left>
 
-                        Address: Formula Stocks ApS | Ribe Landevej 39, DK-6100 Haderslev. Denmark<br /><br />
-
-                        Contact us at: <a href="mailto:info@formulastocks.com">info@formulastocks.com</a>
-                    </p>
-                </Left>
-
-                <Right>
-                    <Subtitle>Executive team</Subtitle>
-                    <Card>
-                        <ProfileImg src="media/images/corporate/Thomas.jpg" alt="" />
-                        <ProfileTextContainer>
-                            <h5>Thomas Lyck</h5>
-                            <p>CEO</p>
-                        </ProfileTextContainer>
-                    </Card>
-                    <Card>
-                        <ProfileImg src="media/images/corporate/Mark.jpg" alt="" />
-                        <ProfileTextContainer>
-                            <h5>Mark Lyck</h5>
-                            <p>COO</p>
-                        </ProfileTextContainer>
-                    </Card>
-                    <Card>
-                        <ProfileImg src="media/images/corporate/Marie.jpg" alt="" />
-                        <ProfileTextContainer>
-                            <h5>Marie Lauritzen</h5>
-                            <p>CHRO</p>
-                        </ProfileTextContainer>
-                    </Card>
-                </Right>
-            </Beside>
-        </BesideContainer>
-    </Section>
+        <Right>
+          <Subtitle>Executive team</Subtitle>
+          <Card>
+            <ProfileImg src="media/images/corporate/Thomas.jpg" alt="" />
+            <ProfileTextContainer>
+              <h5>Thomas Lyck</h5>
+              <p>CEO</p>
+            </ProfileTextContainer>
+          </Card>
+          <Card>
+            <ProfileImg src="media/images/corporate/Mark.jpg" alt="" />
+            <ProfileTextContainer>
+              <h5>Mark Lyck</h5>
+              <p>COO</p>
+            </ProfileTextContainer>
+          </Card>
+          <Card>
+            <ProfileImg src="media/images/corporate/Marie.jpg" alt="" />
+            <ProfileTextContainer>
+              <h5>Marie Lauritzen</h5>
+              <p>CHRO</p>
+            </ProfileTextContainer>
+          </Card>
+        </Right>
+      </Beside>
+    </BesideContainer>
+  </Section>
 )
 
 export default CorporateProfile

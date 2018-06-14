@@ -7,12 +7,18 @@ import Button from 'components/Button'
 import { PricingText } from './styles'
 
 const FirstMonthOnus = () => (
-    <Section>
-        <SectionTitle>First month is on us</SectionTitle>
-        <Subtitle>If you decide Formula Stocks isn't for you - simply cancel online at any time without obligations.</Subtitle>
-        <PricingText>$50 monthly after your <span className="underline">free 30 days</span></PricingText>
-        <Button variant="raised" size="large"><FontAwesomeIcon icon="gift" />Start your free month</Button>
-    </Section>
+  <Section>
+    <SectionTitle>First month is on us</SectionTitle>
+    <Subtitle>
+      If you decide Formula Stocks isn't for you - simply cancel online at any time without obligations.
+    </Subtitle>
+    <PricingText>
+      $50 monthly after your <span className="underline">free 30 days</span>
+    </PricingText>
+    <Button variant="raised" size="large">
+      <FontAwesomeIcon icon="gift" />Start your free month
+    </Button>
+  </Section>
 )
 
 export default FirstMonthOnus

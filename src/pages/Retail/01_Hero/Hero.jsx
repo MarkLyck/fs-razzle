@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Typed from 'typed.js'
-import {
-  HeroContainer,
-  Content,
-  Title,
-  SliderImage,
-  Overlay,
-  Bold,
-} from './styles'
+import { HeroContainer, Content, Title, SliderImage, Overlay, Bold } from './styles'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
