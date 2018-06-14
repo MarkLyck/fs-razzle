@@ -8,19 +8,13 @@ import { GraphContainer, ContainerStyle } from './styles'
 
 const createChartData = (visitors, users) => {
   // gets signup dates from all users
-  const signUpDays = _.countBy(users, user =>
-    moment(user.createdAt).format('YYYY-MM-DD')
-  )
+  const signUpDays = _.countBy(users, user => moment(user.createdAt).format('YYYY-MM-DD'))
 
   const cancelDays = _.countBy(users, user =>
-    moment
-      .unix(_.get(user, 'stripe.subscriptions.data[0].canceled_at'))
-      .format('YYYY-MM-DD')
+    moment.unix(_.get(user, 'stripe.subscriptions.data[0].canceled_at')).format('YYYY-MM-DD')
   )
 
-  const visitorData = _.countBy(visitors, visitor =>
-    moment(visitor.createdAt).format('YYYY-MM-DD')
-  )
+  const visitorData = _.countBy(visitors, visitor => moment(visitor.createdAt).format('YYYY-MM-DD'))
 
   const days = []
   for (let i = 0; i <= 30; i++) {
@@ -56,13 +50,11 @@ const DAUGraph = ({ visitors, users, serialChartsReady }) => {
       fillAlphas: 0.8,
       type: 'smoothedLine',
       valueField: 'visitors',
-      balloonText:
-        '<div class="suggestion-balloon"><p class="ticker">New visitors</p> <p>[[value]]</p></div>',
+      balloonText: '<div class="suggestion-balloon"><p class="ticker">New visitors</p> <p>[[value]]</p></div>',
     },
     {
       alphaField: 'alpha',
-      balloonText:
-        '<div class="suggestion-balloon"><p class="ticker">Signups:</p> <p>[[value]]</p></div>',
+      balloonText: '<div class="suggestion-balloon"><p class="ticker">Signups:</p> <p>[[value]]</p></div>',
       lineColor: '#27A5F9',
       fillAlphas: 0.6,
       type: 'smoothedLine',
@@ -70,8 +62,7 @@ const DAUGraph = ({ visitors, users, serialChartsReady }) => {
     },
     {
       alphaField: 'alpha',
-      balloonText:
-        '<div class="suggestion-balloon"><p class="ticker">cancelled:</p> <p>[[value]]</p></div>',
+      balloonText: '<div class="suggestion-balloon"><p class="ticker">cancelled:</p> <p>[[value]]</p></div>',
       lineColor: '#EC1B5F',
       fillAlphas: 0.5,
       clustered: false,
@@ -83,12 +74,7 @@ const DAUGraph = ({ visitors, users, serialChartsReady }) => {
   return (
     <Paper style={ContainerStyle}>
       <GraphContainer>
-        <LineGraph
-          id="dau-graph"
-          graphs={graphs}
-          data={chartData}
-          axisAlpha={0.5}
-        />
+        <LineGraph id="dau-graph" graphs={graphs} data={chartData} axisAlpha={0.5} />
       </GraphContainer>
     </Paper>
   )

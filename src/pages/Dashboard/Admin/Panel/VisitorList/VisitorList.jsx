@@ -1,13 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Paper from 'material-ui/Paper'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from 'components/Table'
+import { Table, TableBody, TableCell, TableHead, TableRow } from 'components/Table'
 import Visitor from './Visitor'
 import { ContainerStyle } from './styles'
 
@@ -22,12 +16,7 @@ const VisitorList = ({ visitors }) => (
           <TableCell>Device</TableCell>
         </TableRow>
       </TableHead>
-      <TableBody>
-        {visitors &&
-          visitors.map(visitor => (
-            <Visitor visitor={visitor} key={visitor.id} />
-          ))}
-      </TableBody>
+      <TableBody>{visitors && visitors.map(visitor => <Visitor visitor={visitor} key={visitor.id} />)}</TableBody>
     </Table>
   </Paper>
 )

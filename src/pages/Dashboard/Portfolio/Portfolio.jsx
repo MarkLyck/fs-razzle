@@ -41,8 +41,7 @@ class Portfolio extends Component {
           <Query query={PORTFOLIO_QUERY} variables={{ id: planIds[planName] }}>
             {({ loading, error, data }) => {
               if (loading) return <PortfolioLoader />
-              if (error || !data || !data.Plan)
-                return <p>Something went wrong, please try to refresh</p>
+              if (error || !data || !data.Plan) return <p>Something went wrong, please try to refresh</p>
               const { Plan, DJIA } = data
 
               return (
@@ -60,13 +59,8 @@ class Portfolio extends Component {
                     <PortfolioTableHead>
                       <TableRow>
                         <TableHeadCell className="name">Name</TableHeadCell>
-                        <TableHeadCell className="allocation">
-                          Allocation
-                        </TableHeadCell>
-                        <TableHeadCell
-                          className="return"
-                          tooltip="Percent increase from Cost basis to Last price."
-                        >
+                        <TableHeadCell className="allocation">Allocation</TableHeadCell>
+                        <TableHeadCell className="return" tooltip="Percent increase from Cost basis to Last price.">
                           Return
                         </TableHeadCell>
                         <TableHeadCell
@@ -81,38 +75,24 @@ class Portfolio extends Component {
                         >
                           Last price
                         </TableHeadCell>
-                        <TableHeadCell className="days-owned">
-                          Days owned
-                        </TableHeadCell>
+                        <TableHeadCell className="days-owned">Days owned</TableHeadCell>
                       </TableRow>
                     </PortfolioTableHead>
                     <TableBody>
-                      {Plan.portfolio.map(stock => (
-                        <PortfolioItem stock={stock} key={stock.ticker} />
-                      ))}
+                      {Plan.portfolio.map(stock => <PortfolioItem stock={stock} key={stock.ticker} />)}
                     </TableBody>
                   </PortfolioTable>
                   <StatisticsContainer>
-                    <StatisticsBox
-                      title="Annual growth"
-                      value={`${Plan.statistics.CAGR}%`}
-                      icon="chart-line"
-                    />
+                    <StatisticsBox title="Annual growth" value={`${Plan.statistics.CAGR}%`} icon="chart-line" />
                     <StatisticsBox
                       title="Sold with profit"
                       value={`${Plan.statistics.winRatio.toFixed(2)}%`}
                       icon="chart-pie"
                     />
-                    <StatisticsBox
-                      title="Holdings"
-                      value={Plan.portfolio.length}
-                      icon="list-ul"
-                    />
+                    <StatisticsBox title="Holdings" value={Plan.portfolio.length} icon="list-ul" />
                     <StatisticsBox
                       title="Percent in cash"
-                      value={`${Plan.launchStatistics.percentInCash.toFixed(
-                        2
-                      )}%`}
+                      value={`${Plan.launchStatistics.percentInCash.toFixed(2)}%`}
                       icon="dollar-sign"
                     />
                   </StatisticsContainer>

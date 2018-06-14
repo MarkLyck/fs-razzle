@@ -47,10 +47,8 @@ const PANEL_QUERY = gql`
   }
 `
 const uniqueVisitsFromOldSite = 0
-const getPayingSubscribers = allUsers =>
-  allUsers && allUsers.filter(user => user.type === 'subscriber').length
-const getActiveTrials = allUsers =>
-  allUsers && allUsers.filter(user => user.type === 'trial').length
+const getPayingSubscribers = allUsers => allUsers && allUsers.filter(user => user.type === 'subscriber').length
+const getActiveTrials = allUsers => allUsers && allUsers.filter(user => user.type === 'trial').length
 const getTrialConversionRate = (allUsers, activeTrials) => {
   if (!allUsers) return 0
   const stayedThroughTrial = allUsers.filter(user => {
@@ -58,18 +56,15 @@ const getTrialConversionRate = (allUsers, activeTrials) => {
     // or if the user is currently a paying subscriber
     if (
       (_.get(user, 'stripe.subscriptions.data[0].trial_end') &&
-        user.stripe.subscriptions.data[0].canceled_at >
-          user.stripe.subscriptions.data[0].trial_end) ||
-      (!_.get(user, 'stripe.subscriptions.data[0].canceled_at') &&
-        user.type === 'subscriber')
+        user.stripe.subscriptions.data[0].canceled_at > user.stripe.subscriptions.data[0].trial_end) ||
+      (!_.get(user, 'stripe.subscriptions.data[0].canceled_at') && user.type === 'subscriber')
     ) {
       return true
     }
     return false
   })
   // subtract active trials from the allUsers length as we don't know if they'll stay or not.
-  const conversionRate =
-    (stayedThroughTrial.length / (allUsers.length - activeTrials)) * 100
+  const conversionRate = (stayedThroughTrial.length / (allUsers.length - activeTrials)) * 100
   return conversionRate
 }
 
@@ -81,9 +76,7 @@ const Overview = ({ serialChartsReady, pieChartsReady }) => (
 
       const { allUsers, allVisitors, visitorCount, Statistics } = data
 
-      const uniqueVisitors = visitorCount
-        ? visitorCount.count + uniqueVisitsFromOldSite
-        : ''
+      const uniqueVisitors = visitorCount ? visitorCount.count + uniqueVisitsFromOldSite : ''
       const activeTrials = getActiveTrials(allUsers)
 
       console.log(data)
@@ -91,39 +84,18 @@ const Overview = ({ serialChartsReady, pieChartsReady }) => (
       return (
         <React.Fragment>
           <StatisticsContainer>
-            <StatisticsBox
-              title="Unique visitors"
-              value={uniqueVisitors}
-              icon="users"
-            />
-            <StatisticsBox
-              title="Subscribers"
-              value={getPayingSubscribers(allUsers)}
-              icon="flask"
-            />
-            <StatisticsBox
-              title="Trials"
-              value={activeTrials}
-              icon="hourglass-half"
-            />
+            <StatisticsBox title="Unique visitors" value={uniqueVisitors} icon="users" />
+            <StatisticsBox title="Subscribers" value={getPayingSubscribers(allUsers)} icon="flask" />
+            <StatisticsBox title="Trials" value={activeTrials} icon="hourglass-half" />
             <StatisticsBox
               title="Trial conversion rate"
               value={`${getTrialConversionRate(allUsers, activeTrials)}%`}
               icon="hourglass-end"
             />
           </StatisticsContainer>
-          <DAUGraph
-            visitors={allVisitors}
-            users={allUsers}
-            serialChartsReady={serialChartsReady}
-          />
-          <VisitorStatistics
-            statistics={Statistics}
-            pieChartsReady={pieChartsReady}
-          />
-          <VisitorList
-            visitors={allVisitors && allVisitors.slice().reverse()}
-          />
+          <DAUGraph visitors={allVisitors} users={allUsers} serialChartsReady={serialChartsReady} />
+          <VisitorStatistics statistics={Statistics} pieChartsReady={pieChartsReady} />
+          <VisitorList visitors={allVisitors && allVisitors.slice().reverse()} />
         </React.Fragment>
       )
     }}

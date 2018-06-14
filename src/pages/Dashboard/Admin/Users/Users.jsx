@@ -3,13 +3,7 @@ import PropTypes from 'prop-types'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import withDashboard from 'components/withDashboard'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from 'components/Table'
+import { Table, TableBody, TableCell, TableHead, TableRow } from 'components/Table'
 import User from './User'
 import { UsersContainer } from './styles'
 
@@ -42,9 +36,7 @@ const UserList = ({ allUsers }) => (
                 <TableCell>Type</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
-              {data.allUsers.map(user => <User user={user} key={user.id} />)}
-            </TableBody>
+            <TableBody>{data.allUsers.map(user => <User user={user} key={user.id} />)}</TableBody>
           </Table>
         </UsersContainer>
       )

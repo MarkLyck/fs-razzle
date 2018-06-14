@@ -11,12 +11,7 @@ const getFlag = countryCode => {
 
   if (invalidFlags[countryCode]) return ''
 
-  return (
-    <img
-      src={`/media/icons/flags/${countryCode.toLowerCase()}.png`}
-      alt="flag"
-    />
-  )
+  return <img src={`/media/icons/flags/${countryCode.toLowerCase()}.png`} alt="flag" />
 }
 const getBrowserIcon = browser => {
   if (browser.indexOf('Chrome') > -1 || browser === 'Blink') return 'Chrome.svg'
@@ -49,14 +44,9 @@ const Visitor = ({ visitor }) => (
   <TableRow key={visitor.id}>
     <TableCell style={countryStyle}>
       {visitor.location && getFlag(visitor.location.country_code)}
-      <p style={{ marginLeft: '8px' }}>
-        {visitor.location && visitor.location.country_name}
-      </p>
+      <p style={{ marginLeft: '8px' }}>{visitor.location && visitor.location.country_name}</p>
     </TableCell>
-    <TableCell
-      onClick={() => console.log(visitor.url)}
-      style={{ height: '48px' }}
-    >
+    <TableCell onClick={() => console.log(visitor.url)} style={{ height: '48px' }}>
       <p>
         {
           visitor.url
@@ -67,25 +57,11 @@ const Visitor = ({ visitor }) => (
         }
       </p>
     </TableCell>
-    <TableCell style={{ height: '48px' }}>
-      {moment(visitor.createdAt).fromNow()}
-    </TableCell>
+    <TableCell style={{ height: '48px' }}>{moment(visitor.createdAt).fromNow()}</TableCell>
     <TableCell style={tableCellStyle}>
-      {visitor.device && (
-        <i className={`fa ${getDeviceIcon(visitor.device)}`} />
-      )}
-      {visitor.device && (
-        <Icon
-          src={`/media/icons/devices/${getOSIcon(visitor.device.os)}`}
-          alt="os"
-        />
-      )}
-      {visitor.device && (
-        <Icon
-          src={`/media/icons/devices/${getBrowserIcon(visitor.device.browser)}`}
-          alt="browser"
-        />
-      )}
+      {visitor.device && <i className={`fa ${getDeviceIcon(visitor.device)}`} />}
+      {visitor.device && <Icon src={`/media/icons/devices/${getOSIcon(visitor.device.os)}`} alt="os" />}
+      {visitor.device && <Icon src={`/media/icons/devices/${getBrowserIcon(visitor.device.browser)}`} alt="browser" />}
     </TableCell>
   </TableRow>
 )
