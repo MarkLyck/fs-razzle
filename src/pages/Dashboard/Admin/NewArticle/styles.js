@@ -1,5 +1,10 @@
 import styled from 'react-emotion'
 import Dropzone from 'react-dropzone'
+import { MegadraftEditor } from 'megadraft'
+
+export const Editor = styled(MegadraftEditor)`
+  background: white;
+`
 
 export const EditorContainer = styled.div`
     margin: 0 32px;

@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import withDashboard from 'components/withDashboard'
+import withCharts from 'components/Charts/withCharts'
 import PropTypes from 'prop-types'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import Button from 'components/Button'
-import { MegadraftEditor, editorStateFromRaw } from 'megadraft'
-import 'megadraft/dist/css/megadraft.css'
+import { EditorState, convertToRaw } from 'draft-js'
+import { Editor } from 'react-draft-wysiwyg'
+import draftToHtml from 'draftjs-to-html'
 import { EditorContainer, FileDrop } from './styles'
 
 const CREATE_ARTICLE = gql`
@@ -20,22 +22,23 @@ class NewArticle extends Component {
   state = {
     rerender: false,
     headerImageUrl: '',
-    editorState: editorStateFromRaw(null),
+    editorState: EditorState.createEmpty(),
   }
 
-  onChange = editorState => this.setState({ editorState })
+  onEditorStateChange = editorState => {
+    this.setState({ editorState })
+  }
 
-  // onSubmit = () => {
-  //   const { createArticle, actions } = this.props
-  //   const { editorState, headerImageUrl } = this.state
-  //   const title = this._titleInput.value
+  onSubmit = () => {
+    const { createArticle, actions } = this.props
+    const { editorState, headerImageUrl } = this.state
+    const title = this._titleInput.value
 
-  //   actions.newArticle(title, draftToHtml(convertToRaw(editorState.getCurrentContent())),
-  // headerImageUrl, createArticle)
+    actions.newArticle(title, draftToHtml(convertToRaw(editorState.getCurrentContent())), headerImageUrl, createArticle)
 
-  //   this.setState({ editorState: EditorState.createEmpty() })
-  //   this._titleInput.value = ''
-  // }
+    this.setState({ editorState: EditorState.createEmpty() })
+    this._titleInput.value = ''
+  }
 
   onDrop = files => {
     const data = new FormData()
@@ -78,7 +81,30 @@ class NewArticle extends Component {
                 <i className="fa fa-image fa-5x" />
               </FileDrop>
               <input className="title" ref={titleInput => (this._titleInput = titleInput)} placeholder="Title" />
-              <MegadraftEditor editorState={editorState} onChange={this.onChange} />
+              <Editor
+                editorState={editorState}
+                wrapperClassName="wrapper"
+                editorClassName="editor"
+                onEditorStateChange={this.onEditorStateChange}
+                toolbar={{
+                  image: {
+                    urlEnabled: true,
+                    uploadEnabled: true,
+                    alignmentEnabled: true,
+                    uploadCallback: this.uploadImageCallBack,
+                    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                    alt: { present: false, mandatory: false },
+                    defaultSize: {
+                      height: 'auto',
+                      width: 'auto',
+                    },
+                  },
+                }}
+              />
+              <div
+                className="preview"
+                dangerouslySetInnerHTML={{ __html: draftToHtml(convertToRaw(editorState.getCurrentContent())) }}
+              />
               <Button onClick={this.onSubmit} fab color="primary" aria-label="add" className="submit">
                 <i className="fa fa-save fa-2x" />
               </Button>
@@ -95,4 +121,4 @@ NewArticle.propTypes = {
   actions: PropTypes.object,
 }
 
-export default withDashboard(NewArticle)
+export default withDashboard(withCharts(NewArticle))
