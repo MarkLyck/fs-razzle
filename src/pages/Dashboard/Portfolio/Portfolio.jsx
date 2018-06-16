@@ -11,6 +11,7 @@ import AnnualReturns from './AnnualReturns'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import PortfolioLoader from 'components/Loading/PortfolioLoader'
+import LoadingError from 'components/Error/LoadingError'
 import PortfolioItem from './PortfolioItem'
 import { PortfolioTable, PortfolioTableHead } from './styles'
 
@@ -41,7 +42,7 @@ class Portfolio extends Component {
           <Query query={PORTFOLIO_QUERY} variables={{ id: planIds[planName] }}>
             {({ loading, error, data }) => {
               if (loading) return <PortfolioLoader />
-              if (error || !data || !data.Plan) return <p>Something went wrong, please try to refresh</p>
+              if (error || !data || !data.Plan) return <LoadingError />
               const { Plan, DJIA } = data
 
               return (

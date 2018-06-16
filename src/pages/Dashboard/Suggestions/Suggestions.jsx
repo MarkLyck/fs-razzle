@@ -15,6 +15,7 @@ import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import Suggestion from 'components/Suggestion'
 import SuggestionsLoader from 'components/Loading/SuggestionsLoader'
+import LoadingError from 'components/Error/LoadingError'
 
 import { SuggestionsList, LastUpdated, DateLabel } from './styles'
 
@@ -70,7 +71,7 @@ class Suggestions extends Component {
           <Query query={SUGGESTIONS_QUERY} variables={{ id: planIds[planName] }}>
             {({ loading, error, data }) => {
               if (loading) return <SuggestionsLoader />
-              if (error && !usingMocks) return <p>Error loading</p>
+              if (error && !usingMocks) return <LoadingError />
 
               const plan = data ? data.Plan : mockData.Plan
               const suggestionsType = location.pathname.includes('/dashboard/trades') ? 'Trades' : 'Suggestions'

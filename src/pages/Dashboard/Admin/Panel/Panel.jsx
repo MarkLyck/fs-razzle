@@ -8,6 +8,7 @@ import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
+import LoadingError from 'components/Error/LoadingError'
 import DAUGraph from './DAUGraph'
 import VisitorStatistics from './VisitorStatistics'
 import VisitorList from './VisitorList'
@@ -72,7 +73,7 @@ const Overview = ({ serialChartsReady, pieChartsReady }) => (
   <Query query={PANEL_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading</p>
-      if (error) return <p>Something went wrong, please try to refresh</p>
+      if (error) return <LoadingError />
 
       const { allUsers, allVisitors, visitorCount, Statistics } = data
 

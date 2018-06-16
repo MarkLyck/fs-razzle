@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import withDashboard from 'components/withDashboard'
 import { Table, TableBody, TableCell, TableHead, TableRow } from 'components/Table'
+import LoadingError from 'components/Error/LoadingError'
 import User from './User'
 import { UsersContainer } from './styles'
 
@@ -23,7 +24,7 @@ const UserList = ({ allUsers }) => (
   <Query query={USERS_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading</p>
-      if (error) return <p>Something went wrong, please try to refresh</p>
+      if (error) return <LoadingError />
 
       return (
         <UsersContainer>
