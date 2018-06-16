@@ -49,6 +49,7 @@ class AdminButtons extends Component {
           color={activeButton === 'newArticle' ? 'white' : 'primary'}
           variant="raised"
           type={activeButton === 'newArticle' ? 'dark' : 'light'}
+          style={{ minWidth: '126px' }}
           onClick={() => this.navigateTo('/dashboard/admin/newArticle')}
         >
           New Article

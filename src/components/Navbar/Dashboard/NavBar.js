@@ -25,7 +25,7 @@ const NavBar = ({ history, location }) => {
       {isPlanPage && <PlanMenu selectedPlan={selectedPlan} className="plan-menu-container" route={path} />}
       {/* {isPlanPage && <PlanButtons selectedPlan={selectedPlan} actions={actions} />} */}
       {isAdminPage && <AdminButtons route={path} history={history} />}
-      <Logo onClick={() => history.push('/')} />
+      <Logo onClick={() => history.push('/')} isAdminPage={isAdminPage} />
     </Bar>
   )
 }
