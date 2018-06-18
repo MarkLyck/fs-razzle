@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { TableCell, TableRow } from 'material-ui/Table'
+import { TableCell, TableRow } from 'components/Table'
 
 const User = ({ user }) => (
   <TableRow key={user.id} onClick={() => console.log(user)}>
