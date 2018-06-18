@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { TableCell, TableRow } from 'material-ui/Table'
+import { TableCell, TableRow } from 'components/Table'
 import { Icon, tableCellStyle, countryStyle } from './styles'
 
 const getFlag = countryCode => {

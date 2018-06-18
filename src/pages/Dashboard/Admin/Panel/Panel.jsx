@@ -80,8 +80,6 @@ const Overview = ({ serialChartsReady, pieChartsReady }) => (
       const uniqueVisitors = visitorCount ? visitorCount.count + uniqueVisitsFromOldSite : ''
       const activeTrials = getActiveTrials(allUsers)
 
-      console.log(data)
-
       return (
         <React.Fragment>
           <StatisticsContainer>
