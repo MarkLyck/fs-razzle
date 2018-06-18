@@ -4,10 +4,13 @@ import { MegadraftEditor } from 'megadraft'
 
 export const Editor = styled(MegadraftEditor)`
   background: white;
+  margin: 0 32px;
 `
 
 export const EditorContainer = styled.div`
-    margin: 0 32px;
+    padding: 32px;
+    background: white;
+    height: 100%;
     .title {
         background: none;
         border: none;
@@ -16,6 +19,11 @@ export const EditorContainer = styled.div`
         font-size: 1.2rem;
         width: 100%;
     }
+    .megadraft {
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,.08);
+        padding: 40px;
+    }
     .editor {
         background: ${props => props.theme.colors.white}
         padding: 32px;
@@ -23,7 +31,6 @@ export const EditorContainer = styled.div`
     }
     .preview {
         background: ${props => props.theme.colors.white}
-        margin-top: 32px;
         width: 100%;
         min-height: 100px;
         border: none;
