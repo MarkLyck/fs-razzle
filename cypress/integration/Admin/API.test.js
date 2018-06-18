@@ -1,6 +1,3 @@
-import emptyData from '../../fixtures/emptyData.json'
-import allPlans from '../../fixtures/allPlans.json'
-
 describe('API', () => {
   it('show error message if no data is available', () => {
     cy.server()
