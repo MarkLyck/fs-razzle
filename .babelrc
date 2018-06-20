@@ -26,6 +26,7 @@
                     "@fortawesome/fontawesome-pro-solid/faExclamationCircle": "./src/media/faIcons/faExclamationCircle",
                     "@fortawesome/fontawesome-pro-solid/faFlask": "./src/media/faIcons/faFlask",
                     "@fortawesome/fontawesome-pro-solid/faGift": "./src/media/faIcons/faGift",
+                    "@fortawesome/fontawesome-pro-solid/faImage": "./src/media/faIcons/faImage",
                     "@fortawesome/fontawesome-pro-solid/faListUl": "./src/media/faIcons/faListUl",
                     "@fortawesome/fontawesome-pro-solid/faNewspaper": "./src/media/faIcons/faNewspaper",
                     "@fortawesome/fontawesome-pro-solid/faQuestionCircle": "./src/media/faIcons/faQuestionCircle",

@@ -1,5 +1,5 @@
 import React from 'react'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import Icon from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import theme from 'common/utils/theme'
 import Dialog from 'material-ui/Dialog'
@@ -18,7 +18,7 @@ const TermsOfService = ({ open, hideTerms }) => (
     <AppBar style={{ background: theme.colors.gray }}>
       <Toolbar>
         <IconButton onClick={hideTerms} aria-label="Close">
-          <FontAwesomeIcon icon={['far', 'times']} style={{ color: '#fff' }} />
+          <Icon icon={['far', 'times']} style={{ color: '#fff' }} />
         </IconButton>
         <h3 style={{ marginLeft: '16px' }}>Terms of Service</h3>
       </Toolbar>

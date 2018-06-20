@@ -5,6 +5,7 @@ import faChartLine from '@fortawesome/fontawesome-pro-solid/faChartLine'
 import faChartPie from '@fortawesome/fontawesome-pro-solid/faChartPie'
 import faFlask from '@fortawesome/fontawesome-pro-solid/faFlask'
 import faGift from '@fortawesome/fontawesome-pro-solid/faGift'
+import faImage from '@fortawesome/fontawesome-pro-solid/faImage'
 import faTasks from '@fortawesome/fontawesome-pro-solid/faTasks'
 import faListUl from '@fortawesome/fontawesome-pro-solid/faListUl'
 import faNewspaper from '@fortawesome/fontawesome-pro-solid/faNewspaper'
@@ -28,6 +29,7 @@ fontawesome.library.add(
   faChartLine,
   faChartPie,
   faGift,
+  faImage,
   faTimes,
   faTasks,
   faListUl,

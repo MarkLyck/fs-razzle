@@ -56,4 +56,9 @@ export const FileDrop = styled(Dropzone)`
     background-image: ${props => (props['data-headerImageUrl'] ? `url(${props['data-headerImageUrl']})` : 'none')}
     background-repeat: no-repeat;
     background-size: cover;
+
+    svg {
+        margin-top: 16px;
+        font-size: 5rem;
+    }
 `

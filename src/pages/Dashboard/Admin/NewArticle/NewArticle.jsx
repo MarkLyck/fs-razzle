@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import withDashboard from 'components/withDashboard'
+import Icon from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
+import withDashboard from 'components/withDashboard'
 import Button from 'components/Button'
 import { MegadraftEditor, editorStateFromRaw } from 'megadraft'
 import 'megadraft/dist/css/megadraft.css'
@@ -75,7 +76,7 @@ class NewArticle extends Component {
             <EditorContainer>
               <FileDrop onDrop={this.onDrop} data-headerimageurl={headerImageUrl}>
                 <h3>Drag and drop Header image here</h3>
-                <i className="fa fa-image fa-5x" />
+                <Icon icon="image" />
               </FileDrop>
               <input className="title" ref={titleInput => (this._titleInput = titleInput)} placeholder="Title" />
               <MegadraftEditor editorState={editorState} onChange={this.onChange} />
