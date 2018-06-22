@@ -80,7 +80,8 @@ class NewArticle extends Component {
               </FileDrop>
               <input className="title" ref={titleInput => (this._titleInput = titleInput)} placeholder="Title" />
               <MegadraftEditor editorState={editorState} onChange={this.onChange} />
-              <Button onClick={this.onSubmit} fab color="primary" aria-label="add" className="submit">
+              <Button onClick={this.onSubmit} color="primary" aria-label="add" className="submit">
+                Submit
                 <i className="fa fa-save fa-2x" />
               </Button>
             </EditorContainer>
