@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
 import { withTheme } from 'emotion-theming'
-import Spinner from '../Spinner'
+import Spinner from '../HomeSpinner'
 
 const NavSkeleton = styled.div`
   position: fixed;

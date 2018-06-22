@@ -9,6 +9,7 @@ import withCharts from 'components/Charts/withCharts'
 import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import LoadingError from 'components/Error/LoadingError'
+import GenericLoader from 'components/Loading/Generic'
 import DAUGraph from './DAUGraph'
 import VisitorStatistics from './VisitorStatistics'
 import VisitorList from './VisitorList'
@@ -72,7 +73,7 @@ const getTrialConversionRate = (allUsers, activeTrials) => {
 const Overview = ({ serialChartsReady, pieChartsReady }) => (
   <Query query={PANEL_QUERY}>
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading</p>
+      if (loading) return <GenericLoader />
       if (error) return <LoadingError />
 
       const { allUsers, allVisitors, visitorCount, Statistics } = data

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
 import LoadingError from 'components/Error/LoadingError'
+import GenericLoader from 'components/Loading/Generic'
 import { Query, Mutation } from 'react-apollo'
 import { ALL_PLANS, UPDATE_PLAN } from './queries'
 import { extractJSONFromFile, mutatePlanData } from './planMutation'
@@ -61,7 +62,7 @@ class FileUploader extends Component {
     return (
       <Query query={ALL_PLANS}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading</p>
+          if (loading) return <GenericLoader />
           if (error || !data.allPlans) return <LoadingError />
           return (
             <Mutation mutation={UPDATE_PLAN}>

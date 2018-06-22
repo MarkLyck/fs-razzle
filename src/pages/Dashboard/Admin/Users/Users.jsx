@@ -5,6 +5,7 @@ import { Query } from 'react-apollo'
 import withDashboard from 'components/withDashboard'
 import { Table, TableBody, TableCell, TableHead, TableRow } from 'components/Table'
 import LoadingError from 'components/Error/LoadingError'
+import GenericLoader from 'components/Loading/Generic'
 import User from './User'
 import { UsersContainer } from './styles'
 
@@ -23,7 +24,7 @@ const USERS_QUERY = gql`
 const UserList = ({ allUsers }) => (
   <Query query={USERS_QUERY}>
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading</p>
+      if (loading) return <GenericLoader />
       if (error) return <LoadingError />
 
       return (
