@@ -24,6 +24,8 @@ import Retail from 'pages/Retail'
 import Pro from 'pages/Pro'
 import Suggestions from 'pages/Dashboard/Suggestions'
 import Portfolio from 'pages/Dashboard/Portfolio'
+import Articles from 'pages/Dashboard/Articles'
+import MyAccount from 'pages/Dashboard/MyAccount'
 import AdminPanel from 'pages/Dashboard/Admin/Panel'
 import AdminUsers from 'pages/Dashboard/Admin/Users'
 import AdminAPI from 'pages/Dashboard/Admin/API'
@@ -31,29 +33,30 @@ import AdminNewArticle from 'pages/Dashboard/Admin/NewArticle'
 
 // Setup
 const client = new ApolloClient({
-    link: new HttpLink({ uri: graphCoolEndpoint }),
-    cache: new InMemoryCache(),
-  })
+  link: new HttpLink({ uri: graphCoolEndpoint }),
+  cache: new InMemoryCache(),
+})
 
 const App = () => (
-    <ThemeProvider theme={theme}>
-        <ApolloProvider client={client}>
-            <Switch>
-                <Route exact path="/" component={Retail} />
-                <Route exact path="/pro" component={Pro} />
-                <Route exact path="/dashboard" component={Portfolio} />
-                <Route exact path="/dashboard/suggestions" component={Suggestions} />
-                <Route exact path="/dashboard/portfolio" component={Portfolio} />
-                <Route exact path="/dashboard/trades/" component={Suggestions} />
-                {/* <Route exact path="/dashboard/articles/" component={Articles} /> */}
-                <Route exact path="/dashboard/admin" component={AdminPanel} />
-                <Route exact path="/dashboard/admin/panel" component={AdminPanel} />
-                <Route exact path="/dashboard/admin/users" component={AdminUsers} />
-                <Route exact path="/dashboard/admin/API" component={AdminAPI} />
-                <Route exact path="/dashboard/admin/newArticle" component={AdminNewArticle} />
-            </Switch>
-        </ApolloProvider>
-    </ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <ApolloProvider client={client}>
+      <Switch>
+        <Route exact path="/" component={Retail} />
+        <Route exact path="/pro" component={Pro} />
+        <Route exact path="/dashboard" component={Portfolio} />
+        <Route exact path="/dashboard/suggestions" component={Suggestions} />
+        <Route exact path="/dashboard/portfolio" component={Portfolio} />
+        <Route exact path="/dashboard/trades/" component={Suggestions} />
+        <Route exact path="/dashboard/articles/" component={Articles} />
+        <Route exact path="/dashboard/account/" component={MyAccount} />
+        <Route exact path="/dashboard/admin" component={AdminPanel} />
+        <Route exact path="/dashboard/admin/panel" component={AdminPanel} />
+        <Route exact path="/dashboard/admin/users" component={AdminUsers} />
+        <Route exact path="/dashboard/admin/API" component={AdminAPI} />
+        <Route exact path="/dashboard/admin/newArticle" component={AdminNewArticle} />
+      </Switch>
+    </ApolloProvider>
+  </ThemeProvider>
 )
 
 export default App
