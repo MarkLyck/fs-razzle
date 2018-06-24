@@ -8,52 +8,52 @@ import { dialogStyles } from '../styles'
 import CheckoutForm from './checkoutForm'
 
 class BillingInfo extends Component {
-    state = {
-        termsIsVisible: false,
+  state = {
+    termsIsVisible: false,
+  }
+
+  submitBillingInfo = () => {
+    // TODO add Form validation here...
+    const { name, cardNumber, expiryDate, cvc } = this.state
+    const billingDetails = {
+      name,
+      number: cardNumber,
+      expiryDate,
+      cvc,
     }
+    this.props.handleSignup(billingDetails)
+  }
 
-    submitBillingInfo = () => {
-        // TODO add Form validation here...
-        const { name, cardNumber, expiryDate, cvc } = this.state
-        const billingDetails = {
-            name,
-            number: cardNumber,
-            expiryDate,
-            cvc,
-        }
-        this.props.handleSignup(billingDetails)
-    }
+  toggleTerms = () => this.setState({ termsIsVisible: !this.state.termsIsVisible })
 
-    toggleTerms = () => this.setState({ termsIsVisible: !this.state.termsIsVisible })
+  renderTaxInfo = tax => (
+    <div>
+      <p>Tax</p>
+      <p>{tax}</p>
+    </div>
+  )
 
-    renderTaxInfo = tax => (
-        <div>
-            <p>Tax</p>
-            <p>{tax}</p>
-        </div>
+  render() {
+    const { tax, handleSignup, signupError } = this.props
+
+    return (
+      <ThemeProvider theme={theme}>
+        <DialogContent style={dialogStyles}>
+          <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
+            <Elements>
+              <CheckoutForm tax={tax} handleSignup={handleSignup} signupError={signupError} />
+            </Elements>
+          </StripeProvider>
+        </DialogContent>
+      </ThemeProvider>
     )
-
-    render() {
-        const { tax, handleSignup, signupError } = this.props
-
-        return (
-            <ThemeProvider theme={theme}>
-                <DialogContent style={dialogStyles}>
-                    <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
-                        <Elements>
-                            <CheckoutForm tax={tax} handleSignup={handleSignup} signupError={signupError} />
-                        </Elements>
-                    </StripeProvider>
-                </DialogContent>
-            </ThemeProvider>
-        )
-    }
+  }
 }
 
 BillingInfo.propTypes = {
-    handleSignup: PropTypes.func.isRequired,
-    signupError: PropTypes.string,
-    tax: PropTypes.number,
+  handleSignup: PropTypes.func.isRequired,
+  signupError: PropTypes.string,
+  tax: PropTypes.number,
 }
 
 export default BillingInfo

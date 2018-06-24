@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
+import LoadingError from 'components/Error/LoadingError'
+import GenericLoader from 'components/Loading/Generic'
 import { Query, Mutation } from 'react-apollo'
 import { ALL_PLANS, UPDATE_PLAN } from './queries'
 import { extractJSONFromFile, mutatePlanData } from './planMutation'
@@ -27,9 +29,9 @@ const acceptedFilenames = [
 
 class FileUploader extends Component {
   state = {
-    uploadingFiles: 0,
-    successfullUploads: 0,
-    errorUploading: false,
+    uploadingFiles: [],
+    successfullUploads: [],
+    errorUploading: [],
   }
   onDrop = (updatePlan, allPlans, files) => {
     const badFiles = files.filter(file => acceptedFilenames.indexOf(file.name) === -1)
@@ -37,16 +39,16 @@ class FileUploader extends Component {
     if (!badFiles.length) {
       files.forEach(file => {
         this.setState(state => ({
-          uploadingFiles: files.length,
-          successfullUploads: 0,
-          errorUploading: false,
+          uploadingFiles: files,
+          successfullUploads: [],
+          errorUploading: [],
         }))
         extractJSONFromFile(file)
           .then(json => mutatePlanData(json, updatePlan, allPlans))
           .then(data => {
             this.setState(state => ({
-              successfullUploads: state.successfullUploads + 1,
-              uploadingFiles: state.uploadingFiles - 1,
+              successfullUploads: state.successfullUploads.push(file),
+              uploadingFiles: state.uploadingFiles.filter(f => f.name !== file.name),
             }))
             console.log('mutated plan', data)
           })
@@ -60,8 +62,8 @@ class FileUploader extends Component {
     return (
       <Query query={ALL_PLANS}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading</p>
-          if (error || !data.allPlans) return <p>Failed fetching data, please try to refresh the page</p>
+          if (loading) return <GenericLoader />
+          if (error || !data.allPlans) return <LoadingError />
           return (
             <Mutation mutation={UPDATE_PLAN}>
               {updatePlan => (
@@ -71,9 +73,9 @@ class FileUploader extends Component {
                     <h3>Drag and drop JSON files here</h3>
                     <JSONIcon />
                   </FileDrop>
-                  <p>Uploading files: {uploadingFiles}</p>
-                  <p>successfullUploads: {successfullUploads}</p>
-                  <p>errorUploading: {errorUploading}</p>
+                  <p>Uploading files: {uploadingFiles.length}</p>
+                  <p>successfullUploads: {successfullUploads.length}</p>
+                  <p>errorUploading: {errorUploading.length}</p>
                 </Container>
               )}
             </Mutation>

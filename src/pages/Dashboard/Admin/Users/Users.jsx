@@ -3,13 +3,9 @@ import PropTypes from 'prop-types'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import withDashboard from 'components/withDashboard'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from 'components/Table'
+import { Table, TableBody, TableCell, TableHead, TableRow } from 'components/Table'
+import LoadingError from 'components/Error/LoadingError'
+import GenericLoader from 'components/Loading/Generic'
 import User from './User'
 import { UsersContainer } from './styles'
 
@@ -28,8 +24,8 @@ const USERS_QUERY = gql`
 const UserList = ({ allUsers }) => (
   <Query query={USERS_QUERY}>
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading</p>
-      if (error) return <p>Something went wrong, please try to refresh</p>
+      if (loading) return <GenericLoader />
+      if (error) return <LoadingError />
 
       return (
         <UsersContainer>
@@ -42,9 +38,7 @@ const UserList = ({ allUsers }) => (
                 <TableCell>Type</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
-              {data.allUsers.map(user => <User user={user} key={user.id} />)}
-            </TableBody>
+            <TableBody>{data.allUsers.map(user => <User user={user} key={user.id} />)}</TableBody>
           </Table>
         </UsersContainer>
       )

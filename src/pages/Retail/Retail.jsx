@@ -73,11 +73,7 @@ class Retail extends Component {
   amChartsThemeStatus = false
 
   areAllChartDependenciesLoaded = () => {
-    if (
-      this.state.amChartsCoreStatus &&
-      this.amChartsSerialStatus &&
-      this.amChartsThemeStatus
-    ) {
+    if (this.state.amChartsCoreStatus && this.amChartsSerialStatus && this.amChartsThemeStatus) {
       this.setState({ amChartsLoaded: true })
     }
   }
@@ -145,12 +141,7 @@ class Retail extends Component {
                 planName={planName}
                 amChartsLoaded={amChartsLoaded}
               />
-              <Statistics
-                winRatio={winRatio}
-                planName={planName}
-                avgGain={avgGain}
-                avgLoss={avgLoss}
-              />
+              <Statistics winRatio={winRatio} planName={planName} avgGain={avgGain} avgLoss={avgLoss} />
               <HowWeBeatTheMarket />
               <RiskManagement />
               <CorporateProfile />
@@ -158,20 +149,11 @@ class Retail extends Component {
               <ScrolledToBottom />
               <Footer />
 
-              <Script
-                url="https://www.amcharts.com/lib/3/amcharts.js"
-                onLoad={this.onLoadAmChartsCore}
-              />
+              <Script url="https://www.amcharts.com/lib/3/amcharts.js" onLoad={this.onLoadAmChartsCore} />
               {amChartsCoreStatus ? (
                 <React.Fragment>
-                  <Script
-                    url="https://www.amcharts.com/lib/3/serial.js"
-                    onLoad={this.onLoadAmChartsSerial}
-                  />
-                  <Script
-                    url="https://www.amcharts.com/lib/3/themes/light.js"
-                    onLoad={this.onLoadAmChartsTheme}
-                  />
+                  <Script url="https://www.amcharts.com/lib/3/serial.js" onLoad={this.onLoadAmChartsSerial} />
+                  <Script url="https://www.amcharts.com/lib/3/themes/light.js" onLoad={this.onLoadAmChartsTheme} />
                 </React.Fragment>
               ) : null}
             </div>

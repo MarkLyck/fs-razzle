@@ -3,10 +3,10 @@ import styled from 'react-emotion'
 import Icon from '@fortawesome/react-fontawesome'
 
 export const Table = styled.table`
-    width: 100%;
-    margin-top: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.16);
-    background: #fcfcfc;
+  width: 100%;
+  margin-top: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  background: #fcfcfc;
 `
 
 export const TableHead = styled.thead``
@@ -14,24 +14,26 @@ export const TableHead = styled.thead``
 export const TableBody = styled.tbody``
 
 export const TableRow = styled.tr`
-    width: 100%;
-    border-bottom: 1px solid ${props => props.theme.colors.lightGray};
+  width: 100%;
+  border-bottom: 1px solid ${props => props.theme.colors.lightGray};
 `
 
 const THCell = styled.th`
-    padding: 16px;
-    white-space: nowrap;
+  padding: 16px;
+  white-space: nowrap;
+  position: relative;
+
+  .tooltip {
     position: relative;
+  }
 
-    .tooltip {
-        position: relative;
-    }
+  .tooltip-icon {
+    margin-left: 8px;
+  }
 
-    .tooltip-icon {
-        margin-left: 8px;
-    }
-
-    ${props => props.tooltip ? (`
+  ${props =>
+    props.tooltip
+      ? `
     .tooltip:hover {
         color: ${props.theme.colors.primary};
         &::before {
@@ -58,20 +60,21 @@ const THCell = styled.th`
             transform: rotate(45deg);
         }
     }
-    `) : ''}
+    `
+      : ''};
 `
 
 export const TableHeadCell = ({ className, tooltip, children }) => (
-    <THCell className={className} tooltip={tooltip}>
-        <p className="tooltip">
-            {children}
-            {tooltip ? <Icon className="tooltip-icon" icon="question-circle" /> : ''}
-        </p>
-    </THCell>
+  <THCell className={className} tooltip={tooltip}>
+    <p className="tooltip">
+      {children}
+      {tooltip ? <Icon className="tooltip-icon" icon="question-circle" /> : ''}
+    </p>
+  </THCell>
 )
 
 export const TableCell = styled.td`
-    padding: 12px 16px;
-    font-weight: 400;
-    color: ${props => props.theme.colors.black};
+  padding: 12px 16px;
+  font-weight: 400;
+  color: ${props => props.theme.colors.black};
 `

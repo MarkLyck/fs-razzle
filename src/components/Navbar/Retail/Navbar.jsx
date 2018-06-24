@@ -44,13 +44,7 @@ class Navbar extends Component {
       <Button variant="raised" onClick={() => {}}>
         <FontAwesomeIcon icon="chart-line" />Dashboard
       </Button>
-      <Button
-        variant="raised"
-        type="light"
-        color="black"
-        hoverColor="error"
-        onClick={() => this.logout()}
-      >
+      <Button variant="raised" type="light" color="black" hoverColor="error" onClick={() => this.logout()}>
         <FontAwesomeIcon icon="sign-out-alt" />Log out
       </Button>
     </NavLinks>
@@ -64,9 +58,7 @@ class Navbar extends Component {
         {({ loading, error, data }) => (
           <NavBar position="fixed" color="default">
             <Logo />
-            {loggedIn
-              ? this.renderLoggedInLinks()
-              : this.renderLoggedOutLinks()}
+            {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
           </NavBar>
         )}
       </Query>
