@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
+import GenericLoader from 'components/Loading/Generic'
+import LoadingError from 'components/Error/LoadingError'
 import withDashboard from 'components/withDashboard'
 import ArticleCard from './ArticleCard'
 import { ArticlesList } from './styles'
@@ -19,8 +21,8 @@ const ARTICLES_QUERY = gql`
 const Articles = ({ allArticles }) => (
   <Query query={ARTICLES_QUERY}>
     {({ loading, error, data }) => {
-      if (loading) return <div>loading</div>
-      if (error) return <div>Error</div>
+      if (loading) return <GenericLoader />
+      if (error) return <LoadingError />
 
       return (
         <ArticlesList>
