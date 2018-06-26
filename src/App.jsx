@@ -22,10 +22,12 @@ import 'common/utils/fontAwesomeLibrary'
 // Pages
 import Retail from 'pages/Retail'
 import Pro from 'pages/Pro'
+import Articles from 'pages/Articles'
+import Article from 'pages/Articles/Article'
 import Suggestions from 'pages/Dashboard/Suggestions'
 import Portfolio from 'pages/Dashboard/Portfolio'
-import Articles from 'pages/Dashboard/Articles'
-import Article from 'pages/Dashboard/Articles/Article'
+import DashboardArticles from 'pages/Dashboard/Articles'
+import DashboardArticle from 'pages/Dashboard/Articles/Article'
 import MyAccount from 'pages/Dashboard/MyAccount'
 import AdminPanel from 'pages/Dashboard/Admin/Panel'
 import AdminUsers from 'pages/Dashboard/Admin/Users'
@@ -44,12 +46,14 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Retail} />
         <Route exact path="/pro" component={Pro} />
+        <Route exact path="/articles" component={Articles} />
+        <Route exact path="/articles/:article" component={Article} />
         <Route exact path="/dashboard" component={Portfolio} />
         <Route exact path="/dashboard/suggestions" component={Suggestions} />
         <Route exact path="/dashboard/portfolio" component={Portfolio} />
         <Route exact path="/dashboard/trades/" component={Suggestions} />
-        <Route exact path="/dashboard/articles" component={Articles} />
-        <Route exact path="/dashboard/articles/:article" component={Article} />
+        <Route exact path="/dashboard/articles" component={DashboardArticles} />
+        <Route exact path="/dashboard/articles/:article" component={DashboardArticle} />
         <Route exact path="/dashboard/account/" component={MyAccount} />
         <Route exact path="/dashboard/admin" component={AdminPanel} />
         <Route exact path="/dashboard/admin/panel" component={AdminPanel} />
