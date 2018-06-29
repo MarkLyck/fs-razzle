@@ -40,7 +40,7 @@ const Background = styled.div`
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 `
 
-const Icon = styled(Flask)`
+const Icon = styled.span`
   height: 80px;
   position: absolute;
   top: 50%;
@@ -75,7 +75,11 @@ const LoadingSpinner = ({ variant }) => {
     <Container>
       <Background />
       <Spinner />
-      <Icon />
+      <Icon
+        dangerouslySetInnerHTML={{
+          __html: Flask,
+        }}
+      />
       <LoadingText>Loading...</LoadingText>
     </Container>
   )

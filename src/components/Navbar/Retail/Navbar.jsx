@@ -57,7 +57,11 @@ class Navbar extends Component {
       <Query query={LOGGED_IN_USER_QUERY}>
         {({ loading, error, data }) => (
           <NavBar position="fixed" color="default">
-            <Logo />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: Logo,
+              }}
+            />
             {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
           </NavBar>
         )}

@@ -71,7 +71,11 @@ class FileUploader extends Component {
                   <h2>Update API</h2>
                   <FileDrop onDrop={this.onDrop.bind(null, updatePlan, data.allPlans)} accept="application/json">
                     <h3>Drag and drop JSON files here</h3>
-                    <JSONIcon />
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: JSONIcon,
+                      }}
+                    />
                   </FileDrop>
                   <p>Uploading files: {uploadingFiles.length}</p>
                   <p>successfullUploads: {successfullUploads.length}</p>

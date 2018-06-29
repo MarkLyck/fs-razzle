@@ -5,7 +5,7 @@
     "plugins": [
         "transform-export-extensions",
         "babel-plugin-emotion",
-        "inline-react-svg",
+        "inline-svg",
         "polished",
         "lodash",
         [
