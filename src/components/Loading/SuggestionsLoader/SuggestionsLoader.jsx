@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import StatisticsLoader from '../StatisticsLoader'
 
 const Icon = styled(FontAwesomeIcon)`

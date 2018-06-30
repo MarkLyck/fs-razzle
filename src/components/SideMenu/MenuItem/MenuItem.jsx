@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Icon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { hasStorage } from 'common/utils/featureTests'
 import { Button } from './styles'
 
@@ -21,7 +21,7 @@ class MenuItem extends Component {
 
     return (
       <Button onClick={this.clickHandler} isActive={isActive}>
-        <Icon icon={icon} />
+        <FontAwesomeIcon icon={icon} />
         <h4>{route}</h4>
       </Button>
     )

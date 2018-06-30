@@ -1,5 +1,5 @@
 import React from 'react'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import theme from 'common/utils/theme'
 import Dialog from 'material-ui/Dialog'

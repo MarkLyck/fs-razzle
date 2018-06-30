@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { withTheme } from 'emotion-theming'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
@@ -57,7 +57,11 @@ class Navbar extends Component {
       <Query query={LOGGED_IN_USER_QUERY}>
         {({ loading, error, data }) => (
           <NavBar position="fixed" color="default">
-            <Logo />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: Logo,
+              }}
+            />
             {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
           </NavBar>
         )}

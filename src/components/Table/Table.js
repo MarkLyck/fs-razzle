@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
-import Icon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const Table = styled.table`
   width: 100%;
@@ -68,7 +68,7 @@ export const TableHeadCell = ({ className, tooltip, children }) => (
   <THCell className={className} tooltip={tooltip}>
     <p className="tooltip">
       {children}
-      {tooltip ? <Icon className="tooltip-icon" icon="question-circle" /> : ''}
+      {tooltip ? <FontAwesomeIcon className="tooltip-icon" icon="question-circle" /> : ''}
     </p>
   </THCell>
 )

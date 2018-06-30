@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Icon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LineGraph from 'components/Charts/LineGraph'
 import theme from 'common/utils/theme'
 import { GraphContainer, LoadingContainer, FailedContainer } from './styles'
@@ -15,14 +15,14 @@ const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action, serialCha
   if (!serialChartsReady || loading) {
     return (
       <LoadingContainer>
-        <Icon icon="spinner-third" spin />
+        <FontAwesomeIcon icon="spinner-third" spin />
         <h4>Loading</h4>
       </LoadingContainer>
     )
   } else if (!loading && !sixMonthsPrices.length) {
     return (
       <FailedContainer>
-        <Icon icon="chart-line" />
+        <FontAwesomeIcon icon="chart-line" />
         <h4>No graph data available</h4>
       </FailedContainer>
     )

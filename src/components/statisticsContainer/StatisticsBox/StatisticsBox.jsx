@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Icon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Box, Symbol, Content } from './styles'
 
 const StatisticsBox = ({ title, value, icon }) => (
   <Box>
     <Symbol>
-      <Icon icon={icon} />
+      <FontAwesomeIcon icon={icon} />
     </Symbol>
     <Content>
       <h4>{value}</h4>

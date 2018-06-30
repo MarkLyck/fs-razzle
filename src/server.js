@@ -59,9 +59,3 @@ server
   })
 
 export default server
-
-
-                // <script src="https://www.amcharts.com/lib/3/amcharts.js" defer></script>
-                // <script src="https://www.amcharts.com/lib/3/serial.js" defer></script>
-                // <script src="https://www.amcharts.com/lib/3/pie.js" defer></script>
-                // <script src="https://www.amcharts.com/lib/3/themes/light.js" defer></script>
