@@ -17,6 +17,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
     "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-svg-core": "^1.2.0",
     "@fortawesome/react-fontawesome": "^0.1.0",
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
