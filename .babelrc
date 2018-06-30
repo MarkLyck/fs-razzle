@@ -36,6 +36,7 @@
                     "@fortawesome/fontawesome-pro-solid/faTachometer": "./src/media/faIcons/faTachometer",
                     "@fortawesome/fontawesome-pro-solid/faTasks": "./src/media/faIcons/faTasks",
                     "@fortawesome/fontawesome-pro-solid/faUser": "./src/media/faIcons/faUser",
+                    "@fortawesome/fontawesome-pro-solid/faUsers": "./src/media/faIcons/faUsers",
                     "@fortawesome/fontawesome-pro-solid/faHourglassEnd": "./src/media/faIcons/faHourglassEnd",
                     "@fortawesome/fontawesome-pro-solid/faHourglassHalf": "./src/media/faIcons/faHourglassHalf",
                     "@fortawesome/fontawesome-pro-regular/faTimes": "./src/media/faIcons/faTimes"

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Icon = styled(FontAwesomeIcon)`
   color: ${props => props.theme.colors.primary};

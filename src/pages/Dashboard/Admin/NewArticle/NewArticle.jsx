@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Icon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
@@ -76,7 +76,7 @@ class NewArticle extends Component {
             <EditorContainer>
               <FileDrop onDrop={this.onDrop} data-headerimageurl={headerImageUrl}>
                 <h3>Drag and drop Header image here</h3>
-                <Icon icon="image" />
+                <FontAwesomeIcon icon="image" />
               </FileDrop>
               <input className="title" ref={titleInput => (this._titleInput = titleInput)} placeholder="Title" />
               <MegadraftEditor editorState={editorState} onChange={this.onChange} />

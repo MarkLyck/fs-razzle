@@ -1,5 +1,5 @@
 import React from 'react'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Section from 'components/Section'
 import SectionTitle from 'components/Section/SectionTitle'
 import Subtitle from 'components/Section/Subtitle'

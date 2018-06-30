@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Icon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PlanContext from 'common/Contexts/PlanContext'
 import Button from 'components/Button'
 import Menu, { MenuItem } from 'material-ui/Menu'
@@ -35,7 +35,7 @@ class PlanButtons extends Component {
               onClick={this.handleClick}
             >
               <SelectedPlanName>{planName ? planName.toLowerCase() : ''}</SelectedPlanName>
-              <Icon icon="angle-down" style={{ marginRight: 0 }} />
+              <FontAwesomeIcon icon="angle-down" style={{ marginRight: 0 }} />
             </Button>
             <Menu id="plan-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
               <MenuItem onClick={() => this.setPlan(setPlan, 'ENTRY')}>Entry</MenuItem>

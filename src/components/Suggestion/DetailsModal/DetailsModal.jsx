@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Icon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import List from 'components/List'
 import Button from 'components/Button'
 import { Modal, ListContainer, ListItem, ItemValue } from './styles'
@@ -27,7 +27,7 @@ const DetailsModal = ({ suggestion, onRequestClose, isOpen }) => (
       </List>
     </ListContainer>
     <Button variant="raised" type="light" color="black" hoverColor="error" onClick={onRequestClose}>
-      <Icon icon={['far', 'times']} />Close
+      <FontAwesomeIcon icon={['far', 'times']} />Close
     </Button>
   </Modal>
 )
