@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { HeaderImage } from './styles'
+import { Card, Title, HeaderImage } from './styles'
 
 const ArticleCard = ({ article, location }) => {
   const articleURLName = article.title.split(' ').join('-')
@@ -11,8 +11,10 @@ const ArticleCard = ({ article, location }) => {
 
   return (
     <Link to={articleLink}>
-      <HeaderImage data-headerimageurl={article.headerImageUrl} />
-      <h4>{article.title}</h4>
+      <Card>
+        <HeaderImage data-headerimageurl={article.headerImageUrl} />
+        <Title>{article.title}</Title>
+      </Card>
     </Link>
   )
 }

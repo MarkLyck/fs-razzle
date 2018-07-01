@@ -34,3 +34,12 @@ export const HeaderImage = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
 `
+
+export const Card = styled.div`
+  background: white;
+`
+
+export const Title = styled.h4`
+  margin: 0;
+  padding: 16px;
+`
