@@ -4,9 +4,9 @@ import MenuItem from './MenuItem'
 import { MenuList } from './styles'
 
 const routes = [
-  { name: 'suggestions', icon: 'flask' },
+  { name: 'trades', icon: 'flask' },
   { name: 'portfolio', icon: 'chart-line' },
-  { name: 'trades', icon: 'tasks' },
+  { name: 'suggestions', icon: 'tasks' },
   { name: 'articles', icon: 'newspaper' },
   { name: 'admin', icon: 'tachometer' },
   { name: 'account', icon: 'user' },

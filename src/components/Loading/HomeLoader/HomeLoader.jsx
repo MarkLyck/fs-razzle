@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
 import { withTheme } from 'emotion-theming'
-import Spinner from '../HomeSpinner'
+import GenericLoader from '../Generic'
 
 const NavSkeleton = styled.div`
   position: fixed;
@@ -60,7 +60,7 @@ const HomeLoader = () => (
   <Container>
     <NavSkeleton />
     <HeroSkeleton>
-      <Spinner />
+      <GenericLoader />
     </HeroSkeleton>
     <TitleBlock>Invest Intelligently</TitleBlock>
     <DividerSkeleton />
