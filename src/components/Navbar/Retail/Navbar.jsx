@@ -55,16 +55,22 @@ class Navbar extends Component {
 
     return (
       <Query query={LOGGED_IN_USER_QUERY}>
-        {({ loading, error, data }) => (
-          <NavBar position="fixed" color="default">
-            <span
-              dangerouslySetInnerHTML={{
-                __html: Logo,
-              }}
-            />
-            {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
-          </NavBar>
-        )}
+        {({ loading, error, data }) => {
+          console.log('loading', loading)
+          console.log('error', error)
+          console.log('data', data)
+
+          return (
+            <NavBar position="fixed" color="default">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: Logo,
+                }}
+              />
+              {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
+            </NavBar>
+          )
+        }}
       </Query>
     )
   }
