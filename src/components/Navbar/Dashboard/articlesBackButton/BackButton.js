@@ -1,9 +1,10 @@
 import React from 'react'
-import Button from 'material-ui/Button'
+import Button from 'components/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const BackButton = ({ history }) => (
-  <Button color="primary" onClick={() => history.push('/dashboard/articles')}>
-    <i className="fa fa-angle-left fa-2x" style={{ marginRight: '8px' }} />Articles
+  <Button color="primary" variant="raised" type="light" onClick={() => history.push('/dashboard/articles')}>
+    <FontAwesomeIcon icon="angle-left" style={{ marginRight: '8px' }} />Articles
   </Button>
 )
 
