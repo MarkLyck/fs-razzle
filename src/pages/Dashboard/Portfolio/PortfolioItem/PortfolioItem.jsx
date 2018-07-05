@@ -4,7 +4,9 @@ import { ItemRow } from './styles'
 
 const numberToFirstDecimal = number => {
   if (number >= 0.01) return number.toFixed(2)
-  const decimals = String(number).split('.')[1]
+  const decimals = String(number)
+    .split('.')[1]
+    .split('')
   const lastIndexWith0 = decimals.reduce((digit, acc, index) => {
     if (digit === '0') return index
     return acc
