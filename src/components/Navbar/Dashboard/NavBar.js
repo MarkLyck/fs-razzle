@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import Logo from 'media/icons/logo_horizontal.svg'
 
 import { hasStorage } from 'common/utils/featureTests'
 import PlanMenu from './planMenu'

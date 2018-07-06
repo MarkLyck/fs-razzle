@@ -19,7 +19,6 @@ export const Card = styled.div`
 
 export const SuggHeader = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 0 8px 4px;

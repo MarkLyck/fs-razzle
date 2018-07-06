@@ -10,10 +10,19 @@ import { GraphContainer } from './styles'
 const createChartData = (portfolioYields, marketPrices) => {
   const startValue = portfolioYields[0].balance
   const marketStartValue = Number(marketPrices[0].price) || 0
+  let lastMarketBalance = 0
 
   return portfolioYields.map((point, i) => {
     const balance = (((portfolioYields[i].balance - startValue) / startValue) * 100).toFixed(2)
-    const marketBalance = (((Number(marketPrices[i].price) - marketStartValue) / marketStartValue) * 100).toFixed(2)
+    let marketBalance
+
+    // if portfolioYields has more items than marketPrices, use lastSaved marketBalance.
+    if (marketPrices[i]) {
+      marketBalance = (((Number(marketPrices[i].price) - marketStartValue) / marketStartValue) * 100).toFixed(2)
+      lastMarketBalance = marketBalance
+    } else {
+      marketBalance = lastMarketBalance
+    }
 
     const month = Number(point.date.month) > 9 ? point.date.month : `0${point.date.month}`
 

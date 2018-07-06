@@ -114,6 +114,7 @@ class Suggestions extends Component {
                             error={error}
                             key={sugg.ticker}
                             serialChartsReady={serialChartsReady}
+                            suggestionsType={suggestionsType}
                           />
                         ))
                       }}

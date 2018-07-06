@@ -13,10 +13,12 @@ class Suggestion extends Component {
   toggleDetails = () => this.setState({ detailsIsVisible: !this.state.detailsIsVisible })
 
   render() {
-    const { suggestion, stock, serialChartsReady, loading, error } = this.props
+    const { suggestion, stock, serialChartsReady, suggestionsType, loading, error } = this.props
     const { detailsIsVisible } = this.state
 
-    const suggestedPriceText = suggestion.action === 'BUY' ? 'Buy at' : 'Sell at'
+    const suggestedPriceName = suggestionsType === 'Trades' ? 'Bought at' : 'Buy below'
+    // when it's a suggestion and says "Buy below" add 1 cent.
+    const suggestedPrice = suggestion.suggested_price.toFixed(2) + (suggestionsType === 'Trades' ? 0 : 0.01)
     const allocationText = suggestion.percentage_weight ? 'Cash allocation' : 'Portfolio allocation'
     const allocation = suggestion.percentage_weight ? suggestion.percentage_weight : suggestion.portfolio_weight
 
@@ -25,14 +27,14 @@ class Suggestion extends Component {
     return (
       <SuggContainer>
         <SuggHeader>
-          <h3 className="suggestion-name">{suggestion.name}</h3>
           <h3 className={`${suggestion.action}-action action`}>{suggestion.action}</h3>
+          <h3 className="suggestion-name">{suggestion.name}</h3>
         </SuggHeader>
         <Card>
           <ContentContainer type={suggestion.action}>
             <StockInfoList>
               <ListItem name="Ticker" value={suggestion.ticker} />
-              <ListItem name={suggestedPriceText} value={`$${suggestion.suggested_price.toFixed(2)}`} />
+              {suggestion.action === 'BUY' && <ListItem name={suggestedPriceName} value={`$${suggestedPrice}`} />}
               <ListItem name="Last price" value={`$${latestPrice}`} />
               {suggestion.action === 'BUY' && <ListItem name={allocationText} value={`${allocation.toFixed(2)}%`} />}
               {suggestion.action === 'SELL' && (
