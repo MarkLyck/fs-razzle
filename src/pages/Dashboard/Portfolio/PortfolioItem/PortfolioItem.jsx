@@ -7,11 +7,19 @@ const numberToFirstDecimal = number => {
   const decimals = String(number)
     .split('.')[1]
     .split('')
-  const lastIndexWith0 = decimals.reduce((digit, acc, index) => {
-    if (digit === '0') return index
-    return acc
-  }, 0)
-  return number.toFixed(lastIndexWith0 + 1)
+    .map(num => Number(num))
+  let foundFistNon0 = false
+  let firstNon0Index = 2
+  let lastDigit = 0
+  decimals.forEach((digit, index) => {
+    if (!foundFistNon0 && lastDigit === 0 && digit !== 0) {
+      foundFistNon0 = true
+      firstNon0Index = index
+    }
+    lastDigit = digit
+  })
+
+  return number.toFixed(firstNon0Index + 1)
 }
 
 class PortfolioItem extends Component {
