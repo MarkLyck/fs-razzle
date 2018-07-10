@@ -45,7 +45,7 @@ class Suggestion extends Component {
                   Details
                 </Button>
               ) : (
-                <Placeholder />
+                [<Placeholder />, <Placeholder />]
               )}
             </StockInfoList>
             <StockChart

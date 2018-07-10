@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { withTheme } from 'emotion-theming'
-import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import gql from 'graphql-tag'
 import { hasStorage } from 'common/utils/featureTests'
 
 // UI
 import Button from 'components/Button'
+import Signup from 'components/Dialogs/Signup'
 import Logo from './logo_horizontal.svg'
 
 import { NavLinks, NavBar } from './styles'
@@ -21,19 +21,26 @@ const LOGGED_IN_USER_QUERY = gql`
 `
 
 class Navbar extends Component {
-  state = { loggedIn: hasStorage && localStorage.getItem('graphcoolToken') }
+  state = {
+    loggedIn: hasStorage && localStorage.getItem('graphcoolToken'),
+    showSignUpModal: false,
+    showLoginModal: false,
+  }
 
   logout = () => {
     if (hasStorage) localStorage.removeItem('graphcoolToken')
     this.setState({ loggedIn: false })
   }
 
+  showSignup = () => this.setState({ showSignUpModal: true })
+  showLogin = () => this.setState({ showLoginModal: true })
+
   renderLoggedOutLinks = () => (
     <NavLinks>
-      <Button variant="raised" type="light" onClick={() => {}}>
+      <Button variant="raised" type="light" onClick={this.showLogin}>
         <FontAwesomeIcon icon="sign-in-alt" />Login
       </Button>
-      <Button variant="raised" background="primary" onClick={() => {}}>
+      <Button variant="raised" background="primary" onClick={this.showSignup}>
         Sign up
       </Button>
     </NavLinks>
@@ -51,14 +58,15 @@ class Navbar extends Component {
   )
 
   render() {
-    const { loggedIn } = this.state
+    const { history } = this.props
+    const { loggedIn, showSignUpModal, showLoginModal } = this.state
 
     return (
       <Query query={LOGGED_IN_USER_QUERY}>
         {({ loading, error, data }) => {
-          console.log('loading', loading)
+          /* console.log('loading', loading)
           console.log('error', error)
-          console.log('data', data)
+          console.log('data', data) */
 
           return (
             <NavBar position="fixed" color="default">
@@ -68,6 +76,8 @@ class Navbar extends Component {
                 }}
               />
               {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
+              {showSignUpModal && <Signup history={history} />}
+              {showLoginModal && <div />}
             </NavBar>
           )
         }}
@@ -80,4 +90,4 @@ Navbar.propTypes = {
   actions: PropTypes.object,
 }
 
-export default withTheme(Navbar)
+export default Navbar

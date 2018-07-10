@@ -22,6 +22,7 @@
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
     "apollo-link-http": "^1.5.4",
+    "autosuggest-highlight": "^3.1.1",
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.4",
     "emotion": "^9.2.4",

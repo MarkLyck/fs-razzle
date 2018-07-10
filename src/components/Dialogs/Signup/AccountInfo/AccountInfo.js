@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { ThemeProvider } from 'emotion/react/theming'
 import { DialogContent } from 'material-ui/Dialog'
-import Button from 'material-ui/Button'
+import Button from 'components/Button'
 import countries from 'common/data/countries'
-import theme from 'common/theme'
-import Form, { Row, Field, ErrorMessage } from 'components/Form'
 import { dialogStyles, nextBtnStyles } from '../styles'
 import CountrySelect from './CountrySelect'
 
@@ -114,8 +111,8 @@ class AccountInfo extends Component {
     if (country && country.taxPercent) {
       return (
         <div>
-          <Row>
-            <Field
+          <div>
+            <input
               label="Street address"
               type="text"
               className={`${streetClass} ${addressError ? 'input-error' : ''}`}
@@ -125,9 +122,9 @@ class AccountInfo extends Component {
               onFocus={() => this.handleFocus('streetClass')}
               placeholder="Elm Street 123"
             />
-          </Row>
-          <Row>
-            <Field
+          </div>
+          <div>
+            <input
               label="City"
               type="text"
               className={`${cityClass} ${cityError ? 'input-error' : ''}`}
@@ -137,7 +134,7 @@ class AccountInfo extends Component {
               onFocus={() => this.handleFocus('cityClass')}
               placeholder="New York"
             />
-            <Field
+            <input
               label="Postal code"
               type="text"
               className={`${postalClass} ${postalError ? 'input-error' : ''}`}
@@ -147,7 +144,7 @@ class AccountInfo extends Component {
               onFocus={() => this.handleFocus('postalClass')}
               placeholder="10075"
             />
-          </Row>
+          </div>
         </div>
       )
     }
@@ -160,51 +157,49 @@ class AccountInfo extends Component {
     const passwodError = passwordClass !== 'focused' && error.message && error.message.indexOf('password') > -1
 
     return (
-      <ThemeProvider theme={theme}>
-        <DialogContent style={dialogStyles}>
-          <Form>
-            {error.message && <ErrorMessage message={error.message} />}
-            <Row className={error.message ? 'form-error' : ''}>
-              <Field
-                label="Email"
-                type="email"
-                autoFocus
-                className={`${emailClass} ${emailError ? 'input-error' : ''}`}
-                inputState={emailClass}
-                onChange={event => this.handleChange('email', event.target.value)}
-                onBlur={() => this.handleBlur('emailClass')}
-                onFocus={() => this.handleFocus('emailClass')}
-                placeholder="example@domain.com"
-              />
-            </Row>
-            <Row>
-              <Field
-                label="Password"
-                type="password"
-                className={`${passwordClass} ${passwodError ? 'input-error' : ''}`}
-                inputState={passwordClass}
-                onChange={event => this.handleChange('password', event.target.value)}
-                onBlur={() => this.handleBlur('passwordClass')}
-                onFocus={() => this.handleFocus('passwordClass')}
-                autoComplete="current-password"
-                placeholder="••••••••"
-              />
-            </Row>
-            <Row>
-              <CountrySelect
-                inputState={this.state.countryClass}
-                handleCountrySelect={this.handleCountrySelect}
-                onBlur={() => this.handleBlur('countryClass')}
-                onFocus={() => this.handleFocus('countryClass')}
-              />
-            </Row>
-            {this.renderFullAddress()}
-            <Button color="primary" style={nextBtnStyles} onClick={this.submitAccountInfo}>
-              Next
-            </Button>
-          </Form>
-        </DialogContent>
-      </ThemeProvider>
+      <DialogContent style={dialogStyles}>
+        <form>
+          {error.message && <p message={error.message} />}
+          <div className={error.message ? 'form-error' : ''}>
+            <input
+              label="Email"
+              type="email"
+              autoFocus
+              className={`${emailClass} ${emailError ? 'input-error' : ''}`}
+              inputState={emailClass}
+              onChange={event => this.handleChange('email', event.target.value)}
+              onBlur={() => this.handleBlur('emailClass')}
+              onFocus={() => this.handleFocus('emailClass')}
+              placeholder="example@domain.com"
+            />
+          </div>
+          <div>
+            <input
+              label="Password"
+              type="password"
+              className={`${passwordClass} ${passwodError ? 'input-error' : ''}`}
+              inputState={passwordClass}
+              onChange={event => this.handleChange('password', event.target.value)}
+              onBlur={() => this.handleBlur('passwordClass')}
+              onFocus={() => this.handleFocus('passwordClass')}
+              autoComplete="current-password"
+              placeholder="••••••••"
+            />
+          </div>
+          <div>
+            <CountrySelect
+              inputState={this.state.countryClass}
+              handleCountrySelect={this.handleCountrySelect}
+              onBlur={() => this.handleBlur('countryClass')}
+              onFocus={() => this.handleFocus('countryClass')}
+            />
+          </div>
+          {this.renderFullAddress()}
+          <Button color="primary" style={nextBtnStyles} onClick={this.submitAccountInfo}>
+            Next
+          </Button>
+        </form>
+      </DialogContent>
     )
   }
 }

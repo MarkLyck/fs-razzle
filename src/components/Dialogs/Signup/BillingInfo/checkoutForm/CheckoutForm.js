@@ -1,12 +1,12 @@
 // CardSection.js
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
+import Button from 'components/Button'
 import { injectStripe, CardNumberElement, CardExpiryElement, CardCVCElement } from 'react-stripe-elements'
-import theme from 'common/theme'
-import Disclaimer from 'components/Disclaimer'
+import theme from 'common/utils/theme'
+import Disclaimer from 'components/Legal/Disclaimer'
 import TermsOfService from 'components/Dialogs/TermsOfService'
-import Form, { Row, Field, ErrorMessage } from 'components/Form'
+// import Form, { Row, Field, ErrorMessage } from 'components/Form'
 import { nextBtnStyles } from '../../styles'
 import { FieldContainer } from './styles'
 
@@ -48,7 +48,7 @@ class CheckoutForm extends Component {
     showTerms: false,
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (newProps.signupError) {
       this.setState({ error: { message: newProps.signupError } })
     }
@@ -101,10 +101,10 @@ class CheckoutForm extends Component {
     const cardNumberError = error.message && error.message.indexOf('number') > -1
 
     return (
-      <Form onSubmit={this.handleSubmit} theme={theme}>
-        {error.message && <ErrorMessage message={error.message} />}
-        <Row className={error.message ? 'form-error' : ''}>
-          <Field
+      <form onSubmit={this.handleSubmit}>
+        {error.message && <p message={error.message} />}
+        <div className={error.message ? 'form-error' : ''}>
+          <input
             id="name"
             autoFocus
             className={this.state.nameClass}
@@ -117,10 +117,10 @@ class CheckoutForm extends Component {
             required=""
             label="Name"
           />
-        </Row>
+        </div>
 
-        <Row>
-          <FieldContainer>
+        <div>
+          <div>
             <CardNumberElement
               className={`input
                                 ${this.state.cardNumber}
@@ -133,11 +133,11 @@ class CheckoutForm extends Component {
               Card number
             </label>
             <div className={`baseline baseline-${this.state.cardNumber}`} />
-          </FieldContainer>
-        </Row>
+          </div>
+        </div>
 
-        <Row>
-          <FieldContainer className="FieldContainer half-width">
+        <div>
+          <div className="FieldContainer half-width">
             <CardExpiryElement
               className={`input ${this.state.cardExpiry}`}
               onBlur={() => this.handleBlur('cardExpiry')}
@@ -146,8 +146,8 @@ class CheckoutForm extends Component {
             />
             <label htmlFor="card-expiry">Expiration</label>
             <div className={`baseline baseline-${this.state.cardExpiry}`} />
-          </FieldContainer>
-          <FieldContainer className="FieldContainer half-width">
+          </div>
+          <div className="FieldContainer half-width">
             <CardCVCElement
               className={`input ${this.state.cardCVC}`}
               onBlur={() => this.handleBlur('cardCVC')}
@@ -156,8 +156,8 @@ class CheckoutForm extends Component {
             />
             <label htmlFor="card-cvc">CVC</label>
             <div className={`baseline baseline-${this.state.cardCVC}`} />
-          </FieldContainer>
-        </Row>
+          </div>
+        </div>
 
         <div className="beside">
           <p className="description">Price:</p>
@@ -191,7 +191,7 @@ class CheckoutForm extends Component {
           </a>
         </Disclaimer>
         <TermsOfService open={showTerms} hideTerms={this.toggleTerms} />
-      </Form>
+      </form>
     )
   }
 }

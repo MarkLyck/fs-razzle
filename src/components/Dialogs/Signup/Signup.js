@@ -1,14 +1,47 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import platform from 'platform'
-import Router from 'next/router'
-import { gql, graphql, compose } from 'react-apollo'
+import gql from 'graphql-tag'
+import { graphql, compose } from 'react-apollo'
 import Dialog, { DialogTitle } from 'material-ui/Dialog'
 import Slide from 'material-ui/transitions/Slide'
-import { hasStorage } from 'common/featureTests'
-import { getDeviceType } from 'common/helpers'
+import { hasStorage } from 'common/utils/featureTests'
+import { getDeviceType } from 'common/utils/helpers'
 import AccountInfo from './AccountInfo'
 import BillingInfo from './BillingInfo'
+
+const createUser = gql`
+  mutation(
+    $email: String!
+    $password: String!
+    $name: String!
+    $type: String!
+    $cardToken: String!
+    $address: Json!
+    $location: Json!
+    $device: Json!
+  ) {
+    createUser(
+      authProvider: { email: { email: $email, password: $password } }
+      name: $name
+      type: $type
+      cardToken: $cardToken
+      address: $address
+      location: $location
+      device: $device
+    ) {
+      id
+    }
+  }
+`
+
+const SIGNIN_USER_MUTATION = gql`
+  mutation SigninUserMutation($email: String!, $password: String!) {
+    signinUser(email: { email: $email, password: $password }) {
+      token
+    }
+  }
+`
 
 class SignUp extends Component {
   state = {
@@ -22,7 +55,7 @@ class SignUp extends Component {
   nextPage = accountInfo => this.setState({ page: this.state.page + 1, accountInfo })
 
   handleSignup = (name, { token }) => {
-    const { createUser, signinUser } = this.props
+    const { history, createUser, signinUser } = this.props
     const { accountInfo } = this.state
 
     const type = 'trial'
@@ -64,16 +97,14 @@ class SignUp extends Component {
           if (hasStorage) {
             localStorage.setItem('graphcoolToken', response.data.signinUser.token)
           }
-          Router.push('/dashboard/portfolio')
+          history.push('/dashboard/portfolio')
         })
       })
       .catch(e => this.setState({ signupError: String(e) }))
   }
 
   render() {
-    if (typeof window === 'undefined') {
-      return null
-    }
+    if (typeof window === 'undefined') return null
     const { page, accountInfo, signupError } = this.state
     const { ...other } = this.props
     delete other.createUser
@@ -97,41 +128,7 @@ SignUp.propTypes = {
   signinUser: PropTypes.func,
 }
 
-const createUser = gql`
-  mutation(
-    $email: String!
-    $password: String!
-    $name: String!
-    $type: String!
-    $cardToken: String!
-    $address: Json!
-    $location: Json!
-    $device: Json!
-  ) {
-    createUser(
-      authProvider: { email: { email: $email, password: $password } }
-      name: $name
-      type: $type
-      cardToken: $cardToken
-      address: $address
-      location: $location
-      device: $device
-    ) {
-      id
-    }
-  }
-`
-const SIGNIN_USER_MUTATION = gql`
-  mutation SigninUserMutation($email: String!, $password: String!) {
-    signinUser(email: { email: $email, password: $password }) {
-      token
-    }
-  }
-`
-
 export default compose(
   graphql(createUser, { name: 'createUser' }),
   graphql(SIGNIN_USER_MUTATION, { name: 'signinUser' })
 )(SignUp)
-
-// export default graphql(createUser, { name: 'createUser' })(SignUp)

@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ThemeProvider } from 'emotion/react/theming'
 import { DialogContent } from 'material-ui/Dialog'
 import { StripeProvider, Elements } from 'react-stripe-elements'
-import theme from 'common/theme'
 import { dialogStyles } from '../styles'
 import CheckoutForm from './checkoutForm'
 
@@ -37,15 +35,13 @@ class BillingInfo extends Component {
     const { tax, handleSignup, signupError } = this.props
 
     return (
-      <ThemeProvider theme={theme}>
-        <DialogContent style={dialogStyles}>
-          <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
-            <Elements>
-              <CheckoutForm tax={tax} handleSignup={handleSignup} signupError={signupError} />
-            </Elements>
-          </StripeProvider>
-        </DialogContent>
-      </ThemeProvider>
+      <DialogContent style={dialogStyles}>
+        <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
+          <Elements>
+            <CheckoutForm tax={tax} handleSignup={handleSignup} signupError={signupError} />
+          </Elements>
+        </StripeProvider>
+      </DialogContent>
     )
   }
 }

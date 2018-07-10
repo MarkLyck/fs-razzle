@@ -92,6 +92,7 @@ class Retail extends Component {
   }
 
   render() {
+    const { history } = this.props
     const { amChartsLoaded, amChartsCoreStatus } = this.state
 
     return (
@@ -115,7 +116,7 @@ class Retail extends Component {
 
           return (
             <div className="retail-page">
-              <Navbar />
+              <Navbar history={history} />
               <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
               <Introduction
                 portfolioReturn={portfolioReturn}

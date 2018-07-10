@@ -8,14 +8,14 @@ import { MenuItem } from 'material-ui/Menu'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
 import countries from 'common/data/countries'
-import { Field } from 'components/Form'
+// import { Field } from 'components/Form'
 import { AutoCompleteContainer } from '../styles'
 
 function renderInput(inputProps) {
   const { classes, home, value, ref, inputState, onBlur, onFocus, ...other } = inputProps
 
   return (
-    <Field
+    <input
       autoFocus={home}
       label="Country"
       className={`${classes.textField} ${classes.input} ${inputState}`}
