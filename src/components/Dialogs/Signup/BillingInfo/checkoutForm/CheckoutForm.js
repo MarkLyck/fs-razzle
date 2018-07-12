@@ -8,7 +8,6 @@ import Disclaimer from 'components/Legal/Disclaimer'
 import TermsOfService from 'components/Dialogs/TermsOfService'
 // import Form, { Row, Field, ErrorMessage } from 'components/Form'
 import { nextBtnStyles } from '../../styles'
-import { FieldContainer } from './styles'
 
 const createOptions = () => ({
   style: {
@@ -108,7 +107,6 @@ class CheckoutForm extends Component {
             id="name"
             autoFocus
             className={this.state.nameClass}
-            inputState={this.state.nameClass}
             onBlur={() => this.handleBlur('nameClass')}
             onFocus={() => this.handleFocus('nameClass')}
             onChange={this.setName}

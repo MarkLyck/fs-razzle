@@ -12,14 +12,13 @@ import countries from 'common/data/countries'
 import { AutoCompleteContainer } from '../styles'
 
 function renderInput(inputProps) {
-  const { classes, home, value, ref, inputState, onBlur, onFocus, ...other } = inputProps
+  const { classes, home, value, ref, onBlur, onFocus, ...other } = inputProps
 
   return (
     <input
       autoFocus={home}
       label="Country"
-      className={`${classes.textField} ${classes.input} ${inputState}`}
-      inputState={inputState}
+      className={`${classes.textField} ${classes.input}`}
       value={value}
       onBlur={onBlur}
       onFocus={onFocus}
@@ -106,7 +105,7 @@ class IntegrationAutosuggest extends Component {
   }
 
   render() {
-    const { classes, inputState, onBlur, onFocus } = this.props
+    const { classes, onBlur, onFocus } = this.props
 
     return (
       <AutoCompleteContainer>
@@ -127,7 +126,6 @@ class IntegrationAutosuggest extends Component {
           inputProps={{
             autoFocus: false,
             classes,
-            inputState,
             onBlur,
             onFocus,
             placeholder: 'Country',
@@ -152,7 +150,6 @@ IntegrationAutosuggest.defaultProps = {
 IntegrationAutosuggest.propTypes = {
   classes: PropTypes.object.isRequired,
   handleCountrySelect: PropTypes.func.isRequired,
-  inputState: PropTypes.string,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
 }

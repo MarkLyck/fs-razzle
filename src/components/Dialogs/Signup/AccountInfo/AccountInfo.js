@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import { Formik } from 'formik'
 import { DialogContent } from 'material-ui/Dialog'
+import Form, { Field } from 'components/Form/Field'
 import Button from 'components/Button'
 import countries from 'common/data/countries'
 import { dialogStyles, nextBtnStyles } from '../styles'
@@ -26,57 +28,31 @@ class AccountInfo extends Component {
 
   handleCountrySelect = country => this.setState({ country })
 
-  handleChange = (element, value) => {
-    const newState = this.state
-    newState[element] = value
+  // validateAccountInfo = () => {
+  //   const { email, password, country, address, city, postalCode } = this.state
 
-    if (newState.error.message && newState.error.message.indexOf(element) > -1) {
-      const validation = this.validateAccountInfo()
-      if (validation.message !== newState.error.message) {
-        newState.error = validation
-      }
-    }
+  //   // eslint-disable-next-line
+  //   const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
+  //)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-    this.setState(newState)
-  }
-
-  handleBlur = elementName => {
-    const newState = this.state
-    newState[elementName] = 'filled'
-
-    this.setState(newState)
-  }
-
-  handleFocus = elementName => {
-    const newState = this.state
-    newState[elementName] = 'focused'
-    this.setState(newState)
-  }
-
-  validateAccountInfo = () => {
-    const { email, password, country, address, city, postalCode } = this.state
-
-    // eslint-disable-next-line
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-    const selectedCountry = countries.filter(item => item.label === country)[0]
-    if (!emailRegex.test(email)) {
-      return { error: { message: 'Invalid email' } }
-    } else if (!password) {
-      return { error: { message: 'Please enter a password' } }
-    } else if (password.length < 4) {
-      return { error: { message: 'Password must be at least 4 characters' } }
-    } else if (!country) {
-      return { error: { message: 'Please choose your country' } }
-    } else if (selectedCountry && selectedCountry.taxPercent && !address) {
-      return { error: { message: 'Please enter your address' } }
-    } else if (selectedCountry && selectedCountry.taxPercent && !city) {
-      return { error: { message: 'Please enter your city' } }
-    } else if (selectedCountry && selectedCountry.taxPercent && !postalCode) {
-      return { error: { message: 'Please enter your address' } }
-    }
-    return { selectedCountry }
-  }
+  //   const selectedCountry = countries.filter(item => item.label === country)[0]
+  //   if (!emailRegex.test(email)) {
+  //     return { error: { message: 'Invalid email' } }
+  //   } else if (!password) {
+  //     return { error: { message: 'Please enter a password' } }
+  //   } else if (password.length < 4) {
+  //     return { error: { message: 'Password must be at least 4 characters' } }
+  //   } else if (!country) {
+  //     return { error: { message: 'Please choose your country' } }
+  //   } else if (selectedCountry && selectedCountry.taxPercent && !address) {
+  //     return { error: { message: 'Please enter your address' } }
+  //   } else if (selectedCountry && selectedCountry.taxPercent && !city) {
+  //     return { error: { message: 'Please enter your city' } }
+  //   } else if (selectedCountry && selectedCountry.taxPercent && !postalCode) {
+  //     return { error: { message: 'Please enter your address' } }
+  //   }
+  //   return { selectedCountry }
+  // }
 
   submitAccountInfo = () => {
     const { email, password, address, city, postalCode } = this.state
@@ -116,10 +92,9 @@ class AccountInfo extends Component {
               label="Street address"
               type="text"
               className={`${streetClass} ${addressError ? 'input-error' : ''}`}
-              inputState={streetClass}
               onChange={event => this.handleChange('address', event.target.value)}
               onBlur={() => this.handleBlur('streetClass')}
-              onFocus={() => this.handleFocus('streetClass')}
+              // onFocus={() => this.handleFocus('streetClass')}
               placeholder="Elm Street 123"
             />
           </div>
@@ -128,20 +103,18 @@ class AccountInfo extends Component {
               label="City"
               type="text"
               className={`${cityClass} ${cityError ? 'input-error' : ''}`}
-              inputState={cityClass}
               onChange={event => this.handleChange('city', event.target.value)}
               onBlur={() => this.handleBlur('cityClass')}
-              onFocus={() => this.handleFocus('cityClass')}
+              // onFocus={() => this.handleFocus('cityClass')}
               placeholder="New York"
             />
             <input
               label="Postal code"
               type="text"
               className={`${postalClass} ${postalError ? 'input-error' : ''}`}
-              inputState={postalClass}
               onChange={event => this.handleChange('postalCode', event.target.value)}
               onBlur={() => this.handleBlur('postalClass')}
-              onFocus={() => this.handleFocus('postalClass')}
+              // onFocus={() => this.handleFocus('postalClass')}
               placeholder="10075"
             />
           </div>
@@ -152,13 +125,68 @@ class AccountInfo extends Component {
   }
 
   render() {
-    const { error, emailClass, passwordClass } = this.state
-    const emailError = emailClass !== 'focused' && error.message && error.message.indexOf('email') > -1
-    const passwodError = passwordClass !== 'focused' && error.message && error.message.indexOf('password') > -1
+    // const { error, emailClass, passwordClass } = this.state
+    // const emailError = emailClass !== 'focused' && error.message && error.message.indexOf('email') > -1
+    // const passwodError = passwordClass !== 'focused' && error.message && error.message.indexOf('password') > -1
 
     return (
       <DialogContent style={dialogStyles}>
-        <form>
+        <Formik
+          initialValues={{
+            email: '',
+            password: '',
+          }}
+          validate={values => {
+            // same as above, but feel free to move this into a class method now.
+            let errors = {}
+            if (!values.email) {
+              errors.email = 'Required'
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+              errors.email = 'Invalid email address'
+            }
+            return errors
+          }}
+          onSubmit={(values, { setSubmitting, setErrors }) => {
+            // LoginToMyApp(values).then(
+            //   user => {
+            //     setSubmitting(false)
+            //     // do whatevs...
+            //     // props.updateUser(user)
+            //   },
+            //   errors => {
+            //     setSubmitting(false)
+            //     // Maybe transform your API's errors into the same shape as Formik's
+            //     setErrors(transformMyApiErrors(errors))
+            //   }
+            // )
+          }}
+          render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+            <Form onSubmit={handleSubmit}>
+              <Field
+                id="account-email"
+                type="email"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+              {touched.email && errors.email && <div>{errors.email}</div>}
+              <Field
+                id="account-password"
+                type="password"
+                name="password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+              />
+              {touched.password && errors.password && <div>{errors.password}</div>}
+              <Button type="submit" disabled={isSubmitting}>
+                Next
+              </Button>
+            </Form>
+          )}
+        />
+        {/* <form>
           {error.message && <p message={error.message} />}
           <div className={error.message ? 'form-error' : ''}>
             <input
@@ -166,7 +194,6 @@ class AccountInfo extends Component {
               type="email"
               autoFocus
               className={`${emailClass} ${emailError ? 'input-error' : ''}`}
-              inputState={emailClass}
               onChange={event => this.handleChange('email', event.target.value)}
               onBlur={() => this.handleBlur('emailClass')}
               onFocus={() => this.handleFocus('emailClass')}
@@ -178,7 +205,6 @@ class AccountInfo extends Component {
               label="Password"
               type="password"
               className={`${passwordClass} ${passwodError ? 'input-error' : ''}`}
-              inputState={passwordClass}
               onChange={event => this.handleChange('password', event.target.value)}
               onBlur={() => this.handleBlur('passwordClass')}
               onFocus={() => this.handleFocus('passwordClass')}
@@ -188,7 +214,6 @@ class AccountInfo extends Component {
           </div>
           <div>
             <CountrySelect
-              inputState={this.state.countryClass}
               handleCountrySelect={this.handleCountrySelect}
               onBlur={() => this.handleBlur('countryClass')}
               onFocus={() => this.handleFocus('countryClass')}
@@ -198,7 +223,7 @@ class AccountInfo extends Component {
           <Button color="primary" style={nextBtnStyles} onClick={this.submitAccountInfo}>
             Next
           </Button>
-        </form>
+        </form> */}
       </DialogContent>
     )
   }

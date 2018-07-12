@@ -93,7 +93,6 @@ class Login extends Component {
                   type="email"
                   autoFocus
                   className={`${emailClass} ${emailError ? 'input-error' : ''}`}
-                  inputState={emailClass}
                   onChange={event => this.handleChange('email', event.target.value)}
                   onBlur={() => this.handleBlur('emailClass')}
                   onFocus={() => this.handleFocus('emailClass')}
@@ -105,7 +104,6 @@ class Login extends Component {
                   label="Password"
                   type="password"
                   className={`${passwordClass} ${passwodError ? 'input-error' : ''}`}
-                  inputState={passwordClass}
                   onChange={event => this.handleChange('password', event.target.value)}
                   onBlur={() => this.handleBlur('passwordClass')}
                   onFocus={() => this.handleFocus('passwordClass')}

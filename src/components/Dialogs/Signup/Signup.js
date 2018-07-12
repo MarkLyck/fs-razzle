@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import platform from 'platform'
 import gql from 'graphql-tag'
 import { graphql, compose } from 'react-apollo'
 import Dialog, { DialogTitle } from 'material-ui/Dialog'
-import Slide from 'material-ui/transitions/Slide'
 import { hasStorage } from 'common/utils/featureTests'
 import { getDeviceType } from 'common/utils/helpers'
 import AccountInfo from './AccountInfo'
@@ -106,26 +104,18 @@ class SignUp extends Component {
   render() {
     if (typeof window === 'undefined') return null
     const { page, accountInfo, signupError } = this.state
-    const { ...other } = this.props
-    delete other.createUser
-    delete other.signinUser
+    // const { history } = this.props
 
     const tax = accountInfo && accountInfo.selectedCountry ? accountInfo.selectedCountry.taxPercent : 0
 
     return (
-      <Dialog {...other} transition={Slide}>
+      <Dialog open={true}>
         <DialogTitle>Sign up</DialogTitle>
         {page === 1 && <AccountInfo nextPage={this.nextPage} />}
         {page === 2 && <BillingInfo tax={tax} handleSignup={this.handleSignup} signupError={signupError} />}
       </Dialog>
     )
   }
-}
-
-SignUp.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  createUser: PropTypes.func,
-  signinUser: PropTypes.func,
 }
 
 export default compose(
