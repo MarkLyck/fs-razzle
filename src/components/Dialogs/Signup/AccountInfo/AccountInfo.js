@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { Formik } from 'formik'
 import { DialogContent } from 'material-ui/Dialog'
-import Form, { Field } from 'components/Form/Field'
+import Form, { Field } from 'components/Form'
 import Button from 'components/Button'
 import countries from 'common/data/countries'
 import { dialogStyles, nextBtnStyles } from '../styles'
@@ -166,15 +166,20 @@ class AccountInfo extends Component {
                 id="account-email"
                 type="email"
                 name="email"
+                label="email"
+                placeholder="example@email.com"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
               />
               {touched.email && errors.email && <div>{errors.email}</div>}
+
               <Field
                 id="account-password"
                 type="password"
                 name="password"
+                label="password"
+                placeholder="●●●●●●"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}

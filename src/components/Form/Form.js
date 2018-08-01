@@ -14,7 +14,7 @@ const formError = keyframes`
 export default styled.form`
   font-family: Quicksand, Open Sans, Segoe UI, sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,7 +162,6 @@ export default styled.form`
     background-color: ${props => props.theme.colors.primary};
     border-radius: 4px;
     color: #fff;
-    text-transform: uppercase;
     font-weight: 600;
     cursor: pointer;
   }

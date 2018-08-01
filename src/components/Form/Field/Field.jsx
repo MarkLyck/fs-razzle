@@ -20,7 +20,7 @@ const Field = ({
     <input
       id={id}
       autoFocus={autoFocus}
-      className={`input ${className}`}
+      className={`input field ${className}`}
       onBlur={onBlur}
       //   onFocus={() => onFocus(id)}
       onChange={onChange}
