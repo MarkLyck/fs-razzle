@@ -7,7 +7,7 @@ import { planIds, marketIds } from 'common/constants'
 import { usingMocks } from 'common/utils/featureTests'
 import mockData from 'common/mocks/RetailData.json'
 import HomeLoader from 'components/Loading/HomeLoader'
-
+import LoadingError from 'components/Error/LoadingError'
 import Navbar from 'components/Navbar/Retail'
 import Hero from './01_Hero'
 import Introduction from './02_Introduction'
@@ -98,8 +98,9 @@ class Retail extends Component {
     return (
       <Query query={GET_ENTRY_AND_MARKET_DATA}>
         {({ loading, error, data }) => {
+          console.log(usingMocks)
           if (loading) return <HomeLoader />
-          if (error && !usingMocks) return <p>Error loading</p>
+          if (error && !usingMocks) return <LoadingError />
 
           const plan = data ? data.Plan : mockData.Plan
           const DJIA = data ? data.DJIA : mockData.DJIA

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import platform from 'platform'
 import gql from 'graphql-tag'
 import { graphql, compose } from 'react-apollo'
-import Dialog, { DialogTitle } from 'material-ui/Dialog'
+import { css } from 'emotion'
+import Modal from 'react-modal'
 import { hasStorage } from 'common/utils/featureTests'
 import { getDeviceType } from 'common/utils/helpers'
 import AccountInfo from './AccountInfo'
@@ -102,18 +103,41 @@ class SignUp extends Component {
   }
 
   render() {
-    if (typeof window === 'undefined') return null
+    // if (typeof window === 'undefined') return null
     const { page, accountInfo, signupError } = this.state
+    const { onRequestClose } = this.props
     // const { history } = this.props
 
     const tax = accountInfo && accountInfo.selectedCountry ? accountInfo.selectedCountry.taxPercent : 0
 
     return (
-      <Dialog open={true}>
-        <DialogTitle>Sign up</DialogTitle>
+      <Modal
+        isOpen
+        onRequestClose={onRequestClose}
+        overlayClassName={css`
+          z-index: 10;
+          background rgba(0,0,0,0.5);
+          position: fixed;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        `}
+        css={`
+          background: white;
+          width: 320px;
+          height: auto;
+          outline: none;
+          z-index: 11;
+        `}
+      >
+        {/* <DialogTitle>Sign up</DialogTitle> */}
         {page === 1 && <AccountInfo nextPage={this.nextPage} />}
         {page === 2 && <BillingInfo tax={tax} handleSignup={this.handleSignup} signupError={signupError} />}
-      </Dialog>
+      </Modal>
     )
   }
 }

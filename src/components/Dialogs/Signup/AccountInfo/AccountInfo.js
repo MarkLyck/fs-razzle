@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
 import { Formik } from 'formik'
-import { DialogContent } from 'material-ui/Dialog'
-import Form, { Field } from 'components/Form'
+import Form, { Field, Row, ErrorMessage } from 'components/Form'
 import Button from 'components/Button'
-import countries from 'common/data/countries'
-import { dialogStyles, nextBtnStyles } from '../styles'
+import { ModalContainer, ModalTitle } from '../../styles'
 import CountrySelect from './CountrySelect'
 
 class AccountInfo extends Component {
@@ -17,6 +14,7 @@ class AccountInfo extends Component {
     city: '',
     postalCode: '',
     address: '',
+    focusedElement: '',
     emailClass: 'empty',
     passwordClass: 'empty',
     countryClass: 'empty',
@@ -26,127 +24,106 @@ class AccountInfo extends Component {
     error: {},
   }
 
-  handleCountrySelect = country => this.setState({ country })
+  onCountryChange = country => this.setState({ country: country })
 
-  // validateAccountInfo = () => {
-  //   const { email, password, country, address, city, postalCode } = this.state
-
-  //   // eslint-disable-next-line
-  //   const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
-  //)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-  //   const selectedCountry = countries.filter(item => item.label === country)[0]
-  //   if (!emailRegex.test(email)) {
-  //     return { error: { message: 'Invalid email' } }
-  //   } else if (!password) {
-  //     return { error: { message: 'Please enter a password' } }
-  //   } else if (password.length < 4) {
-  //     return { error: { message: 'Password must be at least 4 characters' } }
-  //   } else if (!country) {
-  //     return { error: { message: 'Please choose your country' } }
-  //   } else if (selectedCountry && selectedCountry.taxPercent && !address) {
-  //     return { error: { message: 'Please enter your address' } }
-  //   } else if (selectedCountry && selectedCountry.taxPercent && !city) {
-  //     return { error: { message: 'Please enter your city' } }
-  //   } else if (selectedCountry && selectedCountry.taxPercent && !postalCode) {
-  //     return { error: { message: 'Please enter your address' } }
-  //   }
-  //   return { selectedCountry }
-  // }
-
-  submitAccountInfo = () => {
-    const { email, password, address, city, postalCode } = this.state
-
-    const validation = this.validateAccountInfo()
-
-    if (!validation.error) {
-      this.props.nextPage({
-        email,
-        password,
-        selectedCountry: validation.selectedCountry,
-        address,
-        city,
-        postalCode,
-      })
-    } else {
-      this.setState({ error: validation.error })
+  validate = values => {
+    let errors = {}
+    if (!values.email) {
+      errors.email = 'Please enter an email'
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = 'Invalid email address'
     }
+
+    if (!values.password) {
+      errors.password = 'Please enter a password'
+    } else if (values.password.length < 4) {
+      errors.password = 'Password must be at least 4 characters'
+    }
+
+    // if (!this.state.country) errors.country = 'Please choose your country'
+    if (this.state.country && !values.address) errors.address = 'Please enter your address'
+    else if (this.state.country && !values.city) errors.address = 'Please enter your city'
+    else if (this.state.country && !values.postalCode) errors.address = 'Please enter your postal Code'
+
+    console.log('VALIDATION ERRORS', errors)
+
+    return errors
   }
 
-  renderFullAddress = () => {
-    const { error, streetClass, cityClass, postalClass } = this.state
-    if (!this.state.country) {
-      return null
-    }
+  renderErrors = (errors, touched) => {
+    let errorText = ''
 
-    const addressError = streetClass !== 'focused' && error.message && error.message.indexOf('address') > -1
-    const cityError = cityClass !== 'focused' && error.message && error.message.indexOf('city') > -1
-    const postalError = postalClass !== 'focused' && error.message && error.message.indexOf('post') > -1
+    if (touched.email && errors.email) errorText = errors.email
+    if (touched.password && errors.password) errorText = errors.password
+    if (errors.country) errorText = errors.country
+    if (touched.address && errors.address) errorText = errors.address
+    if (touched.city && errors.city) errorText = errors.city
+    if (touched.postalCode && errors.postalCode) errorText = errors.postalCode
 
-    const country = _.find(countries, c => c.label === this.state.country)
-    if (country && country.taxPercent) {
-      return (
-        <div>
-          <div>
-            <input
-              label="Street address"
-              type="text"
-              className={`${streetClass} ${addressError ? 'input-error' : ''}`}
-              onChange={event => this.handleChange('address', event.target.value)}
-              onBlur={() => this.handleBlur('streetClass')}
-              // onFocus={() => this.handleFocus('streetClass')}
-              placeholder="Elm Street 123"
-            />
-          </div>
-          <div>
-            <input
-              label="City"
-              type="text"
-              className={`${cityClass} ${cityError ? 'input-error' : ''}`}
-              onChange={event => this.handleChange('city', event.target.value)}
-              onBlur={() => this.handleBlur('cityClass')}
-              // onFocus={() => this.handleFocus('cityClass')}
-              placeholder="New York"
-            />
-            <input
-              label="Postal code"
-              type="text"
-              className={`${postalClass} ${postalError ? 'input-error' : ''}`}
-              onChange={event => this.handleChange('postalCode', event.target.value)}
-              onBlur={() => this.handleBlur('postalClass')}
-              // onFocus={() => this.handleFocus('postalClass')}
-              placeholder="10075"
-            />
-          </div>
-        </div>
-      )
-    }
-    return null
+    console.log(errorText)
+
+    return errorText ? <ErrorMessage>{errorText}</ErrorMessage> : null
+  }
+
+  renderFullAddress = (values, handleChange, handleBlur) => {
+    if (!this.state.country && !this.state.country.taxPercent) return null
+
+    return (
+      <React.Fragment>
+        <Row>
+          <Field
+            id="address"
+            type="text"
+            name="address"
+            label="Street address"
+            placeholder="Wallstreet 14"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.address}
+          />
+        </Row>
+        <Row>
+          <Field
+            id="city"
+            type="text"
+            name="city"
+            label="City"
+            placeholder="New York"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.city}
+          />
+          <Field
+            id="postalCode"
+            type="text"
+            name="postalCode"
+            label="Postal code"
+            placeholder="10075"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.postalCode}
+          />
+        </Row>
+      </React.Fragment>
+    )
   }
 
   render() {
-    // const { error, emailClass, passwordClass } = this.state
-    // const emailError = emailClass !== 'focused' && error.message && error.message.indexOf('email') > -1
-    // const passwodError = passwordClass !== 'focused' && error.message && error.message.indexOf('password') > -1
-
     return (
-      <DialogContent style={dialogStyles}>
+      <ModalContainer>
+        <ModalTitle>Sign up</ModalTitle>
         <Formik
           initialValues={{
             email: '',
             password: '',
+            country: '',
+            city: '',
+            address: '',
+            postalCode: '',
           }}
-          validate={values => {
-            // same as above, but feel free to move this into a class method now.
-            let errors = {}
-            if (!values.email) {
-              errors.email = 'Required'
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-              errors.email = 'Invalid email address'
-            }
-            return errors
-          }}
+          validate={this.validate}
           onSubmit={(values, { setSubmitting, setErrors }) => {
+            console.log('submit')
             // LoginToMyApp(values).then(
             //   user => {
             //     setSubmitting(false)
@@ -162,74 +139,45 @@ class AccountInfo extends Component {
           }}
           render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
-              <Field
-                id="account-email"
-                type="email"
-                name="email"
-                label="email"
-                placeholder="example@email.com"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-              />
-              {touched.email && errors.email && <div>{errors.email}</div>}
+              {this.renderErrors(errors, touched)}
+              <Row>
+                <Field
+                  autoFocus
+                  id="email"
+                  type="email"
+                  name="email"
+                  label="email"
+                  placeholder="example@email.com"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                />
+              </Row>
+              <Row>
+                <Field
+                  id="password"
+                  type="password"
+                  name="password"
+                  label="password"
+                  placeholder="●●●●●●"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+              </Row>
 
-              <Field
-                id="account-password"
-                type="password"
-                name="password"
-                label="password"
-                placeholder="●●●●●●"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
-              {touched.password && errors.password && <div>{errors.password}</div>}
-              <Button type="submit" disabled={isSubmitting}>
+              <Row>
+                <CountrySelect id="country=select" onChange={this.onCountryChange} />
+              </Row>
+              {this.renderFullAddress(values, handleChange, handleBlur)}
+
+              <Button className="submit-button" type="submit" variant="raised" disabled={isSubmitting}>
                 Next
               </Button>
             </Form>
           )}
         />
-        {/* <form>
-          {error.message && <p message={error.message} />}
-          <div className={error.message ? 'form-error' : ''}>
-            <input
-              label="Email"
-              type="email"
-              autoFocus
-              className={`${emailClass} ${emailError ? 'input-error' : ''}`}
-              onChange={event => this.handleChange('email', event.target.value)}
-              onBlur={() => this.handleBlur('emailClass')}
-              onFocus={() => this.handleFocus('emailClass')}
-              placeholder="example@domain.com"
-            />
-          </div>
-          <div>
-            <input
-              label="Password"
-              type="password"
-              className={`${passwordClass} ${passwodError ? 'input-error' : ''}`}
-              onChange={event => this.handleChange('password', event.target.value)}
-              onBlur={() => this.handleBlur('passwordClass')}
-              onFocus={() => this.handleFocus('passwordClass')}
-              autoComplete="current-password"
-              placeholder="••••••••"
-            />
-          </div>
-          <div>
-            <CountrySelect
-              handleCountrySelect={this.handleCountrySelect}
-              onBlur={() => this.handleBlur('countryClass')}
-              onFocus={() => this.handleFocus('countryClass')}
-            />
-          </div>
-          {this.renderFullAddress()}
-          <Button color="primary" style={nextBtnStyles} onClick={this.submitAccountInfo}>
-            Next
-          </Button>
-        </form> */}
-      </DialogContent>
+      </ModalContainer>
     )
   }
 }

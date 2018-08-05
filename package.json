@@ -53,6 +53,7 @@
     "react-load-script": "^0.0.6",
     "react-modal": "^3.4.5",
     "react-router-dom": "^4.3.1",
+    "react-select": "^2.0.0",
     "react-slick": "^0.23.1",
     "react-stripe-elements": "^2.0.0",
     "slick-carousel": "^1.8.1",

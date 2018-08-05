@@ -32,15 +32,15 @@ class Navbar extends Component {
     this.setState({ loggedIn: false })
   }
 
-  showSignup = () => this.setState({ showSignUpModal: true })
-  showLogin = () => this.setState({ showLoginModal: true })
+  toggleSignupModal = () => this.setState(state => ({ showSignUpModal: !state.showSignUpModal }))
+  toggleLoginModal = () => this.setState(state => ({ showLoginModal: !state.showSignUpModal }))
 
   renderLoggedOutLinks = () => (
     <NavLinks>
-      <Button variant="raised" type="light" onClick={this.showLogin}>
+      <Button variant="raised" type="light" onClick={this.toggleLoginModal}>
         <FontAwesomeIcon icon="sign-in-alt" />Login
       </Button>
-      <Button variant="raised" background="primary" onClick={this.showSignup}>
+      <Button variant="raised" background="primary" onClick={this.toggleSignupModal}>
         Sign up
       </Button>
     </NavLinks>
@@ -76,7 +76,7 @@ class Navbar extends Component {
                 }}
               />
               {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
-              {showSignUpModal && <Signup history={history} />}
+              {showSignUpModal && <Signup history={history} onRequestClose={this.toggleSignupModal} />}
               {showLoginModal && <div />}
             </NavBar>
           )

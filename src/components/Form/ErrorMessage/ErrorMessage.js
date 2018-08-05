@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { MessageContainer } from './styles'
 
-const ErrorMessage = ({ message }) => (
+const ErrorMessage = ({ children }) => (
   <div style={{ position: 'relative', width: '100%' }}>
     <MessageContainer>
-      <i className="fa fa-times-circle" />
-      <p>{message}</p>
+      <FontAwesomeIcon icon="exclamation-circle" style={{ color: '#fff' }} />
+      {/* <i className="fa fa-times-circle" /> */}
+      <p>{children}</p>
     </MessageContainer>
   </div>
 )

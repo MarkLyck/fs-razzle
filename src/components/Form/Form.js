@@ -18,9 +18,20 @@ export default styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: visible;
+  padding: 0 16px;
 
   .field {
     width: 100%;
+
+    &--focused {
+      label {
+        color: ${props => props.theme.colors.primary};
+      }
+      .baseline {
+        background: ${props => props.theme.colors.primary};
+      }
+    }
   }
 
   .field.half-width {
@@ -41,17 +52,13 @@ export default styled.form`
     transition: background-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
-  .baseline-focused {
-    background-color: ${props => props.theme.colors.primary};
-  }
-
   label {
     position: absolute;
     width: 100%;
-    left: 0;
+    left: 8px;
     bottom: 8px;
     z-index: 0;
-    color: #cfd7df;
+    color: hsl(0, 0%, 50%);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -69,6 +76,7 @@ export default styled.form`
     bottom: 0;
     z-index: 1;
     padding-bottom: 7px;
+    padding-left: 8px;
     font-size: 16px;
     color: #32325d;
     background-color: transparent;
@@ -102,22 +110,21 @@ export default styled.form`
 
   .input.focused::-webkit-input-placeholder,
   .input:not(.empty)::-webkit-input-placeholder {
-    color: #cfd7df;
+    color: hsl(0, 0%, 50%);
   }
 
   .input.focused::-moz-placeholder,
   .input:not(.empty)::-moz-placeholder {
-    color: #cfd7df;
+    color: hsl(0, 0%, 50%);
   }
 
   .input.focused:-ms-input-placeholder,
   .input:not(.empty):-ms-input-placeholder {
-    color: #cfd7df;
+    color: hsl(0, 0%, 50%);
   }
 
   .input.focused + label,
   .input:not(.empty) + label {
-    color: #aab7c4;
     transform: scale(0.85) translateY(-25px);
     cursor: default;
   }
@@ -156,7 +163,7 @@ export default styled.form`
 
   button {
     display: block;
-    width: calc(100% - 30px);
+    width: 100%;
     height: 40px;
     margin: 16px 15px 0;
     background-color: ${props => props.theme.colors.primary};
@@ -198,7 +205,7 @@ export default styled.form`
     justify-content: space-between;
     font-size: 14px;
     font-weight: 500;
-    width: calc(100% - 30px);
+    width: 100%;
     margin: 0 auto;
     .price.semi-bold {
       font-weight: 600;

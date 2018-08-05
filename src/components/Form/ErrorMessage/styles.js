@@ -13,17 +13,16 @@ const expand = keyframes`
 `
 
 export const MessageContainer = styled.div`
+  box-sizing: border-box;
   color: ${props => props.theme.colors.white};
   background-color: ${props => props.theme.colors.error};
-  font-size: 12px;
+  font-size: 14px;
   padding: 8px;
+  margin-bottom: 8px;
   border-radius: 2px;
   display: flex;
   align-items: center;
   animation: ${expand} 1s ease;
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   svg {
     margin-right: 4px;
