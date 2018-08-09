@@ -3,8 +3,8 @@ import Select from 'react-select'
 import countries from 'common/data/countries'
 import { CountrySelectContainer } from './styles'
 
-const CountrySelect = ({ onChange }) => (
-  <CountrySelectContainer>
+const CountrySelect = ({ onChange, onBlur }) => (
+  <CountrySelectContainer onBlur={onBlur}>
     <label className="country-select-label" htmlFor={'country-select'}>
       Country
     </label>

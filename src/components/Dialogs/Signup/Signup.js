@@ -106,7 +106,6 @@ class SignUp extends Component {
     // if (typeof window === 'undefined') return null
     const { page, accountInfo, signupError } = this.state
     const { onRequestClose } = this.props
-    // const { history } = this.props
 
     const tax = accountInfo && accountInfo.selectedCountry ? accountInfo.selectedCountry.taxPercent : 0
 

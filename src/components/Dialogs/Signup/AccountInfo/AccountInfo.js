@@ -14,16 +14,13 @@ class AccountInfo extends Component {
     city: '',
     postalCode: '',
     address: '',
-    focusedElement: '',
-    emailClass: 'empty',
-    passwordClass: 'empty',
-    countryClass: 'empty',
-    streetClass: 'empty',
-    cityClass: 'empty',
-    postalClass: 'empty',
-    error: {},
+    countryTouched: false,
   }
 
+  countrySelectBlur = () => {
+    console.log('countryTouched')
+    this.setState({ countryTouched: true })
+  }
   onCountryChange = country => this.setState({ country: country })
 
   validate = values => {
@@ -40,12 +37,9 @@ class AccountInfo extends Component {
       errors.password = 'Password must be at least 4 characters'
     }
 
-    // if (!this.state.country) errors.country = 'Please choose your country'
     if (this.state.country && !values.address) errors.address = 'Please enter your address'
     else if (this.state.country && !values.city) errors.address = 'Please enter your city'
     else if (this.state.country && !values.postalCode) errors.address = 'Please enter your postal Code'
-
-    console.log('VALIDATION ERRORS', errors)
 
     return errors
   }
@@ -53,14 +47,12 @@ class AccountInfo extends Component {
   renderErrors = (errors, touched) => {
     let errorText = ''
 
-    if (touched.email && errors.email) errorText = errors.email
-    if (touched.password && errors.password) errorText = errors.password
-    if (errors.country) errorText = errors.country
     if (touched.address && errors.address) errorText = errors.address
     if (touched.city && errors.city) errorText = errors.city
     if (touched.postalCode && errors.postalCode) errorText = errors.postalCode
-
-    console.log(errorText)
+    if (this.state.countryTouched && !this.state.country) errorText = 'Please choose your country'
+    if (touched.password && errors.password) errorText = errors.password
+    if (touched.email && errors.email) errorText = errors.email
 
     return errorText ? <ErrorMessage>{errorText}</ErrorMessage> : null
   }
@@ -167,7 +159,7 @@ class AccountInfo extends Component {
               </Row>
 
               <Row>
-                <CountrySelect id="country=select" onChange={this.onCountryChange} />
+                <CountrySelect id="country=select" onChange={this.onCountryChange} onBlur={this.countrySelectBlur} />
               </Row>
               {this.renderFullAddress(values, handleChange, handleBlur)}
 
