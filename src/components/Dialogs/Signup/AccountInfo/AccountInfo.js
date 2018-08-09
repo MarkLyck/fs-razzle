@@ -61,7 +61,6 @@ class AccountInfo extends Component {
         <Row>
           <Field
             id="address"
-            type="text"
             name="address"
             label="Street address"
             placeholder="Wallstreet 14"
@@ -73,7 +72,6 @@ class AccountInfo extends Component {
         <Row>
           <Field
             id="city"
-            type="text"
             name="city"
             label="City"
             placeholder="New York"
@@ -83,7 +81,6 @@ class AccountInfo extends Component {
           />
           <Field
             id="postalCode"
-            type="text"
             name="postalCode"
             label="Postal code"
             placeholder="10075"

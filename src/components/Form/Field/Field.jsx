@@ -26,7 +26,7 @@ class Field extends Component {
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           onChange={onChange}
-          type={type}
+          type={type || 'text'}
           placeholder={placeholder}
           required={required}
         />
