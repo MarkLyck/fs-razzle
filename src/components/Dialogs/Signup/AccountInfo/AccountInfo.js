@@ -8,20 +8,12 @@ import CountrySelect from './CountrySelect'
 
 class AccountInfo extends Component {
   state = {
-    email: '',
-    password: '',
     country: '',
-    city: '',
-    postalCode: '',
-    address: '',
     countryTouched: false,
   }
 
-  countrySelectBlur = () => {
-    console.log('countryTouched')
-    this.setState({ countryTouched: true })
-  }
-  onCountryChange = country => this.setState({ country: country })
+  countrySelectBlur = () => this.setState({ countryTouched: true })
+  onCountryChange = country => this.setState({ country })
 
   validate = values => {
     let errors = {}
@@ -37,9 +29,12 @@ class AccountInfo extends Component {
       errors.password = 'Password must be at least 4 characters'
     }
 
-    if (this.state.country && !values.address) errors.address = 'Please enter your address'
-    else if (this.state.country && !values.city) errors.address = 'Please enter your city'
-    else if (this.state.country && !values.postalCode) errors.address = 'Please enter your postal Code'
+    if (this.state.country && this.state.country.taxPercent && !values.address)
+      errors.address = 'Please enter your address'
+    else if (this.state.country && this.state.country.taxPercent && !values.city)
+      errors.address = 'Please enter your city'
+    else if (this.state.country && this.state.country.taxPercent && !values.postalCode)
+      errors.address = 'Please enter your postal Code'
 
     return errors
   }
@@ -47,9 +42,9 @@ class AccountInfo extends Component {
   renderErrors = (errors, touched) => {
     let errorText = ''
 
-    if (touched.address && errors.address) errorText = errors.address
-    if (touched.city && errors.city) errorText = errors.city
-    if (touched.postalCode && errors.postalCode) errorText = errors.postalCode
+    if (this.state.country.taxPercent && touched.address && errors.address) errorText = errors.address
+    if (this.state.country.taxPercent && touched.city && errors.city) errorText = errors.city
+    if (this.state.country.taxPercent && touched.postalCode && errors.postalCode) errorText = errors.postalCode
     if (this.state.countryTouched && !this.state.country) errorText = 'Please choose your country'
     if (touched.password && errors.password) errorText = errors.password
     if (touched.email && errors.email) errorText = errors.email
@@ -58,7 +53,8 @@ class AccountInfo extends Component {
   }
 
   renderFullAddress = (values, handleChange, handleBlur) => {
-    if (!this.state.country && !this.state.country.taxPercent) return null
+    console.log(this.state.country)
+    if (!this.state.country || !this.state.country.taxPercent) return null
 
     return (
       <React.Fragment>
@@ -114,20 +110,9 @@ class AccountInfo extends Component {
             postalCode: '',
           }}
           validate={this.validate}
-          onSubmit={(values, { setSubmitting, setErrors }) => {
-            console.log('submit')
-            // LoginToMyApp(values).then(
-            //   user => {
-            //     setSubmitting(false)
-            //     // do whatevs...
-            //     // props.updateUser(user)
-            //   },
-            //   errors => {
-            //     setSubmitting(false)
-            //     // Maybe transform your API's errors into the same shape as Formik's
-            //     setErrors(transformMyApiErrors(errors))
-            //   }
-            // )
+          onSubmit={(values, { setSubmitting }) => {
+            setSubmitting(false)
+            this.props.nextPage(values)
           }}
           render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>

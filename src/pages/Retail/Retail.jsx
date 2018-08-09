@@ -151,6 +151,7 @@ class Retail extends Component {
               <Footer />
 
               <Script url="https://www.amcharts.com/lib/3/amcharts.js" onLoad={this.onLoadAmChartsCore} />
+              <Script url="https://js.stripe.com/v3/" />
               {amChartsCoreStatus ? (
                 <React.Fragment>
                   <Script url="https://www.amcharts.com/lib/3/serial.js" onLoad={this.onLoadAmChartsSerial} />
