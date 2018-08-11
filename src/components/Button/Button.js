@@ -31,6 +31,7 @@ const raised = props => css`
     color: #fff;
     border: 1px solid ${darken(0.05, props.theme.colors[props.background || 'primary'])};
     background-color: ${darken(0.05, props.theme.colors[props.background || 'primary'])};
+    transform: translateY(-1px);
   }
 
   &:active {

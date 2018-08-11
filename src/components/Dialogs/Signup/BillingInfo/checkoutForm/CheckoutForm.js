@@ -6,7 +6,7 @@ import { injectStripe, CardNumberElement, CardExpiryElement, CardCVCElement } fr
 import theme from 'common/utils/theme'
 import Disclaimer from 'components/Legal/Disclaimer'
 import TermsOfService from 'components/Dialogs/TermsOfService'
-// import Form, { Row, Field, ErrorMessage } from 'components/Form'
+import Form, { Row, Field, ErrorMessage } from 'components/Form'
 import { nextBtnStyles } from '../../styles'
 
 const createOptions = () => ({
@@ -100,41 +100,28 @@ class CheckoutForm extends Component {
     const cardNumberError = error.message && error.message.indexOf('number') > -1
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         {error.message && <p message={error.message} />}
-        <div className={error.message ? 'form-error' : ''}>
-          <input
-            id="name"
-            autoFocus
-            className={this.state.nameClass}
-            onBlur={() => this.handleBlur('nameClass')}
-            onFocus={() => this.handleFocus('nameClass')}
-            onChange={this.setName}
-            type="text"
-            placeholder="John Doe"
-            required=""
-            label="Name"
+        <Row>
+          <Field autoFocus id="name" name="name" label="Name" placeholder="John Doe" />
+        </Row>
+
+        <Row>
+          <CardNumberElement
+            className={`input ${this.state.cardNumber} ${
+              cardNumberError && this.state.cardNumber !== 'empty' ? 'input-error' : ''
+            }`}
+            onBlur={() => this.handleBlur('cardNumber')}
+            onFocus={() => this.handleFocus('cardNumber')}
+            {...createOptions()}
           />
-        </div>
+          <label htmlFor="card-number" className={`${cardNumberError && 'label-error'} `}>
+            Card number
+          </label>
+          <div className={`baseline baseline-${this.state.cardNumber}`} />
+        </Row>
 
-        <div>
-          <div>
-            <CardNumberElement
-              className={`input
-                                ${this.state.cardNumber}
-                                ${cardNumberError && this.state.cardNumber !== 'empty' ? 'input-error' : ''}`}
-              onBlur={() => this.handleBlur('cardNumber')}
-              onFocus={() => this.handleFocus('cardNumber')}
-              {...createOptions()}
-            />
-            <label htmlFor="card-number" className={`${cardNumberError && 'label-error'} `}>
-              Card number
-            </label>
-            <div className={`baseline baseline-${this.state.cardNumber}`} />
-          </div>
-        </div>
-
-        <div>
+        <Row>
           <div className="FieldContainer half-width">
             <CardExpiryElement
               className={`input ${this.state.cardExpiry}`}
@@ -155,7 +142,7 @@ class CheckoutForm extends Component {
             <label htmlFor="card-cvc">CVC</label>
             <div className={`baseline baseline-${this.state.cardCVC}`} />
           </div>
-        </div>
+        </Row>
 
         <div className="beside">
           <p className="description">Price:</p>
@@ -189,7 +176,7 @@ class CheckoutForm extends Component {
           </a>
         </Disclaimer>
         <TermsOfService open={showTerms} hideTerms={this.toggleTerms} />
-      </form>
+      </Form>
     )
   }
 }

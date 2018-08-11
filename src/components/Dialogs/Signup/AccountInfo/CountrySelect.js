@@ -6,7 +6,7 @@ import { CountrySelectContainer } from './styles'
 const CountrySelect = ({ onChange, onBlur }) => (
   <CountrySelectContainer onBlur={onBlur}>
     <label className="country-select-label" htmlFor={'country-select'}>
-      Country
+      country
     </label>
     <Select
       placeholder="Select Country"

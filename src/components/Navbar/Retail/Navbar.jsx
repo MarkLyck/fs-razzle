@@ -8,6 +8,7 @@ import { hasStorage } from 'common/utils/featureTests'
 // UI
 import Button from 'components/Button'
 import Signup from 'components/Dialogs/Signup'
+import Login from 'components/Dialogs/Login'
 import Logo from './logo_horizontal.svg'
 
 import { NavLinks, NavBar } from './styles'
@@ -33,7 +34,7 @@ class Navbar extends Component {
   }
 
   toggleSignupModal = () => this.setState(state => ({ showSignUpModal: !state.showSignUpModal }))
-  toggleLoginModal = () => this.setState(state => ({ showLoginModal: !state.showSignUpModal }))
+  toggleLoginModal = () => this.setState(state => ({ showLoginModal: !state.showLoginModal }))
 
   renderLoggedOutLinks = () => (
     <NavLinks>
@@ -63,24 +64,18 @@ class Navbar extends Component {
 
     return (
       <Query query={LOGGED_IN_USER_QUERY}>
-        {({ loading, error, data }) => {
-          /* console.log('loading', loading)
-          console.log('error', error)
-          console.log('data', data) */
-
-          return (
-            <NavBar position="fixed" color="default">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: Logo,
-                }}
-              />
-              {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
-              {showSignUpModal && <Signup history={history} onRequestClose={this.toggleSignupModal} />}
-              {showLoginModal && <div />}
-            </NavBar>
-          )
-        }}
+        {({ loading, error, data }) => (
+          <NavBar position="fixed" color="default">
+            <span
+              dangerouslySetInnerHTML={{
+                __html: Logo,
+              }}
+            />
+            {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
+            {showSignUpModal && <Signup history={history} onRequestClose={this.toggleSignupModal} />}
+            {showLoginModal && <Login history={history} onRequestClose={this.toggleLoginModal} />}
+          </NavBar>
+        )}
       </Query>
     )
   }

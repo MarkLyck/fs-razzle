@@ -9,12 +9,13 @@ class Field extends Component {
 
   onFocus = () => this.setState({ focused: true })
   onBlur = e => {
+    const { onBlur = () => {} } = this.props
     this.setState({ focused: false })
-    this.props.onBlur(e)
+    onBlur(e)
   }
 
   render() {
-    const { id, autoFocus, className, onChange, type, placeholder, required, label, inputState } = this.props
+    const { id, autoFocus, className, onChange = () => {}, type, placeholder, required, label, inputState } = this.props
     const { focused } = this.state
 
     return (
