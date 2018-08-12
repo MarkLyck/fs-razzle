@@ -9,9 +9,8 @@ import { hasStorage } from 'common/utils/featureTests'
 import Button from 'components/Button'
 import Signup from 'components/Dialogs/Signup'
 import Login from 'components/Dialogs/Login'
-import Logo from './logo_horizontal.svg'
 
-import { NavLinks, NavBar } from './styles'
+import { NavLinks, NavBar, Logo } from './styles'
 
 const LOGGED_IN_USER_QUERY = gql`
   query LoggedInUserQuery {
@@ -66,11 +65,7 @@ class Navbar extends Component {
       <Query query={LOGGED_IN_USER_QUERY}>
         {({ loading, error, data }) => (
           <NavBar position="fixed" color="default">
-            <span
-              dangerouslySetInnerHTML={{
-                __html: Logo,
-              }}
-            />
+            <Logo onClick={() => history.push('/')} />
             {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
             {showSignUpModal && <Signup history={history} onRequestClose={this.toggleSignupModal} />}
             {showLoginModal && <Login history={history} onRequestClose={this.toggleLoginModal} />}

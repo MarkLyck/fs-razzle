@@ -1,5 +1,23 @@
 import styled from 'react-emotion'
 
+export const Logo = styled.div`
+  background-image: url('/media/icons/logo_horizontal.svg');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+  width: 400px;
+  height: 32px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media (max-width: 540px) {
+    width: 40px;
+    background-image: url('/media/icons/flask.svg');
+  }
+`
+
 export const NavBar = styled.div`
   top: 0;
   left: auto;
