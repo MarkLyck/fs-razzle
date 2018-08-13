@@ -7,7 +7,7 @@ import theme from 'common/utils/theme'
 import Disclaimer from 'components/Legal/Disclaimer'
 import TermsOfService from 'components/Dialogs/TermsOfService'
 import Form, { Row, Field, ErrorMessage } from 'components/Form'
-import { nextBtnStyles } from '../../styles'
+import { FieldContainer } from './styles'
 
 const createOptions = () => ({
   style: {
@@ -107,41 +107,43 @@ class CheckoutForm extends Component {
         </Row>
 
         <Row>
-          <CardNumberElement
-            className={`input ${this.state.cardNumber} ${
-              cardNumberError && this.state.cardNumber !== 'empty' ? 'input-error' : ''
-            }`}
-            onBlur={() => this.handleBlur('cardNumber')}
-            onFocus={() => this.handleFocus('cardNumber')}
-            {...createOptions()}
-          />
-          <label htmlFor="card-number" className={`${cardNumberError && 'label-error'} `}>
-            Card number
-          </label>
-          <div className={`baseline baseline-${this.state.cardNumber}`} />
+          <FieldContainer>
+            <CardNumberElement
+              className={`input stripe-input ${this.state.cardNumber} ${
+                cardNumberError && this.state.cardNumber !== 'empty' ? 'input-error' : ''
+              }`}
+              onBlur={() => this.handleBlur('cardNumber')}
+              onFocus={() => this.handleFocus('cardNumber')}
+              {...createOptions()}
+            />
+            <label htmlFor="card-number" className={`${cardNumberError && 'label-error'} `}>
+              Card number
+            </label>
+            <div className={`baseline baseline-${this.state.cardNumber}`} />
+          </FieldContainer>
         </Row>
 
         <Row>
-          <div className="FieldContainer half-width">
+          <FieldContainer>
             <CardExpiryElement
-              className={`input ${this.state.cardExpiry}`}
+              className={`input stripe-input ${this.state.cardExpiry}`}
               onBlur={() => this.handleBlur('cardExpiry')}
               onFocus={() => this.handleFocus('cardExpiry')}
               {...createOptions()}
             />
             <label htmlFor="card-expiry">Expiration</label>
             <div className={`baseline baseline-${this.state.cardExpiry}`} />
-          </div>
-          <div className="FieldContainer half-width">
+          </FieldContainer>
+          <FieldContainer>
             <CardCVCElement
-              className={`input ${this.state.cardCVC}`}
+              className={`input stripe-input ${this.state.cardCVC}`}
               onBlur={() => this.handleBlur('cardCVC')}
               onFocus={() => this.handleFocus('cardCVC')}
               {...createOptions()}
             />
             <label htmlFor="card-cvc">CVC</label>
             <div className={`baseline baseline-${this.state.cardCVC}`} />
-          </div>
+          </FieldContainer>
         </Row>
 
         <div className="beside">
@@ -166,7 +168,7 @@ class CheckoutForm extends Component {
         ) : (
           ''
         )}
-        <Button color="primary" type="submit" style={nextBtnStyles}>
+        <Button color="primary" type="submit" variant="raised">
           {!submitting ? 'Try it free for 30 days' : 'submitting'}
         </Button>
         <Disclaimer className="disclaimer">
