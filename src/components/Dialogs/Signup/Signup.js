@@ -8,14 +8,16 @@ import { hasStorage } from 'common/utils/featureTests'
 import { getDeviceType } from 'common/utils/helpers'
 import AccountInfo from './AccountInfo'
 import BillingInfo from './BillingInfo'
+import { ModalContainer, ModalTitle } from '../styles'
 
-const createUser = gql`
+const CREATE_USER = gql`
   mutation(
     $email: String!
     $password: String!
     $name: String!
+    $plan: String!
     $type: String!
-    $cardToken: String!
+    $stripeToken: String!
     $address: Json!
     $location: Json!
     $device: Json!
@@ -23,8 +25,9 @@ const createUser = gql`
     createUser(
       authProvider: { email: { email: $email, password: $password } }
       name: $name
+      plan: $plan
       type: $type
-      cardToken: $cardToken
+      stripeToken: $stripeToken
       address: $address
       location: $location
       device: $device
@@ -45,11 +48,9 @@ const SIGNIN_USER_MUTATION = gql`
 class SignUp extends Component {
   state = {
     accountInfo: {},
-    page: 2,
+    page: 1,
     signupError: '',
   }
-
-  stripe = undefined
 
   nextPage = accountInfo => this.setState({ page: this.state.page + 1, accountInfo })
 
@@ -57,16 +58,17 @@ class SignUp extends Component {
     const { history, createUser, signinUser } = this.props
     const { accountInfo } = this.state
 
-    const type = 'trial'
+    console.log('accountInfo', accountInfo)
+
     const location = hasStorage && localStorage.getItem('location') ? JSON.parse(localStorage.getItem('location')) : {}
-    const plan =
-      hasStorage && localStorage.getItem('selectedPlan') ? JSON.parse(localStorage.getItem('selectedPlan')) : 'entry'
+    const plan = hasStorage && localStorage.getItem('selectedPlan') ? localStorage.getItem('selectedPlan') : 'ENTRY'
+    const type = plan === 'ENTRY' ? 'trial' : 'subscriber'
 
     createUser({
       variables: {
         email: accountInfo.email,
         password: accountInfo.password,
-        cardToken: token.id,
+        stripeToken: token.id,
         name,
         plan,
         type,
@@ -103,9 +105,10 @@ class SignUp extends Component {
   }
 
   render() {
-    // if (typeof window === 'undefined') return null
     const { page, accountInfo, signupError } = this.state
     const { onRequestClose } = this.props
+
+    console.log('state', this.state)
 
     const tax = accountInfo && accountInfo.selectedCountry ? accountInfo.selectedCountry.taxPercent : 0
 
@@ -127,21 +130,23 @@ class SignUp extends Component {
         `}
         css={`
           background: white;
-          width: 320px;
+          width: 360px;
           height: auto;
           outline: none;
           z-index: 11;
         `}
       >
-        {/* <DialogTitle>Sign up</DialogTitle> */}
-        {page === 1 && <AccountInfo nextPage={this.nextPage} />}
-        {page === 2 && <BillingInfo tax={tax} handleSignup={this.handleSignup} signupError={signupError} />}
+        <ModalContainer>
+          <ModalTitle>Sign up</ModalTitle>
+          {page === 1 && <AccountInfo nextPage={this.nextPage} />}
+          {page === 2 && <BillingInfo tax={tax} handleSignup={this.handleSignup} signupError={signupError} />}
+        </ModalContainer>
       </Modal>
     )
   }
 }
 
 export default compose(
-  graphql(createUser, { name: 'createUser' }),
+  graphql(CREATE_USER, { name: 'createUser' }),
   graphql(SIGNIN_USER_MUTATION, { name: 'signinUser' })
 )(SignUp)

@@ -7,5 +7,4 @@ export const dialogStyles = {
 export const nextBtnStyles = {
   marginTop: '8px',
   width: 'calc(100% - 30px)',
-  maxWidth: '320px',
 }

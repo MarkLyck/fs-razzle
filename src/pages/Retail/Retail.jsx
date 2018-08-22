@@ -4,7 +4,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import Script from 'react-load-script'
 import { planIds, marketIds } from 'common/constants'
-import { usingMocks } from 'common/utils/featureTests'
+import { hasStorage, usingMocks } from 'common/utils/featureTests'
 import mockData from 'common/mocks/RetailData.json'
 import HomeLoader from 'components/Loading/HomeLoader'
 import LoadingError from 'components/Error/LoadingError'
@@ -72,6 +72,10 @@ class Retail extends Component {
   amChartsSerialStatus = false
   amChartsThemeStatus = false
 
+  componentDidMount() {
+    hasStorage && localStorage.setItem('selectedPlan', 'ENTRY')
+  }
+
   areAllChartDependenciesLoaded = () => {
     if (this.state.amChartsCoreStatus && this.amChartsSerialStatus && this.amChartsThemeStatus) {
       this.setState({ amChartsLoaded: true })
@@ -98,7 +102,7 @@ class Retail extends Component {
     return (
       <Query query={GET_ENTRY_AND_MARKET_DATA}>
         {({ loading, error, data }) => {
-          console.log(usingMocks)
+          console.log('usingMocks', usingMocks)
           if (loading) return <HomeLoader />
           if (error && !usingMocks) return <LoadingError />
 

@@ -47,13 +47,6 @@ class CheckoutForm extends Component {
     showTerms: false,
   }
 
-  UNSAFE_componentWillReceiveProps(newProps) {
-    if (newProps.signupError) {
-      this.setState({ error: { message: newProps.signupError } })
-    }
-    return newProps
-  }
-
   setName = e => {
     e.preventDefault()
     this.name = e.target.value
@@ -75,21 +68,43 @@ class CheckoutForm extends Component {
 
   handleSubmit = ev => {
     ev.preventDefault()
+    console.log('handleSubmit')
     if (this.state.submitting) return null
+    console.log('not already submitting')
     if (!this.name) {
       this.setState({ submitting: false, error: { message: 'Please enter your full name' } })
       return null
     }
+    console.log('name exists')
 
     this.setState({ submitting: true, error: {} })
     this.props.stripe.createToken().then(payload => {
       if (payload.error) {
+        console.log('payload error')
         this.setState({ submitting: false, error: payload.error })
       } else {
+        console.log('handle signUp')
         this.props.handleSignup(this.name, payload)
       }
     })
     return ev
+  }
+
+  renderErrors() {
+    const { signupError } = this.props
+    const { error } = this.state
+
+    let signupErrorMessage = signupError
+
+    if (signupError.includes('User already exists with that information')) {
+      signupErrorMessage = 'A user with this email already exists.'
+    } else if (signupError.includes('GraphQL')) {
+      signupErrorMessage =
+        'Something went wrong trying to create your account. Please clear your browser history and try again.'
+    }
+
+    if (signupErrorMessage) return <ErrorMessage>{signupErrorMessage}</ErrorMessage>
+    else if (error.message) return <ErrorMessage>{error.message}</ErrorMessage>
   }
 
   toggleTerms = () => this.setState({ showTerms: !this.state.showTerms })
@@ -101,9 +116,9 @@ class CheckoutForm extends Component {
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        {error.message && <p message={error.message} />}
+        {this.renderErrors()}
         <Row>
-          <Field autoFocus id="name" name="name" label="Name" placeholder="John Doe" />
+          <Field autoFocus id="name" name="name" label="Name" placeholder="John Doe" onChange={this.setName} />
         </Row>
 
         <Row>

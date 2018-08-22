@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { DialogContent } from 'material-ui/Dialog'
 import { StripeProvider, Elements } from 'react-stripe-elements'
-import { dialogStyles } from '../styles'
 import CheckoutForm from './checkoutForm'
 
 class BillingInfo extends Component {
@@ -24,24 +22,15 @@ class BillingInfo extends Component {
 
   toggleTerms = () => this.setState({ termsIsVisible: !this.state.termsIsVisible })
 
-  renderTaxInfo = tax => (
-    <div>
-      <p>Tax</p>
-      <p>{tax}</p>
-    </div>
-  )
-
   render() {
     const { tax, handleSignup, signupError } = this.props
 
     return (
-      <DialogContent style={dialogStyles}>
-        <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
-          <Elements>
-            <CheckoutForm tax={tax} handleSignup={handleSignup} signupError={signupError} />
-          </Elements>
-        </StripeProvider>
-      </DialogContent>
+      <StripeProvider apiKey="pk_test_hh5vsZ7wNnMi80XJgzHVanEm">
+        <Elements>
+          <CheckoutForm tax={tax} handleSignup={handleSignup} signupError={signupError} />
+        </Elements>
+      </StripeProvider>
     )
   }
 }

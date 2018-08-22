@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Formik } from 'formik'
 import Form, { Field, Row, ErrorMessage } from 'components/Form'
 import Button from 'components/Button'
-import { ModalContainer, ModalTitle } from '../../styles'
 import CountrySelect from './CountrySelect'
 
 class AccountInfo extends Component {
@@ -31,10 +30,9 @@ class AccountInfo extends Component {
 
     if (this.state.country && this.state.country.taxPercent && !values.address)
       errors.address = 'Please enter your address'
-    else if (this.state.country && this.state.country.taxPercent && !values.city)
-      errors.address = 'Please enter your city'
+    else if (this.state.country && this.state.country.taxPercent && !values.city) errors.city = 'Please enter your city'
     else if (this.state.country && this.state.country.taxPercent && !values.postalCode)
-      errors.address = 'Please enter your postal Code'
+      errors.postalCode = 'Please enter your postal Code'
 
     return errors
   }
@@ -53,7 +51,6 @@ class AccountInfo extends Component {
   }
 
   renderFullAddress = (values, handleChange, handleBlur) => {
-    console.log(this.state.country)
     if (!this.state.country || !this.state.country.taxPercent) return null
 
     return (
@@ -95,63 +92,61 @@ class AccountInfo extends Component {
 
   render() {
     return (
-      <ModalContainer>
-        <ModalTitle>Sign up</ModalTitle>
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-            country: '',
-            city: '',
-            address: '',
-            postalCode: '',
-          }}
-          validate={this.validate}
-          onSubmit={(values, { setSubmitting }) => {
-            setSubmitting(false)
-            this.props.nextPage(values)
-          }}
-          render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-            <Form onSubmit={handleSubmit}>
-              {this.renderErrors(errors, touched)}
-              <Row>
-                <Field
-                  autoFocus
-                  id="email"
-                  type="email"
-                  name="email"
-                  label="email"
-                  placeholder="example@email.com"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                />
-              </Row>
-              <Row>
-                <Field
-                  id="password"
-                  type="password"
-                  name="password"
-                  label="password"
-                  placeholder="●●●●●●"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                />
-              </Row>
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+          country: '',
+          city: '',
+          address: '',
+          postalCode: '',
+        }}
+        validate={this.validate}
+        onSubmit={(values, { setSubmitting }) => {
+          setSubmitting(false)
+          values.country = this.state.country.label
+          this.props.nextPage(values)
+        }}
+        render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+          <Form onSubmit={handleSubmit}>
+            {this.renderErrors(errors, touched)}
+            <Row>
+              <Field
+                autoFocus
+                id="email"
+                type="email"
+                name="email"
+                label="email"
+                placeholder="example@email.com"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+            </Row>
+            <Row>
+              <Field
+                id="password"
+                type="password"
+                name="password"
+                label="password"
+                placeholder="●●●●●●"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+              />
+            </Row>
 
-              <Row>
-                <CountrySelect id="country=select" onChange={this.onCountryChange} onBlur={this.countrySelectBlur} />
-              </Row>
-              {this.renderFullAddress(values, handleChange, handleBlur)}
+            <Row>
+              <CountrySelect id="country=select" onChange={this.onCountryChange} onBlur={this.countrySelectBlur} />
+            </Row>
+            {this.renderFullAddress(values, handleChange, handleBlur)}
 
-              <Button className="submit-button" type="submit" variant="raised" disabled={isSubmitting}>
-                Next
-              </Button>
-            </Form>
-          )}
-        />
-      </ModalContainer>
+            <Button className="submit-button" type="submit" variant="raised" disabled={isSubmitting}>
+              Next
+            </Button>
+          </Form>
+        )}
+      />
     )
   }
 }
