@@ -27,6 +27,9 @@ export const CountrySelectContainer = styled.div`
         box-shadow: none;
       }
     }
+    &__menu {
+      z-index: 100;
+    }
   }
 
   .country-select-label {
