@@ -92,7 +92,7 @@ const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded })
     <GraphContainer>
       <Legends data-left={40}>
         <Legend color={theme.colors.primary}>
-          <p>{planName}</p>
+          <p className="plan-name">{planName}</p>
         </Legend>
         <Legend color={theme.colors.black}>
           <p>S&P 500</p>
