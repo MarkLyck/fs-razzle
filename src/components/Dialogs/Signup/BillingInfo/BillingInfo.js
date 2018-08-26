@@ -23,12 +23,20 @@ class BillingInfo extends Component {
   toggleTerms = () => this.setState({ termsIsVisible: !this.state.termsIsVisible })
 
   render() {
-    const { tax, handleSignup, signupError } = this.props
+    const { planPrice, taxPercent, handleSignup, signupError } = this.props
+
+    const taxAmount = planPrice * (taxPercent / 100)
 
     return (
       <StripeProvider apiKey="pk_test_hh5vsZ7wNnMi80XJgzHVanEm">
         <Elements>
-          <CheckoutForm tax={tax} handleSignup={handleSignup} signupError={signupError} />
+          <CheckoutForm
+            taxPercent={taxPercent}
+            taxAmount={taxAmount}
+            planPrice={planPrice}
+            handleSignup={handleSignup}
+            signupError={signupError}
+          />
         </Elements>
       </StripeProvider>
     )

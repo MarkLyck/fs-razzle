@@ -9,6 +9,8 @@ import mockData from 'common/mocks/RetailData.json'
 import HomeLoader from 'components/Loading/HomeLoader'
 import LoadingError from 'components/Error/LoadingError'
 import Navbar from 'components/Navbar/Retail'
+import Signup from 'components/Dialogs/Signup'
+import Login from 'components/Dialogs/Login'
 import Hero from './01_Hero'
 import Introduction from './02_Introduction'
 import WhatIsIt from './03_WhatIsIt'
@@ -67,6 +69,8 @@ class Retail extends Component {
     amChartsCoreStatus: false,
     amChartsLoaded: false,
     amChartsLoadingError: false,
+    signUpVisible: false,
+    loginVisible: false,
   }
 
   amChartsSerialStatus = false
@@ -95,9 +99,12 @@ class Retail extends Component {
     this.areAllChartDependenciesLoaded()
   }
 
+  toggleSignUpModal = () => this.setState(state => ({ signUpVisible: !state.signUpVisible }))
+  toggleLoginModal = () => this.setState(state => ({ loginVisible: !state.loginVisible }))
+
   render() {
     const { history } = this.props
-    const { amChartsLoaded, amChartsCoreStatus } = this.state
+    const { amChartsLoaded, amChartsCoreStatus, signUpVisible, loginVisible } = this.state
 
     return (
       <Query query={GET_ENTRY_AND_MARKET_DATA}>
@@ -121,7 +128,11 @@ class Retail extends Component {
 
           return (
             <div className="retail-page">
-              <Navbar history={history} />
+              <Navbar
+                history={history}
+                toggleSignUpModal={this.toggleSignUpModal}
+                toggleLoginModal={this.toggleLoginModal}
+              />
               <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
               <Introduction
                 portfolioReturn={portfolioReturn}
@@ -137,7 +148,7 @@ class Retail extends Component {
                 amChartsLoaded={amChartsLoaded}
               />
               <PerformanceMatters />
-              <FirstMonthOnUs />
+              <FirstMonthOnUs toggleSignUpModal={this.toggleSignUpModal} />
               <WhatToExpect latestSells={latestSells} />
               <PilotProgram />
               <LongTermPerformance
@@ -151,7 +162,7 @@ class Retail extends Component {
               <RiskManagement />
               <CorporateProfile />
               <IntendedAudience />
-              <ScrolledToBottom />
+              <ScrolledToBottom toggleSignUpModal={this.toggleSignUpModal} />
               <Footer />
 
               <Script url="https://www.amcharts.com/lib/3/amcharts.js" onLoad={this.onLoadAmChartsCore} />
@@ -162,6 +173,10 @@ class Retail extends Component {
                   <Script url="https://www.amcharts.com/lib/3/themes/light.js" onLoad={this.onLoadAmChartsTheme} />
                 </React.Fragment>
               ) : null}
+              {signUpVisible && (
+                <Signup history={history} onRequestClose={this.toggleSignUpModal} planPrice={plan.price} />
+              )}
+              {loginVisible && <Login history={history} onRequestClose={this.toggleLoginModal} />}
             </div>
           )
         }}

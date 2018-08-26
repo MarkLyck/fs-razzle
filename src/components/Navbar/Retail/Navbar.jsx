@@ -7,8 +7,6 @@ import { hasStorage } from 'common/utils/featureTests'
 
 // UI
 import Button from 'components/Button'
-import Signup from 'components/Dialogs/Signup'
-import Login from 'components/Dialogs/Login'
 
 import { NavLinks, NavBar, Logo } from './styles'
 
@@ -23,8 +21,6 @@ const LOGGED_IN_USER_QUERY = gql`
 class Navbar extends Component {
   state = {
     loggedIn: hasStorage && localStorage.getItem('graphcoolToken'),
-    showSignUpModal: false,
-    showLoginModal: false,
   }
 
   logout = () => {
@@ -32,23 +28,20 @@ class Navbar extends Component {
     this.setState({ loggedIn: false })
   }
 
-  toggleSignupModal = () => this.setState(state => ({ showSignUpModal: !state.showSignUpModal }))
-  toggleLoginModal = () => this.setState(state => ({ showLoginModal: !state.showLoginModal }))
-
   renderLoggedOutLinks = () => (
     <NavLinks>
-      <Button variant="raised" type="light" onClick={this.toggleLoginModal}>
+      <Button variant="raised" type="light" onClick={this.props.toggleLoginModal}>
         <FontAwesomeIcon icon="sign-in-alt" />Login
       </Button>
-      <Button variant="raised" background="primary" onClick={this.toggleSignupModal}>
+      <Button variant="raised" background="primary" onClick={this.props.toggleSignUpModal}>
         Sign up
       </Button>
     </NavLinks>
   )
 
-  renderLoggedInLinks = () => (
+  renderLoggedInLinks = history => (
     <NavLinks>
-      <Button variant="raised" onClick={() => {}}>
+      <Button variant="raised" onClick={() => history.push('/dashboard/portfolio')}>
         <FontAwesomeIcon icon="chart-line" />Dashboard
       </Button>
       <Button variant="raised" type="light" color="black" hoverColor="error" onClick={() => this.logout()}>
@@ -59,16 +52,14 @@ class Navbar extends Component {
 
   render() {
     const { history } = this.props
-    const { loggedIn, showSignUpModal, showLoginModal } = this.state
+    const { loggedIn } = this.state
 
     return (
       <Query query={LOGGED_IN_USER_QUERY}>
         {({ loading, error, data }) => (
           <NavBar position="fixed" color="default">
             <Logo onClick={() => history.push('/')} />
-            {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
-            {showSignUpModal && <Signup history={history} onRequestClose={this.toggleSignupModal} />}
-            {showLoginModal && <Login history={history} onRequestClose={this.toggleLoginModal} />}
+            {loggedIn ? this.renderLoggedInLinks(history) : this.renderLoggedOutLinks()}
           </NavBar>
         )}
       </Query>

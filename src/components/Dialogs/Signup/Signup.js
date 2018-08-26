@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import platform from 'platform'
 import gql from 'graphql-tag'
 import { graphql, compose } from 'react-apollo'
-import { css } from 'emotion'
 import Modal from 'react-modal'
 import { hasStorage } from 'common/utils/featureTests'
 import { getDeviceType } from 'common/utils/helpers'
 import AccountInfo from './AccountInfo'
 import BillingInfo from './BillingInfo'
+import { modalStyles, overlayClass } from './styles'
 import { ModalContainer, ModalTitle } from '../styles'
 
 const CREATE_USER = gql`
@@ -21,6 +21,7 @@ const CREATE_USER = gql`
     $address: Json!
     $location: Json!
     $device: Json!
+    $taxPercent: Float!
   ) {
     createUser(
       authProvider: { email: { email: $email, password: $password } }
@@ -31,6 +32,7 @@ const CREATE_USER = gql`
       address: $address
       location: $location
       device: $device
+      taxPercent: $taxPercent
     ) {
       id
     }
@@ -54,13 +56,12 @@ class SignUp extends Component {
 
   nextPage = accountInfo => this.setState({ page: this.state.page + 1, accountInfo })
 
-  handleSignup = (name, { token }) => {
+  handleSignup = (name, taxPercent, { token }) => {
     const { history, createUser, signinUser } = this.props
     const { accountInfo } = this.state
 
-    console.log('accountInfo', accountInfo)
-
-    const location = hasStorage && localStorage.getItem('location') ? JSON.parse(localStorage.getItem('location')) : {}
+    const location =
+      hasStorage && localStorage.getItem('location') ? JSON.parse(localStorage.getItem('location')) : null
     const plan = hasStorage && localStorage.getItem('selectedPlan') ? localStorage.getItem('selectedPlan') : 'ENTRY'
     const type = plan === 'ENTRY' ? 'trial' : 'subscriber'
 
@@ -73,6 +74,7 @@ class SignUp extends Component {
         plan,
         type,
         location,
+        taxPercent,
         address: {
           country: accountInfo.country,
           city: accountInfo.city,
@@ -106,40 +108,21 @@ class SignUp extends Component {
 
   render() {
     const { page, accountInfo, signupError } = this.state
-    const { onRequestClose } = this.props
-
-    console.log('state', this.state)
-
-    const tax = accountInfo && accountInfo.selectedCountry ? accountInfo.selectedCountry.taxPercent : 0
+    const { onRequestClose, planPrice } = this.props
 
     return (
-      <Modal
-        isOpen
-        onRequestClose={onRequestClose}
-        overlayClassName={css`
-          z-index: 10;
-          background rgba(0,0,0,0.5);
-          position: fixed;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        `}
-        css={`
-          background: white;
-          width: 360px;
-          height: auto;
-          outline: none;
-          z-index: 11;
-        `}
-      >
+      <Modal isOpen onRequestClose={onRequestClose} overlayClassName={overlayClass} css={modalStyles}>
         <ModalContainer>
           <ModalTitle>Sign up</ModalTitle>
           {page === 1 && <AccountInfo nextPage={this.nextPage} />}
-          {page === 2 && <BillingInfo tax={tax} handleSignup={this.handleSignup} signupError={signupError} />}
+          {page === 2 && (
+            <BillingInfo
+              taxPercent={accountInfo.taxPercent}
+              handleSignup={this.handleSignup}
+              signupError={signupError}
+              planPrice={planPrice}
+            />
+          )}
         </ModalContainer>
       </Modal>
     )

@@ -105,6 +105,7 @@ class AccountInfo extends Component {
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(false)
           values.country = this.state.country.label
+          values.taxPercent = this.state.country.taxPercent || 0
           this.props.nextPage(values)
         }}
         render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (

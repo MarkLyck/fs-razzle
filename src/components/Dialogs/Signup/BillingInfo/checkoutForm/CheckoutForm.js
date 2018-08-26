@@ -1,6 +1,6 @@
-// CardSection.js
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'components/Button'
 import { injectStripe, CardNumberElement, CardExpiryElement, CardCVCElement } from 'react-stripe-elements'
 import theme from 'common/utils/theme'
@@ -47,6 +47,11 @@ class CheckoutForm extends Component {
     showTerms: false,
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.signupError) return { submitting: false }
+    return {}
+  }
+
   setName = e => {
     e.preventDefault()
     this.name = e.target.value
@@ -66,28 +71,26 @@ class CheckoutForm extends Component {
     this.setState(newState)
   }
 
-  handleSubmit = ev => {
-    ev.preventDefault()
-    console.log('handleSubmit')
-    if (this.state.submitting) return null
-    console.log('not already submitting')
+  handleSubmit = e => {
+    e.preventDefault()
+    const { submitting } = this.state
+    const { stripe, taxPercent, handleSignup } = this.props
+
+    if (submitting) return null
     if (!this.name) {
       this.setState({ submitting: false, error: { message: 'Please enter your full name' } })
       return null
     }
-    console.log('name exists')
 
     this.setState({ submitting: true, error: {} })
-    this.props.stripe.createToken().then(payload => {
+    stripe.createToken().then(payload => {
       if (payload.error) {
-        console.log('payload error')
         this.setState({ submitting: false, error: payload.error })
       } else {
-        console.log('handle signUp')
-        this.props.handleSignup(this.name, payload)
+        handleSignup(this.name, taxPercent, payload)
       }
     })
-    return ev
+    return e
   }
 
   renderErrors() {
@@ -111,7 +114,7 @@ class CheckoutForm extends Component {
 
   render() {
     const { error, submitting, showTerms } = this.state
-    const { tax } = this.props
+    const { planPrice, taxAmount, taxPercent } = this.props
     const cardNumberError = error.message && error.message.indexOf('number') > -1
 
     return (
@@ -163,28 +166,28 @@ class CheckoutForm extends Component {
 
         <div className="beside">
           <p className="description">Price:</p>
-          <p className={`price ${!tax ? 'semi-bold' : ''}`}>
-            ${50} {!tax ? 'monthly' : ''}
+          <p className={`price ${!taxAmount && 'semi-bold'}`}>
+            ${planPrice} {!taxAmount && 'monthly'}
           </p>
         </div>
-        {tax ? (
-          <div className="beside">
-            <p className="description">VAT Tax:</p>
-            <p className="price">${tax}</p>
-          </div>
-        ) : (
-          ''
+        {taxPercent && (
+          <React.Fragment>
+            <div className="beside">
+              <p className="description">{taxPercent}% VAT Tax:</p>
+              <p className="price">${taxAmount.toFixed(2)}</p>
+            </div>
+            <div className="beside">
+              <p className="price semi-bold">Total price after 30 days:</p>
+              <p className="price semi-bold">${(planPrice + taxAmount).toFixed(2)} / m</p>
+            </div>
+          </React.Fragment>
         )}
-        {tax ? (
-          <div className="beside">
-            <p className="price semi-bold">Total price after 30 days:</p>
-            <p className="price semi-bold">${50 + tax} / m</p>
-          </div>
-        ) : (
-          ''
-        )}
-        <Button color="primary" type="submit" variant="raised">
-          {!submitting ? 'Try it free for 30 days' : 'submitting'}
+        <Button color="primary" type="submit" variant="raised" disabled={submitting}>
+          {!submitting ? (
+            'Try it free for 30 days'
+          ) : (
+            <FontAwesomeIcon icon="spinner-third" spin style={{ fontSize: '1.25rem' }} />
+          )}
         </Button>
         <Disclaimer className="disclaimer">
           By signing up you agree to our{' '}
@@ -200,7 +203,9 @@ class CheckoutForm extends Component {
 
 CheckoutForm.propTypes = {
   stripe: PropTypes.object,
-  tax: PropTypes.number,
+  taxAmount: PropTypes.number,
+  taxPercent: PropTypes.number,
+  planPrice: PropTypes.number,
   handleSignup: PropTypes.func,
 }
 
