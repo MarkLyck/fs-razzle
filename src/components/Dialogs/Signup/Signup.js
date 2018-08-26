@@ -7,8 +7,7 @@ import { hasStorage } from 'common/utils/featureTests'
 import { getDeviceType } from 'common/utils/helpers'
 import AccountInfo from './AccountInfo'
 import BillingInfo from './BillingInfo'
-import { modalStyles, overlayClass } from './styles'
-import { ModalContainer, ModalTitle } from '../styles'
+import { ModalContainer, ModalTitle, modalStyles, overlayClass } from '../styles'
 
 const CREATE_USER = gql`
   mutation(

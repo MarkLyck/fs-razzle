@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'emotion'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import Modal from 'react-modal'
-import { ModalContainer, ModalTitle } from '../styles'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ModalContainer, ModalTitle, overlayClass, modalStyles } from '../styles'
 import { Formik } from 'formik'
 import Form, { Row, Field, ErrorMessage } from 'components/Form'
 import Button from 'components/Button'
@@ -65,29 +65,7 @@ class Login extends Component {
     const { onRequestClose } = this.props
 
     return (
-      <Modal
-        isOpen
-        onRequestClose={onRequestClose}
-        overlayClassName={css`
-          z-index: 10;
-          background rgba(0,0,0,0.5);
-          position: fixed;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        `}
-        css={`
-          background: white;
-          width: 320px;
-          height: auto;
-          outline: none;
-          z-index: 11;
-        `}
-      >
+      <Modal isOpen onRequestClose={onRequestClose} overlayClassName={overlayClass} css={modalStyles}>
         <ModalContainer>
           <ModalTitle>Login</ModalTitle>
           <Formik
@@ -126,7 +104,11 @@ class Login extends Component {
                   />
                 </Row>
                 <Button type="submit" color="primary" variant="raised" disabled={isSubmitting}>
-                  login
+                  {isSubmitting ? (
+                    <FontAwesomeIcon icon="spinner-third" spin style={{ fontSize: '1.25rem' }} />
+                  ) : (
+                    'Login'
+                  )}
                 </Button>
               </Form>
             )}
