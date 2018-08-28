@@ -19,6 +19,8 @@ const AUTHENTICATE_EMAIL_USER = gql`
 `
 
 class Login extends Component {
+  emailValueHasChanged = false
+
   validate = values => {
     let errors = {}
     if (!values.email) {
@@ -57,7 +59,7 @@ class Login extends Component {
     let errorText = ''
 
     if (touched.password && errors.password) errorText = errors.password
-    if (touched.email && errors.email) errorText = errors.email
+    if (touched.email && errors.email && (this.emailValueHasChanged || touched.password)) errorText = errors.email
 
     return errorText ? <ErrorMessage>{errorText}</ErrorMessage> : null
   }
@@ -87,7 +89,10 @@ class Login extends Component {
                     name="email"
                     label="email"
                     placeholder="example@email.com"
-                    onChange={handleChange}
+                    onChange={e => {
+                      handleChange(e)
+                      this.emailValueHasChanged = true
+                    }}
                     onBlur={handleBlur}
                     value={values.email}
                   />

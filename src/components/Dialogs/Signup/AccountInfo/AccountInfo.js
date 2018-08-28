@@ -11,6 +11,8 @@ class AccountInfo extends Component {
     countryTouched: false,
   }
 
+  emailValueHasChanged = false
+
   countrySelectBlur = () => this.setState({ countryTouched: true })
   onCountryChange = country => this.setState({ country })
 
@@ -45,7 +47,7 @@ class AccountInfo extends Component {
     if (this.state.country.taxPercent && touched.postalCode && errors.postalCode) errorText = errors.postalCode
     if (this.state.countryTouched && !this.state.country) errorText = 'Please choose your country'
     if (touched.password && errors.password) errorText = errors.password
-    if (touched.email && errors.email) errorText = errors.email
+    if (touched.email && errors.email && (this.emailValueHasChanged || touched.password)) errorText = errors.email
 
     return errorText ? <ErrorMessage>{errorText}</ErrorMessage> : null
   }
@@ -119,7 +121,10 @@ class AccountInfo extends Component {
                 name="email"
                 label="email"
                 placeholder="example@email.com"
-                onChange={handleChange}
+                onChange={e => {
+                  handleChange(e)
+                  this.emailValueHasChanged = true
+                }}
                 onBlur={handleBlur}
                 value={values.email}
               />
