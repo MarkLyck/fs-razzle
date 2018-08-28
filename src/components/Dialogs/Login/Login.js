@@ -4,9 +4,10 @@ import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import Modal from 'react-modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ModalContainer, ModalTitle, overlayClass, modalStyles } from '../styles'
+import { ModalContainer, overlayClass, modalStyles } from '../styles'
 import { Formik } from 'formik'
 import Form, { Row, Field, ErrorMessage } from 'components/Form'
+import ModalHeader from 'components/Dialogs/ModalHeader'
 import Button from 'components/Button'
 
 const AUTHENTICATE_EMAIL_USER = gql`
@@ -67,7 +68,7 @@ class Login extends Component {
     return (
       <Modal isOpen onRequestClose={onRequestClose} overlayClassName={overlayClass} css={modalStyles}>
         <ModalContainer>
-          <ModalTitle>Login</ModalTitle>
+          <ModalHeader title="Login" toggleModal={onRequestClose} />
           <Formik
             initialValues={{
               email: '',

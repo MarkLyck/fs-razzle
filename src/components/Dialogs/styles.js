@@ -9,12 +9,6 @@ export const ModalContainer = styled.div`
   }
 `
 
-export const ModalTitle = styled.h3`
-  padding: 0 16px 16px;
-  font-size: 24px;
-  font-weight: 600;
-`
-
 export const modalStyles = `
   background: white;
   width: 360px;

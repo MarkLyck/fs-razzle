@@ -5,9 +5,10 @@ import { graphql, compose } from 'react-apollo'
 import Modal from 'react-modal'
 import { hasStorage } from 'common/utils/featureTests'
 import { getDeviceType } from 'common/utils/helpers'
+import ModalHeader from 'components/Dialogs/ModalHeader'
 import AccountInfo from './AccountInfo'
 import BillingInfo from './BillingInfo'
-import { ModalContainer, ModalTitle, modalStyles, overlayClass } from '../styles'
+import { ModalContainer, modalStyles, overlayClass } from '../styles'
 
 const CREATE_USER = gql`
   mutation(
@@ -112,7 +113,7 @@ class SignUp extends Component {
     return (
       <Modal isOpen onRequestClose={onRequestClose} overlayClassName={overlayClass} css={modalStyles}>
         <ModalContainer>
-          <ModalTitle>Sign up</ModalTitle>
+          <ModalHeader title="Sign up" toggleModal={onRequestClose} />
           {page === 1 && <AccountInfo nextPage={this.nextPage} />}
           {page === 2 && (
             <BillingInfo
