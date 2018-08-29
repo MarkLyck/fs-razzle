@@ -21,7 +21,7 @@ export default styled.form`
   overflow: visible;
   padding: 0 16px;
 
-  .field {
+  ${'' /* .field {
     width: 100%;
 
     &--focused {
@@ -135,10 +135,7 @@ export default styled.form`
 
   .input.invalid + label {
     color: ${props => props.theme.colors.warning};
-  }
-
-  input,
-  button {
+  } */} button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -156,8 +153,7 @@ export default styled.form`
     background: transparent !important;
   }
 
-  input,
-  button {
+  ${'' /* input, */} button {
     -webkit-animation: 1ms void-animation-out;
   }
 
@@ -165,7 +161,7 @@ export default styled.form`
     display: block;
     width: 100%;
     height: 40px;
-    margin: 16px 15px 0;
+    margin: 8px 16px 0;
     background-color: ${props => props.theme.colors.primary};
     border-radius: 4px;
     color: #fff;

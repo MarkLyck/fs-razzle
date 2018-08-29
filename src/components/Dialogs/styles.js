@@ -5,7 +5,7 @@ export const ModalContainer = styled.div`
   padding: 24px 16px;
 
   .submit-button {
-    margin: 16px 0;
+    margin: 8px 0 16px;
   }
 `
 

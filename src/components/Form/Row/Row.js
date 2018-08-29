@@ -5,7 +5,7 @@ export default styled.div`
   margin: 0 5px 10px;
   width: 100%;
 
-  .field:nth-child(2) {
+  .field:nth-child(3) {
     margin-left: 16px;
   }
 `

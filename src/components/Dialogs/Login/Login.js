@@ -88,6 +88,7 @@ class Login extends Component {
                     type="email"
                     name="email"
                     label="email"
+                    icon="envelope"
                     placeholder="example@email.com"
                     onChange={e => {
                       handleChange(e)
@@ -103,6 +104,7 @@ class Login extends Component {
                     type="password"
                     name="password"
                     label="password"
+                    icon={['far', 'lock-alt']}
                     placeholder="●●●●●●"
                     onChange={handleChange}
                     onBlur={handleBlur}

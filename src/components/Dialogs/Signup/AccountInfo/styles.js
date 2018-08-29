@@ -17,27 +17,16 @@ export const CountrySelectContainer = styled.div`
     }
     &__control {
       background: none;
-      border: none;
-      border-bottom: 1px solid #cfd7df;
-      border-radius: 0;
-
-      &--is-focused {
-        border: none;
-        border-bottom: 1px solid ${props => props.theme.colors.primary};
-        box-shadow: none;
-      }
+      border: 1px solid #dedede;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 0.9rem;
+      padding: 8px;
+      outline: none;
+      width: 100%;
     }
     &__menu {
       z-index: 100;
     }
-  }
-
-  .country-select-label {
-    position: relative;
-    bottom: 0;
-    color: hsl(0, 0%, 50%);
-    font-family: Quicksand, Open Sans, Segoe UI, sans-serif;
-    font-size: 13px;
-    font-weight: 500;
   }
 `
