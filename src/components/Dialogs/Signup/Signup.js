@@ -50,7 +50,7 @@ const SIGNIN_USER_MUTATION = gql`
 class SignUp extends Component {
   state = {
     accountInfo: {},
-    page: 2,
+    page: 1,
     signupError: '',
   }
 
