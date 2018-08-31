@@ -1,13 +1,12 @@
 import React from 'react'
 import Select from 'react-select'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import countries from 'common/data/countries'
 import { CountrySelectContainer } from './styles'
 
 const CountrySelect = ({ onChange, onBlur }) => (
   <CountrySelectContainer onBlur={onBlur}>
-    {/* <label className="country-select-label" htmlFor={'country-select'}>
-      country
-    </label> */}
+    <FontAwesomeIcon className="globe" icon="globe-americas" />
     <Select
       placeholder="Select Country"
       id="country-select"

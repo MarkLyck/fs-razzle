@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { FieldContainer } from './styles'
+import { FieldContainer, Icon, Input } from './styles'
 
 class Field extends Component {
   state = {
@@ -15,15 +15,27 @@ class Field extends Component {
   }
 
   render() {
-    const { id, autoFocus, className, onChange = () => {}, type, placeholder, required, label, inputState } = this.props
+    const {
+      id,
+      className = '',
+      autoFocus,
+      icon,
+      onChange = () => {},
+      type,
+      placeholder,
+      required,
+      // label,
+      inputState,
+    } = this.props
     const { focused } = this.state
 
     return (
-      <FieldContainer className={`field ${focused ? 'field--focused' : ''}`}>
-        <input
+      <FieldContainer className={`field ${className} ${focused ? 'field--focused' : ''}`}>
+        {icon && <Icon icon={icon} />}
+        <Input
           id={id}
           autoFocus={autoFocus}
-          className={`input field ${className}`}
+          className={`input field ${inputState} ${icon ? 'with-icon' : ''}`}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           onChange={onChange}
@@ -31,8 +43,6 @@ class Field extends Component {
           placeholder={placeholder}
           required={required}
         />
-        <label htmlFor={id}>{label}</label>
-        <div className={`baseline baseline-${inputState}`} />
       </FieldContainer>
     )
   }

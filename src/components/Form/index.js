@@ -1,10 +1,8 @@
-// import InputField from './Field'
-import InputFieldRound from './FieldRound'
+import InputField from './Field'
 import RowContainer from './Row'
 import Error from './ErrorMessage'
 
-// export const Field = InputField
-export const Field = InputFieldRound
+export const Field = InputField
 export const Row = RowContainer
 export const ErrorMessage = Error
 

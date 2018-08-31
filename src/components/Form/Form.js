@@ -21,121 +21,7 @@ export default styled.form`
   overflow: visible;
   padding: 0 16px;
 
-  ${'' /* .field {
-    width: 100%;
-
-    &--focused {
-      label {
-        color: ${props => props.theme.colors.primary};
-      }
-      .baseline {
-        background: ${props => props.theme.colors.primary};
-      }
-    }
-  }
-
-  .field.half-width {
-    width: 50%;
-  }
-
-  .field.quarter-width {
-    width: calc(25% - 10px);
-  }
-
-  .baseline {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    left: 0;
-    bottom: 0;
-    background-color: #cfd7df;
-    transition: background-color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-
-  label {
-    position: absolute;
-    width: 100%;
-    left: 8px;
-    bottom: 8px;
-    z-index: 0;
-    color: hsl(0, 0%, 50%);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    transform-origin: 0 50%;
-    cursor: text;
-    transition-property: color, transform;
-    transition-duration: 0.3s;
-    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-
-  .input {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    z-index: 1;
-    padding-bottom: 7px;
-    padding-left: 8px;
-    font-size: 16px;
-    color: #32325d;
-    background-color: transparent;
-  }
-
-  .input::-webkit-input-placeholder {
-    color: transparent;
-    transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-
-  .input::-moz-placeholder {
-    color: transparent;
-    transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-
-  .input:-ms-input-placeholder {
-    color: transparent;
-    transition: color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-
-  .input.StripeElement {
-    opacity: 0;
-    transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-    will-change: opacity;
-  }
-
-  .input.focused,
-  .input:not(.empty) {
-    opacity: 1;
-  }
-
-  .input.focused::-webkit-input-placeholder,
-  .input:not(.empty)::-webkit-input-placeholder {
-    color: hsl(0, 0%, 50%);
-  }
-
-  .input.focused::-moz-placeholder,
-  .input:not(.empty)::-moz-placeholder {
-    color: hsl(0, 0%, 50%);
-  }
-
-  .input.focused:-ms-input-placeholder,
-  .input:not(.empty):-ms-input-placeholder {
-    color: hsl(0, 0%, 50%);
-  }
-
-  .input.focused + label,
-  .input:not(.empty) + label {
-    transform: scale(0.85) translateY(-25px);
-    cursor: default;
-  }
-
-  .input.focused + label {
-    color: ${props => props.theme.colors.primary};
-  }
-
-  .input.invalid + label {
-    color: ${props => props.theme.colors.warning};
-  } */} button {
+  button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -153,7 +39,18 @@ export default styled.form`
     background: transparent !important;
   }
 
-  ${'' /* input, */} button {
+  .stripe-input {
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    padding: 16px;
+    outline: none;
+    width: 100%;
+  }
+
+  button {
     -webkit-animation: 1ms void-animation-out;
   }
 

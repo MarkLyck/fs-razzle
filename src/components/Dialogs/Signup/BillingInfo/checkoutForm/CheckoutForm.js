@@ -121,11 +121,20 @@ class CheckoutForm extends Component {
       <Form onSubmit={this.handleSubmit}>
         {this.renderErrors()}
         <Row>
-          <Field autoFocus id="name" name="name" label="Name" placeholder="John Doe" onChange={this.setName} />
+          <Field
+            autoFocus
+            id="name"
+            name="name"
+            label="Name"
+            placeholder="John Doe"
+            icon="user"
+            onChange={this.setName}
+          />
         </Row>
 
         <Row>
           <FieldContainer>
+            <FontAwesomeIcon icon="credit-card" />
             <CardNumberElement
               className={`input stripe-input ${this.state.cardNumber} ${
                 cardNumberError && this.state.cardNumber !== 'empty' ? 'input-error' : ''
@@ -134,33 +143,28 @@ class CheckoutForm extends Component {
               onFocus={() => this.handleFocus('cardNumber')}
               {...createOptions()}
             />
-            <label htmlFor="card-number" className={`${cardNumberError && 'label-error'} `}>
-              Card number
-            </label>
             <div className={`baseline baseline-${this.state.cardNumber}`} />
           </FieldContainer>
         </Row>
 
         <Row>
           <FieldContainer>
+            <FontAwesomeIcon icon="calendar-times" />
             <CardExpiryElement
               className={`input stripe-input ${this.state.cardExpiry}`}
               onBlur={() => this.handleBlur('cardExpiry')}
               onFocus={() => this.handleFocus('cardExpiry')}
               {...createOptions()}
             />
-            <label htmlFor="card-expiry">Expiration</label>
-            <div className={`baseline baseline-${this.state.cardExpiry}`} />
           </FieldContainer>
           <FieldContainer>
+            <FontAwesomeIcon icon={['far', 'lock-alt']} />
             <CardCVCElement
               className={`input stripe-input ${this.state.cardCVC}`}
               onBlur={() => this.handleBlur('cardCVC')}
               onFocus={() => this.handleFocus('cardCVC')}
               {...createOptions()}
             />
-            <label htmlFor="card-cvc">CVC</label>
-            <div className={`baseline baseline-${this.state.cardCVC}`} />
           </FieldContainer>
         </Row>
 

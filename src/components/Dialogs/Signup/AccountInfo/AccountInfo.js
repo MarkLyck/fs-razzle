@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import Form, { Field, Row, ErrorMessage } from 'components/Form'
 import Button from 'components/Button'
 import CountrySelect from './CountrySelect'
+import { css } from 'emotion'
 
 class AccountInfo extends Component {
   state = {
@@ -63,6 +64,7 @@ class AccountInfo extends Component {
             name="address"
             label="Street address"
             placeholder="Wallstreet 14"
+            icon="home"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.address}
@@ -74,6 +76,10 @@ class AccountInfo extends Component {
             name="city"
             label="City"
             placeholder="New York"
+            icon="city"
+            className={css`
+              margin-right: 8px;
+            `}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.city}
@@ -83,6 +89,10 @@ class AccountInfo extends Component {
             name="postalCode"
             label="Postal code"
             placeholder="10075"
+            icon="map"
+            className={css`
+              margin-left: 8px;
+            `}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.postalCode}
