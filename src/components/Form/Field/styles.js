@@ -28,4 +28,15 @@ export const Input = styled.input`
   padding: 16px;
   outline: none;
   width: 100%;
+
+  &:hover {
+    border-color: hsl(0, 0%, 70%);
+    &:focus {
+      box-shadow: 0 0 0 1px ${props => props.theme.colors.primary};
+    }
+  }
+
+  &:focus {
+    border-color: ${props => props.theme.colors.primary};
+  }
 `

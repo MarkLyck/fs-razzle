@@ -147,7 +147,7 @@ class CheckoutForm extends Component {
           </FieldContainer>
         </Row>
 
-        <Row>
+        <Row style={{ marginBottom: '24px' }}>
           <FieldContainer>
             <FontAwesomeIcon icon="calendar-times" />
             <CardExpiryElement
@@ -169,7 +169,7 @@ class CheckoutForm extends Component {
         </Row>
 
         <div className="beside">
-          <p className="description">Price:</p>
+          <p className="description">Price after 30 days:</p>
           <p className={`price ${!taxAmount && 'semi-bold'}`}>
             ${planPrice} {!taxAmount && 'monthly'}
           </p>
@@ -186,7 +186,7 @@ class CheckoutForm extends Component {
             </div>
           </React.Fragment>
         )}
-        <Button color="primary" type="submit" variant="raised" disabled={submitting}>
+        <Button color="primary" type="submit" variant="raised" disabled={submitting} style={{ marginTop: '16px' }}>
           {!submitting ? (
             'Try it free for 30 days'
           ) : (

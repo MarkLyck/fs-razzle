@@ -16,6 +16,7 @@ export const FieldContainer = styled.div`
   .stripe-input {
     padding-left: 40px;
     &:hover {
+      border-color: hsl(0, 0%, 70%);
       cursor: text;
     }
   }
