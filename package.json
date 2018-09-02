@@ -20,6 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.1.2",
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
+    "apollo-link-context": "^1.0.8",
     "apollo-link-http": "^1.5.4",
     "autosuggest-highlight": "^3.1.1",
     "draft-js": "^0.10.5",

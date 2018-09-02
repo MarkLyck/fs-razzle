@@ -6,6 +6,7 @@ import Switch from 'react-router-dom/Switch'
 // eslint-disable-next-line
 import fetch from 'isomorphic-fetch'
 import { ApolloClient } from 'apollo-client'
+import { setContext } from 'apollo-link-context'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
@@ -34,9 +35,23 @@ import AdminUsers from 'pages/Dashboard/Admin/Users'
 import AdminAPI from 'pages/Dashboard/Admin/API'
 import AdminNewArticle from 'pages/Dashboard/Admin/NewArticle'
 
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('graphcoolToken')
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  }
+})
+
+const httpLink = new HttpLink({ uri: graphCoolEndpoint })
+
 // Setup
 const client = new ApolloClient({
-  link: new HttpLink({ uri: graphCoolEndpoint }),
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 })
 

@@ -35,7 +35,7 @@
                     "@fortawesome/pro-solid-svg-icons/faImage": "./src/media/faIcons/faImage",
                     "@fortawesome/pro-solid-svg-icons/faListUl": "./src/media/faIcons/faListUl",
                     "@fortawesome/pro-regular-svg-icons/faLockAlt": "./src/media/faIcons/faLockAlt",
-                    "@fortawesome/pro-regular-svg-icons/faMap": "./src/media/faIcons/faMap",
+                    "@fortawesome/pro-solid-svg-icons/faMap": "./src/media/faIcons/faMap",
                     "@fortawesome/pro-solid-svg-icons/faNewspaper": "./src/media/faIcons/faNewspaper",
                     "@fortawesome/pro-solid-svg-icons/faQuestionCircle": "./src/media/faIcons/faQuestionCircle",
                     "@fortawesome/pro-solid-svg-icons/faSignInAlt": "./src/media/faIcons/faSignInAlt",
