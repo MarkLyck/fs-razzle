@@ -50,7 +50,7 @@ const authLink = setContext((_, { headers }) => {
 const httpLink = new HttpLink({ uri: graphCoolEndpoint })
 
 // Setup
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 })

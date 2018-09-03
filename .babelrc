@@ -15,6 +15,7 @@
                     "./src"
                 ],
                 "alias": {
+                    "src": "./src",
                     "common": "./src/common",
                     "components": "./src/components",
                     "pages": "./src/pages",
