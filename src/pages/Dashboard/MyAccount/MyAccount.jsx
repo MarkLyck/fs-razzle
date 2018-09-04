@@ -1,25 +1,18 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
-import { Query } from 'react-apollo'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Query, Mutation } from 'react-apollo'
 import withDashboard from 'components/withDashboard'
 import GenericLoader from 'components/Loading/Generic'
 import LoadingError from 'components/Error/LoadingError'
-import Button from 'components/Button'
-import { client } from 'src/App'
+import ChangePlan from './ChangePlan'
+import CancelSubscription from './CancelSubscription'
+import ReactivateSubscription from './ReactivateSubscription'
 import { MyAccountContainer, Title } from './styles'
 
 const GET_LOGGED_IN_USER = gql`
   query {
     loggedInUser {
       id
-    }
-  }
-`
-
-const GET_USER_DETAILS = gql`
-  query getUser($userID: ID!) {
-    User(id: $userID) {
       name
       email
       plan
@@ -28,42 +21,33 @@ const GET_USER_DETAILS = gql`
   }
 `
 
-const CANCEL_SUBSCRIPTION = gql`
-  query getUser($subID: String!) {
-    cancelSubscription(subID: $subID) {
-      success
-      error
+export const UPDATE_USER = gql`
+  mutation updateUser($id: ID!, $stripeSubscription: Json) {
+    updateUser(id: $id, stripeSubscription: $stripeSubscription) {
+      id
+      name
+      email
+      plan
+      stripeSubscription
     }
   }
 `
 
 class MyAccount extends Component {
-  cancelSubscription = async stripeSubscription => {
-    const subID = stripeSubscription.id
-    console.log('cancelling subscription', subID)
-
-    const { data } = await client.query({
-      query: CANCEL_SUBSCRIPTION,
-      variables: { subID },
-    })
-    console.log('status', data)
-  }
-
   render() {
     return (
       <Query query={GET_LOGGED_IN_USER}>
         {({ loading, error, data }) => {
           if (loading) return <GenericLoader />
-          if (error) return <LoadingError />
-          const { loggedInUser } = data
+          if (error) return <LoadingError error={error} />
+          let User = data.loggedInUser
 
           return (
-            <Query query={GET_USER_DETAILS} variables={{ userID: loggedInUser.id }}>
-              {({ loading, error, data }) => {
-                if (loading) return <GenericLoader />
-                if (error) return <LoadingError />
-
-                const { User } = data
+            <Mutation mutation={UPDATE_USER}>
+              {(updateUser, { data }) => {
+                if (data) {
+                  User = data.updateUser
+                }
 
                 return (
                   <div>
@@ -75,22 +59,21 @@ class MyAccount extends Component {
                         <h4 className="user-info user-plan">{User.plan.toLowerCase()} Model</h4>
                       </div>
                     </MyAccountContainer>
-                    <Button
-                      variant="raised"
-                      type="light"
-                      color="error"
-                      background="white"
-                      hoverColor="error"
-                      style={{ margin: '0 auto' }}
-                      onClick={() => this.cancelSubscription(User.stripeSubscription)}
-                    >
-                      <FontAwesomeIcon icon={['far', 'times']} />
-                      Cancel subscription
-                    </Button>
+                    <ChangePlan currentPlan={User.plan} />
+                    <CancelSubscription
+                      stripeSubscription={User.stripeSubscription}
+                      updateUser={updateUser}
+                      userID={User.id}
+                    />
+                    <ReactivateSubscription
+                      stripeSubscription={User.stripeSubscription}
+                      updateUser={updateUser}
+                      userID={User.id}
+                    />
                   </div>
                 )
               }}
-            </Query>
+            </Mutation>
           )
         }}
       </Query>

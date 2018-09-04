@@ -45,7 +45,10 @@ class Suggestion extends Component {
                   Details
                 </Button>
               ) : (
-                [<Placeholder />, <Placeholder />]
+                [
+                  <Placeholder key={suggestion.ticker + 'place-1'} />,
+                  <Placeholder key={suggestion.ticker + 'place-2'} />,
+                ]
               )}
             </StockInfoList>
             <StockChart
