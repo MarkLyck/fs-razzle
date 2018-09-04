@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 export const MyAccountContainer = styled.div`
   margin: 32px auto;
   padding: 24px;
-  max-width: 480px;
+  max-width: 400px;
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
   box-sizing: border-box;
@@ -19,7 +19,8 @@ export const MyAccountContainer = styled.div`
 `
 
 export const Title = styled.h3`
-  font-weight: bold;
+  font-weight: 100;
   font-size: 1.2rem;
   margin-bottom: 16px;
+  color: ${props => props.theme.colors.gray};
 `

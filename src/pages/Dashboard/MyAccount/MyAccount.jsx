@@ -16,14 +16,16 @@ const GET_LOGGED_IN_USER = gql`
       name
       email
       plan
+      stripeCustomer
       stripeSubscription
+      taxPercent
     }
   }
 `
 
 export const UPDATE_USER = gql`
-  mutation updateUser($id: ID!, $stripeSubscription: Json) {
-    updateUser(id: $id, stripeSubscription: $stripeSubscription) {
+  mutation updateUser($id: ID!, $stripeSubscription: Json, $plan: String, $type: String) {
+    updateUser(id: $id, stripeSubscription: $stripeSubscription, plan: $plan, type: $type) {
       id
       name
       email
@@ -37,7 +39,7 @@ class MyAccount extends Component {
   render() {
     return (
       <Query query={GET_LOGGED_IN_USER}>
-        {({ loading, error, data }) => {
+        {({ loading, error, data, refetch }) => {
           if (loading) return <GenericLoader />
           if (error) return <LoadingError error={error} />
           let User = data.loggedInUser
@@ -45,9 +47,7 @@ class MyAccount extends Component {
           return (
             <Mutation mutation={UPDATE_USER}>
               {(updateUser, { data }) => {
-                if (data) {
-                  User = data.updateUser
-                }
+                if (data) User = data.updateUser
 
                 return (
                   <div>
@@ -59,7 +59,15 @@ class MyAccount extends Component {
                         <h4 className="user-info user-plan">{User.plan.toLowerCase()} Model</h4>
                       </div>
                     </MyAccountContainer>
-                    <ChangePlan currentPlan={User.plan} />
+                    <ChangePlan
+                      currentPlan={User.plan}
+                      stripeCustomer={User.stripeCustomer}
+                      oldSubscription={User.stripeSubscription}
+                      taxPercent={User.taxPercent}
+                      userID={User.id}
+                      updateUser={updateUser}
+                      refetchUser={refetch}
+                    />
                     <CancelSubscription
                       stripeSubscription={User.stripeSubscription}
                       updateUser={updateUser}

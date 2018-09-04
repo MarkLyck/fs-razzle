@@ -26,8 +26,10 @@ export const Price = styled.h3`
   text-align: right;
   font-size: 1.2rem;
   font-weight: 100;
+`
 
-  > p {
-    margin-bottom: 0;
-  }
+export const Cycle = styled.p`
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: 100;
 `

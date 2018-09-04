@@ -1,7 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
-import Disclaimer from 'components/Legal/Disclaimer'
-import { PlanContainer, Price } from './styles'
+import { PlanContainer, Price, Cycle } from './styles'
 
 const Plan = ({ name, price, cycle, currentPlan, selectedPlan, onClick }) => {
   const isCurrent = name.toUpperCase() === currentPlan.toUpperCase()
@@ -30,7 +29,7 @@ const Plan = ({ name, price, cycle, currentPlan, selectedPlan, onClick }) => {
         <Price className={isCurrent ? 'is-current' : ''}>
           ${price.toLocaleString()}
           <br />
-          <Disclaimer>{cycle}</Disclaimer>
+          <Cycle>{cycle}</Cycle>
         </Price>
       )}
     </PlanContainer>
