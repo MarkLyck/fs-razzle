@@ -66,6 +66,14 @@ export const modalStyles = `
     font-weight: 600;
   }
 
+  .beside {
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
   button {
     margin-top: 28px;
   }

@@ -18,7 +18,9 @@ class Suggestion extends Component {
 
     const suggestedPriceName = suggestionsType === 'Trades' ? 'Bought at' : 'Buy below'
     // when it's a suggestion and says "Buy below" add 1 cent.
-    const suggestedPrice = suggestion.suggested_price.toFixed(2) + (suggestionsType === 'Trades' ? 0 : 0.01)
+    const suggestedPrice = Number(
+      suggestion.suggested_price.toFixed(2) + (suggestionsType === 'Trades' ? 0 : 0.01)
+    ).toFixed(2)
     const allocationText = suggestion.percentage_weight ? 'Cash allocation' : 'Portfolio allocation'
     const allocation = suggestion.percentage_weight ? suggestion.percentage_weight : suggestion.portfolio_weight
 

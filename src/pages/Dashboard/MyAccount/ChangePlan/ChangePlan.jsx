@@ -100,8 +100,10 @@ class ChangePlan extends Component {
   }
 
   render() {
-    const { currentPlan } = this.props
+    const { currentPlan, taxPercent } = this.props
     const { selectedPlan, showConfirmation } = this.state
+
+    const taxAmount = selectedPlan.price * (taxPercent / 100)
 
     return (
       <ChangePlanContainer>
@@ -134,12 +136,28 @@ class ChangePlan extends Component {
           css={modalStyles}
         >
           <h3 className="title">Confirm plan change</h3>
-          <p>
-            You will be charged <span className="bold">${selectedPlan.price.toLocaleString()}</span> to the card on
-            file.
-          </p>
+          <div className="beside">
+            <p className="description">Price:</p>
+            <p className={`price ${!taxPercent && 'semi-bold'}`}>
+              ${selectedPlan.price} {!taxPercent && 'monthly'}
+            </p>
+          </div>
+          {taxAmount && (
+            <React.Fragment>
+              <div className="beside">
+                <p className="description">{taxPercent}% VAT Tax:</p>
+                <p className="price">${taxAmount.toFixed(2)}</p>
+              </div>
+              <div className="beside">
+                <p className="price semi-bold">Total:</p>
+                <p className="price semi-bold">
+                  ${(selectedPlan.price + taxAmount).toFixed(2)} {selectedPlan.cycle}
+                </p>
+              </div>
+            </React.Fragment>
+          )}
           <LargeFlatButton color="primary" align="center" onClick={this.changePlan}>
-            Subscribe for ${selectedPlan.price.toLocaleString()} {selectedPlan.cycle}
+            Subscribe for ${(selectedPlan.price + taxAmount).toFixed(2)} {selectedPlan.cycle}
           </LargeFlatButton>
         </Modal>
       </ChangePlanContainer>
