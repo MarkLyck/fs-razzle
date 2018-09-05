@@ -12,3 +12,12 @@ export const LegalContainer = styled.div`
     margin-bottom: 8px;
   }
 `
+
+export const modalStyles = `
+  background: white;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  z-index: 11;
+  overflow-y: scroll;
+`

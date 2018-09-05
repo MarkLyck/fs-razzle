@@ -29,3 +29,28 @@ export const overlayClass = css`
   justify-content: center;
   align-items: center;
 `
+
+export const AppBar = styled.div`
+  background: ${props => props.theme.colors.primary};
+  width: 100%;
+  height: 72px;
+  padding: 0 24px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+
+  h2 {
+    color: white;
+    font-size: 1.2rem;
+  }
+
+  button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+  }
+`
