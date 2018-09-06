@@ -34,6 +34,7 @@ import AdminPanel from 'pages/Dashboard/Admin/Panel'
 import AdminUsers from 'pages/Dashboard/Admin/Users'
 import AdminAPI from 'pages/Dashboard/Admin/API'
 import AdminNewArticle from 'pages/Dashboard/Admin/NewArticle'
+import ResetPassword from 'pages/ResetPassword'
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -63,6 +64,7 @@ const App = () => (
         <Route exact path="/pro" component={Pro} />
         <Route exact path="/articles" component={Articles} />
         <Route exact path="/articles/:article" component={Article} />
+        <Route exact path="/reset-password" component={ResetPassword} />
         <Route exact path="/dashboard" component={Portfolio} />
         <Route exact path="/dashboard/suggestions" component={Suggestions} />
         <Route exact path="/dashboard/portfolio" component={Portfolio} />

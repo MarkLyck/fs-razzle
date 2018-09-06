@@ -9,6 +9,7 @@ import { Formik } from 'formik'
 import Form, { Row, Field, ErrorMessage } from 'components/Form'
 import ModalHeader from 'components/Dialogs/ModalHeader'
 import Button from 'components/Button'
+import ResetPassword from './ResetPassword'
 
 const AUTHENTICATE_EMAIL_USER = gql`
   mutation AuthenticateUser($email: String!, $password: String!) {
@@ -20,6 +21,8 @@ const AUTHENTICATE_EMAIL_USER = gql`
 
 class Login extends Component {
   emailValueHasChanged = false
+
+  state = { showResetPassword: false }
 
   validate = values => {
     let errors = {}
@@ -64,63 +67,73 @@ class Login extends Component {
     return errorText ? <ErrorMessage>{errorText}</ErrorMessage> : null
   }
 
+  toggleResetPassword = () => this.setState({ showResetPassword: true })
+
   render() {
     const { onRequestClose } = this.props
+    const { showResetPassword } = this.state
 
     return (
       <Modal isOpen onRequestClose={onRequestClose} overlayClassName={overlayClass} css={modalStyles}>
         <ModalContainer>
-          <ModalHeader title="Login" toggleModal={onRequestClose} />
-          <Formik
-            initialValues={{
-              email: '',
-              password: '',
-            }}
-            validate={this.validate}
-            onSubmit={this.onSubmit}
-            render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-              <Form onSubmit={handleSubmit}>
-                {this.renderErrors(errors, touched)}
-                <Row>
-                  <Field
-                    autoFocus
-                    id="email"
-                    type="email"
-                    name="email"
-                    label="email"
-                    icon="envelope"
-                    placeholder="example@email.com"
-                    onChange={e => {
-                      handleChange(e)
-                      this.emailValueHasChanged = true
-                    }}
-                    onBlur={handleBlur}
-                    value={values.email}
-                  />
-                </Row>
-                <Row>
-                  <Field
-                    id="password"
-                    type="password"
-                    name="password"
-                    label="password"
-                    icon={['far', 'lock-alt']}
-                    placeholder="●●●●●●"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.password}
-                  />
-                </Row>
-                <Button type="submit" color="primary" variant="raised" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    <FontAwesomeIcon icon="spinner-third" spin style={{ fontSize: '1.25rem' }} />
-                  ) : (
-                    'Login'
-                  )}
-                </Button>
-              </Form>
-            )}
-          />
+          {!showResetPassword ? (
+            <React.Fragment>
+              <ModalHeader title="Login" toggleModal={onRequestClose} />
+              <Formik
+                initialValues={{
+                  email: '',
+                  password: '',
+                }}
+                validate={this.validate}
+                onSubmit={this.onSubmit}
+                render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+                  <Form onSubmit={handleSubmit}>
+                    {this.renderErrors(errors, touched)}
+                    <Row>
+                      <Field
+                        autoFocus
+                        id="email"
+                        type="email"
+                        name="email"
+                        label="email"
+                        icon="envelope"
+                        placeholder="example@email.com"
+                        onChange={e => {
+                          handleChange(e)
+                          this.emailValueHasChanged = true
+                        }}
+                        onBlur={handleBlur}
+                        value={values.email}
+                      />
+                    </Row>
+                    <Row>
+                      <Field
+                        id="password"
+                        type="password"
+                        name="password"
+                        label="password"
+                        icon={['far', 'lock-alt']}
+                        placeholder="●●●●●●"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
+                      />
+                    </Row>
+                    <Button type="submit" color="primary" variant="raised" disabled={isSubmitting}>
+                      {isSubmitting ? (
+                        <FontAwesomeIcon icon="spinner-third" spin style={{ fontSize: '1.25rem' }} />
+                      ) : (
+                        'Login'
+                      )}
+                    </Button>
+                    <button onClick={this.toggleResetPassword}>Forgot your password?</button>
+                  </Form>
+                )}
+              />
+            </React.Fragment>
+          ) : (
+            <ResetPassword onRequestClose={onRequestClose} />
+          )}
         </ModalContainer>
       </Modal>
     )
