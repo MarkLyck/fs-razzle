@@ -174,7 +174,7 @@ class CheckoutForm extends Component {
             ${planPrice} {!taxAmount && 'monthly'}
           </p>
         </div>
-        {taxPercent && (
+        {!!taxPercent && (
           <React.Fragment>
             <div className="beside">
               <p className="description">{taxPercent}% VAT Tax:</p>
