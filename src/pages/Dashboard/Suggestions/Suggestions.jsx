@@ -122,9 +122,11 @@ class Suggestions extends Component {
                       }}
                     </Query>
                   </SuggestionsList>
-                  <LastUpdated>
-                    Last updated: <DateLabel>{fecha.format(new Date(plan.updatedAt), 'MMM D, YYYY')}</DateLabel>
-                  </LastUpdated>
+                  {plan.updatedAt && (
+                    <LastUpdated>
+                      Last updated: <DateLabel>{fecha.format(new Date(plan.updatedAt), 'MMM D, YYYY')}</DateLabel>
+                    </LastUpdated>
+                  )}
                 </React.Fragment>
               )
             }}

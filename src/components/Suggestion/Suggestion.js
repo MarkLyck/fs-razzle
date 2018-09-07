@@ -38,7 +38,9 @@ class Suggestion extends Component {
               <ListItem name="Ticker" value={suggestion.ticker} />
               {suggestion.action === 'BUY' && <ListItem name={suggestedPriceName} value={`$${suggestedPrice}`} />}
               <ListItem name="Last price" value={`$${latestPrice}`} />
-              {suggestion.action === 'BUY' && <ListItem name={allocationText} value={`${allocation.toFixed(2)}%`} />}
+              {suggestion.action === 'BUY' && (
+                <ListItem name={allocationText} value={`${allocation.toFixed(2)}%`} tip="test tip" />
+              )}
               {suggestion.action === 'SELL' && (
                 <ListItem name="Purchase price" value={`$${suggestion.original_purchase.toFixed(2)}`} />
               )}
