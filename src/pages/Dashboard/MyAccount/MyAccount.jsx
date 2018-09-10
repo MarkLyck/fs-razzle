@@ -41,8 +41,8 @@ class MyAccount extends Component {
       <Query query={GET_LOGGED_IN_USER}>
         {({ loading, error, data, refetch }) => {
           if (loading) return <GenericLoader />
-          if (error) return <LoadingError error={error} />
           let User = data.loggedInUser
+          if (error || !User || !User.id) return <LoadingError error={error} />
 
           return (
             <Mutation mutation={UPDATE_USER}>

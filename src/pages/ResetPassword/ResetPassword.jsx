@@ -6,10 +6,10 @@ import { Logo, FieldLabel, ResetPWContainer } from './styles'
 import Button from 'components/Button'
 import { client } from 'src/App'
 
-const SEND_RESET_PW_EMAIL = gql`
-  query sendResetPWEmail($email: String!) {
-    sendResetPWEmail(email: $email) {
-      success
+const RESET_PASSWORD = gql`
+  query resetPassword($email: String!, $newPassword: String!) {
+    resetPassword(email: $email, newPassword: $newPassword) {
+      id
     }
   }
 `
@@ -31,9 +31,6 @@ class ResetPassword extends Component {
 
   renderErrors = (errors, touched) => {
     let errorText = ''
-
-    console.log(errors, touched)
-
     if (touched.newPassword && errors.newPassword) errorText = errors.newPassword
     if (touched.repeatPassword && errors.repeatPassword) errorText = errors.repeatPassword
 
@@ -41,14 +38,26 @@ class ResetPassword extends Component {
   }
 
   onSubmit = async (values, { setSubmitting }) => {
-    // const { data } = await client.query({
-    //   query: SEND_RESET_PW_EMAIL,
-    //   variables: { email: values.email },
-    // })
+    const { location } = this.props
+    const email = location.search ? location.search.split('&')[0].split('=')[1] : ''
+    const token = location.search ? location.search.split('&')[1].split('=')[1] : ''
+    const { newPassword } = values
+
+    if (!email) return 'missing email'
+    if (!token) return 'missing token'
+
+    const { data } = await client.query({
+      query: RESET_PASSWORD,
+      variables: { email, token, newPassword },
+    })
+    console.log(data)
     setSubmitting(false)
   }
 
   render() {
+    const { location } = this.props
+    if (!location.search) return 'missing token'
+
     return (
       <ResetPWContainer className="test">
         <Logo />
