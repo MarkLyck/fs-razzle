@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ThemeProvider } from 'emotion/react/theming'
-import { DialogContent } from 'material-ui/Dialog'
 import { StripeProvider, Elements } from 'react-stripe-elements'
-import theme from 'common/theme'
-import { dialogStyles } from '../styles'
 import CheckoutForm from './checkoutForm'
 
 class BillingInfo extends Component {
@@ -26,26 +22,23 @@ class BillingInfo extends Component {
 
   toggleTerms = () => this.setState({ termsIsVisible: !this.state.termsIsVisible })
 
-  renderTaxInfo = tax => (
-    <div>
-      <p>Tax</p>
-      <p>{tax}</p>
-    </div>
-  )
-
   render() {
-    const { tax, handleSignup, signupError } = this.props
+    const { planPrice, taxPercent, handleSignup, signupError } = this.props
+
+    const taxAmount = planPrice * (taxPercent / 100)
 
     return (
-      <ThemeProvider theme={theme}>
-        <DialogContent style={dialogStyles}>
-          <StripeProvider apiKey="pk_test_EAYel8PILq2WQhZqRK7XRemy">
-            <Elements>
-              <CheckoutForm tax={tax} handleSignup={handleSignup} signupError={signupError} />
-            </Elements>
-          </StripeProvider>
-        </DialogContent>
-      </ThemeProvider>
+      <StripeProvider apiKey="pk_test_hh5vsZ7wNnMi80XJgzHVanEm">
+        <Elements>
+          <CheckoutForm
+            taxPercent={taxPercent}
+            taxAmount={taxAmount}
+            planPrice={planPrice}
+            handleSignup={handleSignup}
+            signupError={signupError}
+          />
+        </Elements>
+      </StripeProvider>
     )
   }
 }

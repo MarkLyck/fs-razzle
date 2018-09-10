@@ -1,47 +1,63 @@
-import fontawesome from '@fortawesome/fontawesome'
-import faSignInAlt from '@fortawesome/fontawesome-pro-solid/faSignInAlt'
-import faSignOutAlt from '@fortawesome/fontawesome-pro-solid/faSignOutAlt'
-import faChartLine from '@fortawesome/fontawesome-pro-solid/faChartLine'
-import faChartPie from '@fortawesome/fontawesome-pro-solid/faChartPie'
-import faFlask from '@fortawesome/fontawesome-pro-solid/faFlask'
-import faGift from '@fortawesome/fontawesome-pro-solid/faGift'
-import faImage from '@fortawesome/fontawesome-pro-solid/faImage'
-import faTasks from '@fortawesome/fontawesome-pro-solid/faTasks'
-import faListUl from '@fortawesome/fontawesome-pro-solid/faListUl'
-import faNewspaper from '@fortawesome/fontawesome-pro-solid/faNewspaper'
-import faTachometer from '@fortawesome/fontawesome-pro-solid/faTachometer'
-import faUser from '@fortawesome/fontawesome-pro-solid/faUser'
-import faUsers from '@fortawesome/fontawesome-pro-solid/faUsers'
-import faHourglassHalf from '@fortawesome/fontawesome-pro-solid/faHourglassHalf'
-import faHourglassEnd from '@fortawesome/fontawesome-pro-solid/faHourglassEnd'
-import faQuestionCircle from '@fortawesome/fontawesome-pro-solid/faQuestionCircle'
-import faDollarSign from '@fortawesome/fontawesome-pro-solid/faDollarSign'
-import faAngleDown from '@fortawesome/fontawesome-pro-solid/faAngleDown'
-import faExclamationCircle from '@fortawesome/fontawesome-pro-solid/faExclamationCircle'
-import faSpinnerThird from '@fortawesome/fontawesome-pro-solid/faSpinnerThird'
+import { library } from '@fortawesome/fontawesome-svg-core'
 
-import faTimes from '@fortawesome/fontawesome-pro-regular/faTimes'
+import { faChartLine } from '@fortawesome/pro-solid-svg-icons/faChartLine'
+import { faAngleDown } from '@fortawesome/pro-solid-svg-icons/faAngleDown'
+import { faCalendarTimes } from '@fortawesome/pro-solid-svg-icons/faCalendarTimes'
+import { faChartPie } from '@fortawesome/pro-solid-svg-icons/faChartPie'
+import { faCity } from '@fortawesome/pro-solid-svg-icons/faCity'
+import { faCreditCard } from '@fortawesome/pro-solid-svg-icons/faCreditCard'
+import { faDollarSign } from '@fortawesome/pro-solid-svg-icons/faDollarSign'
+import { faEnvelope } from '@fortawesome/pro-solid-svg-icons/faEnvelope'
+import { faExclamationCircle } from '@fortawesome/pro-solid-svg-icons/faExclamationCircle'
+import { faFlask } from '@fortawesome/pro-solid-svg-icons/faFlask'
+import { faGift } from '@fortawesome/pro-solid-svg-icons/faGift'
+import { faGlobeAmericas } from '@fortawesome/pro-solid-svg-icons/faGlobeAmericas'
+import { faHome } from '@fortawesome/pro-solid-svg-icons/faHome'
+import { faHourglassHalf } from '@fortawesome/pro-solid-svg-icons/faHourglassHalf'
+import { faHourglassEnd } from '@fortawesome/pro-solid-svg-icons/faHourglassEnd'
+import { faImage } from '@fortawesome/pro-solid-svg-icons/faImage'
+import { faListUl } from '@fortawesome/pro-solid-svg-icons/faListUl'
+import { faLockAlt } from '@fortawesome/pro-regular-svg-icons/faLockAlt'
+import { faMap } from '@fortawesome/pro-solid-svg-icons/faMap'
+import { faNewspaper } from '@fortawesome/pro-solid-svg-icons/faNewspaper'
+import { faQuestionCircle } from '@fortawesome/pro-solid-svg-icons/faQuestionCircle'
+import { faSignInAlt } from '@fortawesome/pro-solid-svg-icons/faSignInAlt'
+import { faSignOutAlt } from '@fortawesome/pro-solid-svg-icons/faSignOutAlt'
+import { faSpinnerThird } from '@fortawesome/pro-solid-svg-icons/faSpinnerThird'
+import { faTachometer } from '@fortawesome/pro-solid-svg-icons/faTachometer'
+import { faTasks } from '@fortawesome/pro-solid-svg-icons/faTasks'
+import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes'
+import { faUser } from '@fortawesome/pro-solid-svg-icons/faUser'
+import { faUsers } from '@fortawesome/pro-solid-svg-icons/faUsers'
 
-fontawesome.library.add(
-  faSignInAlt,
-  faSignOutAlt,
-  faFlask,
+library.add(
+  faAngleDown,
+  faCalendarTimes,
   faChartLine,
   faChartPie,
+  faCity,
+  faCreditCard,
+  faDollarSign,
+  faEnvelope,
+  faFlask,
+  faGlobeAmericas,
   faGift,
-  faImage,
-  faTimes,
-  faTasks,
-  faListUl,
-  faNewspaper,
-  faTachometer,
-  faUser,
-  faUsers,
+  faHome,
   faHourglassHalf,
   faHourglassEnd,
+  faImage,
+  faListUl,
+  faLockAlt,
+  faMap,
+  faNewspaper,
   faQuestionCircle,
-  faDollarSign,
-  faAngleDown,
   faExclamationCircle,
-  faSpinnerThird
+  faSignInAlt,
+  faSignOutAlt,
+  faSpinnerThird,
+  faTachometer,
+  faTasks,
+  faTimes,
+  faUser,
+  faUsers
 )

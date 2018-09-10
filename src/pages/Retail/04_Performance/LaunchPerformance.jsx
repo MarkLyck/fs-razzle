@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LineGraph from 'components/Charts/LineGraph'
 import { Legends, Legend } from 'components/Charts/Legends/Legends'
 import { formatPrice } from 'common/utils/helpers'
@@ -31,11 +32,7 @@ const createChartData = (portfolioYields, marketPrices) => {
 
 const LaunchPerformance = ({ portfolioYields, marketPrices, planName, amChartsLoaded }) => {
   if (!portfolioYields || !portfolioYields.length || !amChartsLoaded) {
-    return (
-      <div id="result-chart" className="loading">
-        <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
-      </div>
-    )
+    return <FontAwesomeIcon icon="spinner-third" spin size="4x" />
   }
   const chartData = createChartData(portfolioYields, marketPrices)
 

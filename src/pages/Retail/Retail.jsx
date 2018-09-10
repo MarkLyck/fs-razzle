@@ -4,11 +4,13 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import Script from 'react-load-script'
 import { planIds, marketIds } from 'common/constants'
-import { usingMocks } from 'common/utils/featureTests'
+import { hasStorage, usingMocks } from 'common/utils/featureTests'
 import mockData from 'common/mocks/RetailData.json'
 import HomeLoader from 'components/Loading/HomeLoader'
-
+import LoadingError from 'components/Error/LoadingError'
 import Navbar from 'components/Navbar/Retail'
+import Signup from 'components/Dialogs/Signup'
+import Login from 'components/Dialogs/Login'
 import Hero from './01_Hero'
 import Introduction from './02_Introduction'
 import WhatIsIt from './03_WhatIsIt'
@@ -67,10 +69,16 @@ class Retail extends Component {
     amChartsCoreStatus: false,
     amChartsLoaded: false,
     amChartsLoadingError: false,
+    signUpVisible: false,
+    loginVisible: false,
   }
 
   amChartsSerialStatus = false
   amChartsThemeStatus = false
+
+  componentDidMount() {
+    hasStorage && localStorage.setItem('selectedPlan', 'ENTRY')
+  }
 
   areAllChartDependenciesLoaded = () => {
     if (this.state.amChartsCoreStatus && this.amChartsSerialStatus && this.amChartsThemeStatus) {
@@ -91,14 +99,19 @@ class Retail extends Component {
     this.areAllChartDependenciesLoaded()
   }
 
+  toggleSignUpModal = () => this.setState(state => ({ signUpVisible: !state.signUpVisible }))
+  toggleLoginModal = () => this.setState(state => ({ loginVisible: !state.loginVisible }))
+
   render() {
-    const { amChartsLoaded, amChartsCoreStatus } = this.state
+    const { history } = this.props
+    const { amChartsLoaded, amChartsCoreStatus, signUpVisible, loginVisible } = this.state
 
     return (
       <Query query={GET_ENTRY_AND_MARKET_DATA}>
         {({ loading, error, data }) => {
+          console.log('usingMocks', usingMocks)
           if (loading) return <HomeLoader />
-          if (error && !usingMocks) return <p>Error loading</p>
+          if (error && !usingMocks) return <LoadingError />
 
           const plan = data ? data.Plan : mockData.Plan
           const DJIA = data ? data.DJIA : mockData.DJIA
@@ -115,7 +128,11 @@ class Retail extends Component {
 
           return (
             <div className="retail-page">
-              <Navbar />
+              <Navbar
+                history={history}
+                toggleSignUpModal={this.toggleSignUpModal}
+                toggleLoginModal={this.toggleLoginModal}
+              />
               <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
               <Introduction
                 portfolioReturn={portfolioReturn}
@@ -131,7 +148,7 @@ class Retail extends Component {
                 amChartsLoaded={amChartsLoaded}
               />
               <PerformanceMatters />
-              <FirstMonthOnUs />
+              <FirstMonthOnUs toggleSignUpModal={this.toggleSignUpModal} />
               <WhatToExpect latestSells={latestSells} />
               <PilotProgram />
               <LongTermPerformance
@@ -145,16 +162,21 @@ class Retail extends Component {
               <RiskManagement />
               <CorporateProfile />
               <IntendedAudience />
-              <ScrolledToBottom />
+              <ScrolledToBottom toggleSignUpModal={this.toggleSignUpModal} />
               <Footer />
 
               <Script url="https://www.amcharts.com/lib/3/amcharts.js" onLoad={this.onLoadAmChartsCore} />
+              <Script url="https://js.stripe.com/v3/" />
               {amChartsCoreStatus ? (
                 <React.Fragment>
                   <Script url="https://www.amcharts.com/lib/3/serial.js" onLoad={this.onLoadAmChartsSerial} />
                   <Script url="https://www.amcharts.com/lib/3/themes/light.js" onLoad={this.onLoadAmChartsTheme} />
                 </React.Fragment>
               ) : null}
+              {signUpVisible && (
+                <Signup history={history} onRequestClose={this.toggleSignUpModal} planPrice={plan.price} />
+              )}
+              {loginVisible && <Login history={history} onRequestClose={this.toggleLoginModal} />}
             </div>
           )
         }}

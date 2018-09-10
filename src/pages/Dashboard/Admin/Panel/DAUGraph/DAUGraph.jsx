@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import _ from 'lodash'
 import LineGraph from 'components/Charts/LineGraph'
-import Paper from 'material-ui/Paper'
-import { GraphContainer, ContainerStyle } from './styles'
+import { GraphContainer, Container } from './styles'
 
 const createChartData = (visitors, users) => {
   // gets signup dates from all users
@@ -72,11 +71,11 @@ const DAUGraph = ({ visitors, users, serialChartsReady }) => {
   ]
 
   return (
-    <Paper style={ContainerStyle}>
+    <Container>
       <GraphContainer>
         <LineGraph id="dau-graph" graphs={graphs} data={chartData} axisAlpha={0.5} />
       </GraphContainer>
-    </Paper>
+    </Container>
   )
 }
 

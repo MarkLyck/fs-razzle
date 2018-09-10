@@ -13,11 +13,13 @@ server
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
     const context = {}
-    const markup = renderStylesToString(renderToString(
-      <StaticRouter context={context} location={req.url}>
-        <App />
-      </StaticRouter>
-    ))
+    const markup = renderStylesToString(
+      renderToString(
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      )
+    )
 
     if (context.url) {
       res.redirect(context.url)
@@ -43,12 +45,12 @@ server
                 <meta property="og:url" content="Formula Stocks">
                 <meta property="og:title" content="Formula Stocks">
 
-                ${assets.client.css
-                  ? `<link rel="stylesheet" href="${assets.client.css}">`
-                  : ''}
-                ${process.env.NODE_ENV === 'production'
-                  ? `<script src="${assets.client.js}" defer></script>`
-                  : `<script src="${assets.client.js}" defer crossorigin></script>`}
+                ${assets.client.css ? `<link rel="stylesheet" href="${assets.client.css}">` : ''}
+                ${
+                  process.env.NODE_ENV === 'production'
+                    ? `<script src="${assets.client.js}" defer></script>`
+                    : `<script src="${assets.client.js}" defer crossorigin></script>`
+                }
             </head>
             <body>
                 <div id="root">${markup}</div>

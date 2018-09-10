@@ -1,13 +1,12 @@
-// CardSection.js
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from 'material-ui/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Button from 'components/Button'
 import { injectStripe, CardNumberElement, CardExpiryElement, CardCVCElement } from 'react-stripe-elements'
-import theme from 'common/theme'
-import Disclaimer from 'components/Disclaimer'
+import theme from 'common/utils/theme'
+import Disclaimer from 'components/Legal/Disclaimer'
 import TermsOfService from 'components/Dialogs/TermsOfService'
 import Form, { Row, Field, ErrorMessage } from 'components/Form'
-import { nextBtnStyles } from '../../styles'
 import { FieldContainer } from './styles'
 
 const createOptions = () => ({
@@ -48,11 +47,9 @@ class CheckoutForm extends Component {
     showTerms: false,
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.signupError) {
-      this.setState({ error: { message: newProps.signupError } })
-    }
-    return newProps
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.signupError) return { submitting: false }
+    return {}
   }
 
   setName = e => {
@@ -74,115 +71,127 @@ class CheckoutForm extends Component {
     this.setState(newState)
   }
 
-  handleSubmit = ev => {
-    ev.preventDefault()
-    if (this.state.submitting) return null
+  handleSubmit = e => {
+    e.preventDefault()
+    const { submitting } = this.state
+    const { stripe, taxPercent, handleSignup } = this.props
+
+    if (submitting) return null
     if (!this.name) {
       this.setState({ submitting: false, error: { message: 'Please enter your full name' } })
       return null
     }
 
     this.setState({ submitting: true, error: {} })
-    this.props.stripe.createToken().then(payload => {
+    stripe.createToken().then(payload => {
       if (payload.error) {
         this.setState({ submitting: false, error: payload.error })
       } else {
-        this.props.handleSignup(this.name, payload)
+        handleSignup(this.name, taxPercent, payload)
       }
     })
-    return ev
+    return e
+  }
+
+  renderErrors() {
+    const { signupError } = this.props
+    const { error } = this.state
+
+    let signupErrorMessage = signupError
+
+    if (signupError.includes('User already exists with that information')) {
+      signupErrorMessage = 'A user with this email already exists.'
+    } else if (signupError.includes('GraphQL')) {
+      signupErrorMessage =
+        'Something went wrong trying to create your account. Please clear your browser history and try again.'
+    }
+
+    if (signupErrorMessage) return <ErrorMessage>{signupErrorMessage}</ErrorMessage>
+    else if (error.message) return <ErrorMessage>{error.message}</ErrorMessage>
   }
 
   toggleTerms = () => this.setState({ showTerms: !this.state.showTerms })
 
   render() {
     const { error, submitting, showTerms } = this.state
-    const { tax } = this.props
+    const { planPrice, taxAmount, taxPercent } = this.props
     const cardNumberError = error.message && error.message.indexOf('number') > -1
 
     return (
-      <Form onSubmit={this.handleSubmit} theme={theme}>
-        {error.message && <ErrorMessage message={error.message} />}
-        <Row className={error.message ? 'form-error' : ''}>
+      <Form onSubmit={this.handleSubmit}>
+        {this.renderErrors()}
+        <Row>
           <Field
-            id="name"
             autoFocus
-            className={this.state.nameClass}
-            inputState={this.state.nameClass}
-            onBlur={() => this.handleBlur('nameClass')}
-            onFocus={() => this.handleFocus('nameClass')}
-            onChange={this.setName}
-            type="text"
-            placeholder="John Doe"
-            required=""
+            id="name"
+            name="name"
             label="Name"
+            placeholder="John Doe"
+            icon="user"
+            onChange={this.setName}
           />
         </Row>
 
         <Row>
           <FieldContainer>
+            <FontAwesomeIcon icon="credit-card" />
             <CardNumberElement
-              className={`input
-                                ${this.state.cardNumber}
-                                ${cardNumberError && this.state.cardNumber !== 'empty' ? 'input-error' : ''}`}
+              className={`input stripe-input ${this.state.cardNumber} ${
+                cardNumberError && this.state.cardNumber !== 'empty' ? 'input-error' : ''
+              }`}
               onBlur={() => this.handleBlur('cardNumber')}
               onFocus={() => this.handleFocus('cardNumber')}
               {...createOptions()}
             />
-            <label htmlFor="card-number" className={`${cardNumberError && 'label-error'} `}>
-              Card number
-            </label>
             <div className={`baseline baseline-${this.state.cardNumber}`} />
           </FieldContainer>
         </Row>
 
-        <Row>
-          <FieldContainer className="FieldContainer half-width">
+        <Row style={{ marginBottom: '24px' }}>
+          <FieldContainer>
+            <FontAwesomeIcon icon="calendar-times" />
             <CardExpiryElement
-              className={`input ${this.state.cardExpiry}`}
+              className={`input stripe-input ${this.state.cardExpiry}`}
               onBlur={() => this.handleBlur('cardExpiry')}
               onFocus={() => this.handleFocus('cardExpiry')}
               {...createOptions()}
             />
-            <label htmlFor="card-expiry">Expiration</label>
-            <div className={`baseline baseline-${this.state.cardExpiry}`} />
           </FieldContainer>
-          <FieldContainer className="FieldContainer half-width">
+          <FieldContainer>
+            <FontAwesomeIcon icon={['far', 'lock-alt']} />
             <CardCVCElement
-              className={`input ${this.state.cardCVC}`}
+              className={`input stripe-input ${this.state.cardCVC}`}
               onBlur={() => this.handleBlur('cardCVC')}
               onFocus={() => this.handleFocus('cardCVC')}
               {...createOptions()}
             />
-            <label htmlFor="card-cvc">CVC</label>
-            <div className={`baseline baseline-${this.state.cardCVC}`} />
           </FieldContainer>
         </Row>
 
         <div className="beside">
-          <p className="description">Price:</p>
-          <p className={`price ${!tax ? 'semi-bold' : ''}`}>
-            ${50} {!tax ? 'monthly' : ''}
+          <p className="description">Price after 30 days:</p>
+          <p className={`price ${!taxAmount && 'semi-bold'}`}>
+            ${planPrice} {!taxAmount && 'monthly'}
           </p>
         </div>
-        {tax ? (
-          <div className="beside">
-            <p className="description">VAT Tax:</p>
-            <p className="price">${tax}</p>
-          </div>
-        ) : (
-          ''
+        {!!taxPercent && (
+          <React.Fragment>
+            <div className="beside">
+              <p className="description">{taxPercent}% VAT Tax:</p>
+              <p className="price">${taxAmount.toFixed(2)}</p>
+            </div>
+            <div className="beside">
+              <p className="price semi-bold">Total price after 30 days:</p>
+              <p className="price semi-bold">${(planPrice + taxAmount).toFixed(2)} / m</p>
+            </div>
+          </React.Fragment>
         )}
-        {tax ? (
-          <div className="beside">
-            <p className="price semi-bold">Total price after 30 days:</p>
-            <p className="price semi-bold">${50 + tax} / m</p>
-          </div>
-        ) : (
-          ''
-        )}
-        <Button color="primary" type="submit" style={nextBtnStyles}>
-          {!submitting ? 'Try it free for 30 days' : 'submitting'}
+        <Button color="primary" type="submit" variant="raised" disabled={submitting} style={{ marginTop: '16px' }}>
+          {!submitting ? (
+            'Try it free for 30 days'
+          ) : (
+            <FontAwesomeIcon icon="spinner-third" spin style={{ fontSize: '1.25rem' }} />
+          )}
         </Button>
         <Disclaimer className="disclaimer">
           By signing up you agree to our{' '}
@@ -198,7 +207,9 @@ class CheckoutForm extends Component {
 
 CheckoutForm.propTypes = {
   stripe: PropTypes.object,
-  tax: PropTypes.number,
+  taxAmount: PropTypes.number,
+  taxPercent: PropTypes.number,
+  planPrice: PropTypes.number,
   handleSignup: PropTypes.func,
 }
 

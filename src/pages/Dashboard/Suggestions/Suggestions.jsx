@@ -76,10 +76,12 @@ class Suggestions extends Component {
               const plan = data ? data.Plan : mockData.Plan
               const suggestionsType = location.pathname.includes('/dashboard/trades') ? 'Trades' : 'Suggestions'
 
-              const suggestions = plan.suggestions.filter(sugg => {
-                if (location.pathname.includes('/dashboard/trades')) return sugg.model
-                return !sugg.model || sugg.action === 'SELL'
-              })
+              const suggestions = plan.suggestions
+                .filter(sugg => {
+                  if (location.pathname.includes('/dashboard/trades')) return sugg.model
+                  return !sugg.model || sugg.action === 'SELL'
+                })
+                .sort(sugg => (sugg.action === 'SELL' ? 1 : -1))
 
               return (
                 <React.Fragment>
@@ -120,9 +122,11 @@ class Suggestions extends Component {
                       }}
                     </Query>
                   </SuggestionsList>
-                  <LastUpdated>
-                    Last updated: <DateLabel>{fecha.format(new Date(plan.updatedAt), 'MMM D, YYYY')}</DateLabel>
-                  </LastUpdated>
+                  {plan.updatedAt && (
+                    <LastUpdated>
+                      Last updated: <DateLabel>{fecha.format(new Date(plan.updatedAt), 'MMM D, YYYY')}</DateLabel>
+                    </LastUpdated>
+                  )}
                 </React.Fragment>
               )
             }}

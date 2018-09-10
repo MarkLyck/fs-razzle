@@ -1,15 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Paper from 'material-ui/Paper'
 import PieChart from 'components/Charts/PieChart'
-import { ContainerStyle, PieChartsContainer, ChartContainer } from './styles'
+import { Container, PieChartsContainer, ChartContainer } from './styles'
 
 const createChartData = data => Object.entries(data).map(obj => ({ title: obj[0], value: obj[1] }))
 
 const Statistics = ({ statistics, pieChartsReady }) => {
   if (!pieChartsReady || !statistics) return ''
   return (
-    <Paper style={ContainerStyle}>
+    <Container>
       Statistics
       <PieChartsContainer>
         <ChartContainer>
@@ -29,7 +28,7 @@ const Statistics = ({ statistics, pieChartsReady }) => {
           <h3>Referrers</h3>
         </ChartContainer>
       </PieChartsContainer>
-    </Paper>
+    </Container>
   )
 }
 Statistics.propTypes = {

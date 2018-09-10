@@ -1,14 +1,51 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import platform from 'platform'
-import Router from 'next/router'
-import { gql, graphql, compose } from 'react-apollo'
-import Dialog, { DialogTitle } from 'material-ui/Dialog'
-import Slide from 'material-ui/transitions/Slide'
-import { hasStorage } from 'common/featureTests'
-import { getDeviceType } from 'common/helpers'
+import gql from 'graphql-tag'
+import { graphql, compose } from 'react-apollo'
+import Modal from 'react-modal'
+import { hasStorage } from 'common/utils/featureTests'
+import { getDeviceType } from 'common/utils/helpers'
+import ModalHeader from 'components/Dialogs/ModalHeader'
 import AccountInfo from './AccountInfo'
 import BillingInfo from './BillingInfo'
+import { ModalContainer, modalStyles, overlayClass } from '../styles'
+
+const CREATE_USER = gql`
+  mutation(
+    $email: String!
+    $password: String!
+    $name: String!
+    $plan: String!
+    $type: String!
+    $stripeToken: String!
+    $address: Json!
+    $location: Json!
+    $device: Json!
+    $taxPercent: Float!
+  ) {
+    createUser(
+      authProvider: { email: { email: $email, password: $password } }
+      name: $name
+      plan: $plan
+      type: $type
+      stripeToken: $stripeToken
+      address: $address
+      location: $location
+      device: $device
+      taxPercent: $taxPercent
+    ) {
+      id
+    }
+  }
+`
+
+const SIGNIN_USER_MUTATION = gql`
+  mutation SigninUserMutation($email: String!, $password: String!) {
+    signinUser(email: { email: $email, password: $password }) {
+      token
+    }
+  }
+`
 
 class SignUp extends Component {
   state = {
@@ -17,28 +54,27 @@ class SignUp extends Component {
     signupError: '',
   }
 
-  stripe = undefined
-
   nextPage = accountInfo => this.setState({ page: this.state.page + 1, accountInfo })
 
-  handleSignup = (name, { token }) => {
-    const { createUser, signinUser } = this.props
+  handleSignup = (name, taxPercent, { token }) => {
+    const { history, createUser, signinUser } = this.props
     const { accountInfo } = this.state
 
-    const type = 'trial'
-    const location = hasStorage && localStorage.getItem('location') ? JSON.parse(localStorage.getItem('location')) : {}
-    const plan =
-      hasStorage && localStorage.getItem('selectedPlan') ? JSON.parse(localStorage.getItem('selectedPlan')) : 'entry'
+    const location =
+      hasStorage && localStorage.getItem('location') ? JSON.parse(localStorage.getItem('location')) : null
+    const plan = hasStorage && localStorage.getItem('selectedPlan') ? localStorage.getItem('selectedPlan') : 'ENTRY'
+    const type = plan === 'ENTRY' ? 'trial' : 'subscriber'
 
     createUser({
       variables: {
         email: accountInfo.email,
         password: accountInfo.password,
-        cardToken: token.id,
+        stripeToken: token.id,
         name,
         plan,
         type,
         location,
+        taxPercent,
         address: {
           country: accountInfo.country,
           city: accountInfo.city,
@@ -64,74 +100,36 @@ class SignUp extends Component {
           if (hasStorage) {
             localStorage.setItem('graphcoolToken', response.data.signinUser.token)
           }
-          Router.push('/dashboard/portfolio')
+          history.push('/dashboard/portfolio')
         })
       })
       .catch(e => this.setState({ signupError: String(e) }))
   }
 
   render() {
-    if (typeof window === 'undefined') {
-      return null
-    }
     const { page, accountInfo, signupError } = this.state
-    const { ...other } = this.props
-    delete other.createUser
-    delete other.signinUser
-
-    const tax = accountInfo && accountInfo.selectedCountry ? accountInfo.selectedCountry.taxPercent : 0
+    const { onRequestClose, planPrice } = this.props
 
     return (
-      <Dialog {...other} transition={Slide}>
-        <DialogTitle>Sign up</DialogTitle>
-        {page === 1 && <AccountInfo nextPage={this.nextPage} />}
-        {page === 2 && <BillingInfo tax={tax} handleSignup={this.handleSignup} signupError={signupError} />}
-      </Dialog>
+      <Modal isOpen onRequestClose={onRequestClose} overlayClassName={overlayClass} css={modalStyles}>
+        <ModalContainer>
+          <ModalHeader title="Sign up" toggleModal={onRequestClose} />
+          {page === 1 && <AccountInfo nextPage={this.nextPage} />}
+          {page === 2 && (
+            <BillingInfo
+              taxPercent={accountInfo.taxPercent}
+              handleSignup={this.handleSignup}
+              signupError={signupError}
+              planPrice={planPrice}
+            />
+          )}
+        </ModalContainer>
+      </Modal>
     )
   }
 }
 
-SignUp.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  createUser: PropTypes.func,
-  signinUser: PropTypes.func,
-}
-
-const createUser = gql`
-  mutation(
-    $email: String!
-    $password: String!
-    $name: String!
-    $type: String!
-    $cardToken: String!
-    $address: Json!
-    $location: Json!
-    $device: Json!
-  ) {
-    createUser(
-      authProvider: { email: { email: $email, password: $password } }
-      name: $name
-      type: $type
-      cardToken: $cardToken
-      address: $address
-      location: $location
-      device: $device
-    ) {
-      id
-    }
-  }
-`
-const SIGNIN_USER_MUTATION = gql`
-  mutation SigninUserMutation($email: String!, $password: String!) {
-    signinUser(email: { email: $email, password: $password }) {
-      token
-    }
-  }
-`
-
 export default compose(
-  graphql(createUser, { name: 'createUser' }),
+  graphql(CREATE_USER, { name: 'createUser' }),
   graphql(SIGNIN_USER_MUTATION, { name: 'signinUser' })
 )(SignUp)
-
-// export default graphql(createUser, { name: 'createUser' })(SignUp)

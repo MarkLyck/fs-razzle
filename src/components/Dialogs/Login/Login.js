@@ -1,133 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Router from 'next/router'
-import { ThemeProvider } from 'emotion/react/theming'
-import { gql, graphql } from 'react-apollo'
-import Dialog, { DialogTitle, DialogContent } from 'material-ui/Dialog'
-import theme from 'common/theme'
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
+import Modal from 'react-modal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ModalContainer, overlayClass, modalStyles } from '../styles'
+import { Formik } from 'formik'
 import Form, { Row, Field, ErrorMessage } from 'components/Form'
-import Button from 'material-ui/Button'
-import Slide from 'material-ui/transitions/Slide'
-import { dialogStyles, nextBtnStyles } from './styles'
-
-class Login extends Component {
-  state = {
-    email: {},
-    password: '',
-    error: {},
-    emailClass: 'empty',
-    passwordClass: 'empty',
-  }
-
-  componentDidMount() {
-    Router.prefetch('/dashboard/portfolio')
-  }
-
-  handleLogin = () => {
-    const { email, password } = this.state
-    this.props
-      .signinUser({ variables: { email, password } })
-      .then(response => {
-        localStorage.setItem('graphcoolToken', response.data.authenticateUser.token)
-        Router.push('/dashboard/portfolio')
-      })
-      .catch(e => console.error(e))
-  }
-
-  handleChange = (element, value) => {
-    const newState = this.state
-    newState[element] = value
-
-    if (newState.error.message && newState.error.message.indexOf(element) > -1) {
-      const validation = this.validateAccountInfo()
-      if (validation.message !== newState.error.message) {
-        newState.error = validation
-      }
-    }
-
-    this.setState(newState)
-  }
-
-  validateAccountInfo = () => {
-    const { email } = this.state
-
-    // eslint-disable-next-line
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-    if (!emailRegex.test(email)) {
-      return { error: { message: 'Invalid email' } }
-    }
-    return ''
-  }
-
-  handleBlur = elementName => {
-    const newState = this.state
-    newState[elementName] = 'filled'
-
-    this.setState(newState)
-  }
-
-  handleFocus = elementName => {
-    const newState = this.state
-    newState[elementName] = 'focused'
-    this.setState(newState)
-  }
-
-  render() {
-    const { error, emailClass, passwordClass } = this.state
-    const { signinUser, onClose, ...other } = this.props
-
-    const emailError = emailClass !== 'focused' && error.message && error.message.indexOf('email') > -1
-    const passwodError = passwordClass !== 'focused' && error.message && error.message.indexOf('password') > -1
-
-    return (
-      <ThemeProvider theme={theme}>
-        <Dialog onClose={onClose} {...other} transition={Slide}>
-          <DialogTitle>Login</DialogTitle>
-          <DialogContent style={dialogStyles}>
-            <Form>
-              {error.message && <ErrorMessage message={error.message} />}
-              <Row className={error.message ? 'form-error' : ''}>
-                <Field
-                  label="Email"
-                  type="email"
-                  autoFocus
-                  className={`${emailClass} ${emailError ? 'input-error' : ''}`}
-                  inputState={emailClass}
-                  onChange={event => this.handleChange('email', event.target.value)}
-                  onBlur={() => this.handleBlur('emailClass')}
-                  onFocus={() => this.handleFocus('emailClass')}
-                  placeholder="example@domain.com"
-                />
-              </Row>
-              <Row>
-                <Field
-                  label="Password"
-                  type="password"
-                  className={`${passwordClass} ${passwodError ? 'input-error' : ''}`}
-                  inputState={passwordClass}
-                  onChange={event => this.handleChange('password', event.target.value)}
-                  onBlur={() => this.handleBlur('passwordClass')}
-                  onFocus={() => this.handleFocus('passwordClass')}
-                  autoComplete="current-password"
-                  placeholder="••••••••"
-                />
-              </Row>
-              <Button color="primary" style={nextBtnStyles} onClick={this.handleLogin}>
-                login
-              </Button>
-            </Form>
-          </DialogContent>
-        </Dialog>
-      </ThemeProvider>
-    )
-  }
-}
-
-Login.propTypes = {
-  signinUser: PropTypes.func,
-  onClose: PropTypes.func,
-}
+import ModalHeader from 'components/Dialogs/ModalHeader'
+import Button from 'components/Button'
+import ResetPassword from './ResetPassword'
 
 const AUTHENTICATE_EMAIL_USER = gql`
   mutation AuthenticateUser($email: String!, $password: String!) {
@@ -136,5 +18,131 @@ const AUTHENTICATE_EMAIL_USER = gql`
     }
   }
 `
+
+class Login extends Component {
+  emailValueHasChanged = false
+
+  state = { showResetPassword: false }
+
+  validate = values => {
+    let errors = {}
+    if (!values.email) {
+      errors.email = 'Please enter an email'
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = 'Invalid email address'
+    }
+
+    if (!values.password) {
+      errors.password = 'Please enter a password'
+    } else if (values.password.length < 4) {
+      errors.password = 'Password must be at least 4 characters'
+    }
+
+    return errors
+  }
+
+  onSubmit = (values, { setSubmitting }) => {
+    this.handleLogin(values)
+      .then(() => setSubmitting(false))
+      .catch(error => console.error('login error', error))
+  }
+
+  handleLogin = values => {
+    const { history } = this.props
+    return this.props
+      .signinUser({ variables: { email: values.email, password: values.password } })
+      .then(response => {
+        localStorage.setItem('graphcoolToken', response.data.authenticateUser.token)
+        history.push('/dashboard/portfolio')
+      })
+      .catch(e => console.error(e))
+  }
+
+  renderErrors = (errors, touched) => {
+    let errorText = ''
+
+    if (touched.password && errors.password) errorText = errors.password
+    if (touched.email && errors.email && (this.emailValueHasChanged || touched.password)) errorText = errors.email
+
+    return errorText ? <ErrorMessage>{errorText}</ErrorMessage> : null
+  }
+
+  toggleResetPassword = () => this.setState({ showResetPassword: true })
+
+  render() {
+    const { onRequestClose } = this.props
+    const { showResetPassword } = this.state
+
+    return (
+      <Modal isOpen onRequestClose={onRequestClose} overlayClassName={overlayClass} css={modalStyles}>
+        <ModalContainer>
+          {!showResetPassword ? (
+            <React.Fragment>
+              <ModalHeader title="Login" toggleModal={onRequestClose} />
+              <Formik
+                initialValues={{
+                  email: '',
+                  password: '',
+                }}
+                validate={this.validate}
+                onSubmit={this.onSubmit}
+                render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+                  <Form onSubmit={handleSubmit}>
+                    {this.renderErrors(errors, touched)}
+                    <Row>
+                      <Field
+                        autoFocus
+                        id="email"
+                        type="email"
+                        name="email"
+                        label="email"
+                        icon="envelope"
+                        placeholder="example@email.com"
+                        onChange={e => {
+                          handleChange(e)
+                          this.emailValueHasChanged = true
+                        }}
+                        onBlur={handleBlur}
+                        value={values.email}
+                      />
+                    </Row>
+                    <Row>
+                      <Field
+                        id="password"
+                        type="password"
+                        name="password"
+                        label="password"
+                        icon={['far', 'lock-alt']}
+                        placeholder="●●●●●●"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
+                      />
+                    </Row>
+                    <Button type="submit" color="primary" variant="raised" disabled={isSubmitting}>
+                      {isSubmitting ? (
+                        <FontAwesomeIcon icon="spinner-third" spin style={{ fontSize: '1.25rem' }} />
+                      ) : (
+                        'Login'
+                      )}
+                    </Button>
+                    <button onClick={this.toggleResetPassword}>Forgot your password?</button>
+                  </Form>
+                )}
+              />
+            </React.Fragment>
+          ) : (
+            <ResetPassword onRequestClose={onRequestClose} />
+          )}
+        </ModalContainer>
+      </Modal>
+    )
+  }
+}
+
+Login.propTypes = {
+  signinUser: PropTypes.func,
+  onClose: PropTypes.func,
+}
 
 export default graphql(AUTHENTICATE_EMAIL_USER, { name: 'signinUser' })(Login)

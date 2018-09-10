@@ -1,11 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Tooltip from 'components/Tooltip'
+
 import { SuggItem } from './styles'
 
-const ListItem = ({ name, value }) => (
+const ListItem = ({ name, value, tip }) => (
   <SuggItem>
     <p>{name}:</p>
-    <h4>{value}</h4>
+    <div style={{ display: 'flex' }}>
+      <h4 style={{ marginRight: '8px' }}>{value}</h4>
+      {tip && <Tooltip tip={tip} />}
+    </div>
   </SuggItem>
 )
 

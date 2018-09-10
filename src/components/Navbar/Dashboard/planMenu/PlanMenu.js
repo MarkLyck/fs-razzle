@@ -3,24 +3,35 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PlanContext from 'common/Contexts/PlanContext'
 import Button from 'components/Button'
-import Menu, { MenuItem } from 'material-ui/Menu'
+import DropDownMenu from 'components/DropDownMenu'
 import { hasStorage } from 'common/utils/featureTests'
 import { SelectedPlanName } from './styles'
 
 class PlanButtons extends Component {
-  state = { anchorEl: null }
+  state = {
+    anchorEl: null,
+    showMenu: false,
+  }
 
   setPlan = (setPlan, plan) => {
-    this.handleClose()
     setPlan(plan)
     if (hasStorage) localStorage.setItem('selectedPlan', plan)
   }
 
-  handleClick = event => this.setState({ anchorEl: event.currentTarget })
-  handleClose = () => this.setState({ anchorEl: null })
+  openMenu = event => {
+    this.setState({ anchorEl: event.currentTarget })
+    this.setState({ showMenu: true }, () => {
+      document.addEventListener('click', this.closeMenu)
+    })
+  }
+  closeMenu = event => {
+    this.setState({ anchorEl: null, showMenu: false }, () => {
+      document.removeEventListener('click', this.closeMenu)
+    })
+  }
 
   render() {
-    const { anchorEl } = this.state
+    const { anchorEl, showMenu } = this.state
 
     return (
       <PlanContext.Consumer>
@@ -32,17 +43,17 @@ class PlanButtons extends Component {
               type="light"
               aria-owns={anchorEl ? 'plan-menu' : null}
               aria-haspopup="true"
-              onClick={this.handleClick}
+              onClick={this.openMenu}
             >
               <SelectedPlanName>{planName ? planName.toLowerCase() : ''}</SelectedPlanName>
               <FontAwesomeIcon icon="angle-down" style={{ marginRight: 0 }} />
             </Button>
-            <Menu id="plan-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
-              <MenuItem onClick={() => this.setPlan(setPlan, 'ENTRY')}>Entry</MenuItem>
-              <MenuItem onClick={() => this.setPlan(setPlan, 'PREMIUM')}>Premium</MenuItem>
-              <MenuItem onClick={() => this.setPlan(setPlan, 'BUSINESS')}>Business</MenuItem>
-              <MenuItem onClick={() => this.setPlan(setPlan, 'FUND')}>Fund</MenuItem>
-            </Menu>
+            <DropDownMenu open={showMenu}>
+              <button onClick={() => this.setPlan(setPlan, 'ENTRY')}>Entry</button>
+              <button onClick={() => this.setPlan(setPlan, 'PREMIUM')}>Premium</button>
+              <button onClick={() => this.setPlan(setPlan, 'BUSINESS')}>Business</button>
+              <button onClick={() => this.setPlan(setPlan, 'FUND')}>Fund</button>
+            </DropDownMenu>
           </React.Fragment>
         )}
       </PlanContext.Consumer>

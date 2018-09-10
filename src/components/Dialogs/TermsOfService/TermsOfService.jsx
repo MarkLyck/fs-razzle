@@ -1,27 +1,17 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
-import theme from 'common/utils/theme'
-import Dialog from 'material-ui/Dialog'
-import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
-import IconButton from 'material-ui/IconButton'
-import Slide from 'material-ui/transitions/Slide'
-import { LegalContainer } from './styles'
-
-function Transition(props) {
-  return <Slide direction="up" {...props} />
-}
+import Modal from 'react-modal'
+import { LegalContainer, modalStyles } from './styles'
+import { overlayClass, AppBar } from '../styles'
 
 const TermsOfService = ({ open, hideTerms }) => (
-  <Dialog fullScreen open={open} onClose={hideTerms} transition={Transition}>
-    <AppBar style={{ background: theme.colors.gray }}>
-      <Toolbar>
-        <IconButton onClick={hideTerms} aria-label="Close">
-          <FontAwesomeIcon icon={['far', 'times']} style={{ color: '#fff' }} />
-        </IconButton>
-        <h3 style={{ marginLeft: '16px' }}>Terms of Service</h3>
-      </Toolbar>
+  <Modal isOpen={open} onRequestClose={() => {}} overlayClassName={overlayClass} css={modalStyles}>
+    <AppBar>
+      <h2>Terms of Service</h2>
+      <button onClick={hideTerms}>
+        <FontAwesomeIcon icon={['far', 'times']} style={{ color: '#fff' }} />
+      </button>
     </AppBar>
     <LegalContainer>
       <p className="disclaimer">Last updated (Sep 21st, 2016)</p>
@@ -609,7 +599,7 @@ const TermsOfService = ({ open, hideTerms }) => (
 
       <p>© Formula Stocks ApS 2017 All Rights Reserved</p>
     </LegalContainer>
-  </Dialog>
+  </Modal>
 )
 
 TermsOfService.propTypes = {

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LineGraph from 'components/Charts/LineGraph'
 import { formatPrice } from 'common/utils/helpers'
 import { Legends, Legend } from 'components/Charts/Legends/Legends'
@@ -36,11 +37,7 @@ const createChartData = (planData, marketPrices) =>
 
 const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded }) => {
   if (!planData || !planData.length || !amChartsLoaded) {
-    return (
-      <div id="result-chart" className="loading">
-        <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw" />
-      </div>
-    )
+    return <FontAwesomeIcon icon="spinner-third" spin size="4x" />
   }
   const chartData = createChartData(planData, marketPrices)
 
@@ -64,10 +61,11 @@ const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded })
       useLineColorForBulletBorder: true,
       valueField: 'fs',
       balloonText: `
-                <div class="chart-balloon">
-                    <span class="plan-name">${planName}</span>
-                    <span class="balloon-value">[[fsBalloon]]</span>
-                </div>`,
+        <div class="chart-balloon">
+            <span class="plan-name">${planName}</span>
+            <span class="balloon-value">[[fsBalloon]]</span>
+        </div>
+      `,
     },
   ]
   if (marketPrices.length) {
@@ -84,10 +82,11 @@ const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded })
       useLineColorForBulletBorder: true,
       valueField: 'market',
       balloonText: `
-                <div class="chart-balloon">
-                    <span class="plan-name market-name">DJIA</span>
-                    <span class="balloon-value">[[marketBalloon]]</span>
-                </div>`,
+        <div class="chart-balloon">
+            <span class="plan-name market-name">DJIA</span>
+            <span class="balloon-value">[[marketBalloon]]</span>
+        </div>
+      `,
     })
   }
 
@@ -95,7 +94,7 @@ const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded })
     <GraphContainer>
       <Legends data-left={40}>
         <Legend color={theme.colors.primary}>
-          <p>{planName}</p>
+          <p className="plan-name">{planName}</p>
         </Legend>
         <Legend color={theme.colors.black}>
           <p>S&P 500</p>
