@@ -99,8 +99,10 @@ class CheckoutForm extends Component {
 
     let signupErrorMessage = signupError
 
-    if (signupError.includes('User already exists with that information')) {
+    if (signupError.includes('Email already in use')) {
       signupErrorMessage = 'A user with this email already exists.'
+    } else if (signupError.includes('timed out')) {
+      signupErrorMessage = 'Signup timed out, Please refresh the page and try again.'
     } else if (signupError.includes('GraphQL')) {
       signupErrorMessage =
         'Something went wrong trying to create your account. Please clear your browser history and try again.'

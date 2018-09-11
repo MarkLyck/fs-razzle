@@ -4,6 +4,7 @@ export const SuggContainer = styled.div`
   width: calc(50% - 16px);
   margin: 8px;
   margin-top: 16px;
+  overflow: hidden;
 
   @media (max-width: 850px) {
     width: calc(100% - 16px);
@@ -45,7 +46,7 @@ export const ContentContainer = styled.div`
 `
 
 export const Placeholder = styled.div`
-  height: 33px;
+  height: 32px;
   width: 100%;
 `
 

@@ -3,10 +3,6 @@ import { css } from 'emotion'
 
 export const ModalContainer = styled.div`
   padding: 24px 16px;
-
-  .submit-button {
-    margin: 8px 0 16px;
-  }
 `
 
 export const modalStyles = `

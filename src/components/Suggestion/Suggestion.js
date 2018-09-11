@@ -12,6 +12,31 @@ class Suggestion extends Component {
 
   toggleDetails = () => this.setState({ detailsIsVisible: !this.state.detailsIsVisible })
 
+  renderTip = () => {
+    const { suggestionsType } = this.props
+
+    if (suggestionsType === 'Trades') {
+      return `
+The percentage indicated is as a percentage of total portfolio value.
+\\A\\A 
+E.g. for a portfolio of 40,000 USD in stocks and cash, you would 
+purchase for 2,000 dollars of this stock if the percentage indicated is 5.00%.
+\\A\\A 
+Whether or not a portfolio already contains this stock makes no difference. 
+Trades are in addition to existing positions.`
+    }
+    return `
+The percentage indicated relates to a percentage of cash available 
+for investment this month.\\A\\A 
+
+E.g. if 10,000 USD is available for investment this month, and 
+Cash allocation is 25%, it suggests adding $2,500  
+of this stock to your portfolio.\\A\\A 
+
+Or, if you prefer to use a percentage of total portfolio value 
+instead, visit the Trades section.`
+  }
+
   render() {
     const { suggestion, stock, serialChartsReady, suggestionsType, loading, error } = this.props
     const { detailsIsVisible } = this.state
@@ -39,7 +64,12 @@ class Suggestion extends Component {
               {suggestion.action === 'BUY' && <ListItem name={suggestedPriceName} value={`$${suggestedPrice}`} />}
               <ListItem name="Last price" value={`$${latestPrice}`} />
               {suggestion.action === 'BUY' && (
-                <ListItem name={allocationText} value={`${allocation.toFixed(2)}%`} tip="test tip" />
+                <ListItem
+                  name={allocationText}
+                  value={`${allocation.toFixed(2)}%`}
+                  tip={this.renderTip()}
+                  tipWidth="345"
+                />
               )}
               {suggestion.action === 'SELL' && (
                 <ListItem name="Purchase price" value={`$${suggestion.original_purchase.toFixed(2)}`} />
@@ -52,6 +82,7 @@ class Suggestion extends Component {
                 [
                   <Placeholder key={suggestion.ticker + 'place-1'} />,
                   <Placeholder key={suggestion.ticker + 'place-2'} />,
+                  <Placeholder key={suggestion.ticker + 'place-3'} />,
                 ]
               )}
             </StockInfoList>

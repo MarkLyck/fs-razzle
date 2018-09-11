@@ -58,7 +58,7 @@ export default styled.form`
     display: block;
     width: 100%;
     height: 40px;
-    margin: 8px 16px 0;
+    margin: 0 16px;
     background-color: ${props => props.theme.colors.primary};
     border-radius: 4px;
     color: #fff;

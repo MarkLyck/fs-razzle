@@ -30,7 +30,6 @@ class CancelSubscription extends Component {
     const { stripeSubscription, updateUser, userID } = this.props
     const nowInUnixSeconds = Date.now() / 1000
 
-    console.log(stripeSubscription)
     return (
       <React.Fragment>
         {stripeSubscription.cancel_at_period_end &&

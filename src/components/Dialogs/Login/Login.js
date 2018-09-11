@@ -5,6 +5,7 @@ import { graphql } from 'react-apollo'
 import Modal from 'react-modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ModalContainer, overlayClass, modalStyles } from '../styles'
+import { ForgotPassword } from './styles'
 import { Formik } from 'formik'
 import Form, { Row, Field, ErrorMessage } from 'components/Form'
 import ModalHeader from 'components/Dialogs/ModalHeader'
@@ -97,7 +98,7 @@ class Login extends Component {
                         name="email"
                         label="email"
                         icon="envelope"
-                        placeholder="example@email.com"
+                        placeholder="Email"
                         onChange={e => {
                           handleChange(e)
                           this.emailValueHasChanged = true
@@ -113,7 +114,7 @@ class Login extends Component {
                         name="password"
                         label="password"
                         icon={['far', 'lock-alt']}
-                        placeholder="●●●●●●"
+                        placeholder="Password"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.password}
@@ -126,7 +127,7 @@ class Login extends Component {
                         'Login'
                       )}
                     </Button>
-                    <button onClick={this.toggleResetPassword}>Forgot your password?</button>
+                    <ForgotPassword onClick={this.toggleResetPassword}>Forgot your password?</ForgotPassword>
                   </Form>
                 )}
               />

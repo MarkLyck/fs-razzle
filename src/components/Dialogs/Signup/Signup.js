@@ -6,25 +6,27 @@ import Modal from 'react-modal'
 import { hasStorage } from 'common/utils/featureTests'
 import { getDeviceType } from 'common/utils/helpers'
 import ModalHeader from 'components/Dialogs/ModalHeader'
+import { client } from 'src/App'
 import AccountInfo from './AccountInfo'
 import BillingInfo from './BillingInfo'
 import { ModalContainer, modalStyles, overlayClass } from '../styles'
 
-const CREATE_USER = gql`
-  mutation(
+const SIGNUP_USER = gql`
+  query signupUser(
     $email: String!
     $password: String!
     $name: String!
     $plan: String!
     $type: String!
     $stripeToken: String!
-    $address: Json!
-    $location: Json!
-    $device: Json!
+    $address: Json
+    $location: Json
+    $device: Json
     $taxPercent: Float!
   ) {
-    createUser(
-      authProvider: { email: { email: $email, password: $password } }
+    signupUser(
+      email: $email
+      password: $password
       name: $name
       plan: $plan
       type: $type
@@ -35,6 +37,7 @@ const CREATE_USER = gql`
       taxPercent: $taxPercent
     ) {
       id
+      token
     }
   }
 `
@@ -56,8 +59,8 @@ class SignUp extends Component {
 
   nextPage = accountInfo => this.setState({ page: this.state.page + 1, accountInfo })
 
-  handleSignup = (name, taxPercent, { token }) => {
-    const { history, createUser, signinUser } = this.props
+  handleSignup = async (name, taxPercent, { token }) => {
+    const { history } = this.props
     const { accountInfo } = this.state
 
     const location =
@@ -65,50 +68,47 @@ class SignUp extends Component {
     const plan = hasStorage && localStorage.getItem('selectedPlan') ? localStorage.getItem('selectedPlan') : 'ENTRY'
     const type = plan === 'ENTRY' ? 'trial' : 'subscriber'
 
-    createUser({
-      variables: {
-        email: accountInfo.email,
-        password: accountInfo.password,
-        stripeToken: token.id,
-        name,
-        plan,
-        type,
-        location,
-        taxPercent,
-        address: {
-          country: accountInfo.country,
-          city: accountInfo.city,
-          postalCode: accountInfo.postalCode,
-          address: accountInfo.address,
-        },
-        device: {
-          os: platform.os.family,
-          product: platform.product,
-          browser: platform.name,
-          type: getDeviceType(),
-        },
-      },
-    })
-      .then(user => {
-        console.log('user', user)
-        signinUser({
-          variables: {
-            email: accountInfo.email,
-            password: accountInfo.password,
+    try {
+      const { data } = await client.query({
+        query: SIGNUP_USER,
+        variables: {
+          email: accountInfo.email,
+          password: accountInfo.password,
+          stripeToken: token.id,
+          name,
+          plan,
+          type,
+          location,
+          taxPercent,
+          address: {
+            country: accountInfo.country,
+            city: accountInfo.city,
+            postalCode: accountInfo.postalCode,
+            address: accountInfo.address,
           },
-        }).then(response => {
-          if (hasStorage) {
-            localStorage.setItem('graphcoolToken', response.data.signinUser.token)
-          }
-          history.push('/dashboard/portfolio')
-        })
+          device: {
+            os: platform.os.family,
+            product: platform.product,
+            browser: platform.name,
+            type: getDeviceType(),
+          },
+        },
       })
-      .catch(e => this.setState({ signupError: String(e) }))
+      if (hasStorage) {
+        localStorage.setItem('graphcoolToken', data.signupUser.token)
+      }
+      history.push('/dashboard/portfolio')
+    } catch (error) {
+      console.error('signup error', error)
+      this.setState({ signupError: error.message })
+    }
   }
 
   render() {
     const { page, accountInfo, signupError } = this.state
     const { onRequestClose, planPrice } = this.props
+
+    console.log(signupError)
 
     return (
       <Modal isOpen onRequestClose={onRequestClose} overlayClassName={overlayClass} css={modalStyles}>
@@ -129,7 +129,4 @@ class SignUp extends Component {
   }
 }
 
-export default compose(
-  graphql(CREATE_USER, { name: 'createUser' }),
-  graphql(SIGNIN_USER_MUTATION, { name: 'signinUser' })
-)(SignUp)
+export default compose(graphql(SIGNIN_USER_MUTATION, { name: 'signinUser' }))(SignUp)

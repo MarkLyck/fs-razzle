@@ -8,6 +8,20 @@ import Left from 'components/Section/Beside/Left'
 import Right from 'components/Section/Beside/Right'
 import { BesideContainer, Screenshot, Table, TableBody, TableRow, TableCell, TableHeadCell, StockName } from './styles'
 
+const removeDupes = list => {
+  let names = {}
+
+  const newList = list.reduce((acc, curr) => {
+    if (!names[curr.ticker]) {
+      names[curr.ticker] = true
+      acc.push(curr)
+    }
+    return acc
+  }, [])
+
+  return newList
+}
+
 const WhatToExpect = ({ latestSells }) => (
   <Section data-offwhite>
     <SectionTitle>What to expect</SectionTitle>
@@ -36,7 +50,7 @@ const WhatToExpect = ({ latestSells }) => (
       If you choose to use Formula Stocks consistently, diversified, and for a number of years, odds are extremely good
       that you will obtain better returns than offered by most investment methods.<br />
       <br />
-      Here are the latest 10 sales performed by the Entry product
+      Here are the latest sales performed by the Entry product
     </p>
     <Table>
       <thead>
@@ -52,7 +66,7 @@ const WhatToExpect = ({ latestSells }) => (
         </TableRow>
       </thead>
       <TableBody>
-        {latestSells.map((sell, i) => {
+        {removeDupes(latestSells).map((sell, i) => {
           const percentReturn = (((sell.sellPrice - sell.originalPrice) * 100) / sell.originalPrice).toFixed(2)
           return (
             <TableRow key={sell.name + i}>
