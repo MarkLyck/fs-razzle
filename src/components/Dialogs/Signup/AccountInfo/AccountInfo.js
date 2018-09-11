@@ -5,6 +5,7 @@ import Form, { Field, Row, ErrorMessage } from 'components/Form'
 import Button from 'components/Button'
 import CountrySelect from './CountrySelect'
 import { css } from 'emotion'
+import { FooterText } from './styles'
 
 class AccountInfo extends Component {
   state = {
@@ -131,7 +132,7 @@ class AccountInfo extends Component {
                 name="email"
                 label="email"
                 icon="envelope"
-                placeholder="example@email.com"
+                placeholder="Email"
                 onChange={e => {
                   handleChange(e)
                   this.emailValueHasChanged = true
@@ -147,7 +148,7 @@ class AccountInfo extends Component {
                 name="password"
                 label="password"
                 icon={['far', 'lock-alt']}
-                placeholder="●●●●●●"
+                placeholder="Password"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
@@ -162,6 +163,7 @@ class AccountInfo extends Component {
             <Button className="submit-button" type="submit" variant="raised" disabled={isSubmitting}>
               Next
             </Button>
+            <FooterText>We never give your information to third parties</FooterText>
           </Form>
         )}
       />

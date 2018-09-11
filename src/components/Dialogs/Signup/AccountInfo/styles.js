@@ -41,4 +41,14 @@ export const CountrySelectContainer = styled.div`
       z-index: 100;
     }
   }
+
+  .submit-button {
+    margin-bottom: 0;
+  }
+`
+
+export const FooterText = styled.p`
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #737373;
 `

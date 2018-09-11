@@ -98,7 +98,7 @@ class Login extends Component {
                         name="email"
                         label="email"
                         icon="envelope"
-                        placeholder="example@email.com"
+                        placeholder="Email"
                         onChange={e => {
                           handleChange(e)
                           this.emailValueHasChanged = true
@@ -114,7 +114,7 @@ class Login extends Component {
                         name="password"
                         label="password"
                         icon={['far', 'lock-alt']}
-                        placeholder="●●●●●●"
+                        placeholder="Password"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.password}
