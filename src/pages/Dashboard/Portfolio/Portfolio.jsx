@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
+import fecha from 'fecha'
 import { planIds, marketIds } from 'common/constants'
 import PlanContext from 'common/Contexts/PlanContext'
 import withDashboard from 'components/withDashboard'
@@ -13,7 +14,7 @@ import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import PortfolioLoader from 'components/Loading/PortfolioLoader'
 import LoadingError from 'components/Error/LoadingError'
 import PortfolioItem from './PortfolioItem'
-import { PortfolioTable, PortfolioTableHead } from './styles'
+import { PortfolioTable, PortfolioTableHead, LastUpdated, DateLabel } from './styles'
 
 const PORTFOLIO_QUERY = gql`
     query plan($id: ID!) {
@@ -44,6 +45,8 @@ class Portfolio extends Component {
               if (loading) return <PortfolioLoader />
               if (error || !data || !data.Plan) return <LoadingError />
               const { Plan, DJIA } = data
+
+              const lastRebalanceDate = Plan.portfolioYields[Plan.portfolioYields.length - 1].date
 
               return (
                 <React.Fragment>
@@ -80,7 +83,9 @@ class Portfolio extends Component {
                       </TableRow>
                     </PortfolioTableHead>
                     <TableBody>
-                      {Plan.portfolio.map(stock => <PortfolioItem stock={stock} key={stock.ticker} />)}
+                      {Plan.portfolio.map(stock => (
+                        <PortfolioItem stock={stock} key={stock.ticker} serialChartsReady={serialChartsReady} />
+                      ))}
                     </TableBody>
                   </PortfolioTable>
                   <StatisticsContainer>
@@ -97,6 +102,15 @@ class Portfolio extends Component {
                       icon="dollar-sign"
                     />
                   </StatisticsContainer>
+                  <LastUpdated>
+                    Last rebalanced:{' '}
+                    <DateLabel>
+                      {fecha.format(
+                        new Date(lastRebalanceDate.year, lastRebalanceDate.month, lastRebalanceDate.day),
+                        'MMM D, YYYY'
+                      )}
+                    </DateLabel>
+                  </LastUpdated>
                 </React.Fragment>
               )
             }}
