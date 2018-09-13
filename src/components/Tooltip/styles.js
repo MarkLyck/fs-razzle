@@ -10,7 +10,8 @@ export const TooltipContainer = styled.div`
             white-space: pre-wrap;
             position: absolute;
             bottom: 24px;
-            left: -8px;
+            left: ${props => (props.position !== 'left' ? '-8px' : '')};
+            right: ${props => (props.position === 'left' ? '-8px' : '')};
             background: white;
             width: ${props => props.width || 240}px;
             box-sizing: border-box;

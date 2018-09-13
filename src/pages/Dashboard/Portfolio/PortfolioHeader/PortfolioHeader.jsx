@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import PortfolioChart from './PortfolioChart'
 import AllocationChart from './AllocationChart'
+import Tooltip from 'components/Tooltip'
 import { HeaderContainer, RightSide, LeftSide } from './styles'
 
 const getIncrease = (startSum, endSum) => (((endSum - startSum) / startSum) * 100).toFixed(2)
@@ -26,7 +27,10 @@ const PortfolioHeader = ({ portfolioYields, marketPrices, planName, portfolio, s
         </p>
       </div>
       <div className="market-results results">
-        <h3>DJIA</h3>
+        <div className="market-name">
+          <h3>DJIA</h3>
+          <Tooltip tip={'Dow Jones Industrial Average'} position="left" width="242" />
+        </div>
         <p>
           <span>+{getIncrease(marketPrices[0].price, marketPrices[marketPrices.length - 1].price)}% </span>
           since 2009

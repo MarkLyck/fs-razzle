@@ -64,8 +64,8 @@ const THCell = styled.th`
       : ''};
 `
 
-export const TableHeadCell = ({ className, tooltip, children }) => (
-  <THCell className={className} tooltip={tooltip}>
+export const TableHeadCell = ({ className, tooltip, children, ...rest }) => (
+  <THCell className={className} tooltip={tooltip} {...rest}>
     <p className="tooltip">
       {children}
       {tooltip ? <FontAwesomeIcon className="tooltip-icon" icon="question-circle" /> : ''}

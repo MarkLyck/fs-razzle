@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
 import { TableCell } from 'components/Table'
+import PortfolioItemGraph from './PortfolioItemGraph'
 import { ItemRow } from './styles'
+
+const STOCK_QUERY = gql`
+  query stocks($ticker: String!) {
+    allStocks(filter: { ticker: $ticker }) {
+      ticker
+      historicPrices
+    }
+  }
+`
 
 const numberToFirstDecimal = number => {
   if (number >= 0.01) return number.toFixed(2)
@@ -23,8 +35,15 @@ const numberToFirstDecimal = number => {
 }
 
 class PortfolioItem extends Component {
+  state = {
+    expanded: false,
+  }
+
+  toggleExpanded = () => this.setState({ expanded: !this.state.expanded })
+
   render() {
-    const { stock } = this.props
+    const { stock, serialChartsReady } = this.props
+    const { expanded } = this.state
 
     const costBasisPrice = stock.purchase_price - stock.dividends
     const percentIncrease = (((stock.latest_price - costBasisPrice) * 100) / costBasisPrice).toFixed(2)
@@ -33,19 +52,47 @@ class PortfolioItem extends Component {
     const allocation = numberToFirstDecimal(stock.percentage_weight)
 
     return (
-      <ItemRow>
-        <TableCell className="name">
-          <h4 className="name">{stock.name}</h4>
-          {stock.ticker !== 'CASH' && <p className="ticker">{stock.ticker}</p>}
-        </TableCell>
-        <TableCell className="allocation">{allocation}%</TableCell>
-        <TableCell className={`return ${percentIncrease > 0 ? 'positive' : 'negative'}`}>
-          {isNaN(percentIncrease) ? '' : `${increasePrefix}${percentIncrease}%`}
-        </TableCell>
-        <TableCell className="cost-basis">{costBasisPrice ? `$${costBasisPrice.toFixed(2)}` : ''}</TableCell>
-        <TableCell className="last-price">{latestPrice}</TableCell>
-        <TableCell className="days-owned">{stock.days_owned}</TableCell>
-      </ItemRow>
+      <React.Fragment>
+        <ItemRow hover onClick={this.toggleExpanded}>
+          <TableCell className="name">
+            <h4 className="stock-name">{stock.name}</h4>
+            {stock.ticker !== 'CASH' && <p className="ticker">{stock.ticker}</p>}
+          </TableCell>
+          <TableCell className="allocation">{allocation}%</TableCell>
+          <TableCell className={`return ${percentIncrease > 0 ? 'positive' : 'negative'}`}>
+            {isNaN(percentIncrease) ? '' : `${increasePrefix}${percentIncrease}%`}
+          </TableCell>
+          <TableCell className="cost-basis">{costBasisPrice ? `$${costBasisPrice.toFixed(2)}` : ''}</TableCell>
+          <TableCell className="last-price">{latestPrice}</TableCell>
+          <TableCell className="days-owned">{stock.days_owned}</TableCell>
+        </ItemRow>
+        {expanded && (
+          <Query query={STOCK_QUERY} variables={{ ticker: stock.ticker }}>
+            {({ loading, error, data }) => {
+              let historicPrices = []
+
+              if (data.allStocks && data.allStocks[0] && data.allStocks[0].historicPrices) {
+                historicPrices = data.allStocks[0].historicPrices
+              }
+
+              return (
+                <ItemRow>
+                  <td className="stock-graph-cell" colspan="6">
+                    <PortfolioItemGraph
+                      historicPrices={historicPrices}
+                      serialChartsReady={serialChartsReady}
+                      loading={loading}
+                      error={error}
+                      ticker={stock.ticker}
+                      costBasisPrice={costBasisPrice}
+                    />
+                  </td>
+                </ItemRow>
+              )
+            }}
+          </Query>
+        )}
+      </React.Fragment>
     )
   }
 }
