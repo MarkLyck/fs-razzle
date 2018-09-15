@@ -29,9 +29,10 @@ const WhatToExpect = ({ latestSells, winRatio }) => (
       <Beside>
         <Left>
           <p>
-            Our recommendations are long term, the average holding period is 2.24 years. When you first buy a stock, the
-            immediate price changes may well be random in the very short term. But over time the price will gradually
-            come to reflect the value of the better choices we make.<br />
+            Our recommendations have an average holding period of 2.2 years. When you first buy a stock, the immediate
+            price changes may well be random in the short term. Over time the price will, on average, gradually come to
+            reflect the business prospects we have ascertained.
+            <br />
             <br />
             Our Entry product statistically wins +{Math.floor(winRatio)}% of the time. This compares to 59% for a
             typical basket of stocks.<br />
