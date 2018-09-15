@@ -78,7 +78,7 @@ class PortfolioItem extends Component {
 
                 return (
                   <ItemRow>
-                    <td className="stock-graph-cell" colspan="6">
+                    <td className="stock-graph-cell" colSpan="6">
                       <PortfolioItemGraph
                         historicPrices={historicPrices}
                         serialChartsReady={serialChartsReady}
