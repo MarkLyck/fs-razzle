@@ -5,6 +5,7 @@ export const ALL_PLANS = gql`
     allPlans {
       id
       backtestedData
+      launchStatistics
       latestSells
       name
       portfolio

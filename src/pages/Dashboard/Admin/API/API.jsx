@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { queue } from 'd3-queue'
-import { planIds } from 'common/constants'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
 import LoadingError from 'components/Error/LoadingError'
@@ -66,7 +65,7 @@ class FileUploader extends Component {
         extractJSONFromFile(file)
           .then(json => {
             let planName = json.name.split('.')[0].split('_')[1]
-            console.log(planName, json)
+            console.log(json.name, json)
             if (planName === 'basic') planName = 'entry'
 
             q.defer(
