@@ -72,15 +72,15 @@ class Suggestions extends Component {
             {({ loading, error, data }) => {
               const suggestionsType = location.pathname.includes('/trades') ? 'Trades' : 'Suggestions'
               if (loading) return <SuggestionsLoader suggestionsType={suggestionsType} />
-              if (error && !usingMocks) return <LoadingError />
+              if (!usingMocks && (error || !data)) return <LoadingError />
 
-              const plan = data ? data.Plan : mockData.Plan
+              const plan = data.Plan || mockData.Plan
 
               const listStatTitle = suggestionsType === 'Trades' ? 'Trades this month' : 'Suggestions'
 
               const suggestions = plan.suggestions
                 .filter(sugg => {
-                  if (location.pathname.includes('/dashboard/trades')) return sugg.model
+                  if (location.pathname.includes('trades')) return sugg.model
                   return !sugg.model || sugg.action === 'SELL'
                 })
                 .sort(sugg => (sugg.action === 'SELL' ? 1 : -1))

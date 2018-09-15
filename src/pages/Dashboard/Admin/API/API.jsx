@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { queue } from 'd3-queue'
+import { planIds } from 'common/constants'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
 import LoadingError from 'components/Error/LoadingError'
@@ -26,6 +28,14 @@ const acceptedFilenames = [
   'weekly_business.json',
   'weekly_fund.json',
 ]
+let q = queue(1)
+
+let plansData = {
+  entry: {},
+  premium: {},
+  business: {},
+  fund: {},
+}
 
 class FileUploader extends Component {
   state = {
@@ -33,6 +43,17 @@ class FileUploader extends Component {
     successfullUploads: [],
     errorUploading: [],
   }
+
+  updateSuccesfullUploads = file => {
+    console.log('file in uploads', file)
+    this.setState(state => {
+      return {
+        successfullUploads: state.successfullUploads.concat([file]),
+        uploadingFiles: state.uploadingFiles.filter(f => f.name !== file.name),
+      }
+    })
+  }
+
   onDrop = (updatePlan, allPlans, files) => {
     const badFiles = files.filter(file => acceptedFilenames.indexOf(file.name) === -1)
 
@@ -40,18 +61,23 @@ class FileUploader extends Component {
       files.forEach(file => {
         this.setState(state => ({
           uploadingFiles: files,
-          successfullUploads: [],
-          errorUploading: [],
+          successfullUploads: state.successfullUploads,
+          errorUploading: state.errorUploading,
         }))
         extractJSONFromFile(file)
-          .then(json => mutatePlanData(json, updatePlan, allPlans))
-          .then(data => {
-            this.setState(state => ({
-              successfullUploads: state.successfullUploads.push(file),
-              uploadingFiles: state.uploadingFiles.filter(f => f.name !== file.name),
-            }))
-            console.log('mutated plan', data)
+          .then(json => {
+            let planName = json.name.split('.')[0].split('_')[1]
+            if (planName === 'basic') planName = 'entry'
+            console.log(json, planName)
+            q.defer(
+              mutatePlanData,
+              json,
+              updatePlan,
+              this.updateSuccesfullUploads.bind(null, file),
+              plansData[planName]
+            )
           })
+          // .then(data => console.log(data))
           .catch(err => this.setState({ errorUploading: `Error: ${err}` }))
       })
     }
@@ -64,6 +90,10 @@ class FileUploader extends Component {
         {({ loading, error, data }) => {
           if (loading) return <GenericLoader />
           if (error || !data.allPlans) return <LoadingError />
+
+          data.allPlans.forEach(plan => (plansData[plan.name.toLowerCase()] = plan))
+          console.log(plansData)
+
           return (
             <Mutation mutation={UPDATE_PLAN}>
               {updatePlan => (

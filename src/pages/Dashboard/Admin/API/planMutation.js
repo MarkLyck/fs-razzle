@@ -1,14 +1,14 @@
 import _ from 'lodash'
 import { planIds } from 'common/constants'
 
-export const mutatePlanData = (file, updatePlan, Plans) => {
+export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPlan, finished) => {
   let planId
   if (file.name.indexOf('basic') > -1 || file.name.indexOf('entry') > -1) planId = planIds.ENTRY
   else if (file.name.indexOf('premium') > -1) planId = planIds.PREMIUM
   else if (file.name.indexOf('business') > -1) planId = planIds.BUSINESS
   else if (file.name.indexOf('fund') > -1) planId = planIds.FUND
 
-  const oldPlan = Plans.filter(plan => plan.id === planId)[0]
+  console.log('oldPlan', oldPlan)
 
   let backtestedData = oldPlan.backtestedData
   let latestSells = oldPlan.latestSells
@@ -17,11 +17,14 @@ export const mutatePlanData = (file, updatePlan, Plans) => {
   let statistics = oldPlan.statistics
   let suggestions = oldPlan.suggestions
 
+  console.log('oldSuggestions', suggestions)
+
   if (file.name.indexOf('weekly') > -1) {
     const modelSuggestions = suggestions.filter(sugg => sugg.model)
     suggestions = file.data.actionable.concat(modelSuggestions)
   } else if (file.name.indexOf('monthly') > -1) {
     portfolioYields = file.data.logs
+    console.log('new actionable', file.data.actionable)
     file.data.actionable.forEach(sugg => {
       if (sugg.action === 'SELL') {
         const newSell = {
@@ -37,7 +40,10 @@ export const mutatePlanData = (file, updatePlan, Plans) => {
         }
       }
     })
+
+    console.log('suggestions unfiltered', suggestions)
     const weeklySuggestions = suggestions.filter(sugg => !sugg.model)
+    console.log('suggestions filtered', weeklySuggestions)
     let modelSuggestions = []
     if (file.data.actionable) {
       modelSuggestions = file.data.actionable.map(sugg => {
@@ -46,6 +52,7 @@ export const mutatePlanData = (file, updatePlan, Plans) => {
       })
     }
     suggestions = weeklySuggestions.concat(modelSuggestions)
+    console.log('suggestions after', suggestions)
     file.data.statistics.percentInCash = file.data.portfolio[file.data.portfolio.length - 1].percentage_weight
     launchStatistics = _.merge(launchStatistics, file.data.statistics)
   } else if (file.name.indexOf('annual') > -1) {
@@ -55,7 +62,7 @@ export const mutatePlanData = (file, updatePlan, Plans) => {
     backtestedData = file.data.logs
   }
 
-  return updatePlan({
+  updatePlan({
     variables: {
       id: planId,
       backtestedData,
@@ -66,6 +73,10 @@ export const mutatePlanData = (file, updatePlan, Plans) => {
       launchStatistics,
       suggestions,
     },
+  }).then(data => {
+    oldPlan = data.updatePlan
+    updateSuccesfullUploads()
+    finished(null)
   })
 }
 
