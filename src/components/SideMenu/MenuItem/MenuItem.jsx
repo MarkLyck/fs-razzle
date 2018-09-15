@@ -12,6 +12,13 @@ class MenuItem extends Component {
       history.push('/')
       return
     }
+    if (route === 'support') {
+      window.Intercom('boot', {
+        app_id: 'i194mpvo',
+      })
+      window.Intercom('showNewMessage')
+      return
+    }
     setActiveRoute(this.props.route)
     history.push(`/dashboard/${this.props.route}`)
   }

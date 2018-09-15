@@ -70,11 +70,12 @@ class Suggestions extends Component {
         {({ planName }) => (
           <Query query={SUGGESTIONS_QUERY} variables={{ id: planIds[planName] }}>
             {({ loading, error, data }) => {
-              if (loading) return <SuggestionsLoader />
+              const suggestionsType = location.pathname.includes('/trades') ? 'Trades' : 'Suggestions'
+              if (loading) return <SuggestionsLoader suggestionsType={suggestionsType} />
               if (error && !usingMocks) return <LoadingError />
 
               const plan = data ? data.Plan : mockData.Plan
-              const suggestionsType = location.pathname.includes('/trades') ? 'Trades' : 'Suggestions'
+
               const listStatTitle = suggestionsType === 'Trades' ? 'Trades this month' : 'Suggestions'
 
               const suggestions = plan.suggestions
