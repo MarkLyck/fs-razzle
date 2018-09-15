@@ -78,6 +78,7 @@ class Retail extends Component {
   amChartsThemeStatus = false
 
   componentDidMount() {
+    window.Intercom('boot', { app_id: 'i194mpvo' })
     hasStorage && localStorage.setItem('selectedPlan', 'ENTRY')
   }
 

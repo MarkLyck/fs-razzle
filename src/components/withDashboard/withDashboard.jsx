@@ -25,6 +25,10 @@ const withDashboard = WrappedComponent => {
           : 'ENTRY',
     }
 
+    componentDidMount() {
+      window.Intercom('shutdown')
+    }
+
     setPlan = planName => this.setState({ planName })
 
     getContext = () => ({
