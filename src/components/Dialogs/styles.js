@@ -13,6 +13,28 @@ export const modalStyles = `
   z-index: 11;
 `
 
+export const fullScreenModalStyles = `
+  background: white;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  z-index: 11;
+  overflow-y: scroll;
+`
+
+export const LegalContainer = styled.div`
+  padding: 32px;
+  overflow-y: auto;
+  margin-top: 64px;
+  p {
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+`
+
 export const overlayClass = css`
   z-index: 10;
   background rgba(0,0,0,0.5);
@@ -27,7 +49,7 @@ export const overlayClass = css`
 `
 
 export const AppBar = styled.div`
-  background: ${props => props.theme.colors.primary};
+  background: ${props => props.theme.colors.white};
   width: 100%;
   height: 72px;
   padding: 0 24px;
@@ -40,13 +62,14 @@ export const AppBar = styled.div`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
 
   h2 {
-    color: white;
+    color: ${props => props.theme.colors.primary};
     font-size: 1.2rem;
   }
 
   button {
     background: none;
     border: none;
+    color: ${props => props.theme.colors.primary};
     font-size: 2rem;
   }
 `

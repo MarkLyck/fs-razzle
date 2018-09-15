@@ -74,7 +74,8 @@ class Suggestions extends Component {
               if (error && !usingMocks) return <LoadingError />
 
               const plan = data ? data.Plan : mockData.Plan
-              const suggestionsType = location.pathname.includes('/dashboard/trades') ? 'Trades' : 'Suggestions'
+              const suggestionsType = location.pathname.includes('/trades') ? 'Trades' : 'Suggestions'
+              const listStatTitle = suggestionsType === 'Trades' ? 'Trades this month' : 'Suggestions'
 
               const suggestions = plan.suggestions
                 .filter(sugg => {
@@ -92,7 +93,7 @@ class Suggestions extends Component {
                       value={`${plan.statistics.winRatio.toFixed(2)}%`}
                       icon="chart-pie"
                     />
-                    <StatisticsBox title={suggestionsType} value={suggestions.length} icon="list-ul" />
+                    <StatisticsBox title={listStatTitle} value={suggestions.length} icon="list-ul" />
                     <StatisticsBox
                       title="Percent in cash"
                       value={`${plan.launchStatistics.percentInCash.toFixed(2)}%`}

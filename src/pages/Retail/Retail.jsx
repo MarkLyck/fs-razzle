@@ -11,6 +11,7 @@ import LoadingError from 'components/Error/LoadingError'
 import Navbar from 'components/Navbar/Retail'
 import Signup from 'components/Dialogs/Signup'
 import Login from 'components/Dialogs/Login'
+import FAQ from 'components/Dialogs/FAQ'
 import Hero from './01_Hero'
 import Introduction from './02_Introduction'
 import WhatIsIt from './03_WhatIsIt'
@@ -24,7 +25,6 @@ import Statistics from './10_Statistics'
 import HowWeBeatTheMarket from './11_HowWeBeatTheMarket'
 import RiskManagement from './12_RiskManagement'
 import CorporateProfile from './13_CorporateProfile'
-import IntendedAudience from './14_IntendedAudience'
 import ScrolledToBottom from './15_ScrolledToBottom'
 import Footer from './16_Footer'
 
@@ -71,6 +71,7 @@ class Retail extends Component {
     amChartsLoadingError: false,
     signUpVisible: false,
     loginVisible: false,
+    FAQVisible: false,
   }
 
   amChartsSerialStatus = false
@@ -101,10 +102,11 @@ class Retail extends Component {
 
   toggleSignUpModal = () => this.setState(state => ({ signUpVisible: !state.signUpVisible }))
   toggleLoginModal = () => this.setState(state => ({ loginVisible: !state.loginVisible }))
+  toggleFAQModal = () => this.setState(state => ({ FAQVisible: !state.FAQVisible }))
 
   render() {
     const { history } = this.props
-    const { amChartsLoaded, amChartsCoreStatus, signUpVisible, loginVisible } = this.state
+    const { amChartsLoaded, amChartsCoreStatus, signUpVisible, loginVisible, FAQVisible } = this.state
 
     return (
       <Query query={GET_ENTRY_AND_MARKET_DATA}>
@@ -132,6 +134,7 @@ class Retail extends Component {
                 history={history}
                 toggleSignUpModal={this.toggleSignUpModal}
                 toggleLoginModal={this.toggleLoginModal}
+                toggleFAQModal={this.toggleFAQModal}
               />
               <Hero portfolioReturn={portfolioReturn} winRatio={winRatio} />
               <Introduction
@@ -161,7 +164,6 @@ class Retail extends Component {
               <HowWeBeatTheMarket />
               <RiskManagement />
               <CorporateProfile />
-              <IntendedAudience />
               <ScrolledToBottom toggleSignUpModal={this.toggleSignUpModal} />
               <Footer />
 
@@ -177,6 +179,7 @@ class Retail extends Component {
                 <Signup history={history} onRequestClose={this.toggleSignUpModal} planPrice={plan.price} />
               )}
               {loginVisible && <Login history={history} onRequestClose={this.toggleLoginModal} />}
+              {FAQVisible && <FAQ history={history} hide={this.toggleFAQModal} />}
             </div>
           )
         }}

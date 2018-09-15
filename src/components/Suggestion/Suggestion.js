@@ -41,11 +41,10 @@ instead, visit the Trades section.`
     const { suggestion, stock, serialChartsReady, suggestionsType, loading, error } = this.props
     const { detailsIsVisible } = this.state
 
-    const suggestedPriceName = suggestionsType === 'Trades' ? 'Bought at' : 'Buy below'
+    const suggestedPriceName = suggestionsType === 'Trades' ? 'Traded at' : 'Buy at or below'
     // when it's a suggestion and says "Buy below" add 1 cent.
-    const suggestedPrice = Number(
-      suggestion.suggested_price.toFixed(2) + (suggestionsType === 'Trades' ? 0 : 0.01)
-    ).toFixed(2)
+    console.log(suggestion.suggested_price.toFixed(2))
+    const suggestedPrice = (suggestion.suggested_price + (suggestionsType === 'Trades' ? 0 : 0.01)).toFixed(2)
     const allocationText = suggestion.percentage_weight ? 'Cash allocation' : 'Portfolio allocation'
     const allocation = suggestion.percentage_weight ? suggestion.percentage_weight : suggestion.portfolio_weight
 
