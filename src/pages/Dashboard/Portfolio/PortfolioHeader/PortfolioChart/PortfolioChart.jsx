@@ -66,10 +66,11 @@ const PortfolioGraph = ({ portfolioYields, marketPrices, planName, serialChartsR
       useLineColorForBulletBorder: true,
       valueField: 'fs',
       balloonText: `
-                <div class="chart-balloon">
-                    <span class="plan-name">${planName}</span>
-                    <span class="balloon-value">[[fsBalloon]]</span>
-                </div>`,
+        <div class="chart-balloon">
+            <span class="plan-name">${planName.toUpperCase()}</span>
+            <span class="balloon-value">[[fsBalloon]]</span>
+        </div>
+      `,
     },
   ]
   if (marketPrices.length) {
@@ -86,10 +87,11 @@ const PortfolioGraph = ({ portfolioYields, marketPrices, planName, serialChartsR
       useLineColorForBulletBorder: true,
       valueField: 'market',
       balloonText: `
-                <div class="chart-balloon">
-                    <span class="plan-name market-name">DJIA</span>
-                    <span class="balloon-value">[[marketBalloon]]</span>
-                </div>`,
+        <div class="chart-balloon">
+            <span class="plan-name market-name">DJIA</span>
+            <span class="balloon-value">[[marketBalloon]]</span>
+        </div>
+      `,
     })
   }
 

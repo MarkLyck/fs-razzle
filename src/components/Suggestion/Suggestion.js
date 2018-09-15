@@ -73,7 +73,7 @@ instead, visit the Trades section.`
                 <ListItem name="Purchase price" value={`$${suggestion.original_purchase.toFixed(2)}`} />
               )}
               {suggestion.advanced_data ? (
-                <Button color="white" variant="raised" onClick={this.toggleDetails}>
+                <Button type="light" variant="raised" onClick={this.toggleDetails}>
                   Details
                 </Button>
               ) : (

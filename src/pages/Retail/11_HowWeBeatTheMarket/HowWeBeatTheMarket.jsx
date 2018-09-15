@@ -10,54 +10,60 @@ const HowWeBeatTheMarket = () => (
     <Element name="how-it-works" />
     <SectionTitle>How we beat the market</SectionTitle>
     <p>
-      Formula Stocks uses a combination of many specific technologies developed over a 14- year period to do as Mark
-      Twain originally suggested:<br />
+      Formula Stocks uses a combination of many specific technologies developed over a 15- year period to do as Mark
+      Twain originally suggested:
+      <br />
       <br />
       ”Buy good quality common stocks that go up. If they do not go up, do not buy them”. While Twain said this
       tongue-in-cheek, it encapsulates what Formula Stocks strives to do.<br />
       <br />
-      We identify stocks that go up, before they go up, with a 89-92% probability of being correct. Some of the
-      techniques employed include in no specific order:
+      We identify stocks that go up, before they go up, with a 88-92% probability of being correct.
+      <br />
+      <br />
+      When you are using Formula Stocks, you have access to a novel technology developed in-house, using state of the
+      art artificial intelligence, also known as deep learning, we use this amongst many other concepts and technologies
+      to create an edge that isn't available anywhere else. A few of these concepts are:
     </p>
     <List>
       <ListItem>
-        <span>Cognitive computing</span> – the capability to learn from experience, and reason based upon it.
+        <span>Artificial Intelligence</span> – the capability for an algorithm to learn from experience, and reason
+        based upon it.
       </ListItem>
       <ListItem>
-        <span>Business analytics</span> – the capability to analyze business models.
+        <span>Quantitative business analytics</span> – analyzing business models using big data.
       </ListItem>
       <ListItem>
-        <span>Margin of safety principles</span> – the concept of preferring extra safety before investing.
+        <span>Growth projection</span> – in-house methods used to project the future non-linear growth of a business.
       </ListItem>
       <ListItem>
-        <span>Valuation technology</span> – the concept of calculating the intrinsic value of a business.
+        <span>Margin of safety principles</span> – safety seen as a prerequisite to intelligent investing as pioneered
+        by Benjamin Graham.
       </ListItem>
       <ListItem>
-        <span>The scientific method</span> – the method based upon which a thesis can be formed, tested, and refined.
+        <span>Valuation technologies</span> – novel methods for calculating the intrinsic value of a business.
       </ListItem>
       <ListItem>
-        <span>Quantitative measurements</span> – a method with which to quantify a theory.
+        <span>Intelligent Investment Technologies </span> – approx. 100 different methods for outperforming the market
+        developed in-house
       </ListItem>
       <ListItem>
-        <span>Growth projection</span> – a method with which to project the future growth of a business.
+        <span>Alpha prediction</span> – in-house method which estimates the future excess return from a stock.
       </ListItem>
       <ListItem>
-        <span>Intelligent Investment Technologies</span> – 93 different methods for outperforming the market.
-      </ListItem>
-      <ListItem>
-        <span>Alpha prediction</span> – a method which estimates the future return from a stock.
-      </ListItem>
-      <ListItem>
-        <span>Position-sizing logic</span> – the concept of matching position size and odds.
+        <span>Position-sizing logic </span> – the idea of matching position size and odds correctly.
       </ListItem>
       <ListItem>
         <span>Portfolio management technology</span> – software for optimizing risk/reward characteristics of a
         portfolio.
       </ListItem>
+      <ListItem>
+        <span>The scientific method</span> – everything is based on the central method upon which a thesis can be
+        formed, tested, and refined.
+      </ListItem>
     </List>
     <p>
-      The complexity is high. Formula Stocks offers a leading-edge technological approach to stock selection and
-      portfolio optimization. If you want to know more, please <BrochureLink>see our brochure</BrochureLink>.
+      Formula Stocks offers a leading-edge technological approach to modern stock selection and portfolio optimization.
+      If you want to know more, please <BrochureLink>see our brochure</BrochureLink>.
     </p>
   </Section>
 )

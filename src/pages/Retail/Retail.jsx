@@ -16,7 +16,7 @@ import Hero from './01_Hero'
 import Introduction from './02_Introduction'
 import WhatIsIt from './03_WhatIsIt'
 import Performance from './04_Performance'
-import PerformanceMatters from './05_PerformanceMatters'
+import PercentMatters from './05_PercentMatters'
 import FirstMonthOnUs from './06_FirstMonthOnUs'
 import WhatToExpect from './07_WhatToExpect'
 import PilotProgram from './08_PilotProgram'
@@ -126,6 +126,7 @@ class Retail extends Component {
           const backtestedData = _.get(plan, 'backtestedData')
           const latestSells = _.get(plan, 'latestSells')
           const winRatio = _.get(plan, 'statistics.winRatio')
+          const CAGR = _.get(plan, 'statistics.CAGR')
           const avgGain = _.get(plan, 'info.avgGainPerPosition')
           const avgLoss = _.get(plan, 'info.avgLossPerPosition')
 
@@ -151,9 +152,9 @@ class Retail extends Component {
                 planName={planName}
                 amChartsLoaded={amChartsLoaded}
               />
-              <PerformanceMatters />
+              <PercentMatters portfolioReturn={portfolioReturn} CAGR={CAGR} />
               <FirstMonthOnUs toggleSignUpModal={this.toggleSignUpModal} />
-              <WhatToExpect latestSells={latestSells} />
+              <WhatToExpect latestSells={latestSells} winRatio={winRatio} />
               <PilotProgram />
               <LongTermPerformance
                 backtestedData={backtestedData}
