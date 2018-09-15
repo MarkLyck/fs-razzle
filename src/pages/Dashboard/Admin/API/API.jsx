@@ -45,7 +45,6 @@ class FileUploader extends Component {
   }
 
   updateSuccesfullUploads = file => {
-    console.log('file in uploads', file)
     this.setState(state => {
       return {
         successfullUploads: state.successfullUploads.concat([file]),
@@ -67,8 +66,9 @@ class FileUploader extends Component {
         extractJSONFromFile(file)
           .then(json => {
             let planName = json.name.split('.')[0].split('_')[1]
+            console.log(planName, json)
             if (planName === 'basic') planName = 'entry'
-            console.log(json, planName)
+
             q.defer(
               mutatePlanData,
               json,
@@ -77,7 +77,6 @@ class FileUploader extends Component {
               plansData[planName]
             )
           })
-          // .then(data => console.log(data))
           .catch(err => this.setState({ errorUploading: `Error: ${err}` }))
       })
     }
@@ -92,7 +91,6 @@ class FileUploader extends Component {
           if (error || !data.allPlans) return <LoadingError />
 
           data.allPlans.forEach(plan => (plansData[plan.name.toLowerCase()] = plan))
-          console.log(plansData)
 
           return (
             <Mutation mutation={UPDATE_PLAN}>

@@ -9,7 +9,7 @@ import LongTermGraph from './LongTermGraph'
 const Performance = ({ backtestedData, marketPrices, planName, amChartsLoaded }) => (
   <Section data-offwhite>
     <SectionTitle>Long-term performance</SectionTitle>
-    <Subtitle>Log scale graph 1970 - 2017</Subtitle>
+    <Subtitle>Log scale graph 1970 - 2017. How $25,000 invested would have evolved over time</Subtitle>
     <LongTermGraph
       planData={backtestedData}
       marketPrices={marketPrices}

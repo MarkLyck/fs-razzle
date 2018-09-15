@@ -8,8 +8,6 @@ export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPla
   else if (file.name.indexOf('business') > -1) planId = planIds.BUSINESS
   else if (file.name.indexOf('fund') > -1) planId = planIds.FUND
 
-  console.log('oldPlan', oldPlan)
-
   let backtestedData = oldPlan.backtestedData
   let latestSells = oldPlan.latestSells
   let portfolioYields = oldPlan.portfolioYields
@@ -17,14 +15,11 @@ export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPla
   let statistics = oldPlan.statistics
   let suggestions = oldPlan.suggestions
 
-  console.log('oldSuggestions', suggestions)
-
   if (file.name.indexOf('weekly') > -1) {
     const modelSuggestions = suggestions.filter(sugg => sugg.model)
     suggestions = file.data.actionable.concat(modelSuggestions)
   } else if (file.name.indexOf('monthly') > -1) {
     portfolioYields = file.data.logs
-    console.log('new actionable', file.data.actionable)
     file.data.actionable.forEach(sugg => {
       if (sugg.action === 'SELL') {
         const newSell = {
@@ -35,15 +30,17 @@ export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPla
           return: Number((((sugg.suggested_price - sugg.original_purchase) * 100) / sugg.original_purchase).toFixed(2)),
         }
         latestSells = [newSell].concat(latestSells)
-        if (latestSells && latestSells.length > 10) {
+        if (latestSells.length > 10) {
           latestSells.pop()
         }
       }
     })
 
-    console.log('suggestions unfiltered', suggestions)
+    // Make sure latestSells is unique
+    const latestSellTickers = latestSells.map(sell => sell.ticker)
+    latestSells = latestSells.filter((sell, pos) => latestSellTickers.indexOf(sell.ticker) === pos)
+
     const weeklySuggestions = suggestions.filter(sugg => !sugg.model)
-    console.log('suggestions filtered', weeklySuggestions)
     let modelSuggestions = []
     if (file.data.actionable) {
       modelSuggestions = file.data.actionable.map(sugg => {
@@ -52,7 +49,6 @@ export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPla
       })
     }
     suggestions = weeklySuggestions.concat(modelSuggestions)
-    console.log('suggestions after', suggestions)
     file.data.statistics.percentInCash = file.data.portfolio[file.data.portfolio.length - 1].percentage_weight
     launchStatistics = _.merge(launchStatistics, file.data.statistics)
   } else if (file.name.indexOf('annual') > -1) {
@@ -73,8 +69,9 @@ export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPla
       launchStatistics,
       suggestions,
     },
-  }).then(data => {
+  }).then(({ data }) => {
     oldPlan = data.updatePlan
+    console.log('updatePlan', oldPlan)
     updateSuccesfullUploads()
     finished(null)
   })
