@@ -1,4 +1,5 @@
 import React from 'react'
+import { Element } from 'react-scroll'
 import Section from 'components/Section'
 import SectionTitle from 'components/Section/SectionTitle'
 import BrochureLink from 'components/BrochureLink'
@@ -6,6 +7,7 @@ import { List, ListItem } from './styles'
 
 const HowWeBeatTheMarket = () => (
   <Section data-offwhite>
+    <Element name="how-it-works" />
     <SectionTitle>How we beat the market</SectionTitle>
     <p>
       Formula Stocks uses a combination of many specific technologies developed over a 14- year period to do as Mark

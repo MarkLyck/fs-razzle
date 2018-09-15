@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import gql from 'graphql-tag'
+import { scroller } from 'react-scroll'
 import { hasStorage } from 'common/utils/featureTests'
 
 // UI
 import Button from 'components/Button'
 
-import { NavLinks, NavBar, Logo } from './styles'
+import { NavLinks, ScrollLink, NavBar, Logo } from './styles'
 
 const LOGGED_IN_USER_QUERY = gql`
   query LoggedInUserQuery {
@@ -51,14 +52,26 @@ class Navbar extends Component {
   )
 
   render() {
-    const { history } = this.props
+    const { history, toggleFAQModal } = this.props
     const { loggedIn } = this.state
 
     return (
       <Query query={LOGGED_IN_USER_QUERY}>
         {({ loading, error, data }) => (
           <NavBar position="fixed" color="default">
-            <Logo onClick={() => history.push('/')} />
+            <Logo onClick={() => scroller.scrollTo('hero', { smooth: true, offset: -100 })} />
+            <ScrollLink className="performance" to="performance" smooth offset={-100}>
+              Performance
+            </ScrollLink>
+            <ScrollLink className="how-it-works" to="how-it-works" smooth offset={-100}>
+              How it works
+            </ScrollLink>
+            <ScrollLink className="pricing" to="first-month-on-us" smooth offset={-100}>
+              Pricing
+            </ScrollLink>
+            <ScrollLink className="faq-link" to="" onClick={toggleFAQModal}>
+              FAQ
+            </ScrollLink>
             {loggedIn ? this.renderLoggedInLinks(history) : this.renderLoggedOutLinks()}
           </NavBar>
         )}

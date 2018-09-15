@@ -163,7 +163,7 @@ class AccountInfo extends Component {
             <Button className="submit-button" type="submit" variant="raised" disabled={isSubmitting}>
               Next
             </Button>
-            <FooterText>We never give your information to third parties</FooterText>
+            <FooterText>We never share your information with third parties</FooterText>
           </Form>
         )}
       />

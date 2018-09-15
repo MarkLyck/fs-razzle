@@ -66,32 +66,33 @@ class PortfolioItem extends Component {
           <TableCell className="last-price">{latestPrice}</TableCell>
           <TableCell className="days-owned">{stock.days_owned}</TableCell>
         </ItemRow>
-        {expanded && (
-          <Query query={STOCK_QUERY} variables={{ ticker: stock.ticker }}>
-            {({ loading, error, data }) => {
-              let historicPrices = []
+        {stock.ticker !== 'CASH' &&
+          expanded && (
+            <Query query={STOCK_QUERY} variables={{ ticker: stock.ticker }}>
+              {({ loading, error, data }) => {
+                let historicPrices = []
 
-              if (data.allStocks && data.allStocks[0] && data.allStocks[0].historicPrices) {
-                historicPrices = data.allStocks[0].historicPrices
-              }
+                if (data.allStocks && data.allStocks[0] && data.allStocks[0].historicPrices) {
+                  historicPrices = data.allStocks[0].historicPrices
+                }
 
-              return (
-                <ItemRow>
-                  <td className="stock-graph-cell" colspan="6">
-                    <PortfolioItemGraph
-                      historicPrices={historicPrices}
-                      serialChartsReady={serialChartsReady}
-                      loading={loading}
-                      error={error}
-                      ticker={stock.ticker}
-                      costBasisPrice={costBasisPrice}
-                    />
-                  </td>
-                </ItemRow>
-              )
-            }}
-          </Query>
-        )}
+                return (
+                  <ItemRow>
+                    <td className="stock-graph-cell" colspan="6">
+                      <PortfolioItemGraph
+                        historicPrices={historicPrices}
+                        serialChartsReady={serialChartsReady}
+                        loading={loading}
+                        error={error}
+                        ticker={stock.ticker}
+                        costBasisPrice={costBasisPrice}
+                      />
+                    </td>
+                  </ItemRow>
+                )
+              }}
+            </Query>
+          )}
       </React.Fragment>
     )
   }

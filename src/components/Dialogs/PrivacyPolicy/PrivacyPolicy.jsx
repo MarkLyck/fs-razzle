@@ -2,15 +2,14 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import Modal from 'react-modal'
-import { overlayClass, AppBar } from '../styles'
-import { LegalContainer, modalStyles } from '../TermsOfService/styles'
+import { overlayClass, AppBar, fullScreenModalStyles, LegalContainer } from '../styles'
 
 const TermsOfService = ({ open, hideTerms }) => (
-  <Modal isOpen={open} onRequestClose={() => {}} overlayClassName={overlayClass} css={modalStyles}>
+  <Modal isOpen={open} onRequestClose={() => {}} overlayClassName={overlayClass} css={fullScreenModalStyles}>
     <AppBar>
       <h2>Privacy Policy</h2>
       <button onClick={hideTerms}>
-        <FontAwesomeIcon icon={['far', 'times']} style={{ color: '#fff' }} />
+        <FontAwesomeIcon icon={['far', 'times']} />
       </button>
     </AppBar>
     <LegalContainer>
