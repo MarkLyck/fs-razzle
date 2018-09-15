@@ -8,20 +8,25 @@ import { Legends, Legend } from 'components/Charts/Legends/Legends'
 import theme from 'common/utils/theme'
 import { GraphContainer } from './styles'
 
-const createChartData = (planData, marketPrices) =>
-  planData.map((point, i) => {
+const createChartData = (planData, marketPrices) => {
+  let lastMarketBalance = 25000
+  return planData.map((point, i) => {
     let balance = 25000
     let marketBalance = 25000
 
-    const percentIncrease = (marketPrices[i].price - marketPrices[0].price) / marketPrices[0].price
+    let marketPercentIncrease = 0
+    if (marketPrices[i]) {
+      marketPercentIncrease = (marketPrices[i].price - marketPrices[0].price) / marketPrices[0].price
+    }
 
     if (planData[i] && i !== 0) {
       balance = planData[i].balance
     }
-    if (marketPrices[i].price) {
-      marketBalance = 25000 + Math.floor(percentIncrease * 25000)
+    if (marketPrices[i] && marketPrices[i].price) {
+      marketBalance = 25000 + Math.floor(marketPercentIncrease * 25000)
+      lastMarketBalance = marketBalance
     } else if (i !== 0 && planData[i - 1] !== 25000) {
-      marketBalance = planData[i - 1]
+      marketBalance = lastMarketBalance
     }
 
     const month = Number(point.date.month) > 9 ? point.date.month : `0${point.date.month}`
@@ -34,6 +39,7 @@ const createChartData = (planData, marketPrices) =>
       date: `${point.date.year}-${month}-${point.date.day}`,
     }
   })
+}
 
 const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded }) => {
   if (!planData || !planData.length || !amChartsLoaded) {

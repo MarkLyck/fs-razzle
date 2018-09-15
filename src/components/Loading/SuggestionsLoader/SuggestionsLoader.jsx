@@ -27,12 +27,12 @@ const LoadingText = styled.h3`
   margin-top: 16px;
 `
 
-const SuggestionsLoader = () => (
+const SuggestionsLoader = ({ suggestionsType }) => (
   <Container>
     <StatisticsLoader />
     <SuggestionsContainer>
       <Icon icon="spinner-third" spin size="6x" />
-      <LoadingText>Loading Suggestions...</LoadingText>
+      <LoadingText>Loading {suggestionsType}...</LoadingText>
     </SuggestionsContainer>
   </Container>
 )

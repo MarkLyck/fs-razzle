@@ -19,7 +19,7 @@ const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action, serialCha
         <h4>Loading</h4>
       </LoadingContainer>
     )
-  } else if (!loading && !sixMonthsPrices.length) {
+  } else if (!loading && (!sixMonthsPrices || !sixMonthsPrices.length)) {
     return (
       <FailedContainer>
         <FontAwesomeIcon icon="chart-line" />
