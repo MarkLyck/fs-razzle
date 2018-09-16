@@ -42,10 +42,7 @@ class ResetPassord extends Component {
         query: SEND_RESET_PW_EMAIL,
         variables: { email: values.email },
       })
-      .catch(err => {
-        console.log(err)
-        setErrors({ email: 'No user with that email exists' })
-      })
+      .catch(err => setErrors({ email: 'No user with that email exists' }))
     if (response && response.data) {
       setStatus({ success: true })
     }
