@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
-import moment from 'moment'
+import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'components/Button'
 import { client } from 'src/App'
@@ -36,12 +36,12 @@ class CancelSubscription extends Component {
           stripeSubscription.current_period_end > nowInUnixSeconds && (
             <StatusLine>
               Your subscription is ending on:{' '}
-              {moment.unix(stripeSubscription.current_period_end).format('MMMM Do YYYY')}
+              {format(new Date(stripeSubscription.current_period_end * 1000), 'MMMM Do YYYY')}
             </StatusLine>
           )}
         {stripeSubscription.ended_at && (
           <StatusLine>
-            Your subscription ended on: {moment.unix(stripeSubscription.ended_at).format('MMMM Do YYYY')}
+            Your subscription ended on: {format(new Date(stripeSubscription.ended_at * 1000), 'MMMM Do YYYY')}
           </StatusLine>
         )}
 

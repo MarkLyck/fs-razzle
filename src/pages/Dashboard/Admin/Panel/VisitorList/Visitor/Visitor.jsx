@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
+import { distanceInWordsStrict } from 'date-fns'
 import { TableCell, TableRow } from 'components/Table'
 import { Icon, tableCellStyle, countryStyle } from './styles'
 
@@ -57,7 +57,7 @@ const Visitor = ({ visitor }) => (
         }
       </p>
     </TableCell>
-    <TableCell style={{ height: '48px' }}>{moment(visitor.createdAt).fromNow()}</TableCell>
+    <TableCell style={{ height: '48px' }}>{distanceInWordsStrict(new Date(), visitor.createdAt)} ago</TableCell>
     <TableCell style={tableCellStyle}>
       {visitor.device && <i className={`fa ${getDeviceIcon(visitor.device)}`} />}
       {visitor.device && <Icon src={`/media/icons/devices/${getOSIcon(visitor.device.os)}`} alt="os" />}

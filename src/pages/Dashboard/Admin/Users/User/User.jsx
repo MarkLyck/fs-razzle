@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
+import { format, distanceInWordsStrict } from 'date-fns'
 import { TableCell, TableRow } from 'components/Table'
 
 const User = ({ user }) => (
@@ -9,9 +9,9 @@ const User = ({ user }) => (
       <p>{user.email}</p>
     </TableCell>
     <TableCell>
-      <p>{moment(user.createdAt).format('DD/MM/YY')}</p>
+      <p>{format(user.createdAt, 'DD/MM/YY')}</p>
     </TableCell>
-    <TableCell>{moment(user.updatedAt).fromNow()}</TableCell>
+    <TableCell>{distanceInWordsStrict(new Date(), user.updatedAt)} ago</TableCell>
     <TableCell>test</TableCell>
   </TableRow>
 )
