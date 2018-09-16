@@ -27,7 +27,7 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
             unit="%"
           />
           <p style={{ marginTop: '16px' }}>
-            Historically, 89-92% of our recommendations have been successful. If you had bought random high-quality
+            Historically, 88-92% of our recommendations have been successful. If you had bought random high-quality
             stocks, only approx. 59% of these would have earned a positive return. A staggering difference.
           </p>
         </Left>
@@ -52,13 +52,15 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
         <Left data-center>
           <DualUpDownChart
             primaryStatistic={Math.floor(avgGain) || 0}
+            primaryPrefix="+"
             secondaryStatistic={Math.floor(avgLoss) || 0}
-            primaryName="Win"
+            secondaryPrefix="-"
+            primaryName="Gain"
             secondaryName="Loss"
             primaryHeight={Math.floor(avgGain) || 0}
             secondaryHeight={Math.floor(avgLoss) || 0}
             unit="%"
-            description="Avg. win/loss per stock"
+            description="Avg. gain/loss per stock"
           />
         </Left>
         <Right data-center className="win-loss-chart">
