@@ -25,7 +25,7 @@ const UserList = ({ allUsers }) => (
   <Query query={USERS_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <GenericLoader />
-      if (error) return <LoadingError />
+      if (error) return <LoadingError error={error} />
 
       return (
         <UsersContainer>

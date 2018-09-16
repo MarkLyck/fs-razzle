@@ -72,7 +72,7 @@ class Suggestions extends Component {
             {({ loading, error, data }) => {
               const suggestionsType = location.pathname.includes('/trades') ? 'Trades' : 'Suggestions'
               if (loading) return <SuggestionsLoader suggestionsType={suggestionsType} />
-              if (!usingMocks && (error || !data)) return <LoadingError />
+              if (!usingMocks && (error || !data)) return <LoadingError error={error} />
 
               const plan = data.Plan || mockData.Plan
 

@@ -31,7 +31,7 @@ class SideMenu extends Component {
   setActiveRoute = route => this.setState({ activeRoute: route })
 
   render() {
-    const { history } = this.props
+    const { history, userType } = this.props
     const { activeRoute } = this.state
 
     return (
@@ -44,6 +44,7 @@ class SideMenu extends Component {
             icon={route.icon}
             route={route.name}
             isActive={route.name === activeRoute}
+            userType={userType}
           />
         ))}
       </MenuList>
