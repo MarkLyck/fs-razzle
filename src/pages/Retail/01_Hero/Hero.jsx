@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { css } from 'emotion'
+
 import Typed from 'typed.js'
 import { Element } from 'react-scroll'
 import { HeroContainer, Content, Title, SliderImage, Overlay, Bold } from './styles'
 import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 class Hero extends Component {
   preStringTyped = arrPos => this.slider.slickGoTo(arrPos)
@@ -68,16 +68,64 @@ class Hero extends Component {
         </Content>
         <Overlay />
         <Slider ref={slider => (this.slider = slider)} {...this.slickSettings}>
-          <SliderImage data-image="/media/images/slides/speedster.jpg" />
+          <SliderImage
+            className={css`
+              background-image: url(/media/images/slides/speedster/speedster.jpg);
+              background-image: image-set(
+                url(/media/images/slides/speedster/speedster.jpg) 1x,
+                url(/media/images/slides/speedster/speedster@2x.jpg) 2x
+              );
+            `}
+          />
 
-          <SliderImage data-image="/media/images/slides/target.jpg" />
+          <SliderImage
+            className={css`
+              background-image: url(/media/images/slides/target/target.jpg);
+              background-image: image-set(
+                url(/media/images/slides/target/target.jpg) 1x,
+                url(/media/images/slides/target/target@2x.jpg) 2x
+              );
+            `}
+          />
 
-          <SliderImage data-image="/media/images/slides/net.jpg" />
+          <SliderImage
+            className={css`
+              background-image: url(/media/images/slides/net/net.jpg);
+              background-image: image-set(
+                url(/media/images/slides/net/net.jpg) 1x,
+                url(/media/images/slides/net/net@2x.jpg) 2x
+              );
+            `}
+          />
 
-          <SliderImage data-image="/media/images/slides/boat.jpg" />
+          <SliderImage
+            className={css`
+              background-image: url(/media/images/slides/boat/boat.jpg);
+              background-image: image-set(
+                url(/media/images/slides/boat/boat.jpg) 1x,
+                url(/media/images/slides/boat/boat@2x.jpg) 2x
+              );
+            `}
+          />
 
-          <SliderImage data-image="/media/images/slides/family.jpg" />
-          <SliderImage data-image="/media/images/slides/achieveGoals.jpg" />
+          <SliderImage
+            className={css`
+              background-image: url(/media/images/slides/family/family.jpg);
+              background-image: image-set(
+                url(/media/images/slides/family/family.jpg) 1x,
+                url(/media/images/slides/family/family@2x.jpg) 2x
+              );
+            `}
+          />
+          <SliderImage
+            className={css`
+              background-image: url(/media/images/slides/achieveGoals/achieveGoals.jpg);
+              background-image: image-set(
+                url(/media/images/slides/achieveGoals/achieveGoals.jpg) 1x,
+                url(/media/images/slides/achieveGoals/achieveGoals@2x.jpg) 2x
+              );
+            `}
+          />
         </Slider>
       </HeroContainer>
     )
