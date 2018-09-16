@@ -50,8 +50,6 @@ server
                 <meta property="og:url" content="Formula Stocks">
                 <meta property="og:title" content="Formula Stocks">
 
-                
-
                 <link rel="preload"
                   href="/fonts/proxima-nova/ProximaNova-Regular.otf" as="font" type="font/otf" crossorigin
                 >
