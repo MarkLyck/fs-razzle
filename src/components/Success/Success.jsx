@@ -20,8 +20,8 @@ const SuccessMessage = styled.h3`
   margin: 16px 0;
 `
 
-const Success = ({ message, buttonText, onClick }) => (
-  <SuccessContainer>
+const Success = ({ message, buttonText, onClick, ...rest }) => (
+  <SuccessContainer {...rest}>
     <FontAwesomeIcon icon="check-circle" size="4x" />
     <SuccessMessage>{message}</SuccessMessage>
     <Button variant="raised" type="light" color="black" hoverColor="secondary" onClick={onClick}>
