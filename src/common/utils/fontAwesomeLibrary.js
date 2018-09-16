@@ -4,6 +4,7 @@ import { faChartLine } from '@fortawesome/pro-solid-svg-icons/faChartLine'
 import { faAngleDown } from '@fortawesome/pro-solid-svg-icons/faAngleDown'
 import { faCalendarTimes } from '@fortawesome/pro-solid-svg-icons/faCalendarTimes'
 import { faChartPie } from '@fortawesome/pro-solid-svg-icons/faChartPie'
+import { faCheckCircle } from '@fortawesome/pro-solid-svg-icons/faCheckCircle'
 import { faCity } from '@fortawesome/pro-solid-svg-icons/faCity'
 import { faCreditCard } from '@fortawesome/pro-solid-svg-icons/faCreditCard'
 import { faDollarSign } from '@fortawesome/pro-solid-svg-icons/faDollarSign'
@@ -35,6 +36,7 @@ library.add(
   faCalendarTimes,
   faChartLine,
   faChartPie,
+  faCheckCircle,
   faCity,
   faCreditCard,
   faDollarSign,

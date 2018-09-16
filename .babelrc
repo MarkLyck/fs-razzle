@@ -24,6 +24,7 @@
                     "@fortawesome/pro-solid-svg-icons/faCalendarTimes": "./src/media/faIcons/faCalendarTimes",
                     "@fortawesome/pro-solid-svg-icons/faChartLine": "./src/media/faIcons/faChartLine",
                     "@fortawesome/pro-solid-svg-icons/faChartPie": "./src/media/faIcons/faChartPie",
+                    "@fortawesome/pro-solid-svg-icons/faCheckCircle": "./src/media/faIcons/faCheckCircle",
                     "@fortawesome/pro-solid-svg-icons/faCity": "./src/media/faIcons/faCity",
                     "@fortawesome/pro-solid-svg-icons/faCreditCard": "./src/media/faIcons/faCreditCard",
                     "@fortawesome/pro-solid-svg-icons/faDollarSign": "./src/media/faIcons/faDollarSign",

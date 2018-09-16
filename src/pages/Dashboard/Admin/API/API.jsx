@@ -87,7 +87,7 @@ class FileUploader extends Component {
       <Query query={ALL_PLANS}>
         {({ loading, error, data }) => {
           if (loading) return <GenericLoader />
-          if (error || !data.allPlans) return <LoadingError />
+          if (error || !data.allPlans) return <LoadingError error={error} />
 
           data.allPlans.forEach(plan => (plansData[plan.name.toLowerCase()] = plan))
 

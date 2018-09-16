@@ -129,6 +129,7 @@ class Retail extends Component {
           const CAGR = _.get(plan, 'statistics.CAGR')
           const avgGain = _.get(plan, 'info.avgGainPerPosition')
           const avgLoss = _.get(plan, 'info.avgLossPerPosition')
+          const sortinoRatio = _.get(plan, 'info.sortinoRatio')
 
           return (
             <div className="retail-page">
@@ -162,9 +163,15 @@ class Retail extends Component {
                 planName={planName}
                 amChartsLoaded={amChartsLoaded}
               />
-              <Statistics winRatio={winRatio} planName={planName} avgGain={avgGain} avgLoss={avgLoss} />
+              <Statistics
+                winRatio={winRatio}
+                planName={planName}
+                avgGain={avgGain}
+                avgLoss={avgLoss}
+                sortinoRatio={sortinoRatio}
+              />
               <HowWeBeatTheMarket />
-              <RiskManagement />
+              <RiskManagement winRatio={winRatio} avgGain={avgGain} avgLoss={avgLoss} />
               <CorporateProfile />
               <ScrolledToBottom toggleSignUpModal={this.toggleSignUpModal} />
               <Footer />

@@ -5,7 +5,9 @@ import { PrimaryChart, SecondaryChart, ChartBeside, Statistic, ChartName, Line, 
 
 const DualUpDownChart = ({
   primaryStatistic,
+  primaryPrefix = '',
   secondaryStatistic,
+  secondaryPrefix = '',
   primaryHeight,
   secondaryHeight,
   primaryName,
@@ -18,6 +20,7 @@ const DualUpDownChart = ({
     <ChartBeside>
       <PrimaryChart color={theme.colors.primary} height={Math.floor(primaryHeight)}>
         <Statistic>
+          {primaryPrefix}
           {primaryStatistic}
           {unit}
         </Statistic>
@@ -26,6 +29,7 @@ const DualUpDownChart = ({
       <Line />
       <SecondaryChart color={theme.colors.black} height={Math.floor(secondaryHeight)}>
         <Statistic>
+          {secondaryPrefix}
           {secondaryStatistic}
           {unit}
         </Statistic>

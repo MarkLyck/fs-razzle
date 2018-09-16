@@ -42,21 +42,25 @@ class Login extends Component {
     return errors
   }
 
-  onSubmit = (values, { setSubmitting }) => {
-    this.handleLogin(values)
-      .then(() => setSubmitting(false))
-      .catch(error => console.error('login error', error))
+  onSubmit = (values, { setSubmitting, setErrors }) => {
+    this.handleLogin(values, setSubmitting).catch(error => {
+      console.error('login error', error)
+      setErrors({ email: 'Something went wrong' })
+    })
   }
 
-  handleLogin = values => {
+  handleLogin = (values, setSubmitting) => {
     const { history } = this.props
     return this.props
       .signinUser({ variables: { email: values.email, password: values.password } })
       .then(response => {
+        setSubmitting(false)
         localStorage.setItem('graphcoolToken', response.data.authenticateUser.token)
         history.push('/dashboard/portfolio')
       })
-      .catch(e => console.error(e))
+      .catch(e => {
+        console.log('loginError', e)
+      })
   }
 
   renderErrors = (errors, touched) => {

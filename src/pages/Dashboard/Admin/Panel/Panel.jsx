@@ -74,7 +74,7 @@ const Overview = ({ serialChartsReady, pieChartsReady }) => (
   <Query query={PANEL_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <GenericLoader />
-      if (error) return <LoadingError />
+      if (error) return <LoadingError error={error} />
 
       const { allUsers, allVisitors, visitorCount, Statistics } = data
 

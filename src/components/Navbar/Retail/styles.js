@@ -15,7 +15,7 @@ export const Logo = styled.div`
     cursor: pointer;
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 718px) {
     width: 40px;
     background-image: url('/media/icons/flask.svg');
   }
@@ -38,25 +38,25 @@ export const NavBar = styled.div`
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
     0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 
-  @media (max-width: 1004px) {
+  @media (max-width: 1069px) {
     .performance {
       display: none;
     }
   }
 
-  @media (max-width: 865px) {
+  @media (max-width: 930px) {
     .how-it-works {
       display: none;
     }
   }
 
-  @media (max-width: 726px) {
+  @media (max-width: 790px) {
     .faq-link {
       display: none;
     }
   }
 
-  @media (max-width: 430px) {
+  @media (max-width: 497px) {
     .pricing {
       display: none;
     }
