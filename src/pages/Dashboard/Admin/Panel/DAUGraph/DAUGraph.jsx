@@ -1,27 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 import _ from 'lodash'
+import { format, subDays } from 'date-fns'
 import LineGraph from 'components/Charts/LineGraph'
 import { GraphContainer, Container } from './styles'
 
 const createChartData = (visitors, users) => {
   // gets signup dates from all users
-  const signUpDays = _.countBy(users, user => moment(user.createdAt).format('YYYY-MM-DD'))
+  const signUpDays = _.countBy(users, user => format(user.createdAt, 'YYYY-MM-DD'))
 
+  console.log(users)
   const cancelDays = _.countBy(users, user =>
-    moment.unix(_.get(user, 'stripe.subscriptions.data[0].canceled_at')).format('YYYY-MM-DD')
+    format(new Date(_.get(user, 'stripe.subscriptions.data[0].canceled_at') * 1000), 'YYYY-MM-DD')
   )
 
-  const visitorData = _.countBy(visitors, visitor => moment(visitor.createdAt).format('YYYY-MM-DD'))
+  const visitorData = _.countBy(visitors, visitor => format(visitor.createdAt, 'YYYY-MM-DD'))
 
   const days = []
   for (let i = 0; i <= 30; i++) {
-    days.push(
-      moment()
-        .subtract(30 - i, 'days')
-        .format('YYYY-MM-DD')
-    )
+    days.push(format(subDays(new Date(), 30 - i), 'YYYY-MM-DD'))
   }
 
   return days.map(date => ({

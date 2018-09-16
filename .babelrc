@@ -8,6 +8,7 @@
         "inline-svg",
         "polished",
         "lodash",
+        "date-fns",
         [
             "module-resolver",
             {

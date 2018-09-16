@@ -14,8 +14,8 @@ const HowWeBeatTheMarket = () => (
       Twain originally suggested:
       <br />
       <br />
-      ”Buy good quality common stocks that go up. If they do not go up, do not buy them”. While Twain said this
-      tongue-in-cheek, it encapsulates what Formula Stocks strives to do.<br />
+      ”Buy good quality common stocks that go up. If they do not go up, do not buy them”. While Twain said it
+      tongue-in-cheek, it encapsulates Formula Stocks' mission.<br />
       <br />
       We identify stocks that go up, before they go up, with a 88-92% probability of being correct.
       <br />

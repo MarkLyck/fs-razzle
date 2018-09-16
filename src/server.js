@@ -26,7 +26,7 @@ server
     } else {
       res.status(200).send(
         `<!doctype html>
-            <html lang="">
+            <html lang="en">
             <head>
                 <title>Formula Stocks</title>
 
@@ -44,6 +44,22 @@ server
                 <meta property="og:locale" content="en_us">
                 <meta property="og:url" content="Formula Stocks">
                 <meta property="og:title" content="Formula Stocks">
+
+                <link rel="preload"
+                  href="/fonts/proxima-nova/ProximaNova-Regular.otf" as="font" type="font/otf" crossorigin
+                >
+                <link rel="preload" 
+                  href="/fonts/proxima-nova/ProximaNova-Light.otf" as="font" type="font/otf" crossorigin
+                >
+                <link rel="preload" 
+                  href="/fonts/proxima-nova/ProximaNova-Bold.otf" as="font" type="font/otf" crossorigin
+                >
+                <link rel="preload" 
+                  href="/fonts/proxima-nova/ProximaNova-Semibold.otf" as="font" type="font/otf" crossorigin
+                >
+                <link rel="preload" 
+                  href="/fonts/BLOKK/BLOKKNeue-Regular.otf" as="font" type="font/otf" crossorigin
+                >
 
                 ${assets.client.css ? `<link rel="stylesheet" href="${assets.client.css}">` : ''}
                 ${
