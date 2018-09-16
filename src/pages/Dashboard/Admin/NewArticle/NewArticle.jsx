@@ -6,7 +6,6 @@ import { Mutation } from 'react-apollo'
 import withDashboard from 'components/withDashboard'
 import Button from 'components/Button'
 import { MegadraftEditor, editorStateFromRaw } from 'megadraft'
-import 'megadraft/dist/css/megadraft.css'
 import { EditorContainer, FileDrop } from './styles'
 
 const CREATE_ARTICLE = gql`
