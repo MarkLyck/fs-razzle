@@ -6,16 +6,6 @@ module.exports = {
   modify: (defaultConfig, { target, dev }, webpack) => {
     const config = defaultConfig // stay immutable here'
 
-    console.log(config)
-
-    config.module.rules.push({
-      test: /\.(jpe?g|png)$/i,
-      loader: 'responsive-loader',
-      options: {
-        adapter: require('responsive-loader/sharp'),
-      },
-    })
-
     if (target === 'web') {
       // modify filenaming to account for multiple entry files
       config.output.filename = dev ? 'static/js/[name].js' : 'static/js/[name].[hash:8].js'
