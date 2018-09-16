@@ -1,3 +1,4 @@
+const path = require('path')
 const BrotliPlugin = require('brotli-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
