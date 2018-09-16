@@ -112,7 +112,6 @@ class Retail extends Component {
     return (
       <Query query={GET_ENTRY_AND_MARKET_DATA}>
         {({ loading, error, data }) => {
-          console.log('usingMocks', usingMocks)
           if (loading) return <HomeLoader />
           if (error && !usingMocks) return <LoadingError />
 

@@ -19,6 +19,10 @@ export const Logo = styled.div`
     width: 40px;
     background-image: url('/media/icons/flask.svg');
   }
+  @media (max-width: 356px) {
+    width: 0;
+    background-image: none;
+  }
 `
 
 export const NavBar = styled.div`
@@ -57,7 +61,13 @@ export const NavBar = styled.div`
   }
 
   @media (max-width: 497px) {
+    padding: 0 8px;
     .pricing {
+      display: none;
+    }
+  }
+  @media (max-width: 1069px) {
+    .performance {
       display: none;
     }
   }

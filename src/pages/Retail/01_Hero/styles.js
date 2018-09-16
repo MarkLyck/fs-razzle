@@ -14,8 +14,15 @@ export const Title = styled.h1`
 
 const slickStyles = () => css`
   .slick-slide {
-    height: calc(100vh - 120px);
+    height: 650px;
     max-height: 650px;
+  }
+
+  @media (max-width: 800px) {
+    .slick-slide {
+      height: 400px;
+      max-height: 400px;
+    }
   }
 `
 
@@ -82,16 +89,43 @@ export const Content = styled.div`
   .bold {
     font-weight: bold;
   }
+
+  @media (max-width: 742px) {
+    h1 {
+      font-size: 1.8rem;
+    }
+    .type-wrap {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 506px) {
+    margin: 0;
+    h1 {
+      font-size: 1.4rem;
+    }
+    .type-wrap {
+      font-size: 1.4rem;
+    }
+    .typed-cursor {
+      display: none;
+    }
+  }
 `
 
 export const SliderImage = styled.div`
   position: absolute;
   top: 0;
-  height: calc(100vh - 120px);
+  height: 650px;
   max-height: 650px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   background-image: url(${props => props['data-image']});
   width: 100%;
+
+  @media (max-width: 800px) {
+    height: 400px;
+    max-height: 400px;
+  }
 `
