@@ -1,6 +1,6 @@
 const path = require('path')
 const BrotliPlugin = require('brotli-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
   modify: (defaultConfig, { target, dev }, webpack) => {
@@ -20,7 +20,7 @@ module.exports = {
           minRatio: 0.8,
         })
       )
-      config.plugins.push(new BundleAnalyzerPlugin())
+      // config.plugins.push(new BundleAnalyzerPlugin())
 
       config.optimization = {
         splitChunks: {
