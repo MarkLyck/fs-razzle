@@ -1,11 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Loader from 'media/icons/loader.svg'
 import StatisticsLoader from '../StatisticsLoader'
-
-const Icon = styled(FontAwesomeIcon)`
-  color: ${props => props.theme.colors.primary};
-`
 
 const Container = styled.div`
   width: 100%;
@@ -23,16 +19,23 @@ const SuggestionsContainer = styled.div`
   align-items: center;
 `
 
-const LoadingText = styled.h3`
-  margin-top: 16px;
+const Icon = styled.span`
+  margin-top: 8px;
+  svg {
+    height: 80px;
+  }
 `
 
 const SuggestionsLoader = ({ suggestionsType }) => (
   <Container>
     <StatisticsLoader />
     <SuggestionsContainer>
-      <Icon icon="spinner-third" spin size="6x" />
-      <LoadingText>Loading {suggestionsType}...</LoadingText>
+      <Icon
+        dangerouslySetInnerHTML={{
+          __html: Loader,
+        }}
+      />
+      <p>Loading {suggestionsType}...</p>
     </SuggestionsContainer>
   </Container>
 )

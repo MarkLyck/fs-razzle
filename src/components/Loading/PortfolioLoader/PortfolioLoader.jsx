@@ -1,14 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-const Icon = styled(FontAwesomeIcon)`
-  color: ${props => props.theme.colors.primary};
-`
-
-const LoadingText = styled.h3`
-  margin-top: 16px;
-`
+import Loader from 'media/icons/loader.svg'
 
 const Container = styled.div`
   display: flex;
@@ -48,11 +40,22 @@ const HoldingsSkeleton = styled.div`
   box-sizing: border-box;
 `
 
+const Icon = styled.span`
+  margin-top: 8px;
+  svg {
+    height: 80px;
+  }
+`
+
 const PortfolioLoader = () => (
   <Container>
     <PortfolioHeader>
-      <Icon icon="spinner-third" spin size="6x" />
-      <LoadingText>Loading Portfolio...</LoadingText>
+      <Icon
+        dangerouslySetInnerHTML={{
+          __html: Loader,
+        }}
+      />
+      <p>Retrieving stock market data...</p>
     </PortfolioHeader>
     <ReturnsSkeleton />
     <HoldingsSkeleton />

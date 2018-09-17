@@ -1,54 +1,56 @@
 import React from 'react'
 import styled from 'react-emotion'
 import { withTheme } from 'emotion-theming'
-import GenericLoader from '../Generic'
-
-const NavSkeleton = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 64px;
-  width: 100%;
-  background: #fff;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-`
+import Navbar from 'components/Navbar/Retail'
+import { Section } from 'components/Section/Section'
+import SectionTitle from 'components/Section/SectionTitle'
+import Loader from 'media/icons/loader.svg'
 
 const HeroSkeleton = styled.div`
   height: 650px;
   width: 100%;
-  background: ${props => props.theme.colors.lightGray};
-  margin: 64px 0 40px;
+  background-image: url(/media/images/slides/speedster/speedster.jpg);
+  background-image: image-set(
+    url(/media/images/slides/speedster/speedster.jpg) 1x,
+    url(/media/images/slides/speedster/speedster@2x.jpg) 2x
+  );
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  margin: 64px 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
-`
 
-const TitleBlock = styled.div`
-  font-family: BLOKK;
-  margin: 0 auto;
-  text-align: center;
-  color: ${props => props.theme.colors.lightGray};
-  margin-bottom: 20px;
+  @media (max-width: 800px) {
+    height: 400px;
+    max-height: 400px;
+  }
 `
-
-const DividerSkeleton = styled.div`
-  height: 2px;
-  width: 75px;
-  margin: 0 auto;
-  background: ${props => props.theme.colors.lightGray};
-  margin-bottom: 24px;
-`
-
-const TextBlock = styled.div`
-  font-family: BLOKK;
-  color: ${props => props.theme.colors.lightGray};
+/* eslint-disable */
+export const Overlay = styled.div`
+  position: absolute;
+  height: 650px;
+  top: 64px;
   width: 100%;
-  max-width: 1160px;
-  padding: 0 80px;
-  box-sizing: border-box;
-  line-height: 1;
+  z-index: 4;
+  background: -moz-linear-gradient(top, rgba(0, 4, 56, 0.2) 30%, rgba(125, 185, 232, 0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 4, 56, 0.2) 30%,
+    rgba(125, 185, 232, 0) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 4, 56, 0.2) 30%,
+    rgba(125, 185, 232, 0) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d000438', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
+  @media (max-width: 800px) {
+    height: 400px;
+  }
 `
+/* eslint-enable */
 
 const Container = styled.div`
   display: flex;
@@ -56,28 +58,27 @@ const Container = styled.div`
   align-items: center;
 `
 
+const Icon = styled.span`
+  margin-top: 8px;
+  svg {
+    height: 80px;
+  }
+`
+
 const HomeLoader = () => (
   <Container>
-    <NavSkeleton />
-    <HeroSkeleton>
-      <GenericLoader />
-    </HeroSkeleton>
-    <TitleBlock>Invest Intelligently</TitleBlock>
-    <DividerSkeleton />
-    <TextBlock>
-      Formula Stocks offers a better way to invest. It estimates which stocks will go up, before they go up. 90% of the
-      times we made such an estimate, it proved to be successful in the long run. You simply buy these stocks in your
-      own account.<br />
-      <br />
-      Investing using these estimates, our Entry portfolio returned 59.39% in 2016. Cumulative returns since 2009 are
-      491.27%* vs. the S&P500's 176%. It is based on groundbreaking technology, which really makes a difference for our
-      members. Typically, when you invest in stocks, your basic expectation is to receive 6-7% p.a. on average. Usually
-      a fund product will provide you a risk adjusted, long-term return in this neighborhood. Or, if it is a better
-      performing fund, demand very high fees.<br />
-      <br />
-      Join to better your returns, save on fees, and moderate your risk. Sign up for a 30-day free trial without any
-      obligations.
-    </TextBlock>
+    <Navbar />
+    <Overlay />
+    <HeroSkeleton />
+    <Section>
+      <SectionTitle>Invest intelligently</SectionTitle>
+      <Icon
+        dangerouslySetInnerHTML={{
+          __html: Loader,
+        }}
+      />
+      <p>Retrieving stock market data...</p>
+    </Section>
   </Container>
 )
 
