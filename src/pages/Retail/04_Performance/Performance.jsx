@@ -19,7 +19,7 @@ const GET_DATA_SINCE_2009 = gql`
 
 const Performance = ({ portfolioYields, planName, amChartsLoaded }) => (
   <Query query={GET_DATA_SINCE_2009}>
-    {({ loading, error, data }) => {
+    {({ loading, error, data = {} }) => {
       const { DJIA = {} } = data
       return (
         <Section>
