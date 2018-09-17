@@ -31,7 +31,7 @@ const createChartData = (portfolioYields, marketPrices) => {
 }
 
 const LaunchPerformance = ({ portfolioYields, marketPrices, planName, amChartsLoaded }) => {
-  if (!portfolioYields || !portfolioYields.length || !amChartsLoaded) {
+  if (!portfolioYields || !marketPrices.length || !portfolioYields.length || !amChartsLoaded) {
     return <FontAwesomeIcon icon="spinner-third" spin size="4x" />
   }
   const chartData = createChartData(portfolioYields, marketPrices)

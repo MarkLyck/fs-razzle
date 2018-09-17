@@ -1,0 +1,5 @@
+{
+  "data": {
+    "loggedInUser": { "id": "cjlqvv0530sf101321zo6bxhe", "type": "admin", "__typename": "LoggedInUserPayload" }
+  }
+}
