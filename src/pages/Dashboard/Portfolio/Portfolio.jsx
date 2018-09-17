@@ -43,7 +43,7 @@ class Portfolio extends Component {
           <Query query={PORTFOLIO_QUERY} variables={{ id: planIds[planName] }}>
             {({ loading, error, data }) => {
               if (loading) return <PortfolioLoader />
-              if (error || !data || !data.Plan) return <LoadingError error={error} />
+              if (error || !data || !data.Plan || !data.DJIA) return <LoadingError error={error} />
               const { Plan, DJIA } = data
 
               const lastRebalanceDate = Plan.portfolioYields[Plan.portfolioYields.length - 1].date
