@@ -50,9 +50,6 @@ const HowWeBeatTheMarket = () => (
         <span>Alpha prediction</span> – in-house method which estimates the future excess return from a stock.
       </ListItem>
       <ListItem>
-        <span>Position-sizing logic </span> – the idea of matching position size and odds correctly.
-      </ListItem>
-      <ListItem>
         <span>Portfolio management technology</span> – software for optimizing risk/reward characteristics of a
         portfolio.
       </ListItem>
