@@ -51,7 +51,7 @@ const WhatToExpect = ({ latestSells, winRatio }) => (
       If you choose to use Formula Stocks consistently, diversified, and for a number of years, odds are extremely good
       that you will obtain better returns than offered by most investment methods.<br />
       <br />
-      Here are the latest sales performed by the Entry product
+      Latest portfolio sales:
     </p>
     <Table>
       <thead>

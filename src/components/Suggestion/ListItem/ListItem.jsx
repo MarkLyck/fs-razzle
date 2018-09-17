@@ -5,9 +5,9 @@ import Tooltip from 'components/Tooltip'
 import { SuggItem } from './styles'
 
 const ListItem = ({ name, value, tip, tipWidth }) => (
-  <SuggItem>
+  <SuggItem className="list-item">
     <p>{name}:</p>
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex' }} className="value">
       <h4 style={{ marginRight: '8px' }}>{value}</h4>
       {tip && <Tooltip tip={tip} width={tipWidth} />}
     </div>
