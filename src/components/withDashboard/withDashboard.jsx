@@ -59,7 +59,6 @@ const withDashboard = WrappedComponent => {
               userType = data.loggedInUser.type
             }
 
-            console.log(data)
             return (
               <DashboardLayout>
                 <SideMenu history={history} location={location} userType={userType} />

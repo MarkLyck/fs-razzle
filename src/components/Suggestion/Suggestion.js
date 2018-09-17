@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { format } from 'date-fns'
 import Button from 'components/Button'
 
 import ListItem from './ListItem'
 import DetailsModal from './DetailsModal'
 import StockChart from './StockChart'
-import { Card, SuggContainer, SuggHeader, ContentContainer, StockInfoList, Placeholder } from './styles'
+import {
+  Card,
+  SuggContainer,
+  SuggHeader,
+  ContentContainer,
+  StockInfoList,
+  Placeholder,
+  ButtonPlaceholder,
+} from './styles'
 
 class Suggestion extends Component {
   state = { detailsIsVisible: false }
@@ -44,7 +53,7 @@ instead, visit the Trades section.`
     const suggestedPriceName = suggestionsType === 'Trades' ? 'Traded at' : 'Buy below'
     // when it's a suggestion and says "Buy at or below below" add 1 cent.
     const suggestedPrice = (suggestion.suggested_price + (suggestionsType === 'Trades' ? 0 : 0.01)).toFixed(2)
-    const allocationText = suggestion.percentage_weight ? 'Cash allocation' : 'Portfolio allocation'
+    const allocationText = suggestion.percentage_weight ? 'Cash allocation' : `Add in ${format(new Date(), 'MMMM')}`
     const allocation = suggestion.percentage_weight ? suggestion.percentage_weight : suggestion.portfolio_weight
 
     const latestPrice = stock ? stock.latestPrice : suggestion.suggested_price.toFixed(2)
@@ -69,6 +78,15 @@ instead, visit the Trades section.`
                   tipWidth="345"
                 />
               )}
+              {suggestion.action === 'BUY' &&
+                suggestion.total_portfolio_weight && (
+                  <ListItem
+                    name="Total position"
+                    value={suggestion.total_portfolio_weight.toFixed(2)}
+                    tip={this.renderTip()}
+                    tipWidth="345"
+                  />
+                )}
               {suggestion.action === 'SELL' && (
                 <ListItem name="Purchase price" value={`$${suggestion.original_purchase.toFixed(2)}`} />
               )}
@@ -77,11 +95,11 @@ instead, visit the Trades section.`
                   Details
                 </Button>
               ) : (
-                [
-                  <Placeholder key={suggestion.ticker + 'place-1'} />,
-                  <Placeholder key={suggestion.ticker + 'place-2'} />,
-                  <Placeholder key={suggestion.ticker + 'place-3'} />,
-                ]
+                <React.Fragment>
+                  <Placeholder className="placeholder" />
+                  {suggestionsType === 'Trades' && <Placeholder className="placeholder" />}
+                  <ButtonPlaceholder className="placeholder" />
+                </React.Fragment>
               )}
             </StockInfoList>
             <StockChart

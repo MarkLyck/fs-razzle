@@ -14,14 +14,14 @@ const createChartData = sixMonthsPrices =>
 const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action, serialChartsReady, loading, error }) => {
   if (!serialChartsReady || loading) {
     return (
-      <LoadingContainer>
+      <LoadingContainer className="loading-container">
         <FontAwesomeIcon icon="spinner-third" spin />
         <h4>Loading</h4>
       </LoadingContainer>
     )
   } else if (!loading && (!sixMonthsPrices || !sixMonthsPrices.length)) {
     return (
-      <FailedContainer>
+      <FailedContainer className="failed-container">
         <FontAwesomeIcon icon="chart-line" />
         <h4>No graph data available</h4>
       </FailedContainer>
@@ -72,7 +72,7 @@ const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action, serialCha
   ]
 
   return (
-    <GraphContainer>
+    <GraphContainer className="stock-chart">
       <LineGraph
         id={`${ticker.toLowerCase()}-stockgraph`}
         className="suggestion-graph"

@@ -1,4 +1,5 @@
 import styled from 'react-emotion'
+import { darken } from 'polished'
 
 export const SuggContainer = styled.div`
   width: calc(50% - 16px);
@@ -43,10 +44,41 @@ export const SuggHeader = styled.div`
 export const ContentContainer = styled.div`
   display: flex;
   border-bottom: 6px solid ${props => props.theme.colors[props.type === 'BUY' ? 'primary' : 'secondary']};
+  @media (max-width: 600px) {
+    flex-direction: column-reverse;
+    .stock-chart,
+    .loading-container,
+    .failed-container {
+      height: 240px;
+      background: ${props => darken(0.02, '#fff')};
+    }
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      width: 100%;
+      .value {
+        width: 80px;
+      }
+    }
+    .placeholder {
+      display: none;
+    }
+    button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
 `
 
 export const Placeholder = styled.div`
-  height: 32px;
+  height: 44px;
+  width: 100%;
+  margin-bottom: 16px;
+`
+
+export const ButtonPlaceholder = styled.div`
+  height: 36px;
   width: 100%;
 `
 
