@@ -12,10 +12,11 @@ const PilotProgram = () => (
       <Beside>
         <div>
           <p>
-            Formula Stocks has undertaken a 3-year pilot program. Performance data was recorded under normal real-time
-            market conditions with capital, and financial results reviewed by a state-licensed auditor. We recorded an
-            average return on equity employed to sustain securities trading of +78.94% in 2009, +44.64% in 2010 and
-            +17.51% in 2011.<sup>*</sup>
+            Formula Stocks initiated a 3-year pilot program at launch. Performance data was recorded under real-time
+            market conditions, and financial results reviewed by a state-licensed auditor. We recorded a return on
+            equity employed to sustain securities trading of +78.94% in 2009, +44.64% in 2010 and +17.51% in 2011.<sup>
+              *
+            </sup>
           </p>
           <Disclaimer>
             <sup>*</sup>Past performance is not neccesarily indicative of future results.

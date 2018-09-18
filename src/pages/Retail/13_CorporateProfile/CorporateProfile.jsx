@@ -15,10 +15,11 @@ const CorporateProfile = () => (
           <Subtitle>About us</Subtitle>
           <p>
             Formula Stocks develops cognitive computing technologies since 2003 designed to achieve above-average
-            performance in equity markets. Technology includes learning, business analytics, decisionmaking, probability
-            estimation, and prediction technologies. Products suites can be used as a standalone tool to assist
-            investors, or operate as autonomous decisionmakers, artificial intelligence capable of portfolio
-            construction, active portfolio management, risk/reward management.<br />
+            performance in equity markets. Technology includes deep learning, business analytics, decisionmaking,
+            probability estimation, and prediction technologies. Product suites can be used as a standalone tool to
+            assist investors, or operate as autonomous decisionmakers. Artificial intelligence fund management solutions
+            capable of portfolio construction, portfolio management & risk/reward management.
+            <br />
             <br />
             Address: Formula Stocks ApS | Ribe Landevej 39, DK-6100 Haderslev. Denmark<br />
             <br />

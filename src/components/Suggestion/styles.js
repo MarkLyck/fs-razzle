@@ -52,13 +52,25 @@ export const ContentContainer = styled.div`
       height: 240px;
       background: ${props => darken(0.02, '#fff')};
     }
+    .info-list {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
     .list-item {
       display: flex;
       justify-content: space-between;
       flex-direction: row;
       width: 100%;
       .value {
-        width: 80px;
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin-left: 8px;
+      }
+      &:last-of-type {
+        margin-bottom: 0;
       }
     }
     .placeholder {
@@ -67,6 +79,7 @@ export const ContentContainer = styled.div`
     button {
       width: 100%;
       justify-content: center;
+      margin-top: 8px;
     }
   }
 `

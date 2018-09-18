@@ -22,7 +22,7 @@ const GET_LONGTERM_DATA = gql`
 
 const Performance = ({ backtestedData, marketPrices, planName, amChartsLoaded }) => (
   <Query query={GET_LONGTERM_DATA}>
-    {({ loading, error, data }) => {
+    {({ loading, error, data = {} }) => {
       const { Plan = {}, SP500 = {} } = data
       return (
         <Section data-offwhite>

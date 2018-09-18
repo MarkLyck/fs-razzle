@@ -55,8 +55,6 @@ class Footer extends Component {
             content. Formula Stocks expresses no opinion as to whether any of the website content is appropriate for a
             user’s investment portfolio, strategy, financial situation, or investment objective(s).<br />
             <br />
-            Formula Stocks strategies evolve and improve on a recurring basis, and any result and statistic is therefore
-            subject to change without notice.
           </Disclaimer>
           <Disclaimer>
             By visiting this site, you agree to our{' '}
