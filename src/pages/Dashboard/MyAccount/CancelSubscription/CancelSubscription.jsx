@@ -52,7 +52,7 @@ class CancelSubscription extends Component {
             color="error"
             background="white"
             hoverColor="error"
-            style={{ margin: '0 auto' }}
+            style={{ margin: '0 auto 16px' }}
             onClick={() => this.cancelSubscription(stripeSubscription, updateUser, userID)}
           >
             <FontAwesomeIcon icon={['far', 'times']} />

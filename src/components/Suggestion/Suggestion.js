@@ -21,7 +21,7 @@ class Suggestion extends Component {
 
   toggleDetails = () => this.setState({ detailsIsVisible: !this.state.detailsIsVisible })
 
-  renderTip = () => {
+  renderAllocationTip = () => {
     const { suggestionsType } = this.props
 
     if (suggestionsType === 'Trades') {
@@ -46,6 +46,10 @@ Or, if you prefer to use a percentage of total portfolio value
 instead, visit the Trades section.`
   }
 
+  renderTotalAllocationTip = () => `
+The total allocation in % of this stock in the portfolio, after this and all previous transactions have taken place
+`
+
   render() {
     const { suggestion, stock, serialChartsReady, suggestionsType, loading, error } = this.props
     const { detailsIsVisible } = this.state
@@ -56,7 +60,7 @@ instead, visit the Trades section.`
     const allocationText = suggestion.percentage_weight ? 'Cash allocation' : `Add in ${format(new Date(), 'MMMM')}`
     const allocation = suggestion.percentage_weight ? suggestion.percentage_weight : suggestion.portfolio_weight
 
-    const latestPrice = stock ? stock.latestPrice : suggestion.suggested_price.toFixed(2)
+    const latestPrice = stock ? stock.latestPrice : suggestion.suggested_price
 
     return (
       <SuggContainer>
@@ -66,15 +70,15 @@ instead, visit the Trades section.`
         </SuggHeader>
         <Card>
           <ContentContainer type={suggestion.action}>
-            <StockInfoList>
+            <StockInfoList className="info-list">
               <ListItem name="Ticker" value={suggestion.ticker} />
               {suggestion.action === 'BUY' && <ListItem name={suggestedPriceName} value={`$${suggestedPrice}`} />}
-              <ListItem name="Last price" value={`$${latestPrice}`} />
+              <ListItem name="Last price" value={`$${latestPrice.toFixed(2)}`} />
               {suggestion.action === 'BUY' && (
                 <ListItem
                   name={allocationText}
                   value={`${allocation.toFixed(2)}%`}
-                  tip={this.renderTip()}
+                  tip={this.renderAllocationTip()}
                   tipWidth="345"
                 />
               )}
@@ -82,8 +86,8 @@ instead, visit the Trades section.`
                 suggestion.total_portfolio_weight && (
                   <ListItem
                     name="Total position"
-                    value={suggestion.total_portfolio_weight.toFixed(2)}
-                    tip={this.renderTip()}
+                    value={`${suggestion.total_portfolio_weight.toFixed(2)}%`}
+                    tip={this.renderTotalAllocationTip()}
                     tipWidth="345"
                   />
                 )}
