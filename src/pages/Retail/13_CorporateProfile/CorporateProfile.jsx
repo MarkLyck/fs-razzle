@@ -30,21 +30,36 @@ const CorporateProfile = () => (
         <Right>
           <Subtitle>Executive team</Subtitle>
           <Card>
-            <ProfileImg src="media/images/corporate/Thomas.jpg" alt="" />
+            <ProfileImg
+              srcset="media/images/corporate/Thomas.jpg,
+             media/images/corporate/Thomas@2x.jpg 2x"
+              src="media/images/corporate/Thomas.jpg"
+              alt=""
+            />
             <ProfileTextContainer>
               <h5>Thomas Lyck</h5>
               <p>CEO</p>
             </ProfileTextContainer>
           </Card>
           <Card>
-            <ProfileImg src="media/images/corporate/Mark.jpg" alt="" />
+            <ProfileImg
+              srcset="media/images/corporate/Mark.jpg,
+             media/images/corporate/Mark@2x.jpg 2x"
+              src="media/images/corporate/Mark.jpg"
+              alt=""
+            />
             <ProfileTextContainer>
               <h5>Mark Lyck</h5>
               <p>COO</p>
             </ProfileTextContainer>
           </Card>
           <Card>
-            <ProfileImg src="media/images/corporate/Marie.jpg" alt="" />
+            <ProfileImg
+              srcset="media/images/corporate/Marie.jpg,
+             media/images/corporate/Marie@2x.jpg 2x"
+              src="media/images/corporate/Marie.jpg"
+              alt=""
+            />
             <ProfileTextContainer>
               <h5>Marie Lauritzen</h5>
               <p>CHRO</p>
