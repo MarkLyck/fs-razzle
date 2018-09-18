@@ -35,14 +35,20 @@ server
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1">
+
                 <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-                <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
-                <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+                <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#4ea4f2">
+                <link rel="shortcut icon" href="/favicons/favicon.ico">
+                <meta name="apple-mobile-web-app-title" content="Formula Stocks">
+                <meta name="application-name" content="Formula Stocks">
+                <meta name="msapplication-TileColor" content="#2d89ef">
+                <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+                <meta name="theme-color" content="#ffffff">
                 <link rel="manifest" href="/manifest.json">
                 
-                <meta name="theme-color" content="#ED5B5F">
                 <meta name="description" content="Formula Stocks">
-  
                 <meta property="og:type" content="website">
                 <meta property="og:description" content="Beat the stock market using quantitative analysis.">
                 <meta property="og:site_name" content="Formula Stocks">
