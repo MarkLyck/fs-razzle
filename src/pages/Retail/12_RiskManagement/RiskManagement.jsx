@@ -21,8 +21,8 @@ const RiskManagement = ({ winRatio, avgGain, avgLoss, sortinoRatio }) => {
         Another way is the so-called Gain-to-Pain Ratio, which measures exactly what the name indicates. It is 1.318 for
         Entry, which indicates far more gain than pain.<br />
         <br />
-        The Sortino Ratio is yet another way to measure risk. It is {sortinoRatio} for Formula Stocks Entry, indicating
-        high reward and low risk.<br />
+        The Sortino Ratio is yet another way to measure risk. It is {sortinoRatio.toFixed(4)} for Formula Stocks Entry,
+        indicating high reward and low risk.<br />
         <br />
         We can also examine the average gain from a winning stock which is +{avgGain.toFixed(2)}%, while the average
         loss from a losing stock is only -{avgLoss.toFixed(2)}%. Add to this that Entry also wins {winRatio.toFixed(2)}%

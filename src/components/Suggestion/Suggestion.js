@@ -14,6 +14,7 @@ import {
   StockInfoList,
   Placeholder,
   ButtonPlaceholder,
+  LastPrice,
 } from './styles'
 
 class Suggestion extends Component {
@@ -26,13 +27,13 @@ class Suggestion extends Component {
 
     if (suggestionsType === 'Trades') {
       return `
-The percentage indicated is as a percentage of total portfolio value.
-\\A\\A 
-E.g. for a portfolio of 40,000 USD in stocks and cash, you would 
-purchase for 2,000 dollars of this stock if the percentage indicated is 5.00%.
-\\A\\A 
-Whether or not a portfolio already contains this stock makes no difference. 
-Trades are in addition to existing positions.`
+Percentage of total portfolio value to add\\A\\A 
+
+E.g. if it\\'s 5.00% and your portfolio consists of $40,000 in stocks and 
+cash,\00a0 you would purchase for $2,000 of this stock.\\A\\A 
+
+It makes no difference if you already have this stock in your portfolio. Trades are in addition to existing positions.
+`
     }
     return `
 The percentage indicated relates to a percentage of cash available 
@@ -73,7 +74,7 @@ The total allocation in % of this stock in the portfolio, after this and all pre
             <StockInfoList className="info-list">
               <ListItem name="Ticker" value={suggestion.ticker} />
               {suggestion.action === 'BUY' && <ListItem name={suggestedPriceName} value={`$${suggestedPrice}`} />}
-              <ListItem name="Last price" value={`$${latestPrice.toFixed(2)}`} />
+              {suggestionsType === 'Suggestions' && <ListItem name="Last price" value={`$${latestPrice.toFixed(2)}`} />}
               {suggestion.action === 'BUY' && (
                 <ListItem
                   name={allocationText}
@@ -106,6 +107,7 @@ The total allocation in % of this stock in the portfolio, after this and all pre
                 </React.Fragment>
               )}
             </StockInfoList>
+            {stock && stock.sixMonthsPrices && <LastPrice>${latestPrice.toFixed(2)}</LastPrice>}
             <StockChart
               sixMonthsPrices={stock ? stock.sixMonthsPrices : []}
               ticker={suggestion.ticker}

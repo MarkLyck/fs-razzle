@@ -7,7 +7,7 @@ import { GraphContainer, LoadingContainer, FailedContainer } from './styles'
 
 const createChartData = sixMonthsPrices =>
   sixMonthsPrices.map(point => ({
-    price: point[1],
+    price: point[1].toFixed(2),
     date: point[0],
   }))
 

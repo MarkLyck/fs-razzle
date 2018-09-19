@@ -135,7 +135,7 @@ class Retail extends Component {
                 sortinoRatio={sortinoRatio}
               />
               <HowWeBeatTheMarket />
-              <RiskManagement winRatio={winRatio} avgGain={avgGain} avgLoss={avgLoss} />
+              <RiskManagement winRatio={winRatio} sortinoRatio={sortinoRatio} avgGain={avgGain} avgLoss={avgLoss} />
               <CorporateProfile />
               <ScrolledToBottom toggleSignUpModal={this.toggleSignUpModal} />
               <Footer />
