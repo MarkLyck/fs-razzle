@@ -5,7 +5,6 @@ export const SuggContainer = styled.div`
   width: calc(50% - 16px);
   margin: 8px;
   margin-top: 16px;
-  overflow: hidden;
 
   @media (max-width: 850px) {
     width: calc(100% - 16px);
@@ -42,8 +41,32 @@ export const SuggHeader = styled.div`
 `
 
 export const ContentContainer = styled.div`
+  position: relative;
   display: flex;
   border-bottom: 6px solid ${props => props.theme.colors[props.type === 'BUY' ? 'primary' : 'secondary']};
+
+  .amcharts-zoom-out-bg {
+    y: 237;
+    height: 33px;
+    width: 92px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .amcharts-zoom-out-label {
+    transform: translate(26px, 243px);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .amcharts-zoom-out-image {
+    y: 237;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   @media (max-width: 600px) {
     flex-direction: column-reverse;
     .stock-chart,
@@ -81,6 +104,14 @@ export const ContentContainer = styled.div`
       justify-content: center;
       margin-top: 8px;
     }
+
+    .amcharts-zoom-out-bg,
+    .amcharts-zoom-out-image {
+      y: 172;
+    }
+    .amcharts-zoom-out-label {
+      transform: translate(26px, 179px);
+    }
   }
 `
 
@@ -88,6 +119,14 @@ export const Placeholder = styled.div`
   height: 44px;
   width: 100%;
   margin-bottom: 16px;
+`
+
+export const LastPrice = styled.p`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  opacity: 0.4;
+  z-index: 1;
 `
 
 export const ButtonPlaceholder = styled.div`

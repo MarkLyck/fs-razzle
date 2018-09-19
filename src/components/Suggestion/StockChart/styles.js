@@ -36,6 +36,7 @@ export const GraphContainer = styled.div`
   position: relative;
   width: 100%;
   height: auto;
+  overflow: hidden;
   .suggestion-graph {
     height: 100%;
   }
