@@ -12,7 +12,7 @@ const WhatIsIt = () => (
     <BesideContainer>
       <Beside>
         <Left data-center>
-          <Screenshot src="media/images/screenshots/suggestions.png" alt="" />
+          <Screenshot src="media/images/screenshots/trades.jpg" alt="" />
         </Left>
         <Right>
           <p>
