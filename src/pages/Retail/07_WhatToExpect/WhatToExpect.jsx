@@ -43,7 +43,7 @@ const WhatToExpect = ({ latestSells, winRatio }) => (
           </p>
         </Left>
         <Right>
-          <Screenshot src="media/images/screenshots/Portfolio.jpg" alt="" />
+          <Screenshot src="media/images/screenshots/portfolio.png" alt="" />
         </Right>
       </Beside>
     </BesideContainer>
