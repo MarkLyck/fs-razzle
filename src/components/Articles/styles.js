@@ -29,6 +29,7 @@ export const HeaderImage = styled.div`
   background-image: ${props => `url(${props['data-headerimageurl']})`};
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 `
 
 export const Card = styled.div`

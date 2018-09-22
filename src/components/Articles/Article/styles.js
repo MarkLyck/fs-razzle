@@ -3,7 +3,6 @@ import styled from 'react-emotion'
 export const ArticleContainer = styled.div`
   background: white;
   width: 100%;
-  height: 100%;
 `
 
 export const HeaderImage = styled.div`
@@ -24,8 +23,31 @@ export const Title = styled.h1`
 `
 
 export const Body = styled.div`
-  padding: 0 32px;
+  padding: 0 32px 16px;
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  strong {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  p {
+    margin-bottom: 24px;
+  }
+
+  blockquote {
+    margin: 24px;
+    position: relative;
+    line-height: 1.5;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -24px;
+      width: 4px;
+      background: ${props => props.theme.colors.primary};
+      height: 100%;
+    }
+  }
 `

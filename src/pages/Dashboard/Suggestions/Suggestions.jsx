@@ -116,7 +116,7 @@ class Suggestions extends Component {
                             stock={allStocks.filter(stock => stock.ticker === sugg.ticker)[0] || null}
                             loading={loading}
                             error={error}
-                            key={sugg.ticker}
+                            key={sugg.ticker + planName}
                             serialChartsReady={serialChartsReady}
                             suggestionsType={suggestionsType}
                           />
