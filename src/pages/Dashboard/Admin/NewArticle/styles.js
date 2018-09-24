@@ -8,22 +8,22 @@ export const Editor = styled(MegadraftEditor)`
 `
 
 export const FileDrop = styled(Dropzone)`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 16px;
-    width: 100%;
-    height: 350px;
-    border: 2px dashed ${props => props.theme.colors.primary};
-    background-image: ${props => (props['data-headerImageUrl'] ? `url(${props['data-headerImageUrl']})` : 'none')}
-    background-repeat: no-repeat;
-    background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  width: 100%;
+  height: 350px;
+  border: 2px dashed ${props => props.theme.colors.primary};
+  background-image: ${props => (props['data-headerimageurl'] ? `url(${props['data-headerimageurl']})` : 'none')};
+  background-repeat: no-repeat;
+  background-size: cover;
 
-    svg {
-        margin-top: 16px;
-        font-size: 5rem;
-    }
+  svg {
+    margin-top: 16px;
+    font-size: 5rem;
+  }
 `
 
 /* eslint-disable max-len */

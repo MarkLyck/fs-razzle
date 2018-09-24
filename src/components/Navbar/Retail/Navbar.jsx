@@ -29,6 +29,11 @@ class Navbar extends Component {
     this.setState({ loggedIn: false })
   }
 
+  goToDashboard = () => {
+    const { history } = this.props
+    if (history) history.push('/dashboard/portfolio')
+  }
+
   renderLoggedOutLinks = () => (
     <NavLinks>
       <Button variant="raised" type="light" onClick={this.props.toggleLoginModal}>
@@ -40,9 +45,9 @@ class Navbar extends Component {
     </NavLinks>
   )
 
-  renderLoggedInLinks = history => (
+  renderLoggedInLinks = () => (
     <NavLinks>
-      <Button variant="raised" onClick={() => history.push('/dashboard/portfolio')}>
+      <Button variant="raised" onClick={this.goToDashboard}>
         <FontAwesomeIcon icon="chart-line" />Dashboard
       </Button>
       <Button variant="raised" type="light" color="black" hoverColor="error" onClick={() => this.logout()}>
@@ -52,7 +57,7 @@ class Navbar extends Component {
   )
 
   render() {
-    const { history, toggleFAQModal } = this.props
+    const { toggleFAQModal } = this.props
     const { loggedIn } = this.state
 
     return (
@@ -72,7 +77,7 @@ class Navbar extends Component {
             <ScrollLink className="faq-link" to="" onClick={toggleFAQModal}>
               FAQ
             </ScrollLink>
-            {loggedIn ? this.renderLoggedInLinks(history) : this.renderLoggedOutLinks()}
+            {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
           </NavBar>
         )}
       </Query>

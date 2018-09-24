@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Card, Title, HeaderImage } from './styles'
 
 const ArticleCard = ({ article, location }) => {
+  if (!location || !article.title) return null
   const articleURLName = article.title.split(' ').join('-')
   const articleLink = location.pathname.includes('dashboard')
     ? `/dashboard/articles/${articleURLName}`

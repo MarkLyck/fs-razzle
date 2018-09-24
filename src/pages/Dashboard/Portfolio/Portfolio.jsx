@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import fecha from 'fecha'
 import { planIds, marketIds } from 'common/constants'
+import hasPermissions from 'common/utils/hasPermissions'
 import PlanContext from 'common/Contexts/PlanContext'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
@@ -13,6 +14,7 @@ import StatisticsContainer from 'components/statisticsContainer'
 import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import PortfolioLoader from 'components/Loading/PortfolioLoader'
 import LoadingError from 'components/Error/LoadingError'
+import PlanPermissionError from 'components/Error/PlanPermissionError'
 import PortfolioItem from './PortfolioItem'
 import { PortfolioTable, PortfolioTableHead, LastUpdated, DateLabel } from './styles'
 
@@ -35,7 +37,7 @@ const PORTFOLIO_QUERY = gql`
 
 class Portfolio extends Component {
   render() {
-    const { serialChartsReady, pieChartsReady } = this.props
+    const { serialChartsReady, pieChartsReady, history, userPlan, userType } = this.props
 
     return (
       <PlanContext.Consumer>
@@ -48,6 +50,8 @@ class Portfolio extends Component {
 
               const lastRebalanceDate = Plan.portfolioYields[Plan.portfolioYields.length - 1].date
 
+              const hasPlanPerms = hasPermissions(planName, userPlan, userType)
+
               return (
                 <React.Fragment>
                   <PortfolioHeader
@@ -59,35 +63,38 @@ class Portfolio extends Component {
                     pieChartsReady={pieChartsReady}
                   />
                   <AnnualReturns portfolioYields={Plan.portfolioYields} />
-                  <PortfolioTable>
-                    <PortfolioTableHead>
-                      <TableRow>
-                        <TableHeadCell className="name">Name</TableHeadCell>
-                        <TableHeadCell className="allocation">Allocation</TableHeadCell>
-                        <TableHeadCell className="return" tooltip="Percent increase from Cost basis to Last price.">
-                          Return
-                        </TableHeadCell>
-                        <TableHeadCell
-                          className="cost-basis"
-                          tooltip="Averaged purchase price adjusted for dividends earned."
-                        >
-                          Cost basis
-                        </TableHeadCell>
-                        <TableHeadCell
-                          className="last-price"
-                          tooltip="Latest price available for stocks. Updated realtime or End of Day."
-                        >
-                          Last price
-                        </TableHeadCell>
-                        <TableHeadCell className="days-owned">Days owned</TableHeadCell>
-                      </TableRow>
-                    </PortfolioTableHead>
-                    <TableBody>
-                      {Plan.portfolio.map(stock => (
-                        <PortfolioItem stock={stock} key={stock.ticker} serialChartsReady={serialChartsReady} />
-                      ))}
-                    </TableBody>
-                  </PortfolioTable>
+                  {!hasPlanPerms && <PlanPermissionError planName={planName} history={history} />}
+                  {hasPlanPerms && (
+                    <PortfolioTable>
+                      <PortfolioTableHead>
+                        <TableRow>
+                          <TableHeadCell className="name">Name</TableHeadCell>
+                          <TableHeadCell className="allocation">Allocation</TableHeadCell>
+                          <TableHeadCell className="return" tooltip="Percent increase from Cost basis to Last price.">
+                            Return
+                          </TableHeadCell>
+                          <TableHeadCell
+                            className="cost-basis"
+                            tooltip="Averaged purchase price adjusted for dividends earned."
+                          >
+                            Cost basis
+                          </TableHeadCell>
+                          <TableHeadCell
+                            className="last-price"
+                            tooltip="Latest price available for stocks. Updated realtime or End of Day."
+                          >
+                            Last price
+                          </TableHeadCell>
+                          <TableHeadCell className="days-owned">Days owned</TableHeadCell>
+                        </TableRow>
+                      </PortfolioTableHead>
+                      <TableBody>
+                        {Plan.portfolio.map(stock => (
+                          <PortfolioItem stock={stock} key={stock.ticker} serialChartsReady={serialChartsReady} />
+                        ))}
+                      </TableBody>
+                    </PortfolioTable>
+                  )}
                   <StatisticsContainer>
                     <StatisticsBox title="Annual growth" value={`${Plan.statistics.CAGR}%`} icon="chart-line" />
                     <StatisticsBox

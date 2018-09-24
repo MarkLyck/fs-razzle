@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
+import { EditorState, convertToRaw } from 'draft-js'
+import draftToHtml from 'draftjs-to-html'
 import withDashboard from 'components/withDashboard'
 import Button from 'components/Button'
 import { MegadraftEditor, editorStateFromRaw } from 'megadraft'
@@ -25,17 +27,21 @@ class NewArticle extends Component {
 
   onChange = editorState => this.setState({ editorState })
 
-  // onSubmit = () => {
-  //   const { createArticle, actions } = this.props
-  //   const { editorState, headerImageUrl } = this.state
-  //   const title = this._titleInput.value
+  onSubmit = createArticle => {
+    const { editorState, headerImageUrl } = this.state
+    const title = this._titleInput.value
 
-  //   actions.newArticle(title, draftToHtml(convertToRaw(editorState.getCurrentContent())),
-  // headerImageUrl, createArticle)
+    createArticle({
+      variables: {
+        title,
+        body: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+        headerImageUrl,
+      },
+    })
 
-  //   this.setState({ editorState: EditorState.createEmpty() })
-  //   this._titleInput.value = ''
-  // }
+    this.setState({ editorState: EditorState.createEmpty() })
+    this._titleInput.value = ''
+  }
 
   onDrop = files => {
     const data = new FormData()
@@ -67,6 +73,7 @@ class NewArticle extends Component {
 
   render() {
     const { editorState, headerImageUrl } = this.state
+
     return (
       <Mutation mutation={CREATE_ARTICLE}>
         {createArticle => (
@@ -79,7 +86,12 @@ class NewArticle extends Component {
               </FileDrop>
               <input className="title" ref={titleInput => (this._titleInput = titleInput)} placeholder="Title" />
               <MegadraftEditor editorState={editorState} onChange={this.onChange} />
-              <Button onClick={this.onSubmit} color="primary" aria-label="add" className="submit">
+              <Button
+                onClick={this.onSubmit.bind(null, createArticle)}
+                color="primary"
+                aria-label="add"
+                className="submit"
+              >
                 Submit
                 <i className="fa fa-save fa-2x" />
               </Button>

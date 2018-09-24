@@ -7,6 +7,7 @@ import fecha from 'fecha'
 import PlanContext from 'common/Contexts/PlanContext'
 import { planIds } from 'common/constants'
 import { usingMocks } from 'common/utils/featureTests'
+import hasPermissions from 'common/utils/hasPermissions'
 import mockData from 'common/mocks/suggestionsData.json'
 
 import withDashboard from 'components/withDashboard'
@@ -16,6 +17,7 @@ import StatisticsBox from 'components/statisticsContainer/StatisticsBox'
 import Suggestion from 'components/Suggestion'
 import SuggestionsLoader from 'components/Loading/SuggestionsLoader'
 import LoadingError from 'components/Error/LoadingError'
+import PlanPermissionError from 'components/Error/PlanPermissionError'
 
 import { SuggestionsList, LastUpdated, DateLabel } from './styles'
 
@@ -63,7 +65,7 @@ class Suggestions extends Component {
   }
 
   render() {
-    const { location, serialChartsReady } = this.props
+    const { location, serialChartsReady, userPlan, userType, history } = this.props
 
     return (
       <PlanContext.Consumer>
@@ -77,6 +79,7 @@ class Suggestions extends Component {
               const plan = data.Plan || mockData.Plan
 
               const listStatTitle = suggestionsType === 'Trades' ? 'Trades this month' : 'Suggestions'
+              const hasPlanPerms = hasPermissions(planName, userPlan, userType)
 
               const suggestions = plan.suggestions
                 .filter(sugg => {
@@ -101,29 +104,32 @@ class Suggestions extends Component {
                       icon="dollar-sign"
                     />
                   </StatisticsContainer>
-                  <SuggestionsList>
-                    <Query
-                      query={STOCKS_QUERY}
-                      variables={{
-                        tickers: suggestions.map(sugg => sugg.ticker),
-                      }}
-                    >
-                      {({ loading, error, data }) => {
-                        const allStocks = data && data.allStocks ? data.allStocks : []
-                        return suggestions.map(sugg => (
-                          <Suggestion
-                            suggestion={sugg}
-                            stock={allStocks.filter(stock => stock.ticker === sugg.ticker)[0] || null}
-                            loading={loading}
-                            error={error}
-                            key={sugg.ticker}
-                            serialChartsReady={serialChartsReady}
-                            suggestionsType={suggestionsType}
-                          />
-                        ))
-                      }}
-                    </Query>
-                  </SuggestionsList>
+                  {!hasPlanPerms && <PlanPermissionError planName={planName} history={history} />}
+                  {hasPlanPerms && (
+                    <SuggestionsList>
+                      <Query
+                        query={STOCKS_QUERY}
+                        variables={{
+                          tickers: suggestions.map(sugg => sugg.ticker),
+                        }}
+                      >
+                        {({ loading, error, data }) => {
+                          const allStocks = data && data.allStocks ? data.allStocks : []
+                          return suggestions.map(sugg => (
+                            <Suggestion
+                              suggestion={sugg}
+                              stock={allStocks.filter(stock => stock.ticker === sugg.ticker)[0] || null}
+                              loading={loading}
+                              error={error}
+                              key={sugg.ticker + planName}
+                              serialChartsReady={serialChartsReady}
+                              suggestionsType={suggestionsType}
+                            />
+                          ))
+                        }}
+                      </Query>
+                    </SuggestionsList>
+                  )}
                   {plan.updatedAt && (
                     <LastUpdated>
                       Last updated: <DateLabel>{fecha.format(new Date(plan.updatedAt), 'MMM D, YYYY')}</DateLabel>
