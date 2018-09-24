@@ -15,7 +15,7 @@ export const HeaderImage = styled.div`
 
 export const Title = styled.h1`
   padding: 16px 32px;
-  margin: 16px auto 0;
+  margin: 16px auto 32px;
   width: 100%;
   max-width: 800px;
   font-weight: bold;
@@ -31,8 +31,13 @@ export const Body = styled.div`
     font-size: 1.2rem;
     font-weight: bold;
   }
-  p {
+  p,
+  h3 {
     margin-bottom: 24px;
+  }
+
+  p {
+    line-height: 1.8;
   }
 
   blockquote {

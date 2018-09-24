@@ -12,6 +12,7 @@ const GET_LOGGED_IN_USER = gql`
     loggedInUser {
       id
       type
+      plan
     }
   }
 `
@@ -54,9 +55,11 @@ const withDashboard = WrappedComponent => {
               history.push('/')
             }
 
-            let userType = ''
+            let userType,
+              userPlan = ''
             if (data && data.loggedInUser) {
               userType = data.loggedInUser.type
+              userPlan = data.loggedInUser.plan
             }
 
             return (
@@ -65,7 +68,7 @@ const withDashboard = WrappedComponent => {
                 <PlanContext.Provider value={this.getContext()}>
                   <DashboardContent>
                     <NavBar history={history} location={location} />
-                    <WrappedComponent location={location} />
+                    <WrappedComponent location={location} userType={userType} history={history} userPlan={userPlan} />
                   </DashboardContent>
                 </PlanContext.Provider>
               </DashboardLayout>
