@@ -28,7 +28,7 @@ class BillingInfo extends Component {
     const taxAmount = planPrice * (taxPercent / 100)
 
     return (
-      <StripeProvider apiKey="pk_test_hh5vsZ7wNnMi80XJgzHVanEm">
+      <StripeProvider apiKey="pk_live_UTFEdLHeTQIAA0o2JSBM3fwL">
         <Elements>
           <CheckoutForm
             taxPercent={taxPercent}
