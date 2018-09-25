@@ -18,6 +18,7 @@ const USERS_QUERY = gql`
       updatedAt
       name
       email
+      type
     }
   }
 `

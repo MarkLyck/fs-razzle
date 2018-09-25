@@ -9,7 +9,6 @@ const createChartData = (visitors, users) => {
   // gets signup dates from all users
   const signUpDays = _.countBy(users, user => format(user.createdAt, 'YYYY-MM-DD'))
 
-  console.log(users)
   const cancelDays = _.countBy(users, user =>
     format(new Date(_.get(user, 'stripe.subscriptions.data[0].canceled_at') * 1000), 'YYYY-MM-DD')
   )

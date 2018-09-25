@@ -26,8 +26,9 @@ const RiskManagement = ({ winRatio, avgGain, avgLoss, sortinoRatio }) => {
         <br />
         We can also examine the average gain from a winning stock which is +{avgGain.toFixed(2)}%, while the average
         loss from a losing stock is only -{avgLoss.toFixed(2)}%. Add to this that Entry also wins {winRatio.toFixed(2)}%
-        of the time and only loses {100 - winRatio.toFixed(2)}% of the time. This leads us to a mathematical expectation
-        of ({winRatioDecimal} * {avgGain.toFixed(2)}) - ({(1 - winRatioDecimal).toFixed(2)} * {avgLoss.toFixed(2)}) =
+        of the time and only loses {(100 - winRatio).toFixed(2)}% of the time. This leads us to a mathematical
+        expectation of ({winRatioDecimal} * {avgGain.toFixed(2)}) - ({(1 - winRatioDecimal).toFixed(2)} *{' '}
+        {avgLoss.toFixed(2)}) =
         <b> +{calculationResult}%</b>. Taking an average of 2.2 years we correct for this to get an expected annualized
         return of every stock investment of <b>+{(calculationResult / 2.2).toFixed(2)}%</b>.
       </p>
