@@ -30,7 +30,7 @@ const PANEL_QUERY = gql`
           createdAt
           location
           device
-          url
+          referrer
       }
       allUsers {
         id

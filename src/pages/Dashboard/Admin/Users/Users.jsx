@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from 'components/Tab
 import LoadingError from 'components/Error/LoadingError'
 import GenericLoader from 'components/Loading/Generic'
 import User from './User'
+// import CreateUser from './CreateUser'
 import { UsersContainer } from './styles'
 
 const USERS_QUERY = gql`
@@ -40,6 +41,7 @@ const UserList = ({ allUsers }) => (
             </TableHead>
             <TableBody>{data.allUsers.map(user => <User user={user} key={user.id} />)}</TableBody>
           </Table>
+          {/* <CreateUser /> */}
         </UsersContainer>
       )
     }}

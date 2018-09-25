@@ -5,6 +5,7 @@ import gql from 'graphql-tag'
 import Script from 'react-load-script'
 import { planIds } from 'common/constants'
 import { hasStorage, usingMocks } from 'common/utils/featureTests'
+import newVisitor from 'common/utils/newVisitor'
 // import mockData from 'common/mocks/RetailData.json'
 import HomeLoader from 'components/Loading/HomeLoader'
 import LoadingError from 'components/Error/LoadingError'
@@ -58,6 +59,7 @@ class Retail extends Component {
   componentDidMount() {
     window.Intercom('boot', { app_id: 'i194mpvo' })
     hasStorage && localStorage.setItem('selectedPlan', 'ENTRY')
+    newVisitor()
   }
 
   areAllChartDependenciesLoaded = () => {
