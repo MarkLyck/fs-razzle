@@ -17,35 +17,35 @@ const FAQ = ({ open, hide }) => (
       <h3>What do I get with a Formula Stocks subscription?</h3>
       <p>
         With a Formula Stocks subscription you get access to a secure dashboard (login area accessible via our website).
-        Here you can follow the development in our portfolio of carefully selected stocks, and on a weekly or monthly
-        basis, according to your wishes, we provide new stock purchase and sale recommendations (and additional
-        information about the given stocks), which you may choose to use to buy/sell stocks via your own broker/bank.
+        Here you can follow the development in our portfolio of carefully selected stocks. On a regular basis we provide
+        new stock purchase and sale recommendations (and additional information about the given stocks), which you can
+        use to buy/sell stocks via your own broker/bank.
       </p>
 
       <h3>How do I begin to invest?</h3>
       <div>
-        It depends on how you wish to use Formula Stocks. There are four different ways.
+        It depends on how you wish to use Formula Stocks. There are multiple ways.
         <List>
           <li>Mirror the model portfolio, and update your stock portfolio once a month accordingly.</li>
-          <li>Use Formula Stocks recommendations when they appearand use them for new positions in your portfolio.</li>
+          <li>Use Formula Stocks recommendations when they appear and build a portfolio step by step.</li>
           <li>
-            A combination. You can choose to apply a percentage, for instance 40%, to the model portfolio now,
-            earmarking 20% for the first 3 months’ new recommendations, and keeping 40% in cash for later. This approach
-            is a belt-and-braces way of easing slowly into a position over time.
+            A combination of the above. You choose to apply a percentage, for instance 40%, to the model portfolio now,
+            Marking 20% for the first 3 months’ new recommendations, keeping 40% in cash for later. This approach is a
+            belt-and-braces way of easing slowly into a position over time.
           </li>
           <li>
-            Lastly, you can make your own analysis of either portfolio positions or recommendations, which, if you are a
-            quite experienced investor, may be a very interesting alternative. You then use Formula Stocks effectively
-            as a high-quality generator of vetted investment ideas, or a specialized stock screener.
+            Lastly, you can make your own analysis of our recommendations, which, if you are an experienced investor,
+            may be an interesting alternative. You then use Formula Stocks effectively as a high-quality generator of
+            vetted investment ideas.
           </li>
         </List>
       </div>
 
       <h3>How often are new stocks recommended for purchase or sale?</h3>
       <p>
-        New recommendations appear on a weekly basis. Accessing these once a month is sufficient for most investors. The
-        number of weekly recommendations depends on market conditions. Formula Stocks looks for great opportunities in
-        the markets; sometimes we locate only few, sometimes we locate many.
+        New recommendations generally appear on a weekly basis. Accessing these once a month is sufficient for most
+        investors. The number of weekly recommendations depends on market conditions. Formula Stocks looks for great
+        opportunities in the markets; sometimes we locate only few, sometimes we locate many.
       </p>
 
       <h3>How many new investment candidates are available?</h3>
@@ -63,8 +63,8 @@ const FAQ = ({ open, hide }) => (
         want your portfolio to match the Formula Stocks portfolio exactly. This is not a requirement, though. A loosely
         managed portfolio or simply single, handpicked investments can perform just as well. We recommend a monthly
         checkup. If your personality is more in tune with frequent attention to investments, our purchase
-        recommendations are updated on a weekly basis. Our strategies trade once a month. (This is to allow one full
-        month for accumulation or distribution of larger positions).
+        recommendations are updated on a weekly basis. The strategies trade once a month. (This allows one full month
+        for accumulation or distribution of larger positions without unduly impacting price).
       </p>
 
       <h3>Do I enter my other portfolio positions in the app/website?</h3>
@@ -75,10 +75,11 @@ const FAQ = ({ open, hide }) => (
 
       <h3>What does a Formula Stocks purchase recommendation include?</h3>
       <p>
-        Purchase recommendations are vetted from a quantitative, value, growth, and business analytics standpoint. More
-        than 400 primary data points are considered by our Business Analytics software. When you receive a
-        recommendation, you can access 10 data points with indications of price and growth characteristics. We do not
-        write reports, as these tend to be influenced by human bias, and we are preferential to hard quantitative fact.
+        Purchase recommendations are vetted from a quantitative, value, growth, and business analytics standpoint.
+        Artificial Intelligence (deep learning) is applied within this process and more than 400 primary data points are
+        considered by our Business Analytics software. When you receive a recommendation, you can access an investment
+        report. We do not write soft subjective investment opinions, we are preferential to hard quantitative fact,
+        statistics and math.
       </p>
 
       <h3>How does Formula Stocks compare to passive index-investing?</h3>
@@ -89,33 +90,34 @@ const FAQ = ({ open, hide }) => (
         since it is possible for us to quantify to a reasonable extent, which is in either end of this spectrum, a
         priori, it is a deeply flawed strategy to simply invest in all stocks. Surely, it makes sense to invest more
         intelligently, allocating capital towards good businesses and avoiding bad businesses. A superficial argument
-        can be made for passive investment on the basis of not requiring resources or thinking hence low fees, and for
-        scaling well. But for informed participants, this argument is negated completely by the performance attainable
-        by an active strategy such as Formula Stocks which equally operates with a low fee structure. It makes no sense
-        to aim simply an average return, when it is possible to achieve an above-average return, net of fees.
+        can be made for passive investment on the basis of not requiring resources or thinking hence low fees. But for
+        informed participants, this argument is negated completely by the performance attainable by an active strategy
+        such as Formula Stocks which equally operates with a low fee structure. It makes no sense to aim simply for an
+        average return, when it is possible to achieve an above-average return, net of fees at a risk-level which is
+        either comparable or lower than that of passive investing.
       </p>
 
       <h3>Which and how many stocks are covered by your service?</h3>
       <p>
         We do not supply a full list of all the potential stocks analyzed by our systems. It covers many thousands of
         stocks, however, ranging from micro-cap to mega-cap companies in all sectors within the United States and
-        Canada.
+        Canada. You can invest in these regardless of your country of residence.
       </p>
 
       <h3>How much can I expect in investment returns?</h3>
       <p>
         Formula Stocks can, like everyone else, not answer this question. We can optimize the odds for you to outperform
         the market averages. Historically, we have tended to outperform the market averages in both bear and bull
-        markets. What we do is to improve the odds quite significantly. We do not control the outcome. The longer one is
-        invested with Formula Stocks, however, the better the odds of success, as the outcomes converge more and more
+        markets. What we do is to improve the odds very significantly. But we do not control the outcome. The longer one
+        is invested with Formula Stocks, however, the better the odds of success, as the outcomes converge more and more
         with the positively skewed odds over time.
       </p>
 
       <h3>What about volatility?</h3>
       <p>
         Formula Stocks selections typically have smaller drawdowns over time than the S&P 500 and higher net returns.
-        But due to smaller portfolio sizes and more concentration, the results are also likely to be more volatile in
-        the shorter term. Refer to the Omega risk/reward benchmark found elsewhere on our website for more detail.
+        But due to smaller portfolio sizes and more concentration, the results mar possibly be more volatile in the
+        shorter term. Refer to the Omega risk/reward benchmark found elsewhere on our website for more detail.
       </p>
 
       <h3>Can I expect a quick return on my investment?</h3>
@@ -127,8 +129,7 @@ const FAQ = ({ open, hide }) => (
         occasionally not buy at the very bottom; thus, one may well experience an initial waiting period before a
         positive return emerges. Either way, patience and the ability to stick to the plan, enduring some volatility at
         times, are significant elements of achieving long-term success in any form of investing. This is well known to
-        long-term value investors: Short-term volatility may precede long-term gain. Please refer to our online video
-        visualization of returns over time.
+        long-term value investors: Short-term volatility may precede long-term gain.
       </p>
 
       <h3>What risks do I incur when investing with Formula Stocks?</h3>
@@ -136,29 +137,30 @@ const FAQ = ({ open, hide }) => (
         It is difficult to give a precise answer to this question. Generally, one incurs the risk of investing in stocks
         in a general sense. However, this risk is somewhat reduced, based upon the fact that Formula Stocks
         recommendations have much better than average odds of success and a reasonable margin of safety. At the same
-        time, our portfolios are more concentrated than, say, the S&P 500. Consequently, our portfolios are likely to be
-        more volatile. However, we do not consider volatility as risk, in a strict sense, although some investors do.
-        (We have yet to meet an investor who frowns upon volatility to the upside when experiencing outsized gains).
-        Please refer to the Omega graph found on our website for a comparison of risk/reward relative to the general
-        market. Any investment involves risk. See our Terms and Conditions.
+        time, our portfolios are more concentrated than, say, the S&P 500. Consequently, our portfolios are sometimes
+        more volatile than a basket of 500 stocks. However, we do not consider volatility as risk, in a strict sense,
+        although some investors do. (We have yet to meet an investor who frowns upon volatility to the upside when
+        experiencing outsized gains). Please refer to the Omega graph found on our website for a comparison of
+        risk/reward relative to the general market. Any investment involves risk. See our Terms and Conditions.
       </p>
 
       <h3>What can I save using Formula Stocks instead of other products?</h3>
       <p>
         Formula Stocks offers a low, flat, and transparent fee, which does not scale with volume. What you can save
-        depends on what you pay in fees elsewhere. This can be complicated to calculate, as many funds have a number of
-        different costs, some of which can be grouped into sales charges, expense ratios, transaction commissions, and
-        redemption fees. Hedge funds and alternative investment vehicles often include a large performance fee as well.
-        Formula Stocks is usually the less expensive method, sometimes by a very large factor. It depends on the amount
-        of capital deployed. From a saver’s perspective, the Formula Stocks model can be seen as an IKEA-like model. You
+        depends on what you pay in fees elsewhere, and the degree with which Formula Stocks products outperform your
+        alternative choices. This can be complicated to calculate, as many funds have a number of different costs, some
+        of which can be grouped into sales charges, expense ratios, transaction commissions, and redemption fees. Hedge
+        funds and alternative investment vehicles often include a large performance fee as well. Formula Stocks is
+        usually by far the less expensive method, sometimes by a very large factor. It however depends on the amount of
+        capital deployed. From a saver’s perspective, the Formula Stocks model can be seen as an IKEA-like model. You
         buy inexpensive prefabricated parts (strategy and technology), do the final assembly yourself (purchase and sale
-        of equities), and obtain very significant savings.
+        of equities), and obtain very significant savings in the process.
       </p>
 
       <h3>Do you offer an investment fund/ETF with which one can invest directly?</h3>
-      <p>No, not at this point in time.</p>
+      <p>No, not at this point in time. Please contact us if you are interested.</p>
 
-      <h3>How do I pay for membership?</h3>
+      <h3>How do I pay for a membership?</h3>
       <p>Usually with a credit card, although other options exist for BUSINESS and FUND members.</p>
 
       <h3>Is there a trial period available?</h3>
@@ -166,8 +168,9 @@ const FAQ = ({ open, hide }) => (
 
       <h3>Is there a minimum period of subscription?</h3>
       <p>
-        No. ENTRY and PREMIUM are monthly subscriptions, whereas BUSINESS and FUND are yearly subscriptions. Once a
-        period begins, it is non-refundable. You can cancel your subscription any time before a new period starts.
+        No. ENTRY and PREMIUM products are monthly subscriptions, whereas BUSINESS and FUND are yearly subscriptions.
+        Once a period begins, it is non-refundable. You can cancel your subscription any time before a new period
+        starts.
       </p>
 
       <h3>
@@ -183,11 +186,11 @@ const FAQ = ({ open, hide }) => (
 
       <h3>Is your stock selection USA only?</h3>
       <p>
-        Not at all. Formula Stocks analyzes most public US companies, a significant part of Canadian companies, and many
+        Not at all. Formula Stocks analyzes most public US companies, a significant part of Canadian companies, and some
         larger international companies with an ADR (American Depositary Receipt). These are international companies
         which trade on the US exchanges, as if they were US stocks, even though the company itself may be located in any
-        country in the world. These stocks can be traded very effectively from anywhere in the world, no matter where
-        you a located geographically.
+        country in the world. These stocks can be traded very effectively from anywhere, no matter where you a located
+        geographically.
       </p>
 
       <h3>What about currencies?</h3>
@@ -215,12 +218,12 @@ const FAQ = ({ open, hide }) => (
       <p>
         We offer something that most investors do not have access to. Our proprietary IIT™ quantifies the risks and
         reward, odds of success, and the presumed future alpha of every investment candidate. It quantifies over 400
-        data points about every single business that we analyze. From this we are able to extract knowledge to typically
-        beat the market averages using the scientific method. This proprietary technology, 14 years in the making, is a
-        machine learning-based expert system, which runs on a supercomputer and possesses knowledge that is not
-        generally available. Machine learning refers to a method of learning from the consequences of ones actions to
-        improve future decisionmaking. Historically this has lead us to surpass the market returns (S&P 500) 88% of the
-        time on a yearly basis (backtested 1970-2009, actual returns 2009-2016).
+        data points about every single business that we analyze. We use artificial intelligence software developed
+        through af 15 year timespan, to accurately asses the odds of making any one investment. The AI runs on a
+        supercomputer and possesses knowledge that is not available elsewhere. Deep learning is a process of learning
+        from the consequences of ones actions, which in turn enables one to improve future decisionmaking. Historically
+        this has lead us to outperform the market returns 88% of the time on a yearly basis (backtested 1970-2009,
+        actual returns 2009-2018, vs. S&P500).
       </p>
 
       <h3>Why are there fewer current portfolio positions than indicated as average?</h3>
@@ -229,15 +232,9 @@ const FAQ = ({ open, hide }) => (
         Basic: 177. However, unlike an index fund Formula Stocks does not invest in stocks regardless of conditions. We
         only invest, when we see attractive probabilities for success. This means that the cheaper the markets get, of
         course the more diverse the portfolio becomes. Conversely, when the markets are expensive, fewer good
-        investments can be located, and portfolio sizes decrease. Toward a price peak the number of positions may
+        investments can be located, and portfolio size tends to decrease. Toward a price peak the number of positions
         dwindle, as they are sold (for a profit), converted into cash, preparing for the next market cycle, when an
         inevitable correction materializes, and the portfolio once again expands.
-      </p>
-
-      <h3>What does “cash allocation” percentages in purchase recommendations signify?</h3>
-      <p>
-        If you choose to mirror our model portfolio, you deploy a percentage of the available cash into a new stock each
-        month. This is not a percentage of the entire portfolio’s net worth, but only of freely available cash.
       </p>
 
       <h3>How is the model portfolio updated?</h3>
@@ -254,10 +251,10 @@ const FAQ = ({ open, hide }) => (
       <p>
         Memberships ENTRY and PREMIUM are designed for retail, with which relatively low individual AUMs are
         intrinsically expected. BUSINESS is designed for medium size capital, typically a corporation, CEO, CFO,
-        accredited or sophisticated investor, etc., and institutional capital is specifically not allowed. FUND is
-        designed for institutional capital, capable of very large AUMs. It is important not to attempt to use retail or
-        BUSINESS memberships with institutional size capital. The required liquidity is available only in the FUND
-        model, with sufficient diversification to satisfy institutional requirements.
+        accredited or sophisticated investor, etc., and institutional capital is specifically not allowed in this
+        context. FUND is designed for institutional capital, capable of very large AUMs. It is important not to attempt
+        to use retail or BUSINESS memberships with institutional size capital. The required liquidity is available only
+        in the FUND model, with sufficient diversification to satisfy all institutional requirements.
       </p>
 
       <h3>What about institutional capital?</h3>
@@ -274,16 +271,17 @@ const FAQ = ({ open, hide }) => (
         Our methods are fully quantifiable and built upon a timeless investment philosophy. This means that Formula
         Stocks methods will work on any opportunity set (any set of available stocks at any point in history, both past
         and future), and that the exact results of the past can be quantified with great accuracy. Our input is the
-        market opportunity set regardless of time or macro. Our formula is our complex expert system based on sound
-        business logic. The output is a set of fully quantifiable business decisions. Tracking the financial results of
-        executing these decisions later on is both easy and reasonably accurate. While pre-2009 results are backtested,
-        results stated post our initial launch in 2009 match our actual real life experience and expectation.
+        market opportunity set regardless of time or macro. Our decisionmakring process is based on artificial
+        intelligence, and timeless in nature. The output is a set of fully quantifiable business decisions. Tracking the
+        financial results of executing these decisions later on is both easy and accurate. Pre-2009 results are
+        backtested, results stated post our initial launch in 2009 match actual experience.
       </p>
 
       <h3>Do you recommend stocks with which you have any form of affiliation or interest?</h3>
       <p>
         Absolutely not. Formula Stocks operates under very strict ethical standards. We will never recommend anything in
-        which we have a vested interest. We receive no compensation from any parties. Formula Stocks employees are
+        which we have a vested interest. We receive no compensation from any parties. We never sell or allow any third
+        parties access to our customers data nor our visitors interaction with our website. Formula Stocks employees are
         allowed to invest using the products for personal retirement purposes, alongside members through the website.
       </p>
     </LegalContainer>

@@ -2,7 +2,6 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import fecha from 'fecha'
-import _ from 'lodash'
 import { statisticsId } from 'common/constants'
 import withDashboard from 'components/withDashboard'
 import withCharts from 'components/Charts/withCharts'
@@ -30,13 +29,12 @@ const PANEL_QUERY = gql`
           createdAt
           location
           device
-          url
+          referrer
       }
       allUsers {
-        id
         createdAt
-        name
-        email
+        type
+        stripeSubscription
       }
       Statistics(id: "${statisticsId}") {
         id
@@ -48,6 +46,7 @@ const PANEL_QUERY = gql`
       }
   }
 `
+
 const uniqueVisitsFromOldSite = 0
 const getPayingSubscribers = allUsers => allUsers && allUsers.filter(user => user.type === 'subscriber').length
 const getActiveTrials = allUsers => allUsers && allUsers.filter(user => user.type === 'trial').length
@@ -56,15 +55,14 @@ const getTrialConversionRate = (allUsers, activeTrials) => {
   const stayedThroughTrial = allUsers.filter(user => {
     // if user cancelled AFTER the trial ended.
     // or if the user is currently a paying subscriber
-    if (
-      (_.get(user, 'stripe.subscriptions.data[0].trial_end') &&
-        user.stripe.subscriptions.data[0].canceled_at > user.stripe.subscriptions.data[0].trial_end) ||
-      (!_.get(user, 'stripe.subscriptions.data[0].canceled_at') && user.type === 'subscriber')
-    ) {
-      return true
+    const { stripeSubscription } = user
+    if (stripeSubscription) {
+      if (stripeSubscription.canceled_at > stripeSubscription.trial_end) return true
+      if (!stripeSubscription.canceled_at && user.type === 'subscriber') return true
     }
     return false
   })
+
   // subtract active trials from the allUsers length as we don't know if they'll stay or not.
   const conversionRate = (stayedThroughTrial.length / (allUsers.length - activeTrials)) * 100
   return conversionRate

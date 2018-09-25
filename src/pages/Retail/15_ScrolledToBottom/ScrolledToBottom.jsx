@@ -19,7 +19,7 @@ const ScrolledToBottom = ({ toggleSignUpModal }) => {
         I'm ready to try
       </Button>
       <ChatLink id="talk-to-us" href="mailto:i194mpvo@incoming.intercom.io">
-        Want more information? - Ask us anything!
+        Want more information? - Simply ask.
       </ChatLink>
     </Section>
   )
