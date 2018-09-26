@@ -38,7 +38,10 @@ const withDashboard = WrappedComponent => {
       window.Intercom('shutdown')
     }
 
-    setPlan = planName => this.setState({ planName })
+    setPlan = planName => {
+      if (hasStorage) localStorage.setItem('selectedPlan', planName)
+      this.setState({ planName })
+    }
 
     getContext = () => ({
       planName: this.state.planName,
@@ -60,6 +63,9 @@ const withDashboard = WrappedComponent => {
             if (data && data.loggedInUser) {
               userType = data.loggedInUser.type
               userPlan = data.loggedInUser.plan
+              if (hasStorage && !localStorage.getItem('selectedPlan')) {
+                this.setPlan(userPlan)
+              }
             }
 
             return (
