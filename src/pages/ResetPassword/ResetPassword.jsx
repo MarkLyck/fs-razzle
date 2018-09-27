@@ -19,7 +19,6 @@ const RESET_PASSWORD = gql`
 class ResetPassword extends Component {
   validate = values => {
     let errors = {}
-    console.log(values)
     if (!values.newPassword) {
       errors.newPassword = 'Please enter a new password'
     } else if (!values.repeatPassword) {
@@ -59,7 +58,6 @@ class ResetPassword extends Component {
     if (response && response.data) {
       setStatus({ success: true })
     }
-    console.log(response)
     setSubmitting(false)
   }
 

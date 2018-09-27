@@ -7,8 +7,6 @@ import { renderStylesToString } from 'emotion-server'
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
-console.log('!!! ASSETS', assets)
-
 const server = express()
 server
   .disable('x-powered-by')
