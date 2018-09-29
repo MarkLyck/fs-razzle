@@ -49,7 +49,6 @@ class Portfolio extends Component {
               const { Plan, DJIA } = data
 
               const lastRebalanceDate = Plan.portfolioYields[Plan.portfolioYields.length - 1].date
-
               const hasPlanPerms = hasPermissions(planName, userPlan, userType)
 
               return (
@@ -113,7 +112,7 @@ class Portfolio extends Component {
                     Last rebalanced:{' '}
                     <DateLabel>
                       {fecha.format(
-                        new Date(lastRebalanceDate.year, lastRebalanceDate.month, lastRebalanceDate.day),
+                        new Date(lastRebalanceDate.year, lastRebalanceDate.month - 1, lastRebalanceDate.day),
                         'MMM D, YYYY'
                       )}
                     </DateLabel>

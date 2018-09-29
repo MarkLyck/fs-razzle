@@ -4,26 +4,25 @@ import { planIds } from 'common/constants'
 export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPlan, finished) => {
   console.log('oldPlanClone before updating', file.name, JSON.parse(JSON.stringify(oldPlan)))
   let planId
-  if (file.name.indexOf('basic') > -1 || file.name.indexOf('entry') > -1) planId = planIds.ENTRY
-  else if (file.name.indexOf('premium') > -1) planId = planIds.PREMIUM
-  else if (file.name.indexOf('business') > -1) planId = planIds.BUSINESS
-  else if (file.name.indexOf('fund') > -1) planId = planIds.FUND
+  if (file.name.includes('basic') || file.name.includes('entry')) planId = planIds.ENTRY
+  else if (file.name.includes('premium')) planId = planIds.PREMIUM
+  else if (file.name.includes('business')) planId = planIds.BUSINESS
+  else if (file.name.includes('fund')) planId = planIds.FUND
 
-  let backtestedData = oldPlan.backtestedData
-  let latestSells = oldPlan.latestSells
-  let portfolioYields = oldPlan.portfolioYields
-  let launchStatistics = oldPlan.launchStatistics
-  let statistics = oldPlan.statistics
-  let suggestions = oldPlan.suggestions
+  let { backtestedData, latestSells, portfolioYields, launchStatistics, statistics, suggestions } = oldPlan
 
-  if (file.name.indexOf('weekly') > -1) {
+  if (file.name.includes('weekly')) {
+    console.log(file.name, 'weekly')
     // keep model "trades" from suggestions
     const modelSuggestions = suggestions.filter(sugg => sugg.model)
     // concat suggestions with new suggestions
     suggestions = file.data.actionable.concat(modelSuggestions)
-  } else if (file.name.indexOf('monthly') > -1) {
+  } else if (file.name.includes('monthly')) {
+    console.log(file.name, 'monthly')
     // update portfolioYields
+    console.log('portfolio yields before', JSON.parse(JSON.stringify(portfolioYields)))
     portfolioYields = file.data.logs
+    console.log('portfolio yields after', JSON.parse(JSON.stringify(portfolioYields)))
 
     // add to latestSells (& pop if more than 10)
     file.data.actionable.forEach(sugg => {
@@ -61,12 +60,17 @@ export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPla
     // update percentInCash
     const percentInCash = file.data.portfolio[file.data.portfolio.length - 1].percentage_weight
     // update statistics
+    console.log('Launch statistics before', JSON.parse(JSON.stringify(launchStatistics)))
     launchStatistics = _.merge(launchStatistics, file.data.statistics, { percentInCash })
-  } else if (file.name.indexOf('annual') > -1) {
+    console.log('Launch statistics before', JSON.parse(JSON.stringify(launchStatistics)))
+  } else if (file.name.includes('annual')) {
+    console.log(file.name, 'annual')
+    console.log('statistics before', JSON.parse(JSON.stringify(statistics)))
     statistics = _.clone(statistics)
     statistics.winRatio = 100 - (statistics.negatives / (statistics.positives + statistics.negatives)) * 100
     statistics = _.merge(statistics, file.data.statistics)
     backtestedData = file.data.logs
+    console.log('statistics after', JSON.parse(JSON.stringify(statistics)))
   }
 
   updatePlan({
