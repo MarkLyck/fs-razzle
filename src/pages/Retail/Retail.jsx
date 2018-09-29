@@ -98,7 +98,6 @@ class Retail extends Component {
           const { Plan } = data
 
           const planName = _.get(Plan, 'name')
-          const portfolioReturn = _.get(Plan, 'launchStatistics.total_return')
           const portfolioYields = _.get(Plan, 'portfolioYields')
           const latestSells = _.get(Plan, 'latestSells')
           const winRatio = _.get(Plan, 'statistics.winRatio')
@@ -106,6 +105,11 @@ class Retail extends Component {
           const avgGain = _.get(Plan, 'info.avgGainPerPosition')
           const avgLoss = _.get(Plan, 'info.avgLossPerPosition')
           const sortinoRatio = _.get(Plan, 'info.sortinoRatio')
+
+          const firstBalance = portfolioYields[0].balance
+          const lastBalance = portfolioYields[portfolioYields.length - 1].balance
+          const increase = lastBalance - firstBalance
+          const portfolioReturn = (increase / firstBalance) * 100
 
           return (
             <div className="retail-page">
