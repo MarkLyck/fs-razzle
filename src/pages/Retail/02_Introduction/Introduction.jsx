@@ -58,8 +58,10 @@ const Introduction = ({ winRatio, portfolioReturn, portfolioYields, planName }) 
               term investment. You simply buy these stocks in your own account.
               <br />
               <br />
-              Investing using these estimates, cumulative returns since 2009 have been <b>+{portfolioReturn}%</b>
-              <sup>*</sup> vs. the S&P500's 225%. Our Entry portfolio returned +{returns2017.toFixed(2)}% in 2017 and
+              Investing using these estimates, cumulative returns since 2009 have been{' '}
+              <b>+{Math.floor(portfolioReturn)}%</b>
+              <sup>*</sup> vs. the S&P500's 225%. Our Entry portfolio returned <b>+{returns2017.toFixed(2)}%</b> in 2017
+              and
               <b> +{returns2016.toFixed(2)}%</b> in 2016. Powered by Artificial Intelligence forecasting, this
               performance strongly exceeds the 6-7% average returns typically expected from the stock market.
               <br />
