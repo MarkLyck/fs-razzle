@@ -16,18 +16,18 @@ const WhatIsIt = () => (
         </Left>
         <Right>
           <p>
-            We offer weekly stock recommendations: what stocks to buy, at what price, how much of it to buy, and when to
-            sell them again<br />
+            We offer stock recommendations: what to buy and when to sell. With an unusual twist offering higher expected
+            reward, with lower expected risk.<br />
             <br />
-            Use it to better your investment performance, as these recommendations offer something unusual: higher
-            expected reward along with a lower expected risk.<br />
+            Included is a model portfolio designed to enhance wealth through intelligent portfolio management. Use it to
+            better your investment performance.<br />
             <br />
-            Using Formula Stocks is easy, too. After logging in you will find purchase and sales suggestions for stocks
-            trading on all US stock exchanges including large international stocks. These can be traded from anywhere in
-            the world, through any bank or broker you already use.<br />
+            Using Formula Stocks is easy. After logging in you will find recommendations for stocks trading on all US
+            stock exchanges including large international stocks. These can be traded from anywhere in the world,
+            through any bank or broker you already use.<br />
             <br />
-            You can use these suggestions individually or choose to replicate our model portfolio. Simply follow the
-            instructions, and you will be handling your own account in no time at all.
+            You can use these individually or replicate our model portfolio. Simply follow the instructions, and you
+            will be handling your own account in no time.
           </p>
         </Right>
       </Beside>

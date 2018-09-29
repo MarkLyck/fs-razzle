@@ -43,16 +43,16 @@ const CreateUser = () => {
             onClick={() =>
               createUser({
                 variables: {
-                  address: { countryName: 'Australia', countryCode: 'AU', city: '', zip: '', address: '' },
-                  email: 'jasonbac@hotmail.com',
+                  address: { countryName: 'Denmark', countryCode: 'DK', city: '', zip: '', address: '' },
+                  email: 'hpu@kammeradvokaten.dk',
                   password: 'temp',
                   device: {},
-                  name: 'JASON BACZELIS',
-                  plan: 'ENTRY',
+                  name: 'Henrik',
+                  plan: 'FUND',
                   stripeToken: 'tok',
-                  stripeCustomer: 'cus_DZ3bEQoIGkkNRy',
-                  taxPercent: 0,
-                  type: 'subscriber',
+                  stripeCustomer: 'cus_DVEOVxqtt2Br9x',
+                  taxPercent: 25,
+                  type: 'demo',
                 },
               })
             }
