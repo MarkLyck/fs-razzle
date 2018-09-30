@@ -7,8 +7,8 @@ import Plan from './Plan'
 import { ChangePlanContainer, ChangePlanPaper, LargeFlatButton, modalStyles, overlayClass } from './styles'
 
 const CREATE_SUBSCRIPTION = gql`
-  query createSubscription($customerID: String!, $plan: String!, $taxPercent: Float) {
-    createSubscription(customerID: $customerID, plan: $plan, taxPercent: $taxPercent) {
+  query createSubscription($customerID: String!, $plan: String!, $billingPeriod: String, $taxPercent: Float) {
+    createSubscription(customerID: $customerID, plan: $plan, billingPeriod: $billingPeriod, taxPercent: $taxPercent) {
       subscription
     }
   }
@@ -63,7 +63,16 @@ class ChangePlan extends Component {
   toggleModal = () => this.setState({ showConfirmation: !this.state.showConfirmation })
 
   changePlan = async () => {
-    const { userID, stripeCustomer, updateUser, taxPercent, currentPlan, oldSubscription, refetchUser } = this.props
+    const {
+      userID,
+      stripeCustomer,
+      updateUser,
+      taxPercent,
+      billingPeriod,
+      currentPlan,
+      oldSubscription,
+      refetchUser,
+    } = this.props
     const { selectedPlan } = this.state
 
     if (selectedPlan.id === currentPlan) return
@@ -74,7 +83,7 @@ class ChangePlan extends Component {
     // Create new subscription
     const { data } = await client.query({
       query: CREATE_SUBSCRIPTION,
-      variables: { customerID: stripeCustomer, taxPercent, plan: selectedPlan.id },
+      variables: { customerID: stripeCustomer, billingPeriod, taxPercent, plan: selectedPlan.id },
     })
     console.log('stripe data', data)
     const { subscription } = data.createSubscription

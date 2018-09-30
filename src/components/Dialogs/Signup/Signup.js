@@ -23,6 +23,7 @@ const SIGNUP_USER = gql`
     $location: Json
     $device: Json
     $taxPercent: Float!
+    $billingPeriod: String
   ) {
     signupUser(
       email: $email
@@ -35,6 +36,7 @@ const SIGNUP_USER = gql`
       location: $location
       device: $device
       taxPercent: $taxPercent
+      billingPeriod: $billingPeriod
     ) {
       id
       token
@@ -80,6 +82,7 @@ class SignUp extends Component {
           type,
           location,
           taxPercent,
+          billingPeriod: 'MONTHLY',
           address: {
             country: accountInfo.country,
             city: accountInfo.city,
@@ -107,8 +110,6 @@ class SignUp extends Component {
   render() {
     const { page, accountInfo, signupError } = this.state
     const { onRequestClose, planPrice } = this.props
-
-    console.log(signupError)
 
     return (
       <Modal isOpen onRequestClose={onRequestClose} overlayClassName={overlayClass} css={modalStyles}>
