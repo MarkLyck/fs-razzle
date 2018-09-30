@@ -59,7 +59,7 @@ class PortfolioItem extends Component {
             {stock.ticker !== 'CASH' && <p className="ticker">{stock.ticker}</p>}
           </TableCell>
           <TableCell className="allocation">{allocation}%</TableCell>
-          <TableCell className={`return ${percentIncrease > 0 ? 'positive' : 'negative'}`}>
+          <TableCell className={`return ${percentIncrease >= 0 ? 'positive' : 'negative'}`}>
             {isNaN(percentIncrease) ? '' : `${increasePrefix}${percentIncrease}%`}
           </TableCell>
           <TableCell className="cost-basis">{costBasisPrice ? `$${costBasisPrice.toFixed(2)}` : ''}</TableCell>

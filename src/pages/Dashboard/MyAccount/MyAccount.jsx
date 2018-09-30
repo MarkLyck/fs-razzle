@@ -19,6 +19,7 @@ const GET_LOGGED_IN_USER = gql`
       stripeCustomer
       stripeSubscription
       taxPercent
+      billingPeriod
     }
   }
 `
@@ -64,6 +65,7 @@ class MyAccount extends Component {
                       stripeCustomer={User.stripeCustomer}
                       oldSubscription={User.stripeSubscription}
                       taxPercent={User.taxPercent}
+                      billingPeriod={User.billingPeriod}
                       userID={User.id}
                       updateUser={updateUser}
                       refetchUser={refetch}
