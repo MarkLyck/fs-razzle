@@ -129,7 +129,7 @@ class Retail extends Component {
               <WhatIsIt />
               <Performance portfolioYields={portfolioYields} planName={planName} amChartsLoaded={amChartsLoaded} />
               <PercentMatters portfolioReturn={portfolioReturn} CAGR={CAGR} />
-              <FirstMonthOnUs toggleSignUpModal={this.toggleSignUpModal} />
+              <FirstMonthOnUs toggleSignUpModal={this.toggleSignUpModal} price={Plan.price} />
               <WhatToExpect latestSells={latestSells} winRatio={winRatio} />
               <PilotProgram />
               <LongTermPerformance planName={planName} amChartsLoaded={amChartsLoaded} />
