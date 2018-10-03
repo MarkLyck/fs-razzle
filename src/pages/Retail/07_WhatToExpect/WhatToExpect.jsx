@@ -29,16 +29,18 @@ const WhatToExpect = ({ latestSells, winRatio }) => (
       <Beside>
         <Left>
           <p>
-            Our recommendations have an average holding period of 2.2 years. When you first buy a stock, the immediate
-            price changes may well be random in the short term. Over time the price will, on average, gradually come to
-            reflect the business prospects we have ascertained.
+            When you first buy a stock, already within 30 days, 62.16% of our recommendations statistically see a price
+            increase. Your mileage may vary and depend upon current market conditions.
+            <br />
+            <br />A typical holding period is 2 years during which price, on average, gradually come to reflect the
+            business prospects we have projected. After which statistically 90% will have seen a price increase.
             <br />
             <br />
-            Our Entry product statistically wins +{Math.floor(winRatio)}% of the time. This compares to 59% for a
-            typical basket of stocks.<br />
+            Our win-ratio of {Math.floor(winRatio)}% compares favorably to 59% for a typical basket of stocks.
             <br />
-            The mathematical expectation from a Formula Stock's selection is very well defined, and has above-average
-            odds of success, higher than normal return characteristics, and a lower than average risk. This has been
+            <br />
+            The mathematical expectation from a Formula Stock's recommendation is very well defined, with above-average
+            odds of success, higher than average return characteristics, and lower than average risk. This has been
             fully reflected in our actual results.
           </p>
         </Left>
@@ -48,8 +50,9 @@ const WhatToExpect = ({ latestSells, winRatio }) => (
       </Beside>
     </BesideContainer>
     <p>
-      If you choose to use Formula Stocks consistently, diversified, and for a number of years, odds are extremely good
-      that you will obtain better returns than offered by most investment methods.<br />
+      If you use Formula Stocks consistently, diversified, for several years, odds are extremely good that you will
+      obtain better returns than most investment methods offer.
+      <br />
       <br />
       Latest portfolio sales:
     </p>
