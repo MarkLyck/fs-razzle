@@ -37,11 +37,6 @@ const WhatToExpect = ({ latestSells, winRatio }) => (
             <br />
             <br />
             Our win-ratio of {Math.floor(winRatio)}% compares favorably to 59% for a typical basket of stocks.
-            <br />
-            <br />
-            The mathematical expectation from a Formula Stock's recommendation is very well defined, with above-average
-            odds of success, higher than average return characteristics, and lower than average risk. This has been
-            fully reflected in our actual results.
           </p>
         </Left>
         <Right>
@@ -50,8 +45,8 @@ const WhatToExpect = ({ latestSells, winRatio }) => (
       </Beside>
     </BesideContainer>
     <p>
-      If you use Formula Stocks consistently, diversified, for several years, odds are extremely good that you will
-      obtain better returns than most investment methods offer.
+      Using Formula Stocks gives you an edge. Use it consistently, diversified, for years: Odds accumulate in your
+      favour, and you will likely outperform most competing investment methods.
       <br />
       <br />
       Latest portfolio sales:
