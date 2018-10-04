@@ -29,14 +29,8 @@ const FAQ = ({ open, hide }) => (
           <li>Mirror the model portfolio, and update your stock portfolio once a month accordingly.</li>
           <li>Use Formula Stocks recommendations when they appear and build a portfolio step by step.</li>
           <li>
-            A combination of the above. You choose to apply a percentage, for instance 40%, to the model portfolio now,
-            Marking 20% for the first 3 months’ new recommendations, keeping 40% in cash for later. This approach is a
-            belt-and-braces way of easing slowly into a position over time.
-          </li>
-          <li>
-            Lastly, you can make your own analysis of our recommendations, which, if you are an experienced investor,
-            may be an interesting alternative. You then use Formula Stocks effectively as a high-quality generator of
-            vetted investment ideas.
+            The experienced investor may also alternatively choose to perform additional analysis, effectively using
+            Formula Stocks as a high-quality generator of vetted investment ideas.
           </li>
         </List>
       </div>

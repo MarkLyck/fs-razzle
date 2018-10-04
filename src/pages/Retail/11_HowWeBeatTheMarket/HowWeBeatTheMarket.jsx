@@ -15,14 +15,12 @@ const HowWeBeatTheMarket = () => (
       <br />
       <br />
       ”Buy good quality common stocks that go up. If they do not go up, do not buy them”. While Twain said it
-      tongue-in-cheek, it encapsulates Formula Stocks' mission.<br />
-      <br />
-      We identify stocks that go up, before they go up, with a 88-92% probability of being correct.
+      tongue-in-cheek, it encapsulates Formula Stocks' mission.
       <br />
       <br />
-      When you are using Formula Stocks, you have access to a novel technology developed in-house, using state of the
-      art artificial intelligence, also known as deep learning, we use this amongst many other concepts and technologies
-      to create an edge that isn't available anywhere else. A few of these concepts are:
+      We identify stocks that go up, before they go up, with a 88-92% probability of being correct. We do this using
+      novel technology developed in-house, including state of the art artificial intelligence. A few of these concepts
+      are:
     </p>
     <List>
       <ListItem>
@@ -59,8 +57,8 @@ const HowWeBeatTheMarket = () => (
       </ListItem>
     </List>
     <p>
-      Formula Stocks offers a leading-edge technological approach to modern stock selection and portfolio optimization.
-      If you want to know more, please <BrochureLink>see our brochure</BrochureLink>.
+      Formula Stocks offers leading-edge technology for modern stock selection and portfolio optimization. If you want
+      to know more, please <BrochureLink>see our brochure</BrochureLink>.
     </p>
   </Section>
 )
