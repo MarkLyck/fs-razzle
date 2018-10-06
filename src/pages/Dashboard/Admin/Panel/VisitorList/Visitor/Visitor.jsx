@@ -14,23 +14,29 @@ const getFlag = countryCode => {
   return <img src={`/media/icons/flags/${countryCode.toLowerCase()}.png`} alt="flag" />
 }
 const getBrowserIcon = browser => {
+  if (!browser) return ''
   if (browser.indexOf('Chrome') > -1 || browser === 'Blink') return 'Chrome.svg'
   else if (browser.indexOf('Firefox') > -1) return 'Firefox.png'
   else if (browser === 'Safari') return 'Safari.svg'
   else if (browser === 'Microsoft Edge') return 'Edge.svg'
   else if (browser === 'IE') return 'IE.png'
-  else if (browser === 'Android Browser') return 'AndroidBrowser.svg'
+  else if (browser === 'Android Browser' || browser === 'Samsung Internet') return 'AndroidBrowser.svg'
   else if (browser === 'Opera') return 'Opera.png'
   else if (browser === 'PhantomJS') return 'PhantomJS.png'
+
   return ''
 }
 
 const getOSIcon = os => {
+  if (!os) return ''
   if (os === 'Windows') return 'Windows.png'
+  else if (os.includes('Windows Server')) return 'Windows.png'
   else if (os === 'OS X') return 'MacOS.png'
   else if (os === 'iOS') return 'IOS.png'
   else if (os === 'Android') return 'Android.png'
-  else if (os === 'Linux' || os === 'Ubuntu') return 'Linux.png'
+  else if (os === 'Linux' || os === 'Ubuntu' || os === 'Ubuntu Chromium') return 'Linux.png'
+  else if (os.includes('Chrome')) return 'Chrome.svg'
+
   return ''
 }
 
@@ -60,8 +66,10 @@ const Visitor = ({ visitor }) => (
     <TableCell style={{ height: '48px' }}>{distanceInWordsStrict(new Date(), visitor.createdAt)} ago</TableCell>
     <TableCell style={tableCellStyle}>
       {visitor.device && <i className={`fa ${getDeviceIcon(visitor.device)}`} />}
-      {visitor.device && <Icon src={`/media/icons/devices/${getOSIcon(visitor.device.os)}`} alt="os" />}
-      {visitor.device && <Icon src={`/media/icons/devices/${getBrowserIcon(visitor.device.browser)}`} alt="browser" />}
+      {visitor.device.os && <Icon src={`/media/icons/devices/${getOSIcon(visitor.device.os)}`} alt="os" />}
+      {visitor.device.browser && (
+        <Icon src={`/media/icons/devices/${getBrowserIcon(visitor.device.browser)}`} alt="browser" />
+      )}
     </TableCell>
   </TableRow>
 )

@@ -15,10 +15,13 @@ const FirstMonthOnus = ({ toggleSignUpModal, price }) => (
       If you decide Formula Stocks isn't for you - simply cancel online at any time without obligations.
     </Subtitle>
     <PricingText>
-      ${price} monthly after your <span className="underline">free 30 days</span>
+      ${String(price).split('.')[0]}
+      <span className="decimals">.{String(price).split('.')[1]}</span> monthly after your{' '}
+      <span className="underline">free 30 days</span>
     </PricingText>
     <Button variant="raised" size="large" onClick={toggleSignUpModal}>
-      <FontAwesomeIcon icon="gift" />Start your free month
+      <FontAwesomeIcon icon="gift" />
+      Start your free month
     </Button>
   </Section>
 )
