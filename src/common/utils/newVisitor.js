@@ -38,7 +38,7 @@ const createNewVisit = async location => {
 const newVisitor = createVisitor => {
   if (hasStorage && localStorage.getItem('visitorID')) return null
 
-  return fetchJsonP(`http://api.ipapi.com/check?access_key=${geoAccessKey}`)
+  return fetchJsonP(`https://api.ipapi.com/check?access_key=${geoAccessKey}`)
     .then(response => response.json())
     .then(createNewVisit)
     .catch(err => {
