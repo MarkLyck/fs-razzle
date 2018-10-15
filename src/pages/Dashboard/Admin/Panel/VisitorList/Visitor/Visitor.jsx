@@ -49,8 +49,10 @@ const getDeviceIcon = device => {
 const Visitor = ({ visitor }) => (
   <TableRow key={visitor.id}>
     <TableCell style={countryStyle}>
-      {visitor.location && getFlag(visitor.location.country.code)}
-      <p style={{ marginLeft: '8px' }}>{visitor.location && visitor.location.country.name}</p>
+      {visitor.location && visitor.location.country && getFlag(visitor.location.country.code)}
+      <p style={{ marginLeft: '8px' }}>
+        {visitor.location && visitor.location.country && visitor.location.country.name}
+      </p>
     </TableCell>
     <TableCell onClick={() => console.log(visitor.referrer)} style={{ height: '48px' }}>
       <p>
