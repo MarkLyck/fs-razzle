@@ -1,15 +1,16 @@
 import _ from 'lodash'
 import { planIds } from 'common/constants'
+import plansData from './plansData'
 
-export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPlan, finished) => {
-  console.log('oldPlanClone before updating', file.name, JSON.parse(JSON.stringify(oldPlan)))
+export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, planName, finished) => {
+  console.log('oldPlanClone before updating', file.name, JSON.parse(JSON.stringify(plansData[planName])))
   let planId
-  if (file.name.includes('basic') || file.name.includes('entry')) planId = planIds.ENTRY
-  else if (file.name.includes('premium')) planId = planIds.PREMIUM
-  else if (file.name.includes('business')) planId = planIds.BUSINESS
-  else if (file.name.includes('fund')) planId = planIds.FUND
+  if (planName === 'entry') planId = planIds.ENTRY
+  else if (planName === 'premium') planId = planIds.PREMIUM
+  else if (planName === 'business') planId = planIds.BUSINESS
+  else if (planName === 'fund') planId = planIds.FUND
 
-  let { backtestedData, latestSells, portfolioYields, launchStatistics, statistics, suggestions } = oldPlan
+  let { backtestedData, latestSells, portfolioYields, launchStatistics, statistics, suggestions } = plansData[planName]
 
   if (file.name.includes('weekly')) {
     console.log(file.name, 'weekly')
@@ -78,7 +79,7 @@ export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPla
       id: planId,
       backtestedData,
       latestSells,
-      portfolio: file.data.portfolio || oldPlan.portfolio,
+      portfolio: file.data.portfolio || plansData[planName].portfolio,
       portfolioYields,
       statistics,
       launchStatistics,
@@ -86,8 +87,8 @@ export const mutatePlanData = (file, updatePlan, updateSuccesfullUploads, oldPla
     },
   })
     .then(({ data }) => {
-      oldPlan = data.updatePlan
-      console.log('updatePlan', file.name, oldPlan)
+      plansData[planName] = data.updatePlan
+      console.log('updatePlan', file.name, plansData[planName])
       updateSuccesfullUploads()
       finished(null)
     })

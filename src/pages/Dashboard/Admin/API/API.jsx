@@ -7,6 +7,7 @@ import GenericLoader from 'components/Loading/Generic'
 import { Query, Mutation } from 'react-apollo'
 import { ALL_PLANS, UPDATE_PLAN } from './queries'
 import { extractJSONFromFile, mutatePlanData } from './planMutation'
+import plansData from './plansData'
 import { FileDrop, Container } from './styles'
 import JSONIcon from './json_icon.svg'
 
@@ -28,13 +29,6 @@ const acceptedFilenames = [
   'weekly_fund.json',
 ]
 let q = queue(1)
-
-let plansData = {
-  entry: {},
-  premium: {},
-  business: {},
-  fund: {},
-}
 
 class FileUploader extends Component {
   state = {
@@ -68,13 +62,7 @@ class FileUploader extends Component {
             let planName = json.name.split('.')[0].split('_')[1]
             if (planName === 'basic') planName = 'entry'
 
-            q.defer(
-              mutatePlanData,
-              json,
-              updatePlan,
-              this.updateSuccesfullUploads.bind(null, file),
-              plansData[planName]
-            )
+            q.defer(mutatePlanData, json, updatePlan, this.updateSuccesfullUploads.bind(null, file), planName)
           })
           .catch(err => this.setState({ errorUploading: `Error: ${err}` }))
       })
