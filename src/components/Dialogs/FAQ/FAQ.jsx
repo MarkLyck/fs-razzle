@@ -71,24 +71,34 @@ const FAQ = ({ open, hide }) => (
       <p>
         Purchase recommendations are vetted from a quantitative, value, growth, and business analytics standpoint.
         Artificial Intelligence (deep learning) is applied within this process and more than 400 primary data points are
-        considered by our Business Analytics software. When you receive a recommendation, you can access an investment
-        report. We do not write soft subjective investment opinions, we are preferential to hard quantitative fact,
-        statistics and math.
+        considered by our Business Analytics software. When you receive a recommendation, you can access certain
+        quantitative data. We do not write up subjective investment opinions, we are preferential to hard quantitative
+        fact, statistics, business analysis, probability estimation and math in general. We generally outperform
+        subjective investment opinions using our approach, as we avoid bias.
       </p>
 
       <h3>How does Formula Stocks compare to passive index-investing?</h3>
       <p>
         Extremely favorably. Passive investment strategies, or index-investing, is simply investing in more or less all
         stocks available (or a subset of these). The outcome can only be average by definition. Since it is a given,
-        that out of 5.000 stocks, 1 is the best, and 1 is the worst, and all of the other fall somewhere in between, and
-        since it is possible for us to quantify to a reasonable extent, which is in either end of this spectrum, a
+        that out of 5.000 stocks, one is the best, and one is the worst, and all of the other fall somewhere in between,
+        and since it is possible for us to quantify to a reasonable extent, which is in either end of this spectrum, a
         priori, it is a deeply flawed strategy to simply invest in all stocks. Surely, it makes sense to invest more
         intelligently, allocating capital towards good businesses and avoiding bad businesses. A superficial argument
         can be made for passive investment on the basis of not requiring resources or thinking hence low fees. But for
         informed participants, this argument is negated completely by the performance attainable by an active strategy
         such as Formula Stocks which equally operates with a low fee structure. It makes no sense to aim simply for an
-        average return, when it is possible to achieve an above-average return, net of fees at a risk-level which is
-        either comparable or lower than that of passive investing.
+        average return, when it is possible to achieve an above-average return, net of fees at a risk-level which has
+        generally been lower than that of passive investing.
+      </p>
+
+      <h3>Do you have differentiated products?</h3>
+      <p>
+        Yes. ENTRY is our retail product. PREMIUM is a premium product which has generally delivered higher returns. For
+        CIOs, CEOs, accredited investors, family offices we offer BUSINESS as a niche product with emphasis on high
+        performance and extremely high reward vs. low risk. For institutional capital needs please inquire about our
+        FUND product which has particular emphasis on scalability and moderate volatility. Each product differ
+        materially, and please be aware that www.formulastocks.com display statistics for the Entry product only.
       </p>
 
       <h3>Which and how many stocks are covered by your service?</h3>
