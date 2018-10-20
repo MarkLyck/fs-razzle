@@ -9,12 +9,16 @@ const VisitorList = ({ visitors }) => (
     <TableHead>
       <TableRow>
         <TableHeadCell>Location</TableHeadCell>
-        <TableHeadCell>Referer</TableHeadCell>
+        <TableHeadCell>referrer</TableHeadCell>
         <TableHeadCell>Visited</TableHeadCell>
         <TableHeadCell>Device</TableHeadCell>
       </TableRow>
     </TableHead>
-    <TableBody>{visitors.map(visitor => <Visitor visitor={visitor} key={visitor.id} />)}</TableBody>
+    <TableBody>
+      {visitors.map(visitor => (
+        <Visitor visitor={visitor} key={visitor.id} />
+      ))}
+    </TableBody>
   </Table>
 )
 

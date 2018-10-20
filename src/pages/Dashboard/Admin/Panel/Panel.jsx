@@ -76,6 +76,8 @@ const Overview = ({ serialChartsReady, pieChartsReady }) => (
 
       const { allUsers, allVisitors, visitorCount, Statistics } = data
 
+      console.log(allVisitors[allVisitors.length - 1])
+
       const uniqueVisitors = visitorCount ? visitorCount.count + uniqueVisitsFromOldSite : ''
       const activeTrials = getActiveTrials(allUsers)
 

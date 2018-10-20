@@ -1,58 +1,57 @@
 {
-    "presets": [
-        "razzle/babel"
-    ],
-    "plugins": [
-        "transform-export-extensions",
-        "babel-plugin-emotion",
-        "inline-svg",
-        "polished",
-        "lodash",
-        "date-fns",
-        [
-            "module-resolver",
-            {
-                "root": [
-                    "./src"
-                ],
-                "alias": {
-                    "src": "./src",
-                    "common": "./src/common",
-                    "components": "./src/components",
-                    "pages": "./src/pages",
-                    "media": "./src/media",
-                    "@fortawesome/pro-solid-svg-icons/faAngleDown": "./src/media/faIcons/faAngleDown",
-                    "@fortawesome/pro-solid-svg-icons/faCalendarTimes": "./src/media/faIcons/faCalendarTimes",
-                    "@fortawesome/pro-solid-svg-icons/faChartLine": "./src/media/faIcons/faChartLine",
-                    "@fortawesome/pro-solid-svg-icons/faChartPie": "./src/media/faIcons/faChartPie",
-                    "@fortawesome/pro-solid-svg-icons/faCheckCircle": "./src/media/faIcons/faCheckCircle",
-                    "@fortawesome/pro-solid-svg-icons/faCity": "./src/media/faIcons/faCity",
-                    "@fortawesome/pro-solid-svg-icons/faCreditCard": "./src/media/faIcons/faCreditCard",
-                    "@fortawesome/pro-solid-svg-icons/faDollarSign": "./src/media/faIcons/faDollarSign",
-                    "@fortawesome/pro-solid-svg-icons/faEnvelope": "./src/media/faIcons/faEnvelope",
-                    "@fortawesome/pro-solid-svg-icons/faExclamationCircle": "./src/media/faIcons/faExclamationCircle",
-                    "@fortawesome/pro-solid-svg-icons/faFlask": "./src/media/faIcons/faFlask",
-                    "@fortawesome/pro-solid-svg-icons/faGlobeAmericas": "./src/media/faIcons/faGlobeAmericas",
-                    "@fortawesome/pro-solid-svg-icons/faGift": "./src/media/faIcons/faGift",
-                    "@fortawesome/pro-solid-svg-icons/faHome": "./src/media/faIcons/faHome",
-                    "@fortawesome/pro-solid-svg-icons/faImage": "./src/media/faIcons/faImage",
-                    "@fortawesome/pro-solid-svg-icons/faListUl": "./src/media/faIcons/faListUl",
-                    "@fortawesome/pro-regular-svg-icons/faLockAlt": "./src/media/faIcons/faLockAlt",
-                    "@fortawesome/pro-solid-svg-icons/faMap": "./src/media/faIcons/faMap",
-                    "@fortawesome/pro-solid-svg-icons/faNewspaper": "./src/media/faIcons/faNewspaper",
-                    "@fortawesome/pro-solid-svg-icons/faQuestionCircle": "./src/media/faIcons/faQuestionCircle",
-                    "@fortawesome/pro-solid-svg-icons/faSignInAlt": "./src/media/faIcons/faSignInAlt",
-                    "@fortawesome/pro-solid-svg-icons/faSignOutAlt": "./src/media/faIcons/faSignOutAlt",
-                    "@fortawesome/pro-solid-svg-icons/faSpinnerThird": "./src/media/faIcons/faSpinnerThird",
-                    "@fortawesome/pro-solid-svg-icons/faTachometer": "./src/media/faIcons/faTachometer",
-                    "@fortawesome/pro-solid-svg-icons/faTasks": "./src/media/faIcons/faTasks",
-                    "@fortawesome/pro-solid-svg-icons/faUser": "./src/media/faIcons/faUser",
-                    "@fortawesome/pro-solid-svg-icons/faUsers": "./src/media/faIcons/faUsers",
-                    "@fortawesome/pro-solid-svg-icons/faHourglassEnd": "./src/media/faIcons/faHourglassEnd",
-                    "@fortawesome/pro-solid-svg-icons/faHourglassHalf": "./src/media/faIcons/faHourglassHalf",
-                    "@fortawesome/pro-regular-svg-icons/faTimes": "./src/media/faIcons/faTimes"
-                }
-            }
-        ]
+  "presets": ["razzle/babel"],
+  "plugins": [
+    "transform-export-extensions",
+    "babel-plugin-emotion",
+    "inline-svg",
+    "polished",
+    "lodash",
+    "date-fns",
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "src": "./src",
+          "common": "./src/common",
+          "components": "./src/components",
+          "pages": "./src/pages",
+          "media": "./src/media",
+          "@fortawesome/pro-solid-svg-icons/faAngleDown": "./src/media/faIcons/faAngleDown",
+          "@fortawesome/pro-solid-svg-icons/faCalendarTimes": "./src/media/faIcons/faCalendarTimes",
+          "@fortawesome/pro-solid-svg-icons/faChartLine": "./src/media/faIcons/faChartLine",
+          "@fortawesome/pro-solid-svg-icons/faChartPie": "./src/media/faIcons/faChartPie",
+          "@fortawesome/pro-solid-svg-icons/faCheckCircle": "./src/media/faIcons/faCheckCircle",
+          "@fortawesome/pro-solid-svg-icons/faCity": "./src/media/faIcons/faCity",
+          "@fortawesome/pro-solid-svg-icons/faCreditCard": "./src/media/faIcons/faCreditCard",
+          "@fortawesome/pro-solid-svg-icons/faDesktop": "./src/media/faIcons/faDesktop",
+          "@fortawesome/pro-solid-svg-icons/faDollarSign": "./src/media/faIcons/faDollarSign",
+          "@fortawesome/pro-solid-svg-icons/faEnvelope": "./src/media/faIcons/faEnvelope",
+          "@fortawesome/pro-solid-svg-icons/faExclamationCircle": "./src/media/faIcons/faExclamationCircle",
+          "@fortawesome/pro-solid-svg-icons/faFlask": "./src/media/faIcons/faFlask",
+          "@fortawesome/pro-solid-svg-icons/faGlobeAmericas": "./src/media/faIcons/faGlobeAmericas",
+          "@fortawesome/pro-solid-svg-icons/faGift": "./src/media/faIcons/faGift",
+          "@fortawesome/pro-solid-svg-icons/faHome": "./src/media/faIcons/faHome",
+          "@fortawesome/pro-solid-svg-icons/faImage": "./src/media/faIcons/faImage",
+          "@fortawesome/pro-solid-svg-icons/faListUl": "./src/media/faIcons/faListUl",
+          "@fortawesome/pro-regular-svg-icons/faLockAlt": "./src/media/faIcons/faLockAlt",
+          "@fortawesome/pro-solid-svg-icons/faMap": "./src/media/faIcons/faMap",
+          "@fortawesome/pro-solid-svg-icons/faMobile": "./src/media/faIcons/faMobile",
+          "@fortawesome/pro-solid-svg-icons/faNewspaper": "./src/media/faIcons/faNewspaper",
+          "@fortawesome/pro-solid-svg-icons/faQuestionCircle": "./src/media/faIcons/faQuestionCircle",
+          "@fortawesome/pro-solid-svg-icons/faSignInAlt": "./src/media/faIcons/faSignInAlt",
+          "@fortawesome/pro-solid-svg-icons/faSignOutAlt": "./src/media/faIcons/faSignOutAlt",
+          "@fortawesome/pro-solid-svg-icons/faSpinnerThird": "./src/media/faIcons/faSpinnerThird",
+          "@fortawesome/pro-solid-svg-icons/faTablet": "./src/media/faIcons/faTablet",
+          "@fortawesome/pro-solid-svg-icons/faTachometer": "./src/media/faIcons/faTachometer",
+          "@fortawesome/pro-solid-svg-icons/faTasks": "./src/media/faIcons/faTasks",
+          "@fortawesome/pro-solid-svg-icons/faUser": "./src/media/faIcons/faUser",
+          "@fortawesome/pro-solid-svg-icons/faUsers": "./src/media/faIcons/faUsers",
+          "@fortawesome/pro-solid-svg-icons/faHourglassEnd": "./src/media/faIcons/faHourglassEnd",
+          "@fortawesome/pro-solid-svg-icons/faHourglassHalf": "./src/media/faIcons/faHourglassHalf",
+          "@fortawesome/pro-regular-svg-icons/faTimes": "./src/media/faIcons/faTimes"
+        }
+      }
     ]
+  ]
 }

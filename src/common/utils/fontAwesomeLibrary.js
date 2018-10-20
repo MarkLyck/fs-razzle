@@ -7,6 +7,7 @@ import { faChartPie } from '@fortawesome/pro-solid-svg-icons/faChartPie'
 import { faCheckCircle } from '@fortawesome/pro-solid-svg-icons/faCheckCircle'
 import { faCity } from '@fortawesome/pro-solid-svg-icons/faCity'
 import { faCreditCard } from '@fortawesome/pro-solid-svg-icons/faCreditCard'
+import { faDesktop } from '@fortawesome/pro-solid-svg-icons/faDesktop'
 import { faDollarSign } from '@fortawesome/pro-solid-svg-icons/faDollarSign'
 import { faEnvelope } from '@fortawesome/pro-solid-svg-icons/faEnvelope'
 import { faExclamationCircle } from '@fortawesome/pro-solid-svg-icons/faExclamationCircle'
@@ -20,11 +21,13 @@ import { faImage } from '@fortawesome/pro-solid-svg-icons/faImage'
 import { faListUl } from '@fortawesome/pro-solid-svg-icons/faListUl'
 import { faLockAlt } from '@fortawesome/pro-regular-svg-icons/faLockAlt'
 import { faMap } from '@fortawesome/pro-solid-svg-icons/faMap'
+import { faMobile } from '@fortawesome/pro-solid-svg-icons/faMobile'
 import { faNewspaper } from '@fortawesome/pro-solid-svg-icons/faNewspaper'
 import { faQuestionCircle } from '@fortawesome/pro-solid-svg-icons/faQuestionCircle'
 import { faSignInAlt } from '@fortawesome/pro-solid-svg-icons/faSignInAlt'
 import { faSignOutAlt } from '@fortawesome/pro-solid-svg-icons/faSignOutAlt'
 import { faSpinnerThird } from '@fortawesome/pro-solid-svg-icons/faSpinnerThird'
+import { faTablet } from '@fortawesome/pro-solid-svg-icons/faTablet'
 import { faTachometer } from '@fortawesome/pro-solid-svg-icons/faTachometer'
 import { faTasks } from '@fortawesome/pro-solid-svg-icons/faTasks'
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes'
@@ -39,6 +42,7 @@ library.add(
   faCheckCircle,
   faCity,
   faCreditCard,
+  faDesktop,
   faDollarSign,
   faEnvelope,
   faFlask,
@@ -51,12 +55,14 @@ library.add(
   faListUl,
   faLockAlt,
   faMap,
+  faMobile,
   faNewspaper,
   faQuestionCircle,
   faExclamationCircle,
   faSignInAlt,
   faSignOutAlt,
   faSpinnerThird,
+  faTablet,
   faTachometer,
   faTasks,
   faTimes,

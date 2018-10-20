@@ -1,18 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { distanceInWordsStrict } from 'date-fns'
 import { TableCell, TableRow } from 'components/Table'
 import { Icon, tableCellStyle, countryStyle } from './styles'
 
-const getFlag = countryCode => {
-  const invalidFlags = {
-    GG: true,
-  }
-
-  if (invalidFlags[countryCode]) return ''
-
-  return <img src={`/media/icons/flags/${countryCode.toLowerCase()}.png`} alt="flag" />
-}
 const getBrowserIcon = browser => {
   if (!browser) return ''
   if (browser.indexOf('Chrome') > -1 || browser === 'Blink') return 'Chrome.svg'
@@ -29,7 +21,7 @@ const getBrowserIcon = browser => {
 
 const getOSIcon = os => {
   if (!os) return ''
-  if (os === 'Windows') return 'Windows.png'
+  if (os.includes('Windows')) return 'Windows.png'
   else if (os.includes('Windows Server')) return 'Windows.png'
   else if (os === 'OS X') return 'MacOS.png'
   else if (os === 'iOS') return 'IOS.png'
@@ -41,20 +33,18 @@ const getOSIcon = os => {
 }
 
 const getDeviceIcon = device => {
-  if (device.product === 'iPad') return 'fa-tablet'
-  else if (device.type === 'mobile') return 'fa-mobile'
-  return 'fa-desktop'
+  if (device.product === 'iPad') return 'tablet'
+  else if (device.type === 'mobile') return 'mobile'
+  return 'desktop'
 }
 
 const Visitor = ({ visitor }) => (
-  <TableRow key={visitor.id}>
+  <TableRow key={visitor.id} onClick={() => console.log(visitor)}>
     <TableCell style={countryStyle}>
-      {visitor.location && visitor.location.country && getFlag(visitor.location.country.code)}
-      <p style={{ marginLeft: '8px' }}>
-        {visitor.location && visitor.location.country && visitor.location.country.name}
-      </p>
+      {visitor.location && visitor.location.country_flag_emoji}
+      <p style={{ marginLeft: '8px' }}>{visitor.location && visitor.location.country_name}</p>
     </TableCell>
-    <TableCell onClick={() => console.log(visitor.referrer)} style={{ height: '48px' }}>
+    <TableCell style={{ height: '48px' }}>
       <p>
         {
           visitor.referrer
@@ -67,11 +57,11 @@ const Visitor = ({ visitor }) => (
     </TableCell>
     <TableCell style={{ height: '48px' }}>{distanceInWordsStrict(new Date(), visitor.createdAt)} ago</TableCell>
     <TableCell style={tableCellStyle}>
-      {visitor.device && <i className={`fa ${getDeviceIcon(visitor.device)}`} />}
       {visitor.device.os && <Icon src={`/media/icons/devices/${getOSIcon(visitor.device.os)}`} alt="os" />}
       {visitor.device.browser && (
         <Icon src={`/media/icons/devices/${getBrowserIcon(visitor.device.browser)}`} alt="browser" />
       )}
+      {visitor.device && <FontAwesomeIcon icon={getDeviceIcon(visitor.device)} style={{ width: '32px' }} />}
     </TableCell>
   </TableRow>
 )
