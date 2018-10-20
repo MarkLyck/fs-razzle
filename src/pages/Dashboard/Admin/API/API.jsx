@@ -58,7 +58,6 @@ class FileUploader extends Component {
         }))
         extractJSONFromFile(file)
           .then(json => {
-            console.log('extracted JSON from', json.name, json)
             let planName = json.name.split('.')[0].split('_')[1]
             if (planName === 'basic') planName = 'entry'
 
