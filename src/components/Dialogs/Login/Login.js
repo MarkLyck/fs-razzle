@@ -23,7 +23,10 @@ const AUTHENTICATE_EMAIL_USER = gql`
 class Login extends Component {
   emailValueHasChanged = false
 
-  state = { showResetPassword: false }
+  state = {
+    showResetPassword: false,
+    loginError: '',
+  }
 
   validate = values => {
     let errors = {}
@@ -42,14 +45,7 @@ class Login extends Component {
     return errors
   }
 
-  onSubmit = (values, { setSubmitting, setErrors }) => {
-    this.handleLogin(values, setSubmitting).catch(error => {
-      console.error('login error', error)
-      setErrors({ email: 'Something went wrong' })
-    })
-  }
-
-  handleLogin = (values, setSubmitting) => {
+  handleLogin = (values, { setSubmitting, setErrors }) => {
     const { history } = this.props
     return this.props
       .signinUser({ variables: { email: values.email, password: values.password } })
@@ -58,8 +54,13 @@ class Login extends Component {
         localStorage.setItem('graphcoolToken', response.data.authenticateUser.token)
         history.push('/dashboard/portfolio')
       })
-      .catch(e => {
-        console.log('loginError', e)
+      .catch(error => {
+        console.error(error)
+        const errorText = error.message.includes('Invalid Credentials')
+          ? 'Invalid login details'
+          : 'Something went wrong'
+        setErrors({ email: errorText })
+        setSubmitting(false)
       })
   }
 
@@ -90,7 +91,7 @@ class Login extends Component {
                   password: '',
                 }}
                 validate={this.validate}
-                onSubmit={this.onSubmit}
+                onSubmit={this.handleLogin}
                 render={({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
                   <Form onSubmit={handleSubmit}>
                     {this.renderErrors(errors, touched)}
