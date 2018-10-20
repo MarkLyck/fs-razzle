@@ -14,7 +14,10 @@ const CREATE_VISITOR = gql`
   }
 `
 
-const createNewVisit = async location => {
+const createNewVisit = async geoApiResponse => {
+  const { city, zip, country_code, country_name, latitude, longitude, ip, location } = geoApiResponse
+  const country_flag_emoji = location ? location.country_flag_emoji : undefined
+
   const response = await client
     .mutate({
       mutation: CREATE_VISITOR,
@@ -26,11 +29,20 @@ const createNewVisit = async location => {
           browser: platform.name,
           type: getDeviceType(),
         },
-        location,
+        location: {
+          city,
+          zip,
+          country_code,
+          country_name,
+          country_flag_emoji,
+          latitude,
+          longitude,
+          ip,
+        },
       },
     })
     .catch(err => console.error(err))
-  if (hasStorage) {
+  if (hasStorage && response.data) {
     localStorage.setItem('visitorID', response.data.createVisitor.id)
   }
 }
@@ -39,7 +51,10 @@ const newVisitor = createVisitor => {
   if (hasStorage && localStorage.getItem('visitorID')) return null
 
   return fetchJsonP(`https://api.ipapi.com/check?access_key=${geoAccessKey}`)
-    .then(response => response.json())
+    .then(response => {
+      console.log('res', response)
+      return response.json()
+    })
     .then(createNewVisit)
     .catch(err => {
       console.error(err)
