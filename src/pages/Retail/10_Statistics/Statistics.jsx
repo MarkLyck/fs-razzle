@@ -13,7 +13,7 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
   <Section>
     <BesideContainer>
       <SectionTitle>Statistics</SectionTitle>
-      <Beside>
+      <Beside style={{ marginBottom: '64px' }}>
         <Left data-center>
           <DualBarChart
             primaryStatistic={Math.floor(winRatio) || 90}
@@ -22,7 +22,7 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
             secondaryName="Market"
             primaryHeight={Math.floor(winRatio) || 90}
             secondaryHeight={59}
-            maxHeight="300px"
+            maxHeight="200px"
             description="Winners in %"
             unit="%"
           />
@@ -39,7 +39,7 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
             secondaryName="Market"
             primaryHeight={90}
             secondaryHeight={30}
-            maxHeight="300px"
+            maxHeight="200px"
             description="Outperforming years"
           />
           <p style={{ marginTop: '16px' }}>
@@ -71,7 +71,7 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
             secondaryName="Losses"
             primaryHeight={Math.floor(winRatio) || 0}
             secondaryHeight={100 - Math.floor(winRatio) || 0}
-            maxHeight="300px"
+            maxHeight="200px"
             unit="%"
             description="Win/loss ratio"
           />
