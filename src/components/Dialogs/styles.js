@@ -30,7 +30,7 @@ export const LegalContainer = styled.div`
     margin-bottom: 24px;
   }
   h3 {
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 8px;
   }
 `

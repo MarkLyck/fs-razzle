@@ -67,7 +67,7 @@ export const Line = styled.div`
 
 export const Description = styled.h3`
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
 `
 
 export default null

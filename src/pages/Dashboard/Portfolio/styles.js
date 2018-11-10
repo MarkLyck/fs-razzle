@@ -1,10 +1,12 @@
 import styled from 'react-emotion'
 import { Table, TableHead } from 'components/Table'
+import { boxStyle } from 'components/Box'
 
 export const PortfolioTable = styled(Table)`
+  ${boxStyle};
+  display: table;
   margin: 0 16px;
   width: calc(100% - 32px);
-  box-sizing: border-box;
 
   .name {
     display: flex;
@@ -67,5 +69,5 @@ export const LastUpdated = styled.h3`
 `
 
 export const DateLabel = styled.span`
-  font-weight: bold;
+  font-weight: 500;
 `

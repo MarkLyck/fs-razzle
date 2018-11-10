@@ -1,12 +1,11 @@
 import styled from 'react-emotion'
 import Dropzone from 'react-dropzone'
+import Box from 'components/Box'
 
-export const Container = styled.div`
-  box-sizing: border-box;
+export const Container = styled(Box)`
+  flex-direction: column;
   padding: 16px;
-  background: white;
   margin: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
 
   h2,
   h3 {
@@ -21,6 +20,8 @@ export const FileDrop = styled(Dropzone)`
   align-items: center;
   width: 100%;
   height: 350px;
+  border-radius: 6px;
   border: 2px dashed ${props => props.theme.colors.primary};
   cursor: pointer;
+  margin-bottom: 16px;
 `

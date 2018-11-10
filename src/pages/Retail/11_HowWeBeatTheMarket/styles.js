@@ -13,6 +13,6 @@ export const ListItem = styled.li`
   padding: 16px;
   border-bottom: 1px solid ${props => props.theme.colors.lightGray};
   span {
-    font-weight: 600;
+    font-weight: 500;
   }
 `

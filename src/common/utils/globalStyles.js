@@ -3,37 +3,6 @@ import { injectGlobal } from 'emotion'
 /* eslint-disable max-len */
 
 injectGlobal`
-    @font-face {
-        font-family: 'proxima-nova';
-        font-display: fallback;
-        src: url('/fonts/proxima-nova/ProximaNova-Regular.otf');
-        font-weight: 400;
-    }
-    @font-face {
-        font-family: 'proxima-nova';
-        font-display: fallback;
-        src: url('/fonts/proxima-nova/ProximaNova-Light.otf');
-        font-weight: 100;
-    }
-    @font-face {
-        font-family: 'proxima-nova';
-        font-display: fallback;
-        src: url('/fonts/proxima-nova/ProximaNova-Bold.otf');
-        font-weight: 700;
-    }
-    @font-face {
-        font-family: 'proxima-nova';
-        font-display: fallback;
-        src: url('/fonts/proxima-nova/ProximaNova-Semibold.otf');
-        font-weight: 600;
-    }
-    @font-face {
-        font-family: 'BLOKK';
-        font-display: block;
-        src: url('/fonts/BLOKK/BLOKKNeue-Regular.otf');
-        font-weight: 400;
-    }
-
     a[href="http://www.amcharts.com"] {
         display: none !important;
     }
@@ -49,7 +18,7 @@ injectGlobal`
         TODO with the prefix, should I group by selector or property for weight savings?
     */
     html {
-        font-family: 'proxima-nova', sans-serif;
+        font-family: 'Rubik', sans-serif;
         box-sizing: border-box;
     }
     body{
@@ -173,6 +142,9 @@ injectGlobal`
             cursor: pointer;
             text-decoration: underline;
         }
+    }
+    b {
+        font-weight: 500;
     }
 
     p {

@@ -1,12 +1,11 @@
 import styled from 'react-emotion'
+import Box from 'components/Box'
 
-export const MyAccountContainer = styled.div`
+export const MyAccountContainer = styled(Box)`
+  flex-direction: column;
   margin: 32px auto;
   padding: 24px;
   max-width: 400px;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
-  box-sizing: border-box;
 
   .user-info {
     font-weight: 400;

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
 import Loader from 'media/icons/loader.svg'
+import Box from 'components/Box'
 
 const Container = styled.div`
   display: flex;
@@ -10,34 +11,24 @@ const Container = styled.div`
   overflow-y: scroll;
 `
 
-const PortfolioHeader = styled.div`
+const PortfolioHeader = styled(Box)`
   height: 412px;
   width: 100%;
-  background: white;
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-sizing: border-box;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
   margin-bottom: 16px;
 `
 
-const ReturnsSkeleton = styled.div`
+const ReturnsSkeleton = styled(Box)`
   height: 64px;
   width: 100%;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
   margin-bottom: 16px;
-  box-sizing: border-box;
 `
 
-const HoldingsSkeleton = styled.div`
+const HoldingsSkeleton = styled(Box)`
   height: 600px;
   width: 100%;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
-  box-sizing: border-box;
 `
 
 const Icon = styled.span`

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LineGraph from 'components/Charts/LineGraph'
 import theme from 'common/utils/theme'
-import { GraphContainer, LoadingContainer, FailedContainer } from './styles'
+import { GraphContainer, LoadingContainer, FailedContainer, GraphOverlay } from './styles'
 
 const createChartData = sixMonthsPrices =>
   sixMonthsPrices.map(point => ({
@@ -73,6 +73,7 @@ const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action, serialCha
 
   return (
     <GraphContainer className="stock-chart">
+      <GraphOverlay />
       <LineGraph
         id={`${ticker.toLowerCase()}-stockgraph`}
         className="suggestion-graph"
@@ -80,7 +81,9 @@ const StockChart = ({ sixMonthsPrices, ticker, suggestedPrice, action, serialCha
         data={chartData}
         unit="$"
         insideY
+        labelYOffset={12}
         axisAlpha={0}
+        gridOpacity={0}
         cursorColor={cursorColor}
         guides={guides}
       />

@@ -1,6 +1,7 @@
 import styled from 'react-emotion'
 import { darken } from 'polished'
 import { css } from 'emotion'
+import Box, { boxStyle } from 'components/Box'
 
 export const ChangePlanContainer = styled.div`
   margin: 32px auto;
@@ -14,16 +15,18 @@ export const ChangePlanContainer = styled.div`
   }
 `
 
-export const ChangePlanPaper = styled.div`
+export const ChangePlanPaper = styled(Box)`
+  flex-direction: column;
   margin-top: 16px;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
 `
 
 export const LargeFlatButton = styled.button`
+  ${boxStyle};
   width: 100%;
   height: 72px;
   padding: 16px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   background: ${props => props.theme.colors[props.color]};
   display: flex;
   justify-content: ${props => props.align || 'left'};
@@ -46,13 +49,12 @@ export const ModalContainer = styled.div`
   }
 `
 
-export const modalStyles = `
-  background: white;
+export const modalStyles = css`
+  ${boxStyle};
   width: 400px;
   height: auto;
   outline: none;
   z-index: 11;
-  display: flex;
   flex-direction: column;
   align-items: center;
 

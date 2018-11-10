@@ -6,6 +6,7 @@ const theme = {
     warning: '#ec791b',
 
     white: '#FFFFFF',
+    polar: '#F3F7FB',
     offWhite: '#F5F6F5',
     lightGray: '#ececec',
     gray: '#95989e',
