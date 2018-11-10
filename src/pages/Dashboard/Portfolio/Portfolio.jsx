@@ -80,7 +80,7 @@ class Portfolio extends Component {
                           </TableHeadCell>
                           <TableHeadCell
                             className="last-price"
-                            tooltip="Latest price available for stocks. Updated realtime or End of Day."
+                            tooltip="Latest price available for stocks. Updated End of Day."
                           >
                             Last price
                           </TableHeadCell>

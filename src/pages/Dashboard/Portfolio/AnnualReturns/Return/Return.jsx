@@ -10,16 +10,20 @@ const ReturnContainer = styled.div`
     margin-bottom: 2px;
     font-size: 1.2rem;
   }
-  p {
-    color: ${props => props.theme.colors.secondary};
-    font-weight: bold;
-  }
+`
+
+const ReturnValue = styled.p`
+  color: ${props => (props.returnSince >= 0 ? props.theme.colors.secondary : props.theme.colors.error)};
+  font-weight: bold;
 `
 
 const Return = ({ title, returnSince, className }) => (
   <ReturnContainer className={className}>
     <h3>{title}</h3>
-    <p>+{returnSince}%</p>
+    <ReturnValue returnSince={returnSince}>
+      {returnSince >= 0 ? '+' : ''}
+      {returnSince}%
+    </ReturnValue>
   </ReturnContainer>
 )
 
