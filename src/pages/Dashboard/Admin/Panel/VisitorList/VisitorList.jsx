@@ -5,7 +5,7 @@ import Visitor from './Visitor'
 import { ContainerStyle } from './styles'
 
 const VisitorList = ({ visitors }) => (
-  <Table style={ContainerStyle}>
+  <Table className={ContainerStyle}>
     <TableHead>
       <TableRow>
         <TableHeadCell>Location</TableHeadCell>

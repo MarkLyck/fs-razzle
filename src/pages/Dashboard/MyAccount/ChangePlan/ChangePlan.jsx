@@ -151,7 +151,7 @@ class ChangePlan extends Component {
               ${selectedPlan.price} {!taxPercent && 'monthly'}
             </p>
           </div>
-          {taxAmount && (
+          {!!taxAmount && (
             <React.Fragment>
               <div className="beside">
                 <p className="description">{taxPercent}% VAT Tax:</p>

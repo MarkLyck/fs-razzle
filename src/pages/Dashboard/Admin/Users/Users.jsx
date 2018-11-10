@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import withDashboard from 'components/withDashboard'
-import { Table, TableBody, TableCell, TableHead, TableRow } from 'components/Table'
+import { TableBody, TableCell, TableHead, TableRow } from 'components/Table'
 import LoadingError from 'components/Error/LoadingError'
 import GenericLoader from 'components/Loading/Generic'
 import User from './User'
@@ -31,17 +31,19 @@ const UserList = ({ allUsers }) => (
 
       return (
         <UsersContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Email</TableCell>
-                <TableCell>Signed up</TableCell>
-                <TableCell>Last seen</TableCell>
-                <TableCell>Type</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>{data.allUsers.map(user => <User user={user} key={user.id} />)}</TableBody>
-          </Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Email</TableCell>
+              <TableCell>Signed up</TableCell>
+              <TableCell>Last seen</TableCell>
+              <TableCell>Type</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.allUsers.map(user => (
+              <User user={user} key={user.id} />
+            ))}
+          </TableBody>
           {/* <CreateUser /> */}
         </UsersContainer>
       )

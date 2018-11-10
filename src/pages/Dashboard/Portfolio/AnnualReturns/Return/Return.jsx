@@ -14,7 +14,7 @@ const ReturnContainer = styled.div`
 
 const ReturnValue = styled.p`
   color: ${props => (props.returnSince >= 0 ? props.theme.colors.secondary : props.theme.colors.error)};
-  font-weight: bold;
+  font-weight: 500;
 `
 
 const Return = ({ title, returnSince, className }) => (

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Box, Symbol, Content } from './styles'
+import { Card, Symbol, Content } from './styles'
 
 const StatisticsBox = ({ title, value, icon }) => (
-  <Box>
+  <Card>
     <Symbol>
       <FontAwesomeIcon icon={icon} />
     </Symbol>
@@ -12,7 +12,7 @@ const StatisticsBox = ({ title, value, icon }) => (
       <h4>{value}</h4>
       <h5>{title}</h5>
     </Content>
-  </Box>
+  </Card>
 )
 
 StatisticsBox.propTypes = {

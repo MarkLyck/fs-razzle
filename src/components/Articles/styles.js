@@ -1,4 +1,5 @@
 import styled from 'react-emotion'
+import Box from 'components/Box'
 
 export const ArticlesList = styled.ul`
   display: flex;
@@ -11,14 +12,10 @@ export const ArticlesList = styled.ul`
     max-width: 360px;
     margin: 24px;
     transition: all 0.2s;
-    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-      0px 3px 1px -2px rgba(0, 0, 0, 0.12);
     &:hover {
       transform: scale(1.02);
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-        0px 3px 1px -2px rgba(0, 0, 0, 0.12);
     }
   }
 `
@@ -30,14 +27,16 @@ export const HeaderImage = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 `
 
-export const Card = styled.div`
-  background: white;
+export const Card = styled(Box)`
+  flex-direction: column;
 `
 
 export const Title = styled.h4`
   margin: 0;
   padding: 16px;
-  font-weight: 500;
+  font-weight: 400;
 `

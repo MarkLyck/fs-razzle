@@ -1,28 +1,25 @@
 import styled from 'react-emotion'
+import Box from 'components/Box'
 import { darken } from 'polished'
 
-export const SuggContainer = styled.div`
+export const SuggContainer = styled(Box)`
+  flex-direction: column;
   width: calc(50% - 16px);
   margin: 8px;
-  margin-top: 16px;
+  padding-top: 16px;
 
   @media (max-width: 850px) {
     width: calc(100% - 16px);
   }
 `
 
-export const Card = styled.div`
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-    0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-  border-radius: 2px;
-  background-color: white;
-`
-
 export const SuggHeader = styled.div`
+  position: relative;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0 8px 4px;
+  padding: 0 8px 4px 12px;
   margin: 0;
   font-size: 0.9rem;
   font-weight: 400;
@@ -31,7 +28,7 @@ export const SuggHeader = styled.div`
     color: ${props => props.theme.colors.black};
   }
   .action {
-    font-weight: 500;
+    font-weight: 400;
     margin-right: 8px;
     color: ${props => props.theme.colors.primary};
   }
@@ -43,6 +40,7 @@ export const SuggHeader = styled.div`
 export const ContentContainer = styled.div`
   position: relative;
   display: flex;
+  border-radius: 6px;
   border-bottom: 6px solid ${props => props.theme.colors[props.type === 'BUY' ? 'primary' : 'secondary']};
 
   .amcharts-zoom-out-bg {
@@ -123,10 +121,12 @@ export const Placeholder = styled.div`
 
 export const LastPrice = styled.p`
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
   opacity: 0.4;
   z-index: 1;
+  font-weight: 500;
 `
 
 export const ButtonPlaceholder = styled.div`
@@ -138,6 +138,5 @@ export const StockInfoList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border-right: 1px solid ${props => props.theme.colors.lightGray};
   padding: 16px;
 `

@@ -69,7 +69,22 @@ const DAUGraph = ({ visitors, users, serialChartsReady }) => {
   return (
     <Container>
       <GraphContainer>
-        <LineGraph id="dau-graph" graphs={graphs} data={chartData} axisAlpha={0.5} />
+        <LineGraph
+          id="dau-graph"
+          graphs={graphs}
+          data={chartData}
+          axisAlpha={0}
+          gridOpacity={0}
+          insideX
+          insideY
+          labelYOffset={4}
+          autoMargins={false}
+          marginLeft={0}
+          marginRight={-25}
+          marginBottom={-2}
+          categoryBoldLabels={true}
+          categoryAxisColor="#FFF"
+        />
       </GraphContainer>
     </Container>
   )

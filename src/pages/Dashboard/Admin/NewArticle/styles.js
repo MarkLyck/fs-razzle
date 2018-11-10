@@ -15,6 +15,7 @@ export const FileDrop = styled(Dropzone)`
   margin-top: 16px;
   width: 100%;
   height: 350px;
+  border-radius: 6px;
   border: 2px dashed ${props => props.theme.colors.primary};
   background-image: ${props => (props['data-headerimageurl'] ? `url(${props['data-headerimageurl']})` : 'none')};
   background-repeat: no-repeat;

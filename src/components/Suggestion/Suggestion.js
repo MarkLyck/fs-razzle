@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { format } from 'date-fns'
 import Button from 'components/Button'
-
 import ListItem from './ListItem'
 import DetailsModal from './DetailsModal'
 import StockChart from './StockChart'
 import {
-  Card,
   SuggContainer,
   SuggHeader,
   ContentContainer,
@@ -68,58 +66,56 @@ The total allocation in % of this stock in the portfolio, after this and all pre
         <SuggHeader>
           <h3 className={`${suggestion.action}-action action`}>{suggestion.action}</h3>
           <h3 className="suggestion-name">{suggestion.name}</h3>
+          {stock && stock.sixMonthsPrices && <LastPrice>${latestPrice.toFixed(2)}</LastPrice>}
         </SuggHeader>
-        <Card>
-          <ContentContainer type={suggestion.action}>
-            <StockInfoList className="info-list">
-              <ListItem name="Ticker" value={suggestion.ticker} />
-              {suggestion.action === 'BUY' && <ListItem name={suggestedPriceName} value={`$${suggestedPrice}`} />}
-              {suggestionsType === 'Suggestions' && <ListItem name="Last price" value={`$${latestPrice.toFixed(2)}`} />}
-              {suggestion.action === 'BUY' && (
+        <ContentContainer type={suggestion.action}>
+          <StockInfoList className="info-list">
+            <ListItem name="Ticker" value={suggestion.ticker} />
+            {suggestion.action === 'BUY' && <ListItem name={suggestedPriceName} value={`$${suggestedPrice}`} />}
+            {suggestionsType === 'Suggestions' && <ListItem name="Last price" value={`$${latestPrice.toFixed(2)}`} />}
+            {suggestion.action === 'BUY' && (
+              <ListItem
+                name={allocationText}
+                value={`${allocation.toFixed(2)}%`}
+                tip={this.renderAllocationTip()}
+                tipWidth="345"
+              />
+            )}
+            {suggestion.action === 'BUY' &&
+              suggestion.total_portfolio_weight && (
                 <ListItem
-                  name={allocationText}
-                  value={`${allocation.toFixed(2)}%`}
-                  tip={this.renderAllocationTip()}
+                  name="Total position"
+                  value={`${suggestion.total_portfolio_weight.toFixed(2)}%`}
+                  tip={this.renderTotalAllocationTip()}
                   tipWidth="345"
                 />
               )}
-              {suggestion.action === 'BUY' &&
-                suggestion.total_portfolio_weight && (
-                  <ListItem
-                    name="Total position"
-                    value={`${suggestion.total_portfolio_weight.toFixed(2)}%`}
-                    tip={this.renderTotalAllocationTip()}
-                    tipWidth="345"
-                  />
-                )}
-              {suggestion.action === 'SELL' && (
-                <ListItem name="Purchase price" value={`$${suggestion.original_purchase.toFixed(2)}`} />
-              )}
-              {suggestion.advanced_data ? (
-                <Button type="light" variant="raised" onClick={this.toggleDetails}>
-                  Details
-                </Button>
-              ) : (
-                <React.Fragment>
-                  <Placeholder className="placeholder" />
-                  {suggestionsType === 'Trades' && <Placeholder className="placeholder" />}
-                  <ButtonPlaceholder className="placeholder" />
-                </React.Fragment>
-              )}
-            </StockInfoList>
-            {stock && stock.sixMonthsPrices && <LastPrice>${latestPrice.toFixed(2)}</LastPrice>}
-            <StockChart
-              sixMonthsPrices={stock ? stock.sixMonthsPrices : []}
-              ticker={suggestion.ticker}
-              suggestedPrice={suggestion.suggested_price}
-              action={suggestion.action}
-              loading={loading}
-              error={error}
-              serialChartsReady={serialChartsReady}
-            />
-          </ContentContainer>
-          <DetailsModal suggestion={suggestion} isOpen={detailsIsVisible} onRequestClose={this.toggleDetails} />
-        </Card>
+            {suggestion.action === 'SELL' && (
+              <ListItem name="Purchase price" value={`$${suggestion.original_purchase.toFixed(2)}`} />
+            )}
+            {suggestion.advanced_data ? (
+              <Button type="light" variant="raised" onClick={this.toggleDetails}>
+                Details
+              </Button>
+            ) : (
+              <React.Fragment>
+                <Placeholder className="placeholder" />
+                {suggestionsType === 'Trades' && <Placeholder className="placeholder" />}
+                <ButtonPlaceholder className="placeholder" />
+              </React.Fragment>
+            )}
+          </StockInfoList>
+          <StockChart
+            sixMonthsPrices={stock ? stock.sixMonthsPrices : []}
+            ticker={suggestion.ticker}
+            suggestedPrice={suggestion.suggested_price}
+            action={suggestion.action}
+            loading={loading}
+            error={error}
+            serialChartsReady={serialChartsReady}
+          />
+        </ContentContainer>
+        <DetailsModal suggestion={suggestion} isOpen={detailsIsVisible} onRequestClose={this.toggleDetails} />
       </SuggContainer>
     )
   }

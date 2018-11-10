@@ -87,5 +87,5 @@ export const TableCell = styled.td`
 `
 
 export const StockName = styled.span`
-  font-weight: 600;
+  font-weight: 500;
 `

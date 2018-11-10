@@ -1,16 +1,15 @@
 import React from 'react'
 import styled from 'react-emotion'
+import Box from 'components/Box'
 
-const Box = styled.div`
-  display: flex;
+const StatBox = styled(Box)`
   align-items: center;
   padding: 8px;
   height: 80px;
   width: 100%;
   margin: 0 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
   background: ${props => props.theme.colors[props.background || 'white']};
-  border-radius: 2px;
+  box-sizing: content-box;
 `
 
 const Container = styled.div`
@@ -58,10 +57,10 @@ const Container = styled.div`
 
 const StatisticsLoader = () => (
   <Container>
-    <Box background="primary" />
-    <Box />
-    <Box background="secondary" />
-    <Box />
+    <StatBox background="primary" />
+    <StatBox />
+    <StatBox background="secondary" />
+    <StatBox />
   </Container>
 )
 
