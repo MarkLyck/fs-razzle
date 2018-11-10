@@ -5,6 +5,7 @@ npm-debug.log*
 
 coverage
 node_modules
+businessLogic
 build
 cypress/videos
 cypress/screenshots

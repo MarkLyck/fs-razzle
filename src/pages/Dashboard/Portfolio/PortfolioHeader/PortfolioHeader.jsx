@@ -3,14 +3,17 @@ import PropTypes from 'prop-types'
 import PortfolioChart from './PortfolioChart'
 import AllocationChart from './AllocationChart'
 import Tooltip from 'components/Tooltip'
-import { HeaderContainer, RightSide, LeftSide } from './styles'
+import { HeaderContainer, Header, RightSide, LeftSide } from './styles'
 
 const getIncrease = (startSum, endSum) => (((endSum - startSum) / startSum) * 100).toFixed(2)
 
 const PortfolioHeader = ({ portfolioYields, marketPrices, planName, portfolio, serialChartsReady, pieChartsReady }) => (
   <HeaderContainer>
     <LeftSide>
-      <h4>Portfolio yields</h4>
+      <Header>
+        <h4>Portfolio yields</h4>
+      </Header>
+
       <PortfolioChart
         portfolioYields={portfolioYields}
         marketPrices={marketPrices}

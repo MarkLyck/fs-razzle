@@ -4,8 +4,42 @@ import mq from 'common/utils/mq'
 import Box from 'components/Box'
 
 export const HeaderContainer = styled(Box)`
+  position: relative;
   height: 412px;
   margin: 16px;
+`
+
+/* eslint-disable max-len*/
+export const Header = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  h4 {
+    margin: 0;
+    padding: 12px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+47,ffffff+100&1+46,0+100 */
+    background: -moz-linear-gradient(
+      top,
+      rgba(255, 255, 255, 1) 46%,
+      rgba(255, 255, 255, 0.98) 47%,
+      rgba(255, 255, 255, 0) 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+      top,
+      rgba(255, 255, 255, 1) 46%,
+      rgba(255, 255, 255, 0.98) 47%,
+      rgba(255, 255, 255, 0) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 46%,
+      rgba(255, 255, 255, 0.98) 47%,
+      rgba(255, 255, 255, 0) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+  }
 `
 
 export const RightSide = styled.div`

@@ -97,7 +97,7 @@ const PortfolioGraph = ({ portfolioYields, marketPrices, planName, serialChartsR
 
   return (
     <GraphContainer>
-      <Legends className="portfolio-legends">
+      <Legends className="portfolio-legends" style={{ top: '50px' }}>
         <Legend color={theme.colors.primary}>
           <p>{planName}</p>
         </Legend>
@@ -112,10 +112,17 @@ const PortfolioGraph = ({ portfolioYields, marketPrices, planName, serialChartsR
         unit="%"
         unitPosition="right"
         axisAlpha={0}
+        gridOpacity={0}
+        autoMargins={false}
         marginRight={-5}
+        marginBottom={0}
+        insideX
+        insideY
         maximum={maximum}
         minimum={minimum}
         baseValue={minimum}
+        categoryBoldLabels={true}
+        categoryAxisColor="#FFF"
       />
     </GraphContainer>
   )
