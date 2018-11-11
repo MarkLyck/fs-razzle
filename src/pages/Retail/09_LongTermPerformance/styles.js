@@ -1,4 +1,5 @@
 import styled from 'react-emotion'
+import { boxStyle } from 'components/Box'
 
 export const GraphContainer = styled.div`
   position: relative;
@@ -9,6 +10,7 @@ export const GraphContainer = styled.div`
     display: none;
   }
   #single-long-term-performance-graph {
+    ${boxStyle};
     height: 100%;
   }
   .plan-name {
@@ -21,6 +23,10 @@ export const GraphContainer = styled.div`
     .plan-name {
       color: ${props => props.theme.colors.primary};
       font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .market-name {
+      color: ${props => props.theme.colors.black};
     }
     .balloon-value {
       font-size: 1rem;

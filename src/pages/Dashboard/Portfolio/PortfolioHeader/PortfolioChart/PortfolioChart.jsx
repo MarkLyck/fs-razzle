@@ -56,7 +56,7 @@ const PortfolioGraph = ({ portfolioYields, marketPrices, planName, serialChartsR
     {
       id: 'launch',
       lineColor: '#27A5F9',
-      fillAlphas: 0.75,
+      fillAlphas: 0.4,
       bullet: 'square',
       bulletBorderAlpha: 1,
       bulletColor: '#FFFFFF',
@@ -77,7 +77,7 @@ const PortfolioGraph = ({ portfolioYields, marketPrices, planName, serialChartsR
     graphs.push({
       id: 'market',
       lineColor: '#49494A',
-      fillAlphas: 0.75,
+      fillAlphas: 0.4,
       bullet: 'square',
       bulletBorderAlpha: 1,
       bulletColor: '#FFFFFF',

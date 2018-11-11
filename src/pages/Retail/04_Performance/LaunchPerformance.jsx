@@ -46,7 +46,7 @@ const LaunchPerformance = ({ portfolioYields, marketPrices, planName, amChartsLo
     {
       id: 'launch',
       lineColor: '#27A5F9',
-
+      fillAlphas: 0.4,
       bullet: 'square',
       bulletBorderAlpha: 1,
       bulletColor: '#27A5F9',
@@ -63,10 +63,10 @@ const LaunchPerformance = ({ portfolioYields, marketPrices, planName, amChartsLo
     },
   ]
   if (marketPrices.length) {
-    graphs.unshift({
+    graphs.push({
       id: 'market',
-      lineColor: '#989898',
-
+      lineColor: '#49494A',
+      fillAlphas: 0.4,
       bullet: 'square',
       bulletBorderAlpha: 1,
       bulletColor: '#989898',
@@ -99,7 +99,15 @@ const LaunchPerformance = ({ portfolioYields, marketPrices, planName, amChartsLo
         data={chartData}
         unit="%"
         unitPosition="right"
-        axisAlpha={0.5}
+        autoMargins={false}
+        marginRight={-3}
+        marginBottom={-6}
+        insideX
+        insideY
+        axisAlpha={0}
+        gridOpacity={0.02}
+        categoryBoldLabels={true}
+        categoryAxisColor="#FFF"
         maximum={maximum}
         minimum={minimum}
       />

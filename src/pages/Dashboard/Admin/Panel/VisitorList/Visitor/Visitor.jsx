@@ -7,13 +7,13 @@ import { Icon, DeviceTableCell, countryStyle, CountryName } from './styles'
 
 const getBrowserIcon = browser => {
   if (!browser) return ''
-  if (browser.indexOf('Chrome') > -1 || browser === 'Blink') return 'Chrome.svg'
+  if (browser.includes('Chrome') || browser === 'Blink') return 'Chrome.svg'
   else if (browser.indexOf('Firefox') > -1) return 'Firefox.png'
   else if (browser === 'Safari') return 'Safari.svg'
   else if (browser === 'Microsoft Edge') return 'Edge.svg'
   else if (browser === 'IE') return 'IE.png'
   else if (browser === 'Android Browser' || browser === 'Samsung Internet') return 'AndroidBrowser.svg'
-  else if (browser === 'Opera') return 'Opera.png'
+  else if (browser.includes('Opera')) return 'Opera.png'
   else if (browser === 'PhantomJS') return 'PhantomJS.png'
 
   return ''

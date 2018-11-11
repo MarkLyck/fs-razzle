@@ -81,6 +81,7 @@ const StockChart = ({ historicPrices, ticker, costBasisPrice, action, serialChar
         unit="$"
         insideY
         axisAlpha={0}
+        gridOpacity={0.02}
         cursorColor={cursorColor}
         guides={guides}
       />

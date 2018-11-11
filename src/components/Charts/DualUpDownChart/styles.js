@@ -1,5 +1,6 @@
 import { css } from 'emotion'
 import styled from 'react-emotion'
+import Box from 'components/Box'
 
 export const ChartBeside = styled.div`
   display: flex;
@@ -15,27 +16,30 @@ const chart = () => css`
   position: relative;
 `
 
-export const PrimaryChart = styled.div`
+export const PrimaryChart = styled(Box)`
   ${chart};
   height: ${props => props.height}%;
   background: ${props => props.color};
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   margin: 12px;
   margin-bottom: 0;
   transform: translateX(-55%);
 `
 
-export const SecondaryChart = styled.div`
+export const SecondaryChart = styled(Box)`
   ${chart};
   height: ${props => props.height}%;
   background: ${props => props.color};
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   margin: 12px;
   margin-top: 0;
   transform: translateX(55%);
-  display: flex;
   align-items: flex-end;
 `
 
