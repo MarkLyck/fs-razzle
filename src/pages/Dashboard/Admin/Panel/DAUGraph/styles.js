@@ -2,7 +2,7 @@ import styled from 'react-emotion'
 import Box from 'components/Box'
 
 export const Container = styled(Box)`
-  margin: 16px;
+  margin: 8px 16px 16px;
 `
 
 export const GraphContainer = styled.div`
