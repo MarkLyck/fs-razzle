@@ -9,7 +9,10 @@ export const AdminButtonsContainer = styled.div`
 export const AdminButton = styled(Button)`
   display: flex;
   align-items: center;
-  line-height: 1;
+  p {
+    line-height: 1;
+  }
+
   @media (max-width: 885px) {
     svg {
       margin: 0;
