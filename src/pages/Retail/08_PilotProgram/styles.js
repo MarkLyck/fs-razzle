@@ -22,8 +22,12 @@ export const Pilot = styled(Box)`
   justify-content: space-between;
   padding: 8px 16px;
   margin-bottom: 16px;
+  transition: transform 0.2s ease-out;
   p {
     white-space: nowrap;
+  }
+  &:hover {
+    transform: scale(1.2);
   }
 `
 
