@@ -1,8 +1,8 @@
 import styled from 'react-emotion'
-import { darken } from 'polished'
 import { css } from 'emotion'
 import mq from 'common/utils/mq'
 import Beside from 'components/Section/Beside'
+import Box from 'components/Box'
 
 export const BesideContainer = styled.div`
   ${Beside} {
@@ -18,14 +18,10 @@ export const BesideContainer = styled.div`
   }
 `
 
-export const Pilot = styled.div`
-  display: flex;
+export const Pilot = styled(Box)`
   justify-content: space-between;
   padding: 8px 16px;
   margin-bottom: 16px;
-  border-radius: 4px;
-  border: 1px solid ${darken(0.1, '#fff')};
-  box-shadow: 0 0.25rem 0 0 ${darken(0.1, '#fff')};
   p {
     white-space: nowrap;
   }

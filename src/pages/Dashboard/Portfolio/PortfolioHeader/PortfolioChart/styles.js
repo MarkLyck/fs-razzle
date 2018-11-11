@@ -11,6 +11,7 @@ export const GraphContainer = styled.div`
     top: 24px;
   }
   #portfolio-graph {
+
     height: 100%;
   }
   .chart-balloon {

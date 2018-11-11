@@ -57,7 +57,7 @@ const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded })
     {
       id: 'launch',
       lineColor: '#27A5F9',
-
+      fillAlphas: 0.4,
       bullet: 'square',
       bulletBorderAlpha: 1,
       bulletColor: '#27A5F9',
@@ -75,10 +75,10 @@ const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded })
     },
   ]
   if (marketPrices.length) {
-    graphs.unshift({
+    graphs.push({
       id: 'market',
-      lineColor: '#989898',
-
+      lineColor: '#49494A',
+      fillAlphas: 0.4,
       bullet: 'square',
       bulletBorderAlpha: 1,
       bulletColor: '#989898',
@@ -89,7 +89,7 @@ const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded })
       valueField: 'market',
       balloonText: `
         <div class="chart-balloon">
-            <span class="plan-name market-name">DJIA</span>
+            <span class="plan-name market-name">S&P 500</span>
             <span class="balloon-value">[[marketBalloon]]</span>
         </div>
       `,
@@ -98,7 +98,7 @@ const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded })
 
   return (
     <GraphContainer>
-      <Legends data-left={40}>
+      <Legends left={40}>
         <Legend color={theme.colors.primary}>
           <p className="plan-name">{planName}</p>
         </Legend>
@@ -112,12 +112,20 @@ const LaunchPerformance = ({ planData, marketPrices, planName, amChartsLoaded })
         data={chartData}
         unit="$"
         unitPosition="left"
-        axisAlpha={0.5}
+        axisAlpha={0}
+        gridOpacity={0}
+        insideX
+        autoMargins={false}
+        marginBottom={-2}
+        marginRight={-2}
+        marginLeft={-2}
         maximum={maximum}
         // minimum={minimum}
         logarithmic
         minorGridEnabled
         insideY
+        categoryBoldLabels={true}
+        categoryAxisColor="#FFF"
       />
     </GraphContainer>
   )

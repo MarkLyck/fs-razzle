@@ -16,7 +16,7 @@ export const CountryName = styled.p`
 
 export const DeviceTableCell = styled.td`
   display: flex;
-  alignitems: center;
+  align-items: center;
   height: 48px;
   padding: 6px;
   boxsizing: border-box;

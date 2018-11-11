@@ -27,4 +27,5 @@ export const overlayClass = css`
   left: 0;
   bottom: 0;
   right: 0;
+  transition: background 5s ease-out;
 `

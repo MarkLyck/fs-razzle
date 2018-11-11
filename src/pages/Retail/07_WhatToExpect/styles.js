@@ -2,6 +2,7 @@ import styled from 'react-emotion'
 import { css } from 'emotion'
 import mq from 'common/utils/mq'
 import Beside from 'components/Section/Beside'
+import { boxStyle } from 'components/Box'
 
 export const BesideContainer = styled.div`
   ${Beside} {
@@ -18,9 +19,9 @@ export const BesideContainer = styled.div`
 `
 
 export const Screenshot = styled.img`
+  ${boxStyle};
   width: 100%;
   height: auto;
-  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.24);
   transition: transform 0.5s;
   margin-bottom: 32px;
   margin-top: 24px;
@@ -31,12 +32,10 @@ export const Screenshot = styled.img`
 `
 
 export const Table = styled.table`
+  ${boxStyle};
+  display: table;
   width: 100%;
   margin-top: 16px;
-  border-radius: 4px;
-  border: 1px solid #e6e6e6;
-  box-shadow: 0 0.25rem 0 0 #e6e6e6;
-  background: #fcfcfc;
 
   ${mq.small(css`
     .purchase-price,

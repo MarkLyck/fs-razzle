@@ -1,5 +1,14 @@
 import styled from 'react-emotion'
-import { css } from 'emotion'
+import { css, keyframes } from 'emotion'
+
+const slideIn = keyframes`
+  0% {
+      transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`
 
 const expandedMenu = css`
   box-sizing: content-box;
@@ -52,6 +61,8 @@ export const MenuList = styled.ul`
   @media (max-width: 850px) {
     display: ${props => (props.isPopOver ? 'block' : 'none')};
     ${props => (props.isPopOver ? expandedMenu : '')};
+    transform: translateX(0);
+    animation: ${slideIn} 0.2s ease-out;
   }
 
   @media (min-width: 1440px) {

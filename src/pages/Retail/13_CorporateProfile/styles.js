@@ -3,6 +3,7 @@ import styled from 'react-emotion'
 import { darken } from 'polished'
 import mq from 'common/utils/mq'
 import Beside from 'components/Section/Beside'
+import Box from 'components/Box'
 
 export const BesideContainer = styled.div`
   ${Beside} {
@@ -19,13 +20,9 @@ export const BesideContainer = styled.div`
   }
 `
 
-export const Card = styled.div`
+export const Card = styled(Box)`
   height: 72px;
   width: 100%;
-  display: flex;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 0.25rem 0 0 ${darken(0.15, '#fff')}, 0 0px 16px rgba(0, 0, 0, 0.075);
   margin-bottom: 16px;
   p {
     color: ${props => props.theme.colors.primary};

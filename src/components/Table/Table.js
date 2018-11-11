@@ -22,6 +22,7 @@ const THCell = styled.th`
   padding: 16px;
   white-space: nowrap;
   position: relative;
+  color: ${props => props.theme.colors.gray};
 
   .tooltip {
     position: relative;
