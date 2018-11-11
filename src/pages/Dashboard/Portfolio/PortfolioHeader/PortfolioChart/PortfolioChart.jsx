@@ -112,12 +112,14 @@ const PortfolioGraph = ({ portfolioYields, marketPrices, planName, serialChartsR
         unit="%"
         unitPosition="right"
         axisAlpha={0}
-        gridOpacity={0}
+        gridOpacity={0.02}
         autoMargins={false}
         marginRight={-5}
-        marginBottom={0}
+        marginLeft={-4}
+        marginBottom={-1}
         insideX
         insideY
+        labelYOffset={8}
         maximum={maximum}
         minimum={minimum}
         baseValue={minimum}

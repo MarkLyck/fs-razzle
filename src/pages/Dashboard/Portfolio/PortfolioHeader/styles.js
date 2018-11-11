@@ -7,6 +7,7 @@ export const HeaderContainer = styled(Box)`
   position: relative;
   height: 412px;
   margin: 16px;
+  overflow: hidden;
 `
 
 /* eslint-disable max-len*/
@@ -99,11 +100,9 @@ export const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
   width: calc(100% - 180px);
-  border-right: 1px solid ${props => props.theme.colors.lightGray};
   h4 {
     font-weight: 400;
     font-size: 1.25rem;
-    margin: 16px;
   }
   ${mq.medium(css`
     width: 100%;

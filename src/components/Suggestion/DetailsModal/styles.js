@@ -37,6 +37,7 @@ export const Modal = styled(ReactModal)`
     width: 100%;
     height: 100%;
     min-width: 0;
+    border-radius: 0;
   `)};
 `
 

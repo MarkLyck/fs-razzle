@@ -18,6 +18,23 @@ export const Logo = styled.div`
   }
 `
 
+export const LeftContent = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const HamburgerButton = styled.button`
+  background: none;
+  border: none;
+  color: ${props => props.theme.colors.primary};
+  font-size: 1.4rem;
+  padding: 8px;
+
+  @media (min-width: 850px) {
+    display: none;
+  }
+`
+
 export const Bar = styled.div`
   position: relative;
   height: 72px;
@@ -35,6 +52,10 @@ export const Bar = styled.div`
   }
   svg:hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 850px) {
+    padding-left: 12px;
   }
 `
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from 'components/Button'
-import { AdminButtonsContainer } from './styles'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { AdminButtonsContainer, AdminButton, ButtonTitle } from './styles'
 
 class AdminButtons extends Component {
   state = { activeButton: 'panel' }
@@ -21,39 +21,42 @@ class AdminButtons extends Component {
 
     return (
       <AdminButtonsContainer>
-        <Button
+        <AdminButton
           color={activeButton === 'panel' || activeButton === 'admin' ? 'white' : 'primary'}
           variant="raised"
           type={activeButton === 'panel' || activeButton === 'admin' ? 'dark' : 'light'}
           onClick={() => this.navigateTo('/dashboard/admin/panel')}
         >
-          Panel
-        </Button>
-        <Button
+          <FontAwesomeIcon icon="chart-line" />
+          <ButtonTitle>Panel</ButtonTitle>
+        </AdminButton>
+        <AdminButton
           color={activeButton === 'users' ? 'white' : 'primary'}
           variant="raised"
           type={activeButton === 'users' ? 'dark' : 'light'}
           onClick={() => this.navigateTo('/dashboard/admin/users')}
         >
-          Users
-        </Button>
-        <Button
+          <FontAwesomeIcon icon="users" />
+          <ButtonTitle>Users</ButtonTitle>
+        </AdminButton>
+        <AdminButton
           color={activeButton === 'api' ? 'white' : 'primary'}
           variant="raised"
           type={activeButton === 'api' ? 'dark' : 'light'}
           onClick={() => this.navigateTo('/dashboard/admin/api')}
         >
-          API
-        </Button>
-        <Button
+          <FontAwesomeIcon icon="database" />
+          <ButtonTitle>API</ButtonTitle>
+        </AdminButton>
+        <AdminButton
           color={activeButton === 'newArticle' ? 'white' : 'primary'}
           variant="raised"
           type={activeButton === 'newArticle' ? 'dark' : 'light'}
-          style={{ minWidth: '126px' }}
           onClick={() => this.navigateTo('/dashboard/admin/newArticle')}
         >
-          New Article
-        </Button>
+          <FontAwesomeIcon icon="pencil" />
+          <ButtonTitle>New Article</ButtonTitle>
+        </AdminButton>
       </AdminButtonsContainer>
     )
   }

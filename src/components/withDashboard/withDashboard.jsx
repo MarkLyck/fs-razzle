@@ -73,7 +73,7 @@ const withDashboard = WrappedComponent => {
                 <SideMenu history={history} location={location} userType={userType} />
                 <PlanContext.Provider value={this.getContext()}>
                   <DashboardContent>
-                    <NavBar history={history} location={location} />
+                    <NavBar history={history} location={location} userType={userType} />
                     <WrappedComponent location={location} userType={userType} history={history} userPlan={userPlan} />
                   </DashboardContent>
                 </PlanContext.Provider>

@@ -8,5 +8,6 @@ export const DashboardContent = styled.div`
   width: 100%;
   background: ${props => props.theme.colors.polar};
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   position: relative;
 `

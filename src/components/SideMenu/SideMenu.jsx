@@ -31,11 +31,11 @@ class SideMenu extends Component {
   setActiveRoute = route => this.setState({ activeRoute: route })
 
   render() {
-    const { history, userType } = this.props
+    const { history, userType, isPopOver } = this.props
     const { activeRoute } = this.state
 
     return (
-      <MenuList>
+      <MenuList isPopOver={isPopOver}>
         {routes.map(route => (
           <MenuItem
             setActiveRoute={this.setActiveRoute}
