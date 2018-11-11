@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { distanceInWordsStrict } from 'date-fns'
 import { TableCell, TableRow } from 'components/Table'
-import { Icon, tableCellStyle, countryStyle } from './styles'
+import { Icon, DeviceTableCell, countryStyle, CountryName } from './styles'
 
 const getBrowserIcon = browser => {
   if (!browser) return ''
@@ -42,7 +42,7 @@ const Visitor = ({ visitor }) => (
   <TableRow key={visitor.id} onClick={() => console.log(visitor)}>
     <TableCell style={countryStyle}>
       {visitor.location && visitor.location.country_flag_emoji}
-      <p style={{ marginLeft: '8px' }}>{visitor.location && visitor.location.country_name}</p>
+      <CountryName>{visitor.location && visitor.location.country_name}</CountryName>
     </TableCell>
     <TableCell style={{ height: '48px' }}>
       <p>
@@ -56,13 +56,13 @@ const Visitor = ({ visitor }) => (
       </p>
     </TableCell>
     <TableCell style={{ height: '48px' }}>{distanceInWordsStrict(new Date(), visitor.createdAt)} ago</TableCell>
-    <TableCell style={tableCellStyle}>
+    <DeviceTableCell>
       {visitor.device.os && <Icon src={`/media/icons/devices/${getOSIcon(visitor.device.os)}`} alt="os" />}
       {visitor.device.browser && (
         <Icon src={`/media/icons/devices/${getBrowserIcon(visitor.device.browser)}`} alt="browser" />
       )}
       {visitor.device && <FontAwesomeIcon icon={getDeviceIcon(visitor.device)} style={{ width: '32px' }} />}
-    </TableCell>
+    </DeviceTableCell>
   </TableRow>
 )
 

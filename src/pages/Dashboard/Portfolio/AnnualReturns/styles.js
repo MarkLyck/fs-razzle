@@ -17,7 +17,7 @@ export const ReturnsContainer = styled(Box)`
   `)};
 
   ${mq.small(css`
-    s .three-years {
+    .three-years {
       display: none;
     }
     .divider:nth-child(4) {

@@ -6,13 +6,21 @@ export const countryStyle = {
   alignItems: 'center',
 }
 
-export const tableCellStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  height: '48px',
-  padding: '6px',
-  boxSizing: 'border-box',
-}
+export const CountryName = styled.p`
+  margin-left: 8px;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+`
+
+export const DeviceTableCell = styled.td`
+  display: flex;
+  alignitems: center;
+  height: 48px;
+  padding: 6px;
+  boxsizing: border-box;
+`
 
 export const Icon = styled.img`
   height: 24px;

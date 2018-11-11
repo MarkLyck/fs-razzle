@@ -8,6 +8,7 @@ import StockChart from './StockChart'
 import {
   SuggContainer,
   SuggHeader,
+  SuggestionName,
   ContentContainer,
   StockInfoList,
   Placeholder,
@@ -64,8 +65,10 @@ The total allocation in % of this stock in the portfolio, after this and all pre
     return (
       <SuggContainer>
         <SuggHeader>
-          <h3 className={`${suggestion.action}-action action`}>{suggestion.action}</h3>
-          <h3 className="suggestion-name">{suggestion.name}</h3>
+          <SuggestionName>
+            <span className={`${suggestion.action}-action action`}>{suggestion.action}</span>
+            {suggestion.name}
+          </SuggestionName>
           {stock && stock.sixMonthsPrices && <LastPrice>${latestPrice.toFixed(2)}</LastPrice>}
         </SuggHeader>
         <ContentContainer type={suggestion.action}>

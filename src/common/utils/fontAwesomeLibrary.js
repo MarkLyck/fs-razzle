@@ -1,12 +1,14 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { faChartLine } from '@fortawesome/pro-solid-svg-icons/faChartLine'
+import { faBars } from '@fortawesome/pro-regular-svg-icons/faBars'
 import { faAngleDown } from '@fortawesome/pro-solid-svg-icons/faAngleDown'
 import { faCalendarTimes } from '@fortawesome/pro-solid-svg-icons/faCalendarTimes'
 import { faChartPie } from '@fortawesome/pro-solid-svg-icons/faChartPie'
 import { faCheckCircle } from '@fortawesome/pro-solid-svg-icons/faCheckCircle'
 import { faCity } from '@fortawesome/pro-solid-svg-icons/faCity'
 import { faCreditCard } from '@fortawesome/pro-solid-svg-icons/faCreditCard'
+import { faDatabase } from '@fortawesome/pro-solid-svg-icons/faDatabase'
 import { faDesktop } from '@fortawesome/pro-solid-svg-icons/faDesktop'
 import { faDollarSign } from '@fortawesome/pro-solid-svg-icons/faDollarSign'
 import { faEnvelope } from '@fortawesome/pro-solid-svg-icons/faEnvelope'
@@ -23,6 +25,7 @@ import { faLockAlt } from '@fortawesome/pro-regular-svg-icons/faLockAlt'
 import { faMap } from '@fortawesome/pro-solid-svg-icons/faMap'
 import { faMobile } from '@fortawesome/pro-solid-svg-icons/faMobile'
 import { faNewspaper } from '@fortawesome/pro-solid-svg-icons/faNewspaper'
+import { faPencil } from '@fortawesome/pro-solid-svg-icons/faPencil'
 import { faQuestionCircle } from '@fortawesome/pro-solid-svg-icons/faQuestionCircle'
 import { faSignInAlt } from '@fortawesome/pro-solid-svg-icons/faSignInAlt'
 import { faSignOutAlt } from '@fortawesome/pro-solid-svg-icons/faSignOutAlt'
@@ -36,12 +39,14 @@ import { faUsers } from '@fortawesome/pro-solid-svg-icons/faUsers'
 
 library.add(
   faAngleDown,
+  faBars,
   faCalendarTimes,
   faChartLine,
   faChartPie,
   faCheckCircle,
   faCity,
   faCreditCard,
+  faDatabase,
   faDesktop,
   faDollarSign,
   faEnvelope,
@@ -57,6 +62,7 @@ library.add(
   faMap,
   faMobile,
   faNewspaper,
+  faPencil,
   faQuestionCircle,
   faExclamationCircle,
   faSignInAlt,

@@ -37,6 +37,12 @@ export const PortfolioTable = styled(Table)`
   .return.negative {
     color: ${props => props.theme.colors.error};
   }
+
+  @media (max-width: 450px) {
+    tr:last-child {
+      display: none;
+    }
+  }
 `
 
 export const PortfolioTableHead = styled(TableHead)`

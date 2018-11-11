@@ -26,4 +26,10 @@ export const GraphContainer = styled.div`
       text-align: center;
     }
   }
+
+  @media (max-width: 600px) {
+    #dau-graph {
+      height: 250px;
+    }
+  }
 `

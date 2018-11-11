@@ -6,7 +6,6 @@ export const SuggContainer = styled(Box)`
   flex-direction: column;
   width: calc(50% - 16px);
   margin: 8px;
-  padding-top: 16px;
 
   @media (max-width: 850px) {
     width: calc(100% - 16px);
@@ -19,14 +18,10 @@ export const SuggHeader = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0 8px 4px 12px;
+  padding: 16px 8px 16px 12px;
   margin: 0;
   font-size: 0.9rem;
   font-weight: 400;
-  h3 {
-    font-size: 1.2rem;
-    color: ${props => props.theme.colors.black};
-  }
   .action {
     font-weight: 400;
     margin-right: 8px;
@@ -35,6 +30,13 @@ export const SuggHeader = styled.div`
   .SELL-action {
     color: ${props => props.theme.colors.secondary};
   }
+`
+
+export const SuggestionName = styled.h3`
+  padding-right: 64px;
+  font-size: 1.2rem;
+  color: ${props => props.theme.colors.black};
+  width: 100%;
 `
 
 export const ContentContainer = styled.div`

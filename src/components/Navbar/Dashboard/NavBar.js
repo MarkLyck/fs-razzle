@@ -1,32 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import SlideIn from 'components/Dialogs/SlideIn'
+import SideMenu from 'components/SideMenu'
 import { hasStorage } from 'common/utils/featureTests'
 import PlanMenu from './planMenu'
 import AdminButtons from './adminButtons'
 // import ArticlesBackButton from './articlesBackButton'
-import { Bar, Logo } from './styles'
+import { Bar, Logo, LeftContent, HamburgerButton } from './styles'
 
 let selectedPlan =
   hasStorage && localStorage.getItem('selectedPlan') ? localStorage.getItem('selectedPlan').toUpperCase() : 'ENTRY'
 
-const NavBar = ({ history, location }) => {
-  const path = location.pathname || ''
+class NavBar extends Component {
+  state = {
+    sideMenuVisible: false,
+  }
 
-  const isPlanPage = path.includes('portfolio') || path.includes('suggestions') || path.includes('trades')
-  const isAdminPage = path.includes('admin')
-  // const isArticlePage = Router.router.query.title
-  // if (!isPlanPage && !isAdminPage && !isArticlePage) return (<Bar><span /><Logo /></Bar>)
+  handleSideMenuToggle = () => this.setState({ sideMenuVisible: !this.state.sideMenuVisible })
 
-  return (
-    <Bar>
-      {/* {isArticlePage && <ArticlesBackButton />} */}
-      {isPlanPage && <PlanMenu selectedPlan={selectedPlan} className="plan-menu-container" route={path} />}
-      {/* {isPlanPage && <PlanButtons selectedPlan={selectedPlan} actions={actions} />} */}
-      {isAdminPage && <AdminButtons route={path} history={history} />}
-      <Logo onClick={() => history.push('/')} isAdminPage={isAdminPage} />
-    </Bar>
-  )
+  render() {
+    const { history, location, userType } = this.props
+    const { sideMenuVisible } = this.state
+    const path = location.pathname || ''
+
+    const isPlanPage = path.includes('portfolio') || path.includes('suggestions') || path.includes('trades')
+    const isAdminPage = path.includes('admin')
+    // const isArticlePage = Router.router.query.title
+    // if (!isPlanPage && !isAdminPage && !isArticlePage) return (<Bar><span /><Logo /></Bar>)
+
+    return (
+      <Bar>
+        {/* {isArticlePage && <ArticlesBackButton />} */}
+        <LeftContent>
+          <HamburgerButton onClick={this.handleSideMenuToggle}>
+            <FontAwesomeIcon icon={['far', 'bars']} />
+          </HamburgerButton>
+          {isPlanPage && <PlanMenu selectedPlan={selectedPlan} className="plan-menu-container" route={path} />}
+          {isAdminPage && <AdminButtons route={path} history={history} />}
+        </LeftContent>
+        {/* {isPlanPage && <PlanButtons selectedPlan={selectedPlan} actions={actions} />} */}
+        <Logo onClick={() => history.push('/')} isAdminPage={isAdminPage} />
+        <SlideIn isVisible={sideMenuVisible} onRequestClose={this.handleSideMenuToggle}>
+          <SideMenu history={history} location={location} userType={userType} isPopOver />
+        </SlideIn>
+      </Bar>
+    )
+  }
 }
 
 NavBar.propTypes = {
