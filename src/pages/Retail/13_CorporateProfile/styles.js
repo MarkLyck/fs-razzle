@@ -1,6 +1,5 @@
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { darken } from 'polished'
 import mq from 'common/utils/mq'
 import Beside from 'components/Section/Beside'
 import Box from 'components/Box'
@@ -24,8 +23,12 @@ export const Card = styled(Box)`
   height: 72px;
   width: 100%;
   margin-bottom: 16px;
+  transition: transform 0.2s ease-out;
   p {
     color: ${props => props.theme.colors.primary};
+  }
+  &:hover {
+    transform: scale(1.05);
   }
 `
 

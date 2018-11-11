@@ -17,7 +17,7 @@ export const Card = styled(Box)`
 export const Content = styled.div`
   background: none;
   width: 68%;
-  border-left: 1px solid hsla(0, 0%, 100%, 0.2);
+  border-left: 2px solid hsla(0, 0%, 100%, 0.2);
   padding-left: 10%;
   h4 {
     font-weight: 400;

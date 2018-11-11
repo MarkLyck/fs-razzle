@@ -7,9 +7,10 @@ export const BesideContainer = styled.div`
   ${Beside} {
     align-items: center;
     margin-bottom: 64px;
+
     ${mq.small(css`
       flex-direction: column;
-      margin-bottom: 0;
+      margin: 24px 0 40px;
       > div {
         width: 100%;
         max-width: 100%;

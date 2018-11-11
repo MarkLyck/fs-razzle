@@ -13,7 +13,7 @@ const Statistics = ({ winRatio, planName, avgGain, avgLoss }) => (
   <Section>
     <BesideContainer>
       <SectionTitle>Statistics</SectionTitle>
-      <Beside style={{ marginBottom: '64px' }}>
+      <Beside>
         <Left data-center>
           <DualBarChart
             primaryStatistic={Math.floor(winRatio) || 90}

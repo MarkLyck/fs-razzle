@@ -21,7 +21,8 @@ const CorporateProfile = () => (
             capable of portfolio construction, portfolio management & risk/reward management.
             <br />
             <br />
-            Address: Formula Stocks ApS | Ribe Landevej 39, DK-6100 Haderslev. Denmark<br />
+            Address: Formula Stocks ApS | Ribe Landevej 39, DK-6100 Haderslev. Denmark
+            <br />
             <br />
             Contact us at: <a href="mailto:info@formulastocks.com">info@formulastocks.com</a>
           </p>
