@@ -1,6 +1,5 @@
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { darken } from 'polished'
 import mq from 'common/utils/mq'
 import Beside from 'components/Section/Beside'
 import Box from 'components/Box'

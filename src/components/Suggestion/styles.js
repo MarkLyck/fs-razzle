@@ -66,6 +66,10 @@ export const ContentContainer = styled.div`
       cursor: pointer;
     }
   }
+  .failed-container {
+    background: ${props => darken(0.02, '#fff')};
+    width: 100%;
+  }
 
   @media (max-width: 600px) {
     flex-direction: column-reverse;
@@ -74,6 +78,7 @@ export const ContentContainer = styled.div`
     .failed-container {
       height: 240px;
       background: ${props => darken(0.02, '#fff')};
+      width: auto;
     }
     .info-list {
       &:last-child {
