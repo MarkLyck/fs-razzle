@@ -62,8 +62,8 @@ class Portfolio extends Component {
                     pieChartsReady={pieChartsReady}
                   />
                   <AnnualReturns portfolioYields={Plan.portfolioYields} />
-                  {!hasPlanPerms && <PlanPermissionError planName={planName} history={history} />}
-                  {hasPlanPerms && (
+                  {hasPlanPerms === false && <PlanPermissionError planName={planName} history={history} />}
+                  {hasPlanPerms === true && (
                     <PortfolioTable>
                       <PortfolioTableHead>
                         <TableRow>

@@ -27,7 +27,9 @@ const Performance = ({ backtestedData, marketPrices, planName, amChartsLoaded })
       return (
         <Section data-offwhite>
           <SectionTitle>Long-term performance</SectionTitle>
-          <Subtitle>Log scale graph 1970 - 2017. How $25,000 invested would have evolved over time</Subtitle>
+          <Subtitle>
+            Log scale graph 1970 - {new Date().getFullYear()}. How $25,000 invested would have evolved over time
+          </Subtitle>
           <LongTermGraph
             planData={Plan.backtestedData || []}
             marketPrices={SP500.longtermPrices || []}

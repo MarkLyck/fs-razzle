@@ -78,7 +78,7 @@ class Footer extends Component {
             <p>
               Contact us at: <a href="mailto:info@formulastocks.com">info@formulastocks.com</a>
             </p>
-            <p>© Formula Stocks ApS 2018 - All rights reserved.</p>
+            <p>© Formula Stocks ApS {new Date().getFullYear()} - All rights reserved.</p>
           </div>
         </CopyRightContainer>
       </FooterContainer>

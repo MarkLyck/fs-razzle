@@ -1,4 +1,5 @@
 const hasPermissions = (viewingPlan, userPlan, userType) => {
+  if (!userType) return 'WAITING'
   if (userType === 'admin' || userType === 'demo') return true
 
   if (userPlan === 'ENTRY') {

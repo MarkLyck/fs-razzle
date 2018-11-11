@@ -104,8 +104,8 @@ class Suggestions extends Component {
                       icon="dollar-sign"
                     />
                   </StatisticsContainer>
-                  {!hasPlanPerms && <PlanPermissionError planName={planName} history={history} />}
-                  {hasPlanPerms && (
+                  {hasPlanPerms === false && <PlanPermissionError planName={planName} history={history} />}
+                  {hasPlanPerms === true && (
                     <SuggestionsList>
                       <Query
                         query={STOCKS_QUERY}
