@@ -44,12 +44,12 @@ class Portfolio extends Component {
         {({ planName }) => (
           <Query query={PORTFOLIO_QUERY} variables={{ id: planIds[planName] }}>
             {({ loading, error, data }) => {
+              const hasPlanPerms = hasPermissions(planName, userPlan, userType)
               if (loading) return <PortfolioLoader />
               if (error || !data || !data.Plan || !data.DJIA) return <LoadingError error={error} />
               const { Plan, DJIA } = data
 
               const lastRebalanceDate = Plan.portfolioYields[Plan.portfolioYields.length - 1].date
-              const hasPlanPerms = hasPermissions(planName, userPlan, userType)
 
               return (
                 <React.Fragment>
